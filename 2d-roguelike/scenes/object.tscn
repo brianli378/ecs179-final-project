@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ck8xgy356oeee"]
+
+[ext_resource type="Texture2D" uid="uid://cb7kfgjabn6bf" path="res://assets/plaecholder_object.jpg" id="1_pkda2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pkda2"]
+size = Vector2(118, 117.5)
+
+[node name="StaticBody2D" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_pkda2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.25)
+shape = SubResource("RectangleShape2D_pkda2")

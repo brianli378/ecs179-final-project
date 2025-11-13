@@ -3,8 +3,13 @@ extends Node2D
 var _menu:Resource = load("res://scenes/MainMenu.tscn")
 var _menu_node:Node
 
+var _death_menu:Resource = load("res://scenes/death_menu.tscn")
+var _death_menu_node:Node
+
 var _game:Resource = load("res://scenes/game.tscn")
 var _game_node:Node
+
+#var _all_nodes:Array[Node] = [_menu_node, _death_menu_node, _game_node]
 	
 func start_menu() -> void:
 	print("start_menu")
@@ -20,18 +25,31 @@ func start_game() -> void:
 	add_child(_game_node)
 	#TODO: when the player dies, we switch to that scene and free game node
 
-func _process(_float) -> void:
-	if Input.is_action_just_pressed("move_left"):
-		start_menu()
-	elif Input.is_action_just_pressed("move_right"):
-		start_game()
+func death_menu() -> void:
+	print("death_menu")
+	_clear_scene()
+	# instantisate the scene and add it as a child to the tree
+	_death_menu_node = _death_menu.instantiate()
+	add_child(_death_menu_node)
 
 func _ready():
 	$MainMenu.queue_free()
 	$Game.queue_free()
+	$DeathMenu.queue_free()
 	start_menu()
 	
 func _clear_scene()  -> void:
+	#TODO: for some reason, this loop doesn't work, but the if statements do
+	#for node in _all_nodes:
+	#	if node != null:
+	#		node.queue_free()
+	if _death_menu_node != null:
+		_death_menu_node.queue_free()
+	if _menu_node != null:
+		_menu_node.queue_free()
+	if _game_node != null:
+		_game_node.queue_free()
+		
 	var root = get_tree().current_scene
 	for child in root.get_children():
 		child.queue_free()

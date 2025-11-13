@@ -15,6 +15,10 @@ run/main_scene="uid://csdcglssx12od"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://assets/placeholder_gun.svg"
 
+[autoload]
+
+World="*res://scenes/world.tscn"
+
 [display]
 
 window/size/viewport_width=1280

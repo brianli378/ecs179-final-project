@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://cjfuyyu8dl486"]
 
 [ext_resource type="Script" uid="uid://dpfhd8ckyl4nx" path="res://scripts/player.gd" id="1_3vyb7"]
-[ext_resource type="Texture2D" uid="uid://ctfpr3oc0ghxn" path="res://assets/placeholder_gun.svg" id="2_g2els"]
 [ext_resource type="Texture2D" uid="uid://dlwpiotc2krv1" path="res://assets/placeholder_player.svg" id="2_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://bi4wtqt5aggai" path="res://assets/pistol_side_view.png" id="3_dqkch"]
 [ext_resource type="Script" uid="uid://bigp7fa5bkdg3" path="res://scripts/gun.gd" id="4_dqkch"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
@@ -15,13 +15,13 @@ script = ExtResource("1_3vyb7")
 texture = ExtResource("2_qhqgy")
 
 [node name="Gun" type="Sprite2D" parent="Body"]
-position = Vector2(117, 0)
-scale = Vector2(1.1484375, 0.3046875)
-texture = ExtResource("2_g2els")
+position = Vector2(124, 16)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_dqkch")
 script = ExtResource("4_dqkch")
 
 [node name="ProjectileSpawn" type="Node2D" parent="Body/Gun"]
-position = Vector2(75, 0)
+position = Vector2(45.333332, -20)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.25)

@@ -1,0 +1,15 @@
+name: Static checks
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  static-checks:
+    name: 'Static checks'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: Scony/godot-gdscript-toolkit@master
+    - run: gdformat 2d-roguelike/
+    - run: gdlint 2d-roguelike/

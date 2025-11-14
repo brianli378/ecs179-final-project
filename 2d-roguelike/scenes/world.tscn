@@ -1,37 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://csdcglssx12od"]
+[gd_scene load_steps=6 format=3 uid="uid://csdcglssx12od"]
 
-[ext_resource type="PackedScene" uid="uid://cjfuyyu8dl486" path="res://scenes/player.tscn" id="1_nnsk1"]
-[ext_resource type="PackedScene" uid="uid://ck8xgy356oeee" path="res://scenes/object.tscn" id="2_rwgxs"]
-
-[sub_resource type="QuadMesh" id="QuadMesh_e5uuo"]
+[ext_resource type="Script" uid="uid://dporqdc815ox1" path="res://scripts/world.gd" id="1_4wyf3"]
+[ext_resource type="PackedScene" uid="uid://dah2wgypumw50" path="res://scenes/MainMenu.tscn" id="2_k0juu"]
+[ext_resource type="PackedScene" uid="uid://dfob77al3r2l3" path="res://scenes/game.tscn" id="3_71j4m"]
+[ext_resource type="PackedScene" uid="uid://b3o364gauu71r" path="res://scenes/death_menu.tscn" id="4_k0juu"]
+[ext_resource type="PackedScene" uid="uid://bpyhbqnnhcgjq" path="res://scenes/pause_menu.tscn" id="5_71j4m"]
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_4wyf3")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-modulate = Color(1.5642494e-06, 0.40395993, 0.41488585, 1)
-position = Vector2(580, 307.00003)
-scale = Vector2(5032.9375, 3324.4375)
-mesh = SubResource("QuadMesh_e5uuo")
-metadata/_edit_lock_ = true
+[node name="MainMenu" parent="." instance=ExtResource("2_k0juu")]
 
-[node name="Player" parent="." instance=ExtResource("1_nnsk1")]
-position = Vector2(603, 335)
-scale = Vector2(0.5, 0.5)
+[node name="DeathMenu" parent="." instance=ExtResource("4_k0juu")]
 
-[node name="StaticBody2D" parent="." instance=ExtResource("2_rwgxs")]
-position = Vector2(177, 144)
+[node name="Game" parent="." instance=ExtResource("3_71j4m")]
 
-[node name="StaticBody2D2" parent="." instance=ExtResource("2_rwgxs")]
-position = Vector2(490, 414)
-
-[node name="StaticBody2D3" parent="." instance=ExtResource("2_rwgxs")]
-position = Vector2(894, 6)
-
-[node name="StaticBody2D4" parent="." instance=ExtResource("2_rwgxs")]
-position = Vector2(1056, 470)
-
-[node name="StaticBody2D5" parent="." instance=ExtResource("2_rwgxs")]
-position = Vector2(673, 664)
-
-[node name="StaticBody2D6" parent="." instance=ExtResource("2_rwgxs")]
-position = Vector2(-2, 579)
+[node name="PauseMenu" parent="." instance=ExtResource("5_71j4m")]

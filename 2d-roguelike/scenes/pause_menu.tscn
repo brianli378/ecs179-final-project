@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://bpyhbqnnhcgjq"]
+
+[ext_resource type="Texture2D" uid="uid://cb7kfgjabn6bf" path="res://assets/plaecholder_object.jpg" id="1_5d2l8"]
+[ext_resource type="Texture2D" uid="uid://b2hjpr3yg26x3" path="res://assets/main_menu/label_continue.png" id="2_5d2l8"]
+[ext_resource type="Script" uid="uid://bnpt0yc1w3n8s" path="res://scripts/unpause_game_button.gd" id="3_5d2l8"]
+[ext_resource type="Texture2D" uid="uid://cg23kqpw4l5s3" path="res://assets/main_menu/label_options.png" id="4_1s2dm"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_5d2l8"]
+
+[node name="PauseMenu" type="MarginContainer"]
+process_mode = 3
+offset_right = 1276.0
+offset_bottom = 695.0
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(1.5642494e-06, 0.40395993, 0.41488585, 1)
+position = Vector2(580, 307.00003)
+scale = Vector2(5032.9375, 3324.4375)
+mesh = SubResource("QuadMesh_5d2l8")
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Logo" type="TextureRect" parent="VBoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(400, 300)
+layout_mode = 2
+texture = ExtResource("1_5d2l8")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_5d2l8")
+stretch_mode = 3
+script = ExtResource("3_5d2l8")
+
+[node name="Options" type="TextureRect" parent="VBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_1s2dm")
+stretch_mode = 3

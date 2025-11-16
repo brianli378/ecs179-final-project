@@ -3,6 +3,7 @@ extends Node2D
 
 # loading basic player spec:
 var basic_enemy_spec = load("res://specs/basic_enemy_spec.tres")
+var strong_enemy_spec = load("res://specs/strong_enemy_spec.tres")
 
 @onready var spawn_point_1 = $StaticBody2D
 @onready var spawn_point_2 = $StaticBody2D2
@@ -26,6 +27,10 @@ func _ready():
 	spawn_point_5.queue_free()
 	spawn_point_6.queue_free()
 	
+	var enemy1 = enemy_factory.build(basic_enemy_spec)
+	var enemy2 = enemy_factory.build(basic_enemy_spec)
+	var enemy3 = enemy_factory.build(basic_enemy_spec)
+	
 	"""
 		# this is if we don't want to modify the basic specs 
 		var spec_scaled = basic_enemy_spec.duplicate()
@@ -33,15 +38,16 @@ func _ready():
 		then pass spec_scaled instead of basic_enemy_spec
 	"""
 	
-	var enemy1 = enemy_factory.build(basic_enemy_spec)
-	var enemy2 = enemy_factory.build(basic_enemy_spec)
-	var enemy3 = enemy_factory.build(basic_enemy_spec)
-	var enemy4 = enemy_factory.build(basic_enemy_spec)
-	var enemy5 = enemy_factory.build(basic_enemy_spec)
-	var enemy6 = enemy_factory.build(basic_enemy_spec)
-
-	print("HERE")
+	# these 2 will have scaled damage for basic
+	var spec_scaled = basic_enemy_spec.duplicate()
+	spec_scaled.damage *= 1.3
 	
+	var enemy4 = enemy_factory.build(spec_scaled)
+	var enemy5 = enemy_factory.build(spec_scaled)
+	
+	# this will be new enemy
+	var enemy6 = enemy_factory.build(strong_enemy_spec)
+
 	add_child(enemy1)
 	enemy1.position = spawn_position1
 	
@@ -60,13 +66,6 @@ func _ready():
 	add_child(enemy6)
 	enemy6.position = spawn_position6
 	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
+	print("Enemy1 damage: ", enemy1.damage)
+	print("Enemy5 damage scaled: ", enemy5.damage)
+	print("New enemy type damage: ", enemy6.damage)

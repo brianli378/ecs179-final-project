@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cjfuyyu8dl486"]
+[gd_scene load_steps=7 format=3 uid="uid://cjfuyyu8dl486"]
 
 [ext_resource type="Script" uid="uid://dpfhd8ckyl4nx" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://ctfpr3oc0ghxn" path="res://assets/placeholder_gun.svg" id="2_g2els"]
 [ext_resource type="Texture2D" uid="uid://dlwpiotc2krv1" path="res://assets/placeholder_player.svg" id="2_qhqgy"]
 [ext_resource type="Script" uid="uid://c36483pxjdqw" path="res://scripts/gun_manager.gd" id="4_dqkch"]
+[ext_resource type="Script" uid="uid://khln6qoy0c4f" path="res://scripts/position_lock_lerp_camera.gd" id="5_qlg0r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 size = Vector2(126, 123.5)
@@ -28,3 +29,6 @@ position = Vector2(0, 0.25)
 shape = SubResource("RectangleShape2D_g2els")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+unique_name_in_owner = true
+position_smoothing_enabled = true
+script = ExtResource("5_qlg0r")

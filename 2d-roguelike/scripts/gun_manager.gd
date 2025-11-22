@@ -2,6 +2,7 @@ class_name GunManager
 extends Node2D
 
 @onready var projectile_spawn: Node2D = $ProjectileSpawn
+@onready var camera: Camera2D = get_parent().get_parent().get_node("Camera2D") as Camera2D
 
 var _projectile_scene = preload("res://scenes/projectile.tscn")
 var _time_since_last_shot: float = 0.0
@@ -45,6 +46,8 @@ func _shoot() -> void:
 	
 	var direction: Vector2 = projectile_spawn.global_transform.x.normalized()
 	projectile.linear_velocity = direction * curr_gun.projectile_speed
+	
+	camera.add_shake(0.17)
 	
 	for child in projectile.get_children():
 		child.scale = curr_gun.projectile_scale

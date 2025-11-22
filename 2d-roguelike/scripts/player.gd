@@ -5,6 +5,7 @@ extends CharacterBody2D
 var _world:Node2D = World
 
 const SPEED := 700.0
+@onready var cam := $Camera2D
 
 # dash
 const DASH_SPEED_MULT := 20.0

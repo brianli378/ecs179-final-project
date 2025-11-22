@@ -7,3 +7,4 @@ func _init() -> void:
 	projectile_speed = 1000
 	shot_delay = 0.1
 	projectile_scale = Vector2(0.0075, 0.0075)
+	firing_mode = FiringMode.AUTO

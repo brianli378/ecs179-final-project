@@ -27,8 +27,14 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("switch_gun"):
 		curr_gun_index = (curr_gun_index + 1) % guns.size()
 		curr_gun = guns[curr_gun_index]
+		
+	var should_shoot := false
+	if curr_gun.firing_mode == Gun.FiringMode.SEMI_AUTO:
+		should_shoot = Input.is_action_just_pressed("shoot")
+	elif curr_gun.firing_mode == Gun.FiringMode.AUTO:
+		should_shoot = Input.is_action_pressed("shoot")
 	
-	if Input.is_action_just_pressed("shoot") and _time_since_last_shot >= curr_gun.shot_delay:
+	if should_shoot and _time_since_last_shot >= curr_gun.shot_delay:
 		_shoot()
 		_time_since_last_shot = 0.0
 

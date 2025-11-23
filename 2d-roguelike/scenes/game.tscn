@@ -3,18 +3,10 @@
 [ext_resource type="Script" uid="uid://ckotjxg6pcfyy" path="res://scripts/game.gd" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://cjfuyyu8dl486" path="res://scenes/player.tscn" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://ck8xgy356oeee" path="res://scenes/object.tscn" id="2_lnu2h"]
-
-[sub_resource type="QuadMesh" id="QuadMesh_e5uuo"]
+[ext_resource type="PackedScene" uid="uid://cbp7rkfxj7ph8" path="res://scenes/maps.tscn" id="4_lbhrr"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_lnu2h")
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-modulate = Color(1.5642494e-06, 0.40395993, 0.41488585, 1)
-position = Vector2(580, 307.00003)
-scale = Vector2(5032.9375, 3324.4375)
-mesh = SubResource("QuadMesh_e5uuo")
-metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_yqjtg")]
 position = Vector2(603, 335)
@@ -37,3 +29,7 @@ position = Vector2(673, 664)
 
 [node name="StaticBody2D6" parent="." instance=ExtResource("2_lnu2h")]
 position = Vector2(-2, 579)
+
+[node name="Maps" parent="." instance=ExtResource("4_lbhrr")]
+show_behind_parent = true
+top_level = false

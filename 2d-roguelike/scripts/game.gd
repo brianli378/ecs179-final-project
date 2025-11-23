@@ -63,8 +63,8 @@ func _ready():
 	add_child(enemy5)
 	enemy5.position = spawn_position5
 	
-	add_child(enemy6)
-	enemy6.position = spawn_position6
+	#add_child(enemy6)
+	#enemy6.position = spawn_position6
 	
 	print("Enemy1 damage: ", enemy1.damage)
 	print("Enemy5 damage scaled: ", enemy5.damage)

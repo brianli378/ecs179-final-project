@@ -18,7 +18,6 @@ var dash_cooldown := 0.0
 var dash_direction := Vector2.ZERO
 var current_speed := SPEED
 
-
 func _process(_delta: float) -> void:
 	look_at(get_global_mouse_position())
 	

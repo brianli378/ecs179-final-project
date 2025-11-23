@@ -3,14 +3,15 @@
 [ext_resource type="Script" uid="uid://birgv6eudsgmc" path="res://scripts/enemies/basic_enemy.gd" id="1_7jpia"]
 [ext_resource type="Texture2D" uid="uid://cb7kfgjabn6bf" path="res://assets/plaecholder_object.jpg" id="2_8xi43"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tgb66"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8xi43"]
+size = Vector2(118, 118)
 
 [node name="BasicEnemy" type="CharacterBody2D"]
 script = ExtResource("1_7jpia")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Body" type="Sprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_8xi43")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_tgb66")
+shape = SubResource("RectangleShape2D_8xi43")

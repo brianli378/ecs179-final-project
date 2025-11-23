@@ -39,10 +39,16 @@ func initialize(spec: EnemySpec):
 	self.gun_manager.npc = true
 	
 func _ready():
-	print("hi")
+	print("basic enemy ready")
 	
 func _process(_delta: float) -> void:
 	look_at(_player.global_position)
+	
+	if health == 0:
+		_handle_death()
+		
+func _handle_death() -> void:
+	queue_free()
 
 func _physics_process(_delta: float) -> void:
 	_time += _delta
@@ -55,14 +61,16 @@ func _physics_process(_delta: float) -> void:
 	# Calculate direction vector toward player
 	var direction: Vector2 = (_player.global_position - global_position).normalized()
 	var distance: float = _distance_to_player()
-	
-	# move towards player
+
 	if distance > _furthest_leash:
-		global_position += direction * _movement_speed * _delta
+		# Move toward player
+		velocity = direction * _movement_speed
 	elif distance < _closest_leash:
-		# move away from player
-		global_position -= direction * _movement_speed * _delta
-		
+		# Move away from player
+		velocity = -direction * _movement_speed
+
+	move_and_slide()
+
 
 #TODO: take damage (similar to exercise 3)
 

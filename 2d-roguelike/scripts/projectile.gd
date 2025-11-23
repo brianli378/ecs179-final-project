@@ -10,3 +10,6 @@ func _ready() -> void:
 
 func _on_body_entered(_body: Node) -> void:
 	queue_free()
+	#TODO: get damage from projectile
+	if _body is BasicEnemy:
+		_body.health -= 50

@@ -30,5 +30,6 @@ shape = SubResource("RectangleShape2D_g2els")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true
+process_callback = 0
 position_smoothing_enabled = true
 script = ExtResource("5_qlg0r")

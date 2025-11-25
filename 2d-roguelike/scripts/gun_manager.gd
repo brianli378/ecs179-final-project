@@ -3,9 +3,15 @@ extends Node2D
 
 @onready var projectile_spawn: Node2D = $ProjectileSpawn
 @onready var camera: Camera2D = get_parent().get_parent().get_node("Camera2D") as Camera2D
+@onready var player: CharacterBody2D = get_parent().get_parent()
+
+@export var offset_right: Vector2 = Vector2(-100, 0)
+@export var offset_left: Vector2 = Vector2(100, 0)
 
 var _projectile_scene = preload("res://scenes/projectile.tscn")
 var _time_since_last_shot: float = 0.0
+var facing_right = false
+var default_state = true
 
 var guns: Array[Gun] = []
 var curr_gun_index: int = 0
@@ -25,6 +31,49 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	_time_since_last_shot += _delta
 	
+	var mouse_pos = get_global_mouse_position()
+	var player_position = global_position
+	var mouse_direction = mouse_pos.x - player_position.x
+	
+	if player.velocity.x > 0 or default_state:
+		# if player is moving right
+		scale.y = 1
+		position = offset_left
+		facing_right = true
+		default_state = false
+		
+	elif player.velocity.x < 0 or mouse_direction < -100:
+		# if player is moving left
+		scale.y = -1
+		position = offset_right
+		facing_right = false
+		default_state = false
+		
+	elif mouse_direction > 100 and player.velocity.x == 0:
+		# if player is looking left
+		scale.y = 1
+		position = offset_left
+		facing_right = true
+		default_state = false
+		
+	elif mouse_direction < -100 and player.velocity.x == 0:
+		# if player is looking rihgt
+		scale.y = -1
+		position = offset_right
+		facing_right = false
+		default_state = false
+		
+	look_at(mouse_pos)
+		
+	if facing_right:
+		# when facing right, limit rotation
+		rotation = clamp(rotation, -1.5, 1.5)
+	else:
+		# when facing left, limit rotation
+		var abs_rotation = abs(rotation)
+		abs_rotation = clamp(abs_rotation, 1.5, 5)
+		rotation = sign(rotation) * abs_rotation
+		
 	if Input.is_action_just_pressed("switch_gun"):
 		curr_gun_index = (curr_gun_index + 1) % guns.size()
 		curr_gun = guns[curr_gun_index]

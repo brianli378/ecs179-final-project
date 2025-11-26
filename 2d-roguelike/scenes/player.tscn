@@ -1,29 +1,13 @@
-[gd_scene load_steps=26 format=3 uid="uid://cjfuyyu8dl486"]
+[gd_scene load_steps=23 format=3 uid="uid://cjfuyyu8dl486"]
 
 [ext_resource type="Script" uid="uid://dpfhd8ckyl4nx" path="res://scripts/player.gd" id="1_3vyb7"]
-[ext_resource type="Texture2D" uid="uid://dlwpiotc2krv1" path="res://assets/placeholder_player.svg" id="2_qhqgy"]
 [ext_resource type="Script" uid="uid://c36483pxjdqw" path="res://scripts/gun_manager.gd" id="4_dqkch"]
-[ext_resource type="Texture2D" uid="uid://bi4wtqt5aggai" path="res://assets/pistol_side_view.png" id="4_ur7pv"]
 [ext_resource type="Script" uid="uid://khln6qoy0c4f" path="res://scripts/position_lock_lerp_camera.gd" id="5_qlg0r"]
+[ext_resource type="Texture2D" uid="uid://d0opbe7n8wpat" path="res://assets/pistol_sprite.png" id="5_y4r1p"]
 [ext_resource type="Texture2D" uid="uid://ryv7je4xbj7p" path="res://assets/tiny_idle_left.png" id="6_y4r1p"]
 [ext_resource type="Texture2D" uid="uid://crsnfbaik82ig" path="res://assets/tiny_idle_right.png" id="7_d2wvv"]
 [ext_resource type="Texture2D" uid="uid://ctsktlwtg03h1" path="res://assets/tiny_walk_left.png" id="8_3v2ag"]
 [ext_resource type="Texture2D" uid="uid://c0s1uhu6jx4oy" path="res://assets/tiny_walk_right.png" id="9_jej6c"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f1ej7"]
-atlas = ExtResource("4_ur7pv")
-region = Rect2(0, 0, 128, 128)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_oprun"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_f1ej7")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 size = Vector2(126, 123.5)
@@ -139,22 +123,24 @@ animations = [{
 script = ExtResource("1_3vyb7")
 
 [node name="Body" type="Sprite2D" parent="."]
-texture = ExtResource("2_qhqgy")
+centered = false
 
 [node name="Gun" type="Sprite2D" parent="Body"]
-position = Vector2(117, 0)
+position = Vector2(100, 30)
 scale = Vector2(1.1484375, 0.3046875)
+centered = false
+offset = Vector2(-10, -75)
 script = ExtResource("4_dqkch")
 
 [node name="ProjectileSpawn" type="Node2D" parent="Body/Gun"]
 position = Vector2(75, 0)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Body/Gun"]
-position = Vector2(-32, 30)
-scale = Vector2(1.05, 1.28)
-sprite_frames = SubResource("SpriteFrames_oprun")
+[node name="Sprite2D" type="Sprite2D" parent="Body/Gun"]
+z_index = 1
+position = Vector2(-10, 0)
+texture = ExtResource("5_y4r1p")
 centered = false
-offset = Vector2(-30, -80)
+offset = Vector2(-11.346943, -36.10241)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.25)
@@ -168,4 +154,4 @@ script = ExtResource("5_qlg0r")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pf23h")
-animation = &"tiny_idle_right"
+animation = &"tiny_walk_right"

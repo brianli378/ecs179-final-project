@@ -10,3 +10,4 @@ enum FiringMode { SEMI_AUTO, AUTO }
 @export var firing_mode: FiringMode = FiringMode.SEMI_AUTO
 @export var projectile_count: int = 1
 @export var spread_angle: float = 0.0
+@export var explosion_radius: float = 0.0

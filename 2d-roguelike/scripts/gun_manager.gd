@@ -5,6 +5,7 @@ extends Node2D
 @onready var camera: Camera2D = get_parent().get_parent().get_node("Camera2D") as Camera2D
 
 var _projectile_scene = preload("res://scenes/projectile.tscn")
+var _rocket_projectile_scene = preload("res://scenes/rocket_projectile.tscn")
 var _time_since_last_shot: float = 0.0
 
 var guns: Array[Gun] = []
@@ -17,7 +18,8 @@ func _ready() -> void:
 		Pistol.new(),
 		MachineGun.new(),
 		Sniper.new(),
-		Shotgun.new()
+		Shotgun.new(),
+		RocketLauncher.new()
 	]
 	
 	curr_gun = guns[curr_gun_index]
@@ -45,7 +47,13 @@ func _shoot() -> void:
 	var base_direction := projectile_spawn.global_transform.x.normalized()
 	
 	for i in range(curr_gun.projectile_count):
-		var projectile: Projectile = _projectile_scene.instantiate()
+		var projectile
+		if curr_gun is RocketLauncher:
+			projectile = _rocket_projectile_scene.instantiate()
+			projectile.max_damage = curr_gun.damage
+			projectile.explosion_radius = curr_gun.explosion_radius
+		else:
+			projectile = _projectile_scene.instantiate()
 		projectile.global_position = projectile_spawn.global_position
 		
 		var angle_offset := 0.0

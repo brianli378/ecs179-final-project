@@ -37,28 +37,28 @@ var curr_projectile_spec: ProjectileSpec = projectile_library["normal"]
 
 var gun_textures: Dictionary = {
 	"pistol": preload("res://assets/pistol_sprite_2.png"),
-	"machine gun": preload("res://assets/shotgun_sprite.png"), #TODO: change to machine gun
+	"machine gun": preload("res://assets/machinegun_sprite.png"), #TODO: change to machine gun
 	"sniper": preload("res://assets/sniper_sprite.png")
 }
 
 # Gun specific offsets when facing right
 var gun_offsets_right: Dictionary = {
 	"pistol": Vector2(-90, 20),
-	"machine gun": Vector2(0, 25),
+	"machine gun": Vector2(-40, 25),
 	"sniper": Vector2(0, 0)
 }
 
 # Gun specific offsets when facing right
 var gun_offsets_left: Dictionary = {
 	"pistol": Vector2(90, 20),
-	"machine gun": Vector2(0, 25),
+	"machine gun": Vector2(40, 25),
 	"sniper": Vector2(0, 0)
 }
 
 # Rotation pivot location
 var gun_sprite_positions: Dictionary = {
 	"pistol": Vector2(-20, 0),
-	"machine gun": Vector2(-50, 0),
+	"machine gun": Vector2(-175, 0),
 	"sniper": Vector2(-200, 0)
 }
 

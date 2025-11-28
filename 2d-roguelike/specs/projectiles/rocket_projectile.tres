@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ProjectileSpec" load_steps=2 format=3 uid="uid://bnilbt1el36aj"]
+
+[ext_resource type="Script" uid="uid://baktn8742q1rt" path="res://scripts/projectile_spec.gd" id="1_ar4yc"]
+
+[resource]
+script = ExtResource("1_ar4yc")
+damage = 25.0
+metadata/_custom_type_script = "uid://baktn8742q1rt"

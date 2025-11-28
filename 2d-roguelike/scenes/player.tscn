@@ -132,15 +132,17 @@ centered = false
 offset = Vector2(-10, -75)
 script = ExtResource("4_dqkch")
 
-[node name="ProjectileSpawn" type="Node2D" parent="Body/Gun"]
-position = Vector2(75, 0)
+[node name="RotationPivot" type="Node2D" parent="Body/Gun"]
 
-[node name="Sprite2D" type="Sprite2D" parent="Body/Gun"]
+[node name="Sprite2D" type="Sprite2D" parent="Body/Gun/RotationPivot"]
 z_index = 1
 position = Vector2(-10, 0)
 texture = ExtResource("5_y4r1p")
 centered = false
 offset = Vector2(-11.346943, -36.10241)
+
+[node name="ProjectileSpawn" type="Node2D" parent="Body/Gun/RotationPivot"]
+position = Vector2(75, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.25)

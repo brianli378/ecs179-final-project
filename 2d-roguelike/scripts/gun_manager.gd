@@ -23,7 +23,7 @@ var curr_gun_index: int = 0
 var curr_gun: Gun = null
 
 var gun_textures: Array[Texture2D] = [
-	preload("res://assets/pistol_sprite.png"),    # Index 0 - Pistol
+	preload("res://assets/pistol_sprite_2.png"),    # Index 0 - Pistol
 	#TODO: add machine gun sprite
 	preload("res://assets/shotgun_sprite.png"), # Index 1 - MachineGun (placeholder shotgun sprite)
 	preload("res://assets/sniper_sprite.png")    
@@ -45,7 +45,7 @@ var gun_offsets_left: Array[Vector2] = [
 
 # Gun pivot points
 var gun_sprite_positions: Array[Vector2] = [
-	Vector2(0, 0),      # Index 0 - Pistol 
+	Vector2(-20, 0),      # Index 0 - Pistol 
 	Vector2(-50, 0),      # Index 1 - MachineGun (currently shotgun sprite)
 	Vector2(-200, 0)      # Index 2 - Sniper 
 ]

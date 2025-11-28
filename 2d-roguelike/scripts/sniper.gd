@@ -8,3 +8,4 @@ func _init() -> void:
 	shot_delay = 2.0
 	projectile_scale = Vector2(0.02, 0.02)
 	firing_mode = FiringMode.SEMI_AUTO
+	projectile_type = "laser"

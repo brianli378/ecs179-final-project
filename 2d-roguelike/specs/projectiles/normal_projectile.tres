@@ -6,5 +6,6 @@
 [resource]
 script = ExtResource("1_pb1g4")
 texture = ExtResource("2_yk13c")
+scale = Vector2(0.01, 0.01)
 damage = 10.0
 metadata/_custom_type_script = "uid://baktn8742q1rt"

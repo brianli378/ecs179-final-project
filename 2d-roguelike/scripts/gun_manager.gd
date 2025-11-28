@@ -3,7 +3,6 @@ extends Node2D
 
 # Rotation pivot node was just added because godot is being mean about
 # me changing the rotation pivot of a gun.
-
 @onready var rotation_pivot: Node2D = $RotationPivot
 @onready var projectile_spawn: Node2D = $RotationPivot/ProjectileSpawn
 @onready var gun_sprite: Sprite2D = $RotationPivot/Sprite2D
@@ -29,56 +28,60 @@ var _time_since_last_shot: float = 0.0
 var facing_right = false
 var default_state = true
 
-var guns: Array[Gun] = []
-var curr_gun_index: int = 0
+var guns: Dictionary = {} 
+var gun_keys: Array[String] = ["pistol", "machine gun", "sniper"] # Array for easy indexing
+var curr_gun_index: int = 0  # Index into gun_keys array
 var curr_gun: Gun = null
-# defaulted to normal projectile
-var curr_projectile_spec: ProjectileSpec = projectile_library["laser"]
+# Defaulted to normal projectile
+var curr_projectile_spec: ProjectileSpec = projectile_library["normal"]
 
-var gun_textures: Array[Texture2D] = [
-	preload("res://assets/pistol_sprite_2.png"),    # Index 0 - Pistol
-	#TODO: add machine gun sprite
-	preload("res://assets/shotgun_sprite.png"), # Index 1 - MachineGun (placeholder shotgun sprite)
-	preload("res://assets/sniper_sprite.png")    
-]
+var gun_textures: Dictionary = {
+	"pistol": preload("res://assets/pistol_sprite_2.png"),
+	"machine gun": preload("res://assets/shotgun_sprite.png"), #TODO: change to machine gun
+	"sniper": preload("res://assets/sniper_sprite.png")
+}
 
-# Gun-specific offsets when facing right
-var gun_offsets_right: Array[Vector2] = [
-	Vector2(-90, 20),   # Index 0 - Pistol
-	Vector2(0, 25),   # Index 1 - MachineGun (currently shotgun sprite)
-	Vector2(0, 0)    # Index 2 - Sniper 
-]
+# Gun specific offsets when facing right
+var gun_offsets_right: Dictionary = {
+	"pistol": Vector2(-90, 20),
+	"machine gun": Vector2(0, 25),
+	"sniper": Vector2(0, 0)
+}
 
-# Gun-specific offsets when facing left
-var gun_offsets_left: Array[Vector2] = [
-	Vector2(90, 20),    # Index 0 - Pistol
-	Vector2(0, 25),    # Index 1 - MachineGun (currently shotgun sprite)
-	Vector2(0, 0)     # Index 2 - Sniper 
-]
+# Gun specific offsets when facing right
+var gun_offsets_left: Dictionary = {
+	"pistol": Vector2(90, 20),
+	"machine gun": Vector2(0, 25),
+	"sniper": Vector2(0, 0)
+}
 
-# Gun pivot points
-var gun_sprite_positions: Array[Vector2] = [
-	Vector2(-20, 0),      # Index 0 - Pistol 
-	Vector2(-50, 0),      # Index 1 - MachineGun (currently shotgun sprite)
-	Vector2(-200, 0)      # Index 2 - Sniper 
-]
+# Rotation pivot location
+var gun_sprite_positions: Dictionary = {
+	"pistol": Vector2(-20, 0),
+	"machine gun": Vector2(-50, 0),
+	"sniper": Vector2(-200, 0)
+}
 
-var projectile_spawn_offsets: Array[Vector2] = [
-	Vector2(50, 0),     # Index 0 - Pistol 
-	Vector2(250, -2),    # Index 1 - MachineGun (currently shotgun sprite)
-	Vector2(430, 20)      # Index 2 - Sniper 
-]
+# Projectile spawn location
+var projectile_spawn_offsets: Dictionary = {
+	"pistol": Vector2(50, 0),
+	"machine gun": Vector2(250, -2),
+	"sniper": Vector2(430, 20)
+}
+
 
 func _ready() -> void:
-	guns = [
-		Pistol.new(),
-		MachineGun.new(),
-		Sniper.new()
-	]
+	guns = {
+		"pistol": Pistol.new(),
+		"machine gun": MachineGun.new(),
+		"sniper": Sniper.new()
+	}
 	
-	curr_gun = guns[curr_gun_index]
-	_update_gun_texture()  # Set initial texture
-	_update_projectile_spawn_position()  # Set initial spawn position
+	# Create index for current gun for easy switching
+	curr_gun = guns[gun_keys[curr_gun_index]]
+	curr_projectile_spec = projectile_library[curr_gun.projectile_type]  # Set based on gun
+	_update_gun_texture()
+	_update_projectile_spawn_position()
 
 func _process(_delta: float) -> void:
 	_time_since_last_shot += _delta
@@ -86,53 +89,55 @@ func _process(_delta: float) -> void:
 	var mouse_pos = get_global_mouse_position()
 	var player_position = global_position
 	var mouse_direction = mouse_pos.x - player_position.x
+	var curr_gun_key = gun_keys[curr_gun_index]
 	
+	# If player is moving right
 	if player.velocity.x > 0 or default_state:
-		# if player is moving right
 		scale.y = 1
-		position = gun_offsets_left[curr_gun_index]
+		position = gun_offsets_left[curr_gun_key]
 		facing_right = true
 		default_state = false
 		
+	# If player is moving left	
 	elif player.velocity.x < 0 or mouse_direction < 0:
-		# if player is moving left
 		scale.y = -1
-		position = gun_offsets_right[curr_gun_index]
+		position = gun_offsets_right[curr_gun_key]
 		facing_right = false
 		default_state = false
 		
+	# If player is moving left	
 	elif mouse_direction > 100 and player.velocity.x == 0:
-		# if player is looking left
 		scale.y = 1
-		position = gun_offsets_left[curr_gun_index]
+		position = gun_offsets_left[curr_gun_key]
 		facing_right = true
 		default_state = false
 		
+	# If player is looking right
 	elif mouse_direction < -100 and player.velocity.x == 0:
-		# if player is looking rihgt
 		scale.y = -1
-		position = gun_offsets_right[curr_gun_index]
+		position = gun_offsets_right[curr_gun_key]
 		facing_right = false
 		default_state = false
 		
 	rotation_pivot.look_at(mouse_pos)
 		
 	if facing_right:
-		# when facing right, limit rotation
+		# When facing right, limit rotation
 		rotation_pivot.rotation = clamp(rotation_pivot.rotation, -1.5, 1.5)
 	else:
-		# when facing left, limit rotation
+		# When facing left, limit rotation
 		var abs_rotation = abs(rotation_pivot.rotation)
 		abs_rotation = clamp(abs_rotation, 1.5, 5)
 		rotation_pivot.rotation = sign(rotation_pivot.rotation) * abs_rotation
 		
 	if Input.is_action_just_pressed("switch_gun"):
-		curr_gun_index = (curr_gun_index + 1) % guns.size()
-		curr_gun = guns[curr_gun_index]
-		_update_gun_texture() 
-		_update_projectile_spawn_position()  
+		curr_gun_index = (curr_gun_index + 1) % gun_keys.size()
+		var new_gun_key = gun_keys[curr_gun_index]  # Get new key after incrementing
+		curr_gun = guns[new_gun_key]  # Use new key
+		curr_projectile_spec = projectile_library[curr_gun.projectile_type]  # Update projectile
+		_update_gun_texture()
+		_update_projectile_spawn_position()
 			
-		
 	# Add logic here for switching projectiles (Rytham will do this later)
 		
 	var should_shoot := false
@@ -165,15 +170,19 @@ func _shoot() -> void:
 	self.get_tree().current_scene.add_child(projectile)
 
 func _update_gun_texture() -> void:
-	if gun_sprite and curr_gun_index >= 0 and curr_gun_index < gun_textures.size():
-		gun_sprite.texture = gun_textures[curr_gun_index]
-		gun_sprite.position = gun_sprite_positions[curr_gun_index]
+	var curr_gun_key = gun_keys[curr_gun_index]
+	
+	if gun_sprite and gun_textures.has(curr_gun_key):
+		gun_sprite.texture = gun_textures[curr_gun_key]
+		gun_sprite.position = gun_sprite_positions[curr_gun_key]
 	else:
-		push_error("Invalid gun index or gun_sprite not found: " + str(curr_gun_index))
+		push_error("Invalid gun index or gun_sprite not found: " + str(curr_gun_key))
 		
 
 func _update_projectile_spawn_position() -> void:
-	if projectile_spawn and curr_gun_index >= 0 and curr_gun_index < projectile_spawn_offsets.size():
-		projectile_spawn.position = projectile_spawn_offsets[curr_gun_index]
+	var curr_gun_key = gun_keys[curr_gun_index]
+	
+	if projectile_spawn and projectile_spawn_offsets.has(curr_gun_key):
+		projectile_spawn.position = projectile_spawn_offsets[curr_gun_key]
 	else:
-		push_error("Invalid gun index or projectile_spawn not found: " + str(curr_gun_index))
+		push_error("Invalid gun index or projectile_spawn not found: " + str(curr_gun_key))

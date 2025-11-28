@@ -16,7 +16,8 @@ func _ready() -> void:
 	guns = [
 		Pistol.new(),
 		MachineGun.new(),
-		Sniper.new()
+		Sniper.new(),
+		Shotgun.new()
 	]
 	
 	curr_gun = guns[curr_gun_index]
@@ -41,15 +42,23 @@ func _process(_delta: float) -> void:
 
 
 func _shoot() -> void:
-	var projectile: Projectile = _projectile_scene.instantiate()
-	projectile.global_position = projectile_spawn.global_position
+	var base_direction := projectile_spawn.global_transform.x.normalized()
 	
-	var direction: Vector2 = projectile_spawn.global_transform.x.normalized()
-	projectile.linear_velocity = direction * curr_gun.projectile_speed
+	for i in range(curr_gun.projectile_count):
+		var projectile: Projectile = _projectile_scene.instantiate()
+		projectile.global_position = projectile_spawn.global_position
+		
+		var angle_offset := 0.0
+		if curr_gun.projectile_count > 1:
+			var step := curr_gun.spread_angle / (curr_gun.projectile_count - 1)
+			angle_offset = -curr_gun.spread_angle / 2.0 + (i * step)
+		
+		var direction := base_direction.rotated(deg_to_rad(angle_offset))
+		projectile.linear_velocity = direction * curr_gun.projectile_speed
+		
+		for child in projectile.get_children():
+			child.scale = curr_gun.projectile_scale
+		
+		self.get_tree().current_scene.add_child(projectile)
 	
 	camera.add_shake(0.17)
-	
-	for child in projectile.get_children():
-		child.scale = curr_gun.projectile_scale
-	
-	self.get_tree().current_scene.add_child(projectile)

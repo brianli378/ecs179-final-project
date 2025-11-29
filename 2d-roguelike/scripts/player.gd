@@ -26,6 +26,7 @@ var last_horizontal_direction := 1  # 1 for right, -1 for left (default to right
 func _ready() -> void:
 	print("PlayerAnimations exists? ", has_node("PlayerAnimations"))
 	print(name)
+	add_to_group("player")
 
 func _process(_delta: float) -> void:
 	#look_at(get_global_mouse_position())

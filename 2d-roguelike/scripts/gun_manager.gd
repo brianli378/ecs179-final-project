@@ -109,7 +109,7 @@ func _process(_delta: float) -> void:
 	if not npc:
 		if Input.is_action_just_pressed("switch_gun"):
 			curr_gun_index = (curr_gun_index + 1) % guns.size()
-			curr_gun = guns[curr_gun_index]
+			curr_gun = guns["machine gun"]
 
 		if Input.is_action_just_pressed("shoot") and _time_since_last_shot >= curr_gun.shot_delay:
 			shoot()
@@ -118,7 +118,10 @@ func _process(_delta: float) -> void:
 
 func shoot() -> void:
 	var projectile: Projectile = _projectile_scene.instantiate()
+	
+	# make sure the projectile didn't instantly get destroyed
 	projectile.global_position = projectile_spawn.global_position
+	
 	var mouse_pos = get_global_mouse_position()
 	var player_position = global_position
 	var mouse_direction = mouse_pos.x - player_position.x

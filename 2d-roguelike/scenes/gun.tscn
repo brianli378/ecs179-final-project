@@ -1,12 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://doj05njfuwl4e"]
+[gd_scene load_steps=3 format=3 uid="uid://bud45oq6r0m8k"]
 
-[ext_resource type="Texture2D" uid="uid://ctfpr3oc0ghxn" path="res://assets/placeholder_gun.svg" id="1_og67c"]
 [ext_resource type="Script" uid="uid://c36483pxjdqw" path="res://scripts/gun_manager.gd" id="2_gp1hk"]
+[ext_resource type="Texture2D" uid="uid://d0opbe7n8wpat" path="res://assets/pistol_sprite.png" id="2_og67c"]
 
 [node name="Gun" type="Sprite2D"]
 scale = Vector2(1.1484375, 0.3046875)
-texture = ExtResource("1_og67c")
+centered = false
+offset = Vector2(-10, -75)
 script = ExtResource("2_gp1hk")
 
-[node name="ProjectileSpawn" type="Node2D" parent="."]
+[node name="RotationPivot" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="RotationPivot"]
+z_index = 1
+position = Vector2(-10, 0)
+texture = ExtResource("2_og67c")
+centered = false
+offset = Vector2(-11.346943, -36.10241)
+
+[node name="ProjectileSpawn" type="Node2D" parent="RotationPivot"]
 position = Vector2(75, 0)

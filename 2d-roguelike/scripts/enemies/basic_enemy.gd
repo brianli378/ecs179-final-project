@@ -18,10 +18,10 @@ var _movement_speed: float = 300.0 # units per frame
 #var shooting_delay: float
 
 @onready
-var gun_manager: GunManager = $Body/Gun
+var gun_manager: EnemyGunManager = $Body/Gun2
 
 @onready
-var _player:Player = PlayerSingleton
+var _player:Player
 
 func initialize(spec: EnemySpec):
 	self.health = spec.health
@@ -34,6 +34,7 @@ func _ready():
 	print("basic enemy ready")
 		# make sure we ignore user inputs
 	self.gun_manager.npc = true
+	_player = get_tree().get_first_node_in_group("player")
 
 func _process(_delta: float) -> void:
 	if _player == null:
@@ -55,6 +56,7 @@ func _physics_process(_delta: float) -> void:
 	# shooting logic
 	if _distance_to_player() < shooting_range and _time >= 1.0:
 		_time = 0.0
+		print("enemy shooting")
 		gun_manager.shoot()
 	
 	# Calculate direction vector toward player

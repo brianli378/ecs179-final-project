@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dfob77al3r2l3"]
+[gd_scene load_steps=7 format=3 uid="uid://dfob77al3r2l3"]
 
 [ext_resource type="Script" uid="uid://ckotjxg6pcfyy" path="res://scripts/game.gd" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://cjfuyyu8dl486" path="res://scenes/player.tscn" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://ck8xgy356oeee" path="res://scenes/object.tscn" id="2_lnu2h"]
+[ext_resource type="Script" uid="uid://c1ii6nabjc5qe" path="res://scripts/ammo_label.gd" id="4_lbhrr"]
+[ext_resource type="Script" uid="uid://ddmp30xmc3gcl" path="res://scripts/reload_label.gd" id="5_iywne"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_e5uuo"]
 
@@ -37,3 +39,26 @@ position = Vector2(673, 664)
 
 [node name="StaticBody2D6" parent="." instance=ExtResource("2_lnu2h")]
 position = Vector2(-2, 579)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 1093.0
+offset_top = 634.0
+offset_right = 1240.0
+offset_bottom = 693.0
+theme_override_font_sizes/font_size = 39
+text = "0 / 0"
+script = ExtResource("4_lbhrr")
+gun_manager_path = NodePath("../../Player/Body/Gun")
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_left = 1114.0
+offset_top = 616.0
+offset_right = 1230.0
+offset_bottom = 639.0
+text = "REALOADING..."
+script = ExtResource("5_iywne")
+gun_manager_path = NodePath("../../Player/Body/Gun")
+
+[editable path="Player"]

@@ -20,6 +20,7 @@ config/icon="res://assets/placeholder_gun.svg"
 World="*res://scenes/world.tscn"
 enemy_factory="*res://scripts/enemy_factory.gd"
 PlayerSingleton="*res://scripts/player.gd"
+projectile_factory="*res://scripts/projectile_factory.gd"
 
 [display]
 
@@ -76,4 +77,5 @@ switch_gun={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=2
 renderer/rendering_method="mobile"

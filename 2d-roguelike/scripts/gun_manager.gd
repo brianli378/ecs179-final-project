@@ -168,7 +168,8 @@ func _process(_delta: float) -> void:
 		curr_projectile_spec = projectile_library[curr_gun.projectile_type]  # Update projectile
 		_update_gun_texture()
 		_update_projectile_spawn_position()
-			
+		_time_since_last_shot = curr_gun.shot_delay
+
 	# Add logic here for switching projectiles (Rytham will do this later)
 		
 	var should_shoot := false
@@ -185,12 +186,13 @@ func _process(_delta: float) -> void:
 	var reload_pressed := Input.is_action_just_pressed("reload")
 	if reload_pressed:
 		_start_reload(curr_gun_key, mag_size, reload_time, curr_mag, curr_reserve)
-	
-	if should_shoot and _time_since_last_shot >= curr_gun.shot_delay and not is_reloading:
+
+	if should_shoot and not is_reloading:
 		if curr_mag > 0:
-			_shoot()
-			_time_since_last_shot = 0.0
-			ammo_in_mag[curr_gun_key] = curr_mag - 1
+			if _time_since_last_shot >= curr_gun.shot_delay:
+				_shoot()
+				_time_since_last_shot = 0.0
+				ammo_in_mag[curr_gun_key] = curr_mag - 1
 		else:
 			# auto reload
 			if curr_reserve > 0:

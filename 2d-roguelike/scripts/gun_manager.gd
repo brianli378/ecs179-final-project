@@ -1,6 +1,8 @@
 class_name GunManager
 extends Node2D
 
+const GunSpec = preload("res://scripts/gun_spec.gd")
+
 # Rotation pivot node was just added because godot is being mean about
 # me changing the rotation pivot of a gun.
 @onready var rotation_pivot: Node2D = $RotationPivot
@@ -35,6 +37,11 @@ var curr_gun_index: int = 0  # Index into gun_keys array
 var curr_gun: Gun = null
 # Defaulted to normal projectile
 var curr_projectile_spec: ProjectileSpec = projectile_library["normal"]
+
+# ammo variables
+var ammo_in_mag: Dictionary = {}
+var ammo_in_reserve: Dictionary = {}
+var is_reloading: bool = false
 
 var gun_textures: Dictionary = {
 	"pistol": preload("res://assets/pistol_sprite_2.png"),
@@ -98,6 +105,12 @@ func _ready() -> void:
 	curr_projectile_spec = projectile_library[curr_gun.projectile_type]  # Set based on gun
 	_update_gun_texture()
 	_update_projectile_spawn_position()
+	
+	# initialize ammo
+	for gun_key in gun_keys:
+		var stats := GunSpec.get_stats(gun_key)
+		ammo_in_mag[gun_key] = int(stats.magazine_size)
+		ammo_in_reserve[gun_key] = int(stats.starting_reserve)
 
 func _process(_delta: float) -> void:
 	_time_since_last_shot += _delta
@@ -161,10 +174,65 @@ func _process(_delta: float) -> void:
 		should_shoot = Input.is_action_just_pressed("shoot")
 	elif curr_gun.firing_mode == Gun.FiringMode.AUTO:
 		should_shoot = Input.is_action_pressed("shoot")
+
+	var stats := GunSpec.get_stats(curr_gun_key)
+	var mag_size: int = int(stats.magazine_size)
+	var reload_time: float = float(stats.reload_time)
+	var curr_mag: int = ammo_in_mag.get(curr_gun_key, 0)
+	var curr_reserve: int = ammo_in_reserve.get(curr_gun_key, 0)
+	var reload_pressed := Input.is_action_just_pressed("reload")
+	if reload_pressed:
+		_start_reload(curr_gun_key, mag_size, reload_time, curr_mag, curr_reserve)
 	
-	if should_shoot and _time_since_last_shot >= curr_gun.shot_delay:
-		_shoot()
-		_time_since_last_shot = 0.0
+	if should_shoot and _time_since_last_shot >= curr_gun.shot_delay and not is_reloading:
+		if curr_mag > 0:
+			_shoot()
+			_time_since_last_shot = 0.0
+			ammo_in_mag[curr_gun_key] = curr_mag - 1
+		else:
+			# auto reload
+			if curr_reserve > 0:
+				_start_reload(curr_gun_key, mag_size, reload_time, curr_mag, curr_reserve)
+			else:
+				_no_ammo_fire()
+
+
+func _start_reload(gun_key: String, mag_size: int, reload_time: float, curr_mag: int, curr_reserve: int) -> void:
+	if is_reloading:
+		return
+	if curr_mag >= mag_size:
+		return
+	if curr_reserve <= 0:
+		return
+	
+	is_reloading = true
+	# reload sound goes here
+	await get_tree().create_timer(reload_time).timeout
+	_finish_reload(gun_key)
+
+
+func _finish_reload(gun_key: String) -> void:
+	var stats = GunSpec.get_stats(gun_key)
+	var mag_size: int = int(stats.magazine_size)
+	var mag: int = int(ammo_in_mag.get(gun_key, 0))
+	var reserve: int = int(ammo_in_reserve.get(gun_key, 0))
+	var needed: int = mag_size - mag
+	
+	if needed <= 0:
+		is_reloading = false
+		return
+	
+	var taken: int = min(needed, reserve)
+	mag += taken
+	reserve -= taken
+	ammo_in_mag[gun_key] = mag
+	ammo_in_reserve[gun_key] = reserve
+	is_reloading = false
+
+
+func _no_ammo_fire() -> void:
+	# sound for when you shoot with empty gun (or anything else we should add for that) goes here
+	pass
 
 
 func _shoot() -> void:

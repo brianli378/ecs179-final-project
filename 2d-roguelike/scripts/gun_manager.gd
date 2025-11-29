@@ -29,8 +29,8 @@ var facing_right = false
 var default_state = true
 
 var guns: Dictionary = {} 
-var gun_keys: Array[String] = ["pistol", "machine gun", "sniper"] # Array for easy indexing
-#var gun_keys: Array[String] = ["pistol", "machine gun", "sniper", "shotgun", "rocket launcher"] # Array for easy indexing
+#var gun_keys: Array[String] = ["pistol", "machine gun", "sniper"] # Array for easy indexing
+var gun_keys: Array[String] = ["pistol", "machine gun", "sniper", "shotgun", "rocket launcher"] # Array for easy indexing
 var curr_gun_index: int = 0  # Index into gun_keys array
 var curr_gun: Gun = null
 # Defaulted to normal projectile
@@ -46,44 +46,52 @@ var gun_textures: Dictionary = {
 var gun_offsets_right: Dictionary = {
 	"pistol": Vector2(-90, 20),
 	"machine gun": Vector2(-40, 25),
-	"sniper": Vector2(0, 0)
+	"sniper": Vector2(0, 0),
+	"shotgun": Vector2(0, 0), 
+	"rocket launcher": Vector2(0, 0)
 }
 
 # Gun specific offsets when facing right
 var gun_offsets_left: Dictionary = {
 	"pistol": Vector2(90, 20),
 	"machine gun": Vector2(40, 25),
-	"sniper": Vector2(0, 0)
+	"sniper": Vector2(0, 0),
+	"shotgun": Vector2(0, 0), 
+	"rocket launcher": Vector2(0, 0)
 }
 
 # Rotation pivot location
 var gun_sprite_positions: Dictionary = {
 	"pistol": Vector2(-20, 0),
 	"machine gun": Vector2(-175, 0),
-	"sniper": Vector2(-200, 0)
+	"sniper": Vector2(-200, 0),
+	"shotgun": Vector2(0, 0), 
+	"rocket launcher": Vector2(0, 0)
 }
 
 # Projectile spawn location
 var projectile_spawn_offsets: Dictionary = {
 	"pistol": Vector2(50, 0),
 	"machine gun": Vector2(250, -2),
-	"sniper": Vector2(430, 20)
+	"sniper": Vector2(430, 20),
+	"shotgun": Vector2(430, 20), 
+	"rocket launcher": Vector2(430, 20)
 }
 
 
 func _ready() -> void:
-	guns = {
-		"pistol": Pistol.new(),
-		"machine gun": MachineGun.new(),
-		"sniper": Sniper.new(),
-	}
 	#guns = {
 		#"pistol": Pistol.new(),
 		#"machine gun": MachineGun.new(),
 		#"sniper": Sniper.new(),
-		#"shotgun": Shotgun.new(),
-		#"rocket launcher": RocketLauncher.new()
 	#}
+	guns = {
+		"pistol": Pistol.new(),
+		"machine gun": MachineGun.new(),
+		"sniper": Sniper.new(),
+		"shotgun": Shotgun.new(),
+		"rocket launcher": RocketLauncher.new()
+	}
 	
 	# Create index for current gun for easy switching
 	curr_gun = guns[gun_keys[curr_gun_index]]

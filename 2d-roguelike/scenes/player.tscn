@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dpfhd8ckyl4nx" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://c36483pxjdqw" path="res://scripts/gun_manager.gd" id="4_dqkch"]
-[ext_resource type="Script" uid="uid://khln6qoy0c4f" path="res://scripts/position_lock_lerp_camera.gd" id="5_qlg0r"]
+[ext_resource type="Script" path="res://scripts/position_lock_lerp_camera.gd" id="5_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://d0opbe7n8wpat" path="res://assets/pistol_sprite.png" id="5_y4r1p"]
 [ext_resource type="Texture2D" uid="uid://ryv7je4xbj7p" path="res://assets/tiny_idle_left.png" id="6_y4r1p"]
 [ext_resource type="Texture2D" uid="uid://crsnfbaik82ig" path="res://assets/tiny_idle_right.png" id="7_d2wvv"]
@@ -154,6 +154,6 @@ process_callback = 0
 position_smoothing_enabled = true
 script = ExtResource("5_qlg0r")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="PlayerAnimations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pf23h")
 animation = &"tiny_walk_right"

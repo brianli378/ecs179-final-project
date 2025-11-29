@@ -6,7 +6,7 @@ var _world:Node2D = World
 
 const SPEED := 700.0
 @onready var cam := $Camera2D
-@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+@onready var anim: AnimatedSprite2D = $PlayerAnimations
 
 # dash
 const DASH_SPEED_MULT := 20.0
@@ -22,6 +22,10 @@ var current_speed := SPEED
 var mouse_position : Vector2
 var player_position : Vector2
 var last_horizontal_direction := 1  # 1 for right, -1 for left (default to right)
+
+func _ready() -> void:
+	print("PlayerAnimations exists? ", has_node("PlayerAnimations"))
+	print(name)
 
 func _process(_delta: float) -> void:
 	#look_at(get_global_mouse_position())

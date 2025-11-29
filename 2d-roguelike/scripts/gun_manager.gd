@@ -12,7 +12,7 @@ extends Node2D
 @export var offset_right: Vector2 = Vector2(-90, 20)
 @export var offset_left: Vector2 = Vector2(90, 20)
 
-var projectile_scene = preload("res://scenes/projectile.tscn")
+var _projectile_scene = preload("res://scenes/projectile.tscn")
 
 # Load the projectile types
 var projectile_library = {

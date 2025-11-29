@@ -19,8 +19,8 @@ config/icon="res://assets/placeholder_gun.svg"
 
 World="*res://scenes/world.tscn"
 enemy_factory="*res://scripts/enemy_factory.gd"
-PlayerSingleton="*res://scripts/player.gd"
 projectile_factory="*res://scripts/projectile_factory.gd"
+PlayerSingleton="*res://scenes/player.tscn"
 
 [display]
 

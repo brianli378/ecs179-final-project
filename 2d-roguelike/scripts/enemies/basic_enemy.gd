@@ -17,7 +17,8 @@ var _movement_speed: float = 300.0 # units per frame
 #TODO: we could override shooting delay ourselves with one in this script
 #var shooting_delay: float
 
-var gun_manager: GunManager
+@onready
+var gun_manager: GunManager = $Body/Gun
 
 @onready
 var _player:Player = PlayerSingleton
@@ -26,22 +27,17 @@ func initialize(spec: EnemySpec):
 	self.health = spec.health
 	self.damage = spec.damage
 	self.speed  = spec.speed
-	self.gun_manager = spec.gun_manager.instantiate()
-	
-	gun_manager.position.x = 117.0
 	
 	self.shooting_range = spec.shooting_range
-	
-	# add gun manager to scene
-	add_child(self.gun_manager)
-	
-	# make sure we ignore user inputs
-	self.gun_manager.npc = true
 
 func _ready():
 	print("basic enemy ready")
+		# make sure we ignore user inputs
+	self.gun_manager.npc = true
 
 func _process(_delta: float) -> void:
+	if _player == null:
+		return
 	look_at(_player.global_position)
 	
 	if health == 0:
@@ -51,6 +47,9 @@ func _handle_death() -> void:
 	queue_free()
 
 func _physics_process(_delta: float) -> void:
+	if _player == null:
+		print("player null")
+		return
 	_time += _delta
 	
 	# shooting logic
@@ -75,7 +74,13 @@ func _physics_process(_delta: float) -> void:
 #TODO: take damage (similar to exercise 3)
 
 func _distance_to_player() -> float:
-	return self.global_position.distance_to(_player.global_position)
+	if _player == null:
+		print("_player:", _player)
+		print("type:", typeof(_player))
+
+		return -1
+	else:
+		return self.global_position.distance_to(_player.global_position)
 
 func _vector_to_player() -> Vector2:
 	var x: float = _player.global_position.x - global_position.x

@@ -29,7 +29,8 @@ var facing_right = false
 var default_state = true
 
 var guns: Dictionary = {} 
-var gun_keys: Array[String] = ["pistol", "machine gun", "sniper"] # Array for easy indexing
+#var gun_keys: Array[String] = ["pistol", "machine gun", "sniper"] # Array for easy indexing
+var gun_keys: Array[String] = ["pistol", "machine gun", "sniper", "shotgun", "rocket launcher"] # Array for easy indexing
 var curr_gun_index: int = 0  # Index into gun_keys array
 var curr_gun: Gun = null
 # Defaulted to normal projectile
@@ -45,36 +46,51 @@ var gun_textures: Dictionary = {
 var gun_offsets_right: Dictionary = {
 	"pistol": Vector2(-90, 20),
 	"machine gun": Vector2(-40, 25),
-	"sniper": Vector2(0, 0)
+	"sniper": Vector2(0, 0),
+	"shotgun": Vector2(0, 0), 
+	"rocket launcher": Vector2(0, 0)
 }
 
 # Gun specific offsets when facing right
 var gun_offsets_left: Dictionary = {
 	"pistol": Vector2(90, 20),
 	"machine gun": Vector2(40, 25),
-	"sniper": Vector2(0, 0)
+	"sniper": Vector2(0, 0),
+	"shotgun": Vector2(0, 0), 
+	"rocket launcher": Vector2(0, 0)
 }
 
 # Rotation pivot location
 var gun_sprite_positions: Dictionary = {
 	"pistol": Vector2(-20, 0),
 	"machine gun": Vector2(-175, 0),
-	"sniper": Vector2(-200, 0)
+	"sniper": Vector2(-200, 0),
+	"shotgun": Vector2(0, 0), 
+	"rocket launcher": Vector2(0, 0)
 }
 
 # Projectile spawn location
 var projectile_spawn_offsets: Dictionary = {
 	"pistol": Vector2(50, 0),
 	"machine gun": Vector2(250, -2),
-	"sniper": Vector2(430, 20)
+	"sniper": Vector2(430, 20),
+	"shotgun": Vector2(430, 20), 
+	"rocket launcher": Vector2(430, 20)
 }
 
 
 func _ready() -> void:
+	#guns = {
+		#"pistol": Pistol.new(),
+		#"machine gun": MachineGun.new(),
+		#"sniper": Sniper.new(),
+	#}
 	guns = {
 		"pistol": Pistol.new(),
 		"machine gun": MachineGun.new(),
-		"sniper": Sniper.new()
+		"sniper": Sniper.new(),
+		"shotgun": Shotgun.new(),
+		"rocket launcher": RocketLauncher.new()
 	}
 	
 	# Create index for current gun for easy switching
@@ -155,19 +171,28 @@ func _shoot() -> void:
 	var projectile_damage = curr_projectile_spec.damage
 	var multiplier = curr_gun.dmg_multiplier 
 	var damage = projectile_damage * multiplier
-	var projectile = projectile_factory.create_projectile(curr_projectile_spec, damage)
+	var base_direction: Vector2 = projectile_spawn.global_transform.x.normalized()
 	
-	projectile.global_position = projectile_spawn.global_position
-	projectile.rotation = projectile_spawn.global_rotation
-	var direction: Vector2 = projectile_spawn.global_transform.x.normalized()
-	projectile.linear_velocity = direction * curr_gun.projectile_speed
+	for i in range(curr_gun.projectile_count):
+		var projectile = projectile_factory.create_projectile(curr_projectile_spec, damage)
+		projectile.global_position = projectile_spawn.global_position
+		projectile.rotation = projectile_spawn.global_rotation
+		
+		var angle_offset := 0.0
+		if curr_gun.projectile_count > 1:
+			var step := curr_gun.spread_angle / (curr_gun.projectile_count - 1)
+			angle_offset = -curr_gun.spread_angle / 2.0 + (i * step)
+		
+		var direction := base_direction.rotated(deg_to_rad(angle_offset))
+		projectile.linear_velocity = direction * curr_gun.projectile_speed
+		
+		#for child in projectile.get_children():
+			#child.scale = curr_gun.projectile_scale
+		
+		self.get_tree().current_scene.add_child(projectile)
 	
 	camera.add_shake(0.17)
 	
-	#for child in projectile.get_children():
-		#child.scale = curr_gun.projectile_scale
-	
-	self.get_tree().current_scene.add_child(projectile)
 
 func _update_gun_texture() -> void:
 	var curr_gun_key = gun_keys[curr_gun_index]

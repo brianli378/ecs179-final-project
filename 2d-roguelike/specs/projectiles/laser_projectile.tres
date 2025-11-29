@@ -8,4 +8,5 @@ script = ExtResource("1_i24js")
 texture = ExtResource("2_yujsi")
 scale = Vector2(0.1, 0.1)
 damage = 50.0
+type = 1
 metadata/_custom_type_script = "uid://baktn8742q1rt"

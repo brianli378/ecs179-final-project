@@ -48,7 +48,7 @@ var gun_textures: Dictionary = {
 	"machine gun": preload("res://assets/machinegun_sprite.png"), 
 	"sniper": preload("res://assets/sniper_sprite.png"),
 	"shotgun": preload("res://assets/shotgun_sprite.png"),
-	"rocket launcher": preload("res://assets/machinegun_sprite.png") #TODO: add rocket launcher sprite
+	"rocket launcher": preload("res://assets/rocket_launcher_sprite.png") 
 }
 
 # Gun specific offsets when facing right
@@ -75,7 +75,7 @@ var gun_sprite_positions: Dictionary = {
 	"machine gun": Vector2(-175, 0),
 	"sniper": Vector2(-200, 0),
 	"shotgun": Vector2(0, 0), 
-	"rocket launcher": Vector2(0, 0)
+	"rocket launcher": Vector2(-120, -60)
 }
 
 # Projectile spawn location
@@ -84,7 +84,7 @@ var projectile_spawn_offsets: Dictionary = {
 	"machine gun": Vector2(120, 20),
 	"sniper": Vector2(430, 20),
 	"shotgun": Vector2(250, 0), 
-	"rocket launcher": Vector2(430, 20)
+	"rocket launcher": Vector2(250, 25)
 }
 
 

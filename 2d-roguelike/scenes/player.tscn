@@ -1,9 +1,11 @@
-[gd_scene load_steps=23 format=3 uid="uid://cjfuyyu8dl486"]
+[gd_scene load_steps=30 format=3 uid="uid://cjfuyyu8dl486"]
 
 [ext_resource type="Script" uid="uid://dpfhd8ckyl4nx" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://c36483pxjdqw" path="res://scripts/gun_manager.gd" id="4_dqkch"]
+[ext_resource type="Texture2D" uid="uid://48xfikcoknbv" path="res://assets/tiny_head_left.png" id="5_d2wvv"]
 [ext_resource type="Script" uid="uid://khln6qoy0c4f" path="res://scripts/position_lock_lerp_camera.gd" id="5_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://d0opbe7n8wpat" path="res://assets/pistol_sprite.png" id="5_y4r1p"]
+[ext_resource type="Texture2D" uid="uid://dbb1icvieguc8" path="res://assets/tiny_head_right.png" id="6_3v2ag"]
 [ext_resource type="Texture2D" uid="uid://ryv7je4xbj7p" path="res://assets/tiny_idle_left.png" id="6_y4r1p"]
 [ext_resource type="Texture2D" uid="uid://crsnfbaik82ig" path="res://assets/tiny_idle_right.png" id="7_d2wvv"]
 [ext_resource type="Texture2D" uid="uid://ctsktlwtg03h1" path="res://assets/tiny_walk_left.png" id="8_3v2ag"]
@@ -11,6 +13,69 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 size = Vector2(126, 123.5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1ej7"]
+atlas = ExtResource("5_d2wvv")
+region = Rect2(0, 0, 221, 362)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a38lo"]
+atlas = ExtResource("5_d2wvv")
+region = Rect2(221, 0, 221, 362)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ni07"]
+atlas = ExtResource("6_3v2ag")
+region = Rect2(0, 0, 221, 362)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l71n6"]
+atlas = ExtResource("6_3v2ag")
+region = Rect2(221, 0, 221, 362)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ke2ow"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1ej7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a38lo")
+}],
+"loop": true,
+"name": &"tiny_idle_left",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ni07")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l71n6")
+}],
+"loop": true,
+"name": &"tiny_idle_right",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1ej7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a38lo")
+}],
+"loop": true,
+"name": &"tiny_walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ni07")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l71n6")
+}],
+"loop": true,
+"name": &"tiny_walk_right",
+"speed": 5.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ur7pv"]
 atlas = ExtResource("6_y4r1p")
@@ -126,6 +191,7 @@ script = ExtResource("1_3vyb7")
 centered = false
 
 [node name="Gun" type="Sprite2D" parent="Body"]
+z_index = 1
 position = Vector2(100, 30)
 scale = Vector2(1.1484375, 0.3046875)
 centered = false
@@ -154,6 +220,11 @@ process_callback = 0
 position_smoothing_enabled = true
 script = ExtResource("5_qlg0r")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Head" type="AnimatedSprite2D" parent="."]
+z_index = 2
+sprite_frames = SubResource("SpriteFrames_ke2ow")
+animation = &"tiny_walk_right"
+
+[node name="BodySprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_pf23h")
 animation = &"tiny_walk_right"

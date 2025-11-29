@@ -6,7 +6,8 @@ var _world:Node2D = World
 
 const SPEED := 700.0
 @onready var cam := $Camera2D
-@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+@onready var head: AnimatedSprite2D = $Head
+@onready var body_sprite: AnimatedSprite2D = $BodySprite
 
 # dash
 const DASH_SPEED_MULT := 20.0
@@ -23,6 +24,10 @@ var mouse_position : Vector2
 var player_position : Vector2
 var last_horizontal_direction := 1  # 1 for right, -1 for left (default to right)
 
+func play_synced_animation(anim_name: String) -> void:
+	head.play(anim_name)
+	body_sprite.play(anim_name)
+	
 func _process(_delta: float) -> void:
 	#look_at(get_global_mouse_position())
 	mouse_position = get_global_mouse_position()
@@ -74,9 +79,9 @@ func _physics_process(_delta: float) -> void:
 	if move_direction == Vector2.ZERO:
 		# if player isnt moving, play idle animation
 		if facing_left:
-			anim.play("tiny_idle_left")
+			play_synced_animation("tiny_idle_left")
 		else:
-			anim.play("tiny_idle_right")
+			play_synced_animation("tiny_idle_right")
 			
 	else:
 		# old code, remove later
@@ -93,9 +98,9 @@ func _physics_process(_delta: float) -> void:
 				anim.play("tiny_walk_right")
 		'''
 		if facing_left:
-			anim.play("tiny_walk_left")
+			play_synced_animation("tiny_walk_left")
 		else:
-			anim.play("tiny_walk_right")
+			play_synced_animation("tiny_walk_right")
 		
 		
 	move_and_slide()

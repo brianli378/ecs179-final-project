@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ProjectileSpec" load_steps=3 format=3 uid="uid://bnilbt1el36aj"]
+
+[ext_resource type="Script" uid="uid://baktn8742q1rt" path="res://scripts/projectile_spec.gd" id="1_ar4yc"]
+[ext_resource type="Texture2D" uid="uid://rwxut5gd73" path="res://assets/placeholder_projectile.svg" id="2_kcrt8"]
+
+[resource]
+script = ExtResource("1_ar4yc")
+texture = ExtResource("2_kcrt8")
+scale = Vector2(0.05, 0.05)
+damage = 25.0
+metadata/_custom_type_script = "uid://baktn8742q1rt"

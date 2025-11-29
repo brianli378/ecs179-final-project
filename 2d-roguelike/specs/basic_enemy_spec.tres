@@ -9,6 +9,6 @@ enemy_scene_path = "res://scenes/enemies/basic_enemy.tscn"
 health = 100
 damage = 10.0
 speed = 5.0
-shooting_range = 100.0
+shooting_range = 1000.0
 gun_manager = ExtResource("1_3o502")
 metadata/_custom_type_script = "uid://cphj1fdaujj61"

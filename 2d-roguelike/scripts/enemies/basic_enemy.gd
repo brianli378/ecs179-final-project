@@ -37,22 +37,22 @@ func initialize(spec: EnemySpec):
 	
 	# make sure we ignore user inputs
 	self.gun_manager.npc = true
-	
+
 func _ready():
 	print("basic enemy ready")
-	
+
 func _process(_delta: float) -> void:
 	look_at(_player.global_position)
 	
 	if health == 0:
 		_handle_death()
-		
+
 func _handle_death() -> void:
 	queue_free()
 
 func _physics_process(_delta: float) -> void:
 	_time += _delta
-
+	
 	# shooting logic
 	if _distance_to_player() < shooting_range and _time >= 1.0:
 		_time = 0.0
@@ -68,7 +68,7 @@ func _physics_process(_delta: float) -> void:
 	elif distance < _closest_leash:
 		# Move away from player
 		velocity = -direction * _movement_speed
-
+		
 	move_and_slide()
 
 

@@ -38,8 +38,10 @@ var curr_projectile_spec: ProjectileSpec = projectile_library["normal"]
 
 var gun_textures: Dictionary = {
 	"pistol": preload("res://assets/pistol_sprite_2.png"),
-	"machine gun": preload("res://assets/machinegun_sprite.png"), #TODO: change to machine gun
-	"sniper": preload("res://assets/sniper_sprite.png")
+	"machine gun": preload("res://assets/machinegun_sprite.png"), 
+	"sniper": preload("res://assets/sniper_sprite.png"),
+	"shotgun": preload("res://assets/shotgun_sprite.png"),
+	"rocket launcher": preload("res://assets/machinegun_sprite.png") #TODO: add rocket launcher sprite
 }
 
 # Gun specific offsets when facing right
@@ -72,9 +74,9 @@ var gun_sprite_positions: Dictionary = {
 # Projectile spawn location
 var projectile_spawn_offsets: Dictionary = {
 	"pistol": Vector2(50, 0),
-	"machine gun": Vector2(250, -2),
+	"machine gun": Vector2(120, 20),
 	"sniper": Vector2(430, 20),
-	"shotgun": Vector2(430, 20), 
+	"shotgun": Vector2(250, 0), 
 	"rocket launcher": Vector2(430, 20)
 }
 
@@ -107,8 +109,22 @@ func _process(_delta: float) -> void:
 	var mouse_direction = mouse_pos.x - player_position.x
 	var curr_gun_key = gun_keys[curr_gun_index]
 	
+	# If player is looking left	
+	if mouse_direction > 100 :
+		scale.y = 1
+		position = gun_offsets_left[curr_gun_key]
+		facing_right = true
+		default_state = false
+		
+	# If player is looking right
+	elif mouse_direction < -100:
+		scale.y = -1
+		position = gun_offsets_right[curr_gun_key]
+		facing_right = false
+		default_state = false
+		
 	# If player is moving right
-	if player.velocity.x > 0 or default_state:
+	elif player.velocity.x > 0 or default_state:
 		scale.y = 1
 		position = gun_offsets_left[curr_gun_key]
 		facing_right = true
@@ -120,21 +136,7 @@ func _process(_delta: float) -> void:
 		position = gun_offsets_right[curr_gun_key]
 		facing_right = false
 		default_state = false
-		
-	# If player is moving left	
-	elif mouse_direction > 100 and player.velocity.x == 0:
-		scale.y = 1
-		position = gun_offsets_left[curr_gun_key]
-		facing_right = true
-		default_state = false
-		
-	# If player is looking right
-	elif mouse_direction < -100 and player.velocity.x == 0:
-		scale.y = -1
-		position = gun_offsets_right[curr_gun_key]
-		facing_right = false
-		default_state = false
-		
+
 	rotation_pivot.look_at(mouse_pos)
 		
 	if facing_right:

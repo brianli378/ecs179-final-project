@@ -70,15 +70,17 @@ func _physics_process(_delta: float) -> void:
 		_world.pause_menu()
 		
 	# Animation Handling
+	var facing_left = mouse_position.x < player_position.x
 	if move_direction == Vector2.ZERO:
 		# if player isnt moving, play idle animation
-		if mouse_position.x - player_position.x < 0:
+		if facing_left:
 			anim.play("tiny_idle_left")
 		else:
 			anim.play("tiny_idle_right")
 			
 	else:
-		# if player is moving horizontally
+		# old code, remove later
+		'''
 		if abs(move_direction.x) > abs(move_direction.y):
 			last_horizontal_direction = sign(move_direction.x) 
 			anim.play("tiny_walk_right" if move_direction.x > 0 else "tiny_walk_left")
@@ -89,5 +91,11 @@ func _physics_process(_delta: float) -> void:
 				anim.play("tiny_walk_left")
 			else:
 				anim.play("tiny_walk_right")
+		'''
+		if facing_left:
+			anim.play("tiny_walk_left")
+		else:
+			anim.play("tiny_walk_right")
+		
 		
 	move_and_slide()

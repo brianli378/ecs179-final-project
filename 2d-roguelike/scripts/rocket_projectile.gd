@@ -1,16 +1,11 @@
 class_name RocketProjectile
-extends RigidBody2D
+extends Projectile
 
 var explosion_radius: float = 200.0
-var max_damage: float = 100.0
-
-
-func _ready() -> void:
-	body_entered.connect(_on_body_entered)
 	
 
 func _on_body_entered(_body: Node) -> void:
-	if not _body is Projectile and not _body is RocketProjectile:
+	if not _body is Projectile:
 		_explode()
 		queue_free()
 	
@@ -38,7 +33,6 @@ func _explode() -> void:
 		
 		var damage_multiplier = 1.0 - (distance / explosion_radius)
 		damage_multiplier = clamp(damage_multiplier, 0.0, 1.0)
-		var damage = max_damage * damage_multiplier
 		
 		if body.has_method("take_damage"):
-			body.take_damage(damage)
+			body.take_damage(damage * damage_multiplier)

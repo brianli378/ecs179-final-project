@@ -201,7 +201,6 @@ gun_manager_path = NodePath("../../Player/Body/Gun")
 
 [node name="Crosshair" type="Node2D" parent="CanvasLayer"]
 script = ExtResource("6_p57ef")
-gun_manager_path = NodePath("../../Player/Body/Gun")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Crosshair"]
 sprite_frames = SubResource("SpriteFrames_u5sy4")

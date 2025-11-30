@@ -7,4 +7,3 @@ func build(spec: EnemySpec):
 	var enemy = enemy_scene.instantiate()
 	enemy.initialize(spec)
 	return enemy
-	

@@ -1,9 +1,10 @@
 class_name Player
 extends CharacterBody2D
 
+@onready var footstep = $footstep
+
 # This is the root world scene we can use to switch menus
 var _world:Node2D = World
-
 const SPEED := 700.0
 @onready var cam := $Camera2D
 @onready var head: AnimatedSprite2D = $Head
@@ -83,6 +84,7 @@ func _physics_process(_delta: float) -> void:
 		else:
 			play_synced_animation("tiny_idle_right")
 			
+			
 	else:
 		# old code, remove later
 		'''
@@ -99,8 +101,12 @@ func _physics_process(_delta: float) -> void:
 		'''
 		if facing_left:
 			play_synced_animation("tiny_walk_left")
+			if not footstep.playing:
+				footstep.play()
 		else:
 			play_synced_animation("tiny_walk_right")
+			if not footstep.playing:
+				footstep.play()
 		
 		
 	move_and_slide()

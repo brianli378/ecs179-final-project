@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="ProjectileSpec" load_steps=3 format=3 uid="uid://ba007xiaie8al"]
+[gd_resource type="Resource" script_class="ProjectileSpec" load_steps=4 format=3 uid="uid://ba007xiaie8al"]
 
 [ext_resource type="Script" uid="uid://baktn8742q1rt" path="res://scripts/projectile_spec.gd" id="1_i24js"]
+[ext_resource type="AudioStream" uid="uid://ck3oyxdx4spam" path="res://assets/sounds/laser-sound.wav" id="2_h7qtq"]
 [ext_resource type="Texture2D" uid="uid://3vjhqdex4vtp" path="res://assets/laser_bullet.png" id="2_yujsi"]
 
 [resource]
@@ -9,4 +10,5 @@ texture = ExtResource("2_yujsi")
 scale = Vector2(0.1, 0.1)
 damage = 50.0
 type = 1
+shoot_sound = ExtResource("2_h7qtq")
 metadata/_custom_type_script = "uid://baktn8742q1rt"

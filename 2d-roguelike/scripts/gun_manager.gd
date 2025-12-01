@@ -3,6 +3,8 @@ extends Node2D
 
 const GunSpec = preload("res://scripts/gun_spec.gd")
 
+# reference for spx_shoot to update it based on projectile spec
+@onready var sfx_shoot: AudioStreamPlayer2D = $SfxShoot
 # Rotation pivot node was just added because godot is being mean about
 # me changing the rotation pivot of a gun.
 @onready var rotation_pivot: Node2D = $RotationPivot
@@ -245,6 +247,7 @@ func _no_ammo_fire() -> void:
 
 func _shoot() -> void:
 	var projectile_damage = curr_projectile_spec.damage
+	var projectile_sound = curr_projectile_spec.shoot_sound
 	var multiplier = curr_gun.dmg_multiplier 
 	var damage = projectile_damage * multiplier
 	var base_direction: Vector2 = projectile_spawn.global_transform.x.normalized()
@@ -261,6 +264,9 @@ func _shoot() -> void:
 		
 		var direction := base_direction.rotated(deg_to_rad(angle_offset))
 		projectile.linear_velocity = direction * curr_gun.projectile_speed
+		
+		sfx_shoot.stream = projectile_sound
+		sfx_shoot.play()
 		
 		#for child in projectile.get_children():
 			#child.scale = curr_gun.projectile_scale

@@ -26,7 +26,6 @@ func start_game() -> void:
 	_clear_scene()
 	_game_node = _game.instantiate()
 	add_child(_game_node)
-	#TODO: when the player dies, we switch to that scene and free game node
 
 func death_menu() -> void:
 	print("death_menu")

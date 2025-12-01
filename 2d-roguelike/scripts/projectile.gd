@@ -15,5 +15,8 @@ func initialize(spec: ProjectileSpec, final_damage: float):
 	$CollisionShape2D.scale = spec.scale
 
 func _on_body_entered(_body: Node) -> void:
+	#TODO: get damage from projectile
+	if _body is BasicEnemy:
+		_body.health -= 50
 	if not _body is Projectile:
 		queue_free()

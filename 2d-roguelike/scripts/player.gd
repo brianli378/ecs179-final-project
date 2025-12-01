@@ -24,6 +24,11 @@ var mouse_position : Vector2
 var player_position : Vector2
 var last_horizontal_direction := 1  # 1 for right, -1 for left (default to right)
 
+func _ready() -> void:
+	print("PlayerAnimations exists? ", has_node("PlayerAnimations"))
+	print(name)
+	add_to_group("player")
+
 func play_synced_animation(anim_name: String) -> void:
 	head.play(anim_name)
 	body_sprite.play(anim_name)

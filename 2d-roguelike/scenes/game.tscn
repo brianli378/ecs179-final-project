@@ -149,7 +149,7 @@ animations = [{
 script = ExtResource("1_lnu2h")
 
 [node name="Player" parent="." instance=ExtResource("1_yqjtg")]
-position = Vector2(603, 335)
+position = Vector2(499, 194)
 scale = Vector2(0.5, 0.5)
 
 [node name="StaticBody2D" parent="." instance=ExtResource("2_lnu2h")]
@@ -159,7 +159,7 @@ position = Vector2(177, 144)
 position = Vector2(490, 414)
 
 [node name="StaticBody2D3" parent="." instance=ExtResource("2_lnu2h")]
-position = Vector2(894, 6)
+position = Vector2(894, 68)
 
 [node name="StaticBody2D4" parent="." instance=ExtResource("2_lnu2h")]
 position = Vector2(1056, 470)
@@ -168,7 +168,7 @@ position = Vector2(1056, 470)
 position = Vector2(673, 664)
 
 [node name="StaticBody2D6" parent="." instance=ExtResource("2_lnu2h")]
-position = Vector2(-2, 579)
+position = Vector2(82, 577)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

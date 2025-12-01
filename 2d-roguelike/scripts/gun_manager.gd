@@ -121,23 +121,6 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	_time_since_last_shot += _delta
-	
-	if not npc:
-		if Input.is_action_just_pressed("switch_gun"):
-			curr_gun_index = (curr_gun_index + 1) % guns.size()
-			curr_gun = guns["machine gun"]
-
-		if Input.is_action_just_pressed("shoot") and _time_since_last_shot >= curr_gun.shot_delay:
-			shoot()
-			_time_since_last_shot = 0.0
-
-
-func shoot() -> void:
-	var projectile: Projectile = _projectile_scene.instantiate()
-	
-	# make sure the projectile didn't instantly get destroyed
-	projectile.global_position = projectile_spawn.global_position
-	
 	var mouse_pos = get_global_mouse_position()
 	var player_position = global_position
 	var mouse_direction = mouse_pos.x - player_position.x
@@ -223,6 +206,24 @@ func shoot() -> void:
 				_start_reload(curr_gun_key, mag_size, curr_mag, curr_reserve)
 			else:
 				_no_ammo_fire()
+				
+	if not npc:
+		if Input.is_action_just_pressed("switch_gun"):
+			curr_gun_index = (curr_gun_index + 1) % guns.size()
+			#curr_gun = guns["machine gun"]
+
+		if Input.is_action_just_pressed("shoot") and _time_since_last_shot >= curr_gun.shot_delay:
+			shoot()
+			_time_since_last_shot = 0.0
+
+
+func shoot() -> void:
+	var projectile: Projectile = _projectile_scene.instantiate()
+	
+	# make sure the projectile didn't instantly get destroyed
+	projectile.global_position = projectile_spawn.global_position
+	
+
 
 
 func _start_reload(gun_key: String, mag_size: int, curr_mag: int, curr_reserve: int) -> void:

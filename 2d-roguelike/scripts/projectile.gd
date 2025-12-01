@@ -16,7 +16,7 @@ func initialize(spec: ProjectileSpec, final_damage: float):
 
 func _on_body_entered(_body: Node) -> void:
 	#TODO: get damage from projectile
-	if _body is BasicEnemy:
+	if _body is BasicEnemy or _body is Player:
 		_body.health -= 50
 	if not _body is Projectile:
 		queue_free()

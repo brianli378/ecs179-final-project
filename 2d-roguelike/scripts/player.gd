@@ -24,6 +24,8 @@ var mouse_position : Vector2
 var player_position : Vector2
 var last_horizontal_direction := 1  # 1 for right, -1 for left (default to right)
 
+var health := 100.0
+
 func _ready() -> void:
 	print("PlayerAnimations exists? ", has_node("PlayerAnimations"))
 	print(name)
@@ -37,6 +39,9 @@ func _process(_delta: float) -> void:
 	#look_at(get_global_mouse_position())
 	mouse_position = get_global_mouse_position()
 	player_position = global_position
+	
+	if health < 0.0:
+		_on_death()
 	
 
 func _physics_process(_delta: float) -> void:
@@ -109,3 +114,6 @@ func _physics_process(_delta: float) -> void:
 		
 		
 	move_and_slide()
+
+func _on_death():
+	_world.death_menu()

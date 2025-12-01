@@ -2,7 +2,7 @@ class_name Game
 extends Node2D
 
 # loading basic player spec:
-var basic_enemy_spec = load("res://specs/pistolaaaaaaaaww_enemy_spec.tres")
+var basic_enemy_spec = load("res://specs/pistol_enemy_spec.tres")
 var strong_enemy_spec = load("res://specs/strong_enemy_spec.tres")
 
 @onready var spawn_point_1 = $StaticBody2D

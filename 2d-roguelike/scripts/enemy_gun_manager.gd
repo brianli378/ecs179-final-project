@@ -18,6 +18,7 @@ func _process(_delta: float) -> void:
 func shoot() -> void:
 	var projectile: Projectile = _projectile_scene.instantiate()
 	projectile.global_position = projectile_spawn.global_position
+	projectile.npc_shot = true
 	
 	var direction: Vector2 = projectile_spawn.global_transform.x.normalized()
 	projectile.linear_velocity = direction * curr_gun.projectile_speed

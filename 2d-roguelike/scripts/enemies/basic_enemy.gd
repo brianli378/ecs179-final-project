@@ -56,7 +56,6 @@ func _physics_process(_delta: float) -> void:
 	# shooting logic
 	if _distance_to_player() < shooting_range and _time >= 1.0:
 		_time = 0.0
-		print("enemy shooting")
 		gun_manager.shoot()
 	
 	# Calculate direction vector toward player

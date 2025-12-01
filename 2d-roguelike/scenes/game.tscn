@@ -148,15 +148,8 @@ animations = [{
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_lnu2h")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-visible = false
-modulate = Color(1.5642494e-06, 0.40395993, 0.41488585, 1)
-position = Vector2(580, 307.00003)
-scale = Vector2(5032.9375, 3324.4375)
-mesh = SubResource("QuadMesh_e5uuo")
-metadata/_edit_lock_ = true
-
 [node name="Player" parent="." instance=ExtResource("1_yqjtg")]
+position = Vector2(499, 194)
 scale = Vector2(0.5, 0.5)
 
 [node name="StaticBody2D" parent="." instance=ExtResource("2_lnu2h")]
@@ -166,7 +159,7 @@ position = Vector2(177, 144)
 position = Vector2(490, 414)
 
 [node name="StaticBody2D3" parent="." instance=ExtResource("2_lnu2h")]
-position = Vector2(894, 6)
+position = Vector2(894, 68)
 
 [node name="StaticBody2D4" parent="." instance=ExtResource("2_lnu2h")]
 position = Vector2(1056, 470)
@@ -175,7 +168,7 @@ position = Vector2(1056, 470)
 position = Vector2(673, 664)
 
 [node name="StaticBody2D6" parent="." instance=ExtResource("2_lnu2h")]
-position = Vector2(-2, 579)
+position = Vector2(82, 577)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

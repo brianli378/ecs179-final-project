@@ -19,5 +19,4 @@ func _on_body_entered(_body: Node) -> void:
 	if _body is BasicEnemy:
 		_body.health -= 50
 	if not _body is Projectile:
-		print("projectile freed")
 		queue_free()

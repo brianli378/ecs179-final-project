@@ -190,8 +190,25 @@ script = ExtResource("1_3vyb7")
 [node name="Body" type="Sprite2D" parent="."]
 centered = false
 
-[node name="Gun" parent="Body" instance=ExtResource("3_qhqgy")]
+[node name="Gun" type="Sprite2D" parent="Body"]
+z_index = 1
 position = Vector2(100, 30)
+scale = Vector2(1.1484375, 0.3046875)
+centered = false
+offset = Vector2(-10, -75)
+script = ExtResource("4_dqkch")
+
+[node name="RotationPivot" type="Node2D" parent="Body/Gun"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Body/Gun/RotationPivot"]
+z_index = 1
+position = Vector2(-10, 0)
+texture = ExtResource("5_y4r1p")
+centered = false
+offset = Vector2(-11.346943, -36.10241)
+
+[node name="ProjectileSpawn" type="Node2D" parent="Body/Gun/RotationPivot"]
+position = Vector2(75, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.25)

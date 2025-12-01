@@ -33,6 +33,7 @@ tile_map_data = PackedByteArray("AAD9//7/AAABAAAAAAD7//z/AAAAAAAAAAD7//3/AAAAAAA
 tile_set = SubResource("TileSet_nbe4v")
 
 [node name="Zone1" type="Area2D" parent="."]
+visible = false
 position = Vector2(-48, -32)
 script = ExtResource("2_3gnvq")
 
@@ -41,6 +42,7 @@ position = Vector2(1160, 808)
 shape = SubResource("RectangleShape2D_0cqs5")
 
 [node name="Zone2" type="Area2D" parent="."]
+visible = false
 position = Vector2(2944, -1600)
 script = ExtResource("2_3gnvq")
 
@@ -49,6 +51,7 @@ position = Vector2(1032, 1392)
 shape = SubResource("RectangleShape2D_3gnvq")
 
 [node name="Zone3" type="Area2D" parent="."]
+visible = false
 position = Vector2(1600, 2128)
 script = ExtResource("2_3gnvq")
 

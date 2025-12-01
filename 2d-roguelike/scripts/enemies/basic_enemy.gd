@@ -18,7 +18,7 @@ var _movement_speed: float = 300.0 # units per frame
 #var shooting_delay: float
 
 @onready
-var gun_manager: EnemyGunManager = $Body/Gun2
+var gun_manager: EnemyGunManager = $Body/EnemyGunManager
 
 @onready
 var _player:Player
@@ -31,6 +31,10 @@ func initialize(spec: EnemySpec):
 	self.shooting_range = spec.shooting_range
 
 func _ready():
+	print("BasicEnemy node:", self)
+	print("Children:", get_children())
+	print("gun_manager == null:", gun_manager == null)
+
 	print("basic enemy ready")
 		# make sure we ignore user inputs
 	self.gun_manager.npc = true
@@ -54,7 +58,7 @@ func _physics_process(_delta: float) -> void:
 	_time += _delta
 	
 	# shooting logic
-	if _distance_to_player() < shooting_range and _time >= 1.0:
+	if _distance_to_player() < shooting_range and _time >= self.gun_manager.curr_gun.shot_delay:
 		_time = 0.0
 		gun_manager.shoot()
 	

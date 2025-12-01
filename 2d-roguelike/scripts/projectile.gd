@@ -5,6 +5,8 @@ extends RigidBody2D
 
 var damage: float = 0.0
 
+var npc_shot: bool = false
+
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 
@@ -16,7 +18,11 @@ func initialize(spec: ProjectileSpec, final_damage: float):
 
 func _on_body_entered(_body: Node) -> void:
 	#TODO: get damage from projectile
-	if _body is BasicEnemy or _body is Player:
-		_body.health -= 50
+	if npc_shot:
+		if _body is Player:
+			_body.health -= 50
+	else:
+		if _body is BasicEnemy:
+			_body.health -= 50
 	if not _body is Projectile:
 		queue_free()

@@ -10,6 +10,7 @@
 script = ExtResource("1_4wyf3")
 
 [node name="MainMenu" parent="." instance=ExtResource("2_k0juu")]
+visible = false
 
 [node name="DeathMenu" parent="." instance=ExtResource("4_k0juu")]
 visible = false

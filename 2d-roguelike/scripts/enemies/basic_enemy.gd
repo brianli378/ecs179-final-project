@@ -8,7 +8,6 @@ var damage: float
 var shooting_range: float
 var 	_time: float = 0.0
 
-#TODO: put this in the spec
 var _furthest_leash: float = 600.0
 var _closest_leash: float = 400.0
 
@@ -29,6 +28,9 @@ func initialize(spec: EnemySpec):
 	self.speed  = spec.speed
 	
 	self.shooting_range = spec.shooting_range
+	
+	self._furthest_leash = spec.furthest_leash
+	self._closest_leash = spec.closest_leash
 
 func _ready():
 	print("BasicEnemy node:", self)

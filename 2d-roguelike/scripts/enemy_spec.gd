@@ -12,3 +12,6 @@ extends Resource
 
 @export var shooting_range: float
 @export var gun_manager: PackedScene
+
+@export var furthest_leash: float
+@export var closest_leash: float

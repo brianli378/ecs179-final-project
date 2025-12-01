@@ -8,7 +8,8 @@
 [ext_resource type="Script" uid="uid://b522d38sbxeif" path="res://scenes/crosshair.gd" id="6_p57ef"]
 [ext_resource type="Texture2D" uid="uid://cvefbghncbgqw" path="res://assets/crosshair.png" id="7_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://bje63w7hiommj" path="res://assets/crosshair_reload.png" id="8_gee14"]
-[ext_resource type="PackedScene" uid="uid://cbp7rkfxj7ph8" path="res://scenes/maps.tscn" id="9_0tnpc"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_e5uuo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0tnpc"]
 atlas = ExtResource("8_gee14")
@@ -149,7 +150,6 @@ animations = [{
 script = ExtResource("1_lnu2h")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-visible = false
 modulate = Color(1.5642494e-06, 0.40395993, 0.41488585, 1)
 position = Vector2(580, 307.00003)
 scale = Vector2(5032.9375, 3324.4375)
@@ -157,6 +157,7 @@ mesh = SubResource("QuadMesh_e5uuo")
 metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_yqjtg")]
+position = Vector2(603, 335)
 scale = Vector2(0.5, 0.5)
 
 [node name="StaticBody2D" parent="." instance=ExtResource("2_lnu2h")]
@@ -200,12 +201,9 @@ gun_manager_path = NodePath("../../Player/Body/Gun")
 
 [node name="Crosshair" type="Node2D" parent="CanvasLayer"]
 script = ExtResource("6_p57ef")
-gun_manager_path = NodePath("../../Player/Body/Gun")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Crosshair"]
 sprite_frames = SubResource("SpriteFrames_u5sy4")
 animation = &"reload"
-
-[node name="Maps" parent="." instance=ExtResource("9_0tnpc")]
 
 [editable path="Player"]

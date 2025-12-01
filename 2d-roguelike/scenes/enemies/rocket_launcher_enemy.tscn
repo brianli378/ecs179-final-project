@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bf6oei5w1twyv"]
+
+[ext_resource type="Script" uid="uid://cuajx1tj83fms" path="res://scripts/enemies/rocket_launcher_enemy.gd" id="1_36bur"]
+[ext_resource type="PackedScene" uid="uid://coypppkp7t2ii" path="res://scenes/enemies/basic_enemy.tscn" id="2_w0j40"]
+
+[node name="RocketLauncherEnemy" type="Node2D"]
+script = ExtResource("1_36bur")
+
+[node name="BasicEnemy" parent="." instance=ExtResource("2_w0j40")]

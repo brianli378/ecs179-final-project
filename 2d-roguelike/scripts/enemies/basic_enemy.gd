@@ -58,7 +58,7 @@ func _physics_process(_delta: float) -> void:
 	_time += _delta
 	
 	# shooting logic
-	if _distance_to_player() < shooting_range and _time >= 1.0:
+	if _distance_to_player() < shooting_range and _time >= self.gun_manager.curr_gun.shot_delay:
 		_time = 0.0
 		gun_manager.shoot()
 	

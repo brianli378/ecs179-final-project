@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://das0wivo5ab8m"]
+[gd_scene load_steps=3 format=3 uid="uid://cywldtxmskewq"]
 
 [ext_resource type="Script" uid="uid://cqgo3dvlbx10l" path="res://scripts/enemies/pistol_enemy.gd" id="1_rsknw"]
 [ext_resource type="PackedScene" uid="uid://coypppkp7t2ii" path="res://scenes/enemies/basic_enemy.tscn" id="2_0yq2y"]

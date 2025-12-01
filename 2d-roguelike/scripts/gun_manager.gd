@@ -13,6 +13,7 @@ const GunSpec = preload("res://scripts/gun_spec.gd")
 
 @export var offset_right: Vector2 = Vector2(-90, 20)
 @export var offset_left: Vector2 = Vector2(90, 20)
+@export var reload_time: float = 0.0
 
 var projectile_scene = preload("res://scenes/projectile.tscn")
 
@@ -169,6 +170,9 @@ func _process(_delta: float) -> void:
 		_update_gun_texture()
 		_update_projectile_spawn_position()
 		_time_since_last_shot = curr_gun.shot_delay
+		
+		var stats = GunSpec.get_stats(new_gun_key)
+		reload_time = float(stats.reload_time)
 
 	# Add logic here for switching projectiles (Rytham will do this later)
 		
@@ -180,12 +184,12 @@ func _process(_delta: float) -> void:
 
 	var stats := GunSpec.get_stats(curr_gun_key)
 	var mag_size: int = int(stats.magazine_size)
-	var reload_time: float = float(stats.reload_time)
+	reload_time = float(stats.reload_time)
 	var curr_mag: int = ammo_in_mag.get(curr_gun_key, 0)
 	var curr_reserve: int = ammo_in_reserve.get(curr_gun_key, 0)
 	var reload_pressed := Input.is_action_just_pressed("reload")
 	if reload_pressed:
-		_start_reload(curr_gun_key, mag_size, reload_time, curr_mag, curr_reserve)
+		_start_reload(curr_gun_key, mag_size, curr_mag, curr_reserve)
 
 	if should_shoot and not is_reloading:
 		if curr_mag > 0:
@@ -196,12 +200,12 @@ func _process(_delta: float) -> void:
 		else:
 			# auto reload
 			if curr_reserve > 0:
-				_start_reload(curr_gun_key, mag_size, reload_time, curr_mag, curr_reserve)
+				_start_reload(curr_gun_key, mag_size, curr_mag, curr_reserve)
 			else:
 				_no_ammo_fire()
 
 
-func _start_reload(gun_key: String, mag_size: int, reload_time: float, curr_mag: int, curr_reserve: int) -> void:
+func _start_reload(gun_key: String, mag_size: int, curr_mag: int, curr_reserve: int) -> void:
 	if is_reloading:
 		return
 	if curr_mag >= mag_size:

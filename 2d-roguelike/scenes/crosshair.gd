@@ -8,6 +8,8 @@ var is_reloading := false
 var was_reloading := false
 var gun_manager
 
+const BASE_RELOAD_ANIMATION_DURATION: float = 3.4
+
 func _ready() -> void:
 	gun_manager = get_node(gun_manager_path)
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
@@ -27,10 +29,11 @@ func _process(_delta: float) -> void:
 		was_reloading = false
 	
 func start_reload_animation() -> void:
-	#var speed = 2.0 / gun_manager.reload_time
-	#anim.speed_scale = speed
-	#print("reload")
+	#print(gun_manager.reload_time)
+	var speed = BASE_RELOAD_ANIMATION_DURATION / gun_manager.reload_time
+	anim.speed_scale = speed
 	anim.play("reload")
+	
 
 func stop_reload_animation() -> void:
 	anim.play("idle")

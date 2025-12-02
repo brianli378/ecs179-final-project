@@ -16,6 +16,8 @@ var _movement_speed: float = 300.0 # units per frame
 #TODO: we could override shooting delay ourselves with one in this script
 #var shooting_delay: float
 
+var enemy_los: EnemyLineOfSight = null
+
 @onready
 var gun_manager: EnemyGunManager = $Body/EnemyGunManager
 
@@ -40,12 +42,18 @@ func _ready():
 	print("basic enemy ready")
 		# make sure we ignore user inputs
 	self.gun_manager.npc = true
+	
+	self.enemy_los = self.gun_manager.line_of_sight
+	
 	_player = get_tree().get_first_node_in_group("player")
 
 func _process(_delta: float) -> void:
 	if _player == null:
 		return
-	look_at(_player.global_position)
+		
+	# only look at the player if we are in the los
+	if enemy_los.seeing_player:
+		look_at(_player.global_position)
 	
 	if health == 0:
 		_handle_death()
@@ -60,7 +68,7 @@ func _physics_process(_delta: float) -> void:
 	_time += _delta
 	
 	# shooting logic
-	if _distance_to_player() < shooting_range and _time >= self.gun_manager.curr_gun.shot_delay:
+	if enemy_los.seeing_player and _distance_to_player() < shooting_range and _time >= self.gun_manager.curr_gun.shot_delay:
 		_time = 0.0
 		gun_manager.shoot()
 	

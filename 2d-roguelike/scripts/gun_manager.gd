@@ -88,6 +88,9 @@ var projectile_spawn_offsets: Dictionary = {
 	"rocket launcher": Vector2(250, 25)
 }
 
+# we don't want to read inputs if the gun manager belongs to an npc
+var npc: bool = false
+
 #TODO: don't hardcode the guns in the gun manager
 
 func _ready() -> void:
@@ -118,22 +121,6 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	_time_since_last_shot += _delta
-	
-	if Input.is_action_just_pressed("switch_gun"):
-		curr_gun_index = (curr_gun_index + 1) % guns.size()
-		curr_gun = guns["machine gun"]
-
-	if Input.is_action_just_pressed("shoot") and _time_since_last_shot >= curr_gun.shot_delay:
-		shoot()
-		_time_since_last_shot = 0.0
-
-
-func shoot() -> void:
-	var projectile: Projectile = _projectile_scene.instantiate()
-	
-	# make sure the projectile didn't instantly get destroyed
-	projectile.global_position = projectile_spawn.global_position
-	
 	var mouse_pos = get_global_mouse_position()
 	var player_position = global_position
 	var mouse_direction = mouse_pos.x - player_position.x
@@ -220,13 +207,24 @@ func shoot() -> void:
 			else:
 				_no_ammo_fire()
 				
-	if Input.is_action_just_pressed("switch_gun"):
-		curr_gun_index = (curr_gun_index + 1) % guns.size()
-		#curr_gun = guns["machine gun"]
+	if not npc:
+		if Input.is_action_just_pressed("switch_gun"):
+			curr_gun_index = (curr_gun_index + 1) % guns.size()
+			#curr_gun = guns["machine gun"]
 
-	if Input.is_action_just_pressed("shoot") and _time_since_last_shot >= curr_gun.shot_delay:
-		shoot()
-		_time_since_last_shot = 0.0
+		if Input.is_action_just_pressed("shoot") and _time_since_last_shot >= curr_gun.shot_delay:
+			shoot()
+			_time_since_last_shot = 0.0
+
+
+func shoot() -> void:
+	var projectile: Projectile = _projectile_scene.instantiate()
+	
+	# make sure the projectile didn't instantly get destroyed
+	projectile.global_position = projectile_spawn.global_position
+	
+
+
 
 func _start_reload(gun_key: String, mag_size: int, curr_mag: int, curr_reserve: int) -> void:
 	if is_reloading:

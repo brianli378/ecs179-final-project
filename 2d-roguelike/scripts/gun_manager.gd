@@ -207,14 +207,6 @@ func _process(_delta: float) -> void:
 			else:
 				_no_ammo_fire()
 				
-	if not npc:
-		if Input.is_action_just_pressed("switch_gun"):
-			curr_gun_index = (curr_gun_index + 1) % guns.size()
-			#curr_gun = guns["machine gun"]
-
-		if Input.is_action_just_pressed("shoot") and _time_since_last_shot >= curr_gun.shot_delay:
-			shoot()
-			_time_since_last_shot = 0.0
 
 
 func shoot() -> void:

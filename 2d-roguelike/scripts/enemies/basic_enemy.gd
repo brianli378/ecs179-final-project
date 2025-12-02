@@ -61,8 +61,8 @@ func _process(_delta: float) -> void:
 		pass
 		#anim.play("default")
 		#look_at(_player.global_position)
-	
-	if health == 0:
+	print(health)
+	if health <= 0:
 		_handle_death()
 
 func _handle_death() -> void:
@@ -85,7 +85,7 @@ func _physics_process(_delta: float) -> void:
 	
 
 	if distance > _furthest_leash:
-		print("walk")
+		#print("walk")
 		# Move toward player
 		velocity = direction * _movement_speed
 	elif distance < _closest_leash:

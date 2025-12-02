@@ -20,7 +20,7 @@ func _on_body_entered(_body: Node) -> void:
 	#TODO: get damage from projectile
 	if npc_shot:
 		if _body is Player:
-			_body.health -= 50
+			_body.health -= 1
 	else:
 		if _body is BasicEnemy:
 			_body.health -= 50

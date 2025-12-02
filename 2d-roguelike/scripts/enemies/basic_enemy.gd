@@ -20,6 +20,8 @@ var enemy_los: EnemyLineOfSight = null
 
 @onready
 var gun_manager: EnemyGunManager = $Body/EnemyGunManager
+@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+
 
 @onready
 var _player:Player
@@ -51,9 +53,14 @@ func _process(_delta: float) -> void:
 	if _player == null:
 		return
 		
+	
+		
 	# only look at the player if we are in the los
+	
 	if enemy_los.seeing_player:
-		look_at(_player.global_position)
+		pass
+		#anim.play("default")
+		#look_at(_player.global_position)
 	
 	if health == 0:
 		_handle_death()
@@ -75,13 +82,21 @@ func _physics_process(_delta: float) -> void:
 	# Calculate direction vector toward player
 	var direction: Vector2 = (_player.global_position - global_position).normalized()
 	var distance: float = _distance_to_player()
+	
 
 	if distance > _furthest_leash:
+		print("walk")
 		# Move toward player
 		velocity = direction * _movement_speed
 	elif distance < _closest_leash:
 		# Move away from player
 		velocity = -direction * _movement_speed
+	if velocity.x < 0:
+		anim.play("walk_left")
+	elif velocity.x > 0 :
+		anim.play("walk_right")
+	else:
+		anim.play("default")
 		
 	move_and_slide()
 

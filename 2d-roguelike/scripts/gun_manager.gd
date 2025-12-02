@@ -76,7 +76,7 @@ var gun_sprite_positions: Dictionary = {
 	"machine gun": Vector2(-175, 0),
 	"sniper": Vector2(-200, 0),
 	"shotgun": Vector2(0, 0), 
-	"rocket launcher": Vector2(-120, -60)
+	"rocket launcher": Vector2(-200, -60)
 }
 
 # Projectile spawn location

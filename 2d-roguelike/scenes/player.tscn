@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dpfhd8ckyl4nx" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://c36483pxjdqw" path="res://scripts/gun_manager.gd" id="4_dqkch"]
 [ext_resource type="Texture2D" uid="uid://48xfikcoknbv" path="res://assets/tiny_head_left.png" id="5_d2wvv"]
-[ext_resource type="Script" uid="uid://khln6qoy0c4f" path="res://scripts/position_lock_lerp_camera.gd" id="5_qlg0r"]
+[ext_resource type="Script" path="res://scripts/position_lock_lerp_camera.gd" id="5_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://d0opbe7n8wpat" path="res://assets/pistol_sprite.png" id="5_y4r1p"]
 [ext_resource type="Texture2D" uid="uid://dbb1icvieguc8" path="res://assets/tiny_head_right.png" id="6_3v2ag"]
 [ext_resource type="Texture2D" uid="uid://ryv7je4xbj7p" path="res://assets/tiny_idle_left.png" id="6_y4r1p"]
@@ -185,6 +185,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 3
 script = ExtResource("1_3vyb7")
 
 [node name="Body" type="Sprite2D" parent="."]

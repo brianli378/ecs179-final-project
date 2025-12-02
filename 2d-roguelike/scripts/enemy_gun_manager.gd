@@ -11,6 +11,9 @@ var curr_gun: Gun = null
 # we don't want to read inputs if the gun manager belongs to an npc
 var npc: bool = false
 
+@onready
+var line_of_sight : EnemyLineOfSight = $EnemyLineOfSight
+
 func _process(_delta: float) -> void:
 	_time_since_last_shot += _delta
 

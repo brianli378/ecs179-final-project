@@ -32,9 +32,9 @@ func _ready():
 	spawn_point_5.queue_free()
 	spawn_point_6.queue_free()
 	
-	var enemy1 = enemy_factory.build(sniper_enemy_spec, self)
-	var enemy2 = enemy_factory.build(sniper_enemy_spec, self)
-	var enemy3 = enemy_factory.build(sniper_enemy_spec, self)
+	var enemy1 = enemy_factory.build(pistol_enemy_spec, self)
+	var enemy2 = enemy_factory.build(pistol_enemy_spec, self)
+	var enemy3 = enemy_factory.build(pistol_enemy_spec, self)
 	
 	"""
 		# this is if we don't want to modify the basic specs 
@@ -44,7 +44,7 @@ func _ready():
 	"""
 	
 	# these 2 will have scaled damage for basic
-	var spec_scaled = sniper_enemy_spec.duplicate()
+	var spec_scaled = pistol_enemy_spec.duplicate()
 	spec_scaled.damage *= 1.3
 	
 	var enemy4 = enemy_factory.build(spec_scaled, self)

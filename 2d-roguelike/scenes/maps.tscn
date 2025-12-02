@@ -1,16 +1,24 @@
-[gd_scene load_steps=8 format=4 uid="uid://cbp7rkfxj7ph8"]
+[gd_scene load_steps=9 format=4 uid="uid://cbp7rkfxj7ph8"]
 
 [ext_resource type="Texture2D" uid="uid://cgfivgb3ivalk" path="res://assets/temp_map.png" id="1_0cqs5"]
 [ext_resource type="Script" uid="uid://c2kd2x0dfv1u2" path="res://scripts/zone_trigger.gd" id="2_3gnvq"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_3gnvq"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3gnvq"]
 texture = ExtResource("1_0cqs5")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
+1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_3gnvq")
 
 [sub_resource type="TileSet" id="TileSet_nbe4v"]
 physics_layer_0/collision_layer = 3
+navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_3gnvq")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0cqs5"]

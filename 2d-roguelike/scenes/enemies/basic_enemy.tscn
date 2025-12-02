@@ -21,3 +21,5 @@ texture = ExtResource("2_8xi43")
 [node name="EnemyGunManager" parent="Body" instance=ExtResource("3_ibjif")]
 position = Vector2(386.86682, -81.7515)
 scale = Vector2(6.923957, 1.2226326)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

@@ -23,7 +23,8 @@ var enemy_los: EnemyLineOfSight = null
 @onready
 var gun_manager: EnemyGunManager = $Body/EnemyGunManager
 
-@onready var nav: NavigationAgent2D = $NavigationAgent2D
+@onready 
+var nav: NavigationAgent2D = $NavigationAgent2D
 
 @onready
 var _player:Player
@@ -67,6 +68,7 @@ func _ready():
 	# navigation
 	actor_setup.call_deferred()
 	nav.velocity_computed.connect(_velocity_computed)
+	nav.radius = 100 #TODO: is this working?
 
 
 func _process(_delta: float) -> void:
@@ -103,8 +105,6 @@ func _physics_process(_delta: float) -> void:
 func _move_towards_player():
 	# if we can see the player, do simple pathfinding
 	if enemy_los.seeing_player:
-		print("basic moving")
-		print(position)
 		# Calculate direction vector toward player
 		var direction: Vector2 = (_player.global_position - global_position).normalized()
 		var distance: float = _distance_to_player()
@@ -128,7 +128,7 @@ func _move_towards_player():
 		var next_path_position: Vector2 = nav.get_next_path_position()
 
 		# Calculate the new velocity
-		var new_velocity = current_agent_position.direction_to(next_path_position) * speed
+		var new_velocity = current_agent_position.direction_to(next_path_position) * speed * 2
 
 		# Set correct velocity
 		if nav.avoidance_enabled:
@@ -138,6 +138,7 @@ func _move_towards_player():
 
 	# Do the movement
 	move_and_slide()
+
 
 func _velocity_computed(safe_velocity: Vector2):
 	velocity = safe_velocity
@@ -157,3 +158,9 @@ func _vector_to_player() -> Vector2:
 	var x: float = _player.global_position.x - global_position.x
 	var y: float = _player.global_position.y - global_position.y
 	return Vector2(x,y)
+
+#func _on_area_2d_body_entered(body: Node2D) -> void:
+	#if body is TileMapLayer:
+	#	if velocity.length() > 0.001:
+	#		# Re-normalize the velocity vector to the original intended speed
+	#		velocity = velocity.normalized() * speed

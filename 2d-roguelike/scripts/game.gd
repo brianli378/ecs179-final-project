@@ -33,8 +33,8 @@ func _ready():
 	spawn_point_6.queue_free()
 	
 	var enemy1 = enemy_factory.build(pistol_enemy_spec, self)
-	#var enemy2 = enemy_factory.build(pistol_enemy_spec, self)
-	#var enemy3 = enemy_factory.build(pistol_enemy_spec, self)
+	var enemy2 = enemy_factory.build(pistol_enemy_spec, self)
+	var enemy3 = enemy_factory.build(pistol_enemy_spec, self)
 	
 	"""
 		# this is if we don't want to modify the basic specs 
@@ -47,16 +47,16 @@ func _ready():
 	var spec_scaled = pistol_enemy_spec.duplicate()
 	spec_scaled.damage *= 1.3
 	
-	#var enemy4 = enemy_factory.build(spec_scaled, self)
-	#var enemy5 = enemy_factory.build(spec_scaled, self)
+	var enemy4 = enemy_factory.build(spec_scaled, self)
+	var enemy5 = enemy_factory.build(spec_scaled, self)
 	
 	# this will be new enemy
 	enemy1.position = spawn_position1
 	
-	#enemy2.position = spawn_position2
+	enemy2.position = spawn_position2
 	
-	#enemy3.position = spawn_position3
+	enemy3.position = spawn_position3
 	
-	#enemy4.position = spawn_position4
+	enemy4.position = spawn_position4
 	
-	#enemy5.position = spawn_position5
+	enemy5.position = spawn_position5

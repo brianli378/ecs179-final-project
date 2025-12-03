@@ -200,5 +200,6 @@ sprite_frames = SubResource("SpriteFrames_u5sy4")
 animation = &"reload"
 
 [node name="Maps" parent="." instance=ExtResource("9_0tnpc")]
+visible = true
 
 [editable path="Player"]

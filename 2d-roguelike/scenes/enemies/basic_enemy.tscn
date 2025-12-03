@@ -1,18 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://coypppkp7t2ii"]
+[gd_scene load_steps=6 format=3 uid="uid://coypppkp7t2ii"]
 
 [ext_resource type="Script" uid="uid://birgv6eudsgmc" path="res://scripts/enemies/basic_enemy.gd" id="1_7jpia"]
 [ext_resource type="Texture2D" uid="uid://cb7kfgjabn6bf" path="res://assets/plaecholder_object.jpg" id="2_8xi43"]
 [ext_resource type="PackedScene" uid="uid://doj05njfuwl4e" path="res://scenes/gun2.tscn" id="3_ibjif"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ibjif"]
+radius = 69.72087
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8xi43"]
-size = Vector2(118, 118)
+size = Vector2(133, 130)
 
 [node name="BasicEnemy" type="CharacterBody2D"]
 script = ExtResource("1_7jpia")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -1)
-shape = SubResource("RectangleShape2D_8xi43")
+shape = SubResource("CircleShape2D_ibjif")
 
 [node name="Body" type="Sprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
@@ -23,3 +26,17 @@ position = Vector2(386.86682, -81.7515)
 scale = Vector2(6.923957, 1.2226326)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 93.46
+path_max_distance = 1000.0
+simplify_path = true
+simplify_epsilon = 10.0
+path_search_max_polygons = 1000
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, -3)
+shape = SubResource("RectangleShape2D_8xi43")
+disabled = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

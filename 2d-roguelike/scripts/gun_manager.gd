@@ -17,7 +17,7 @@ const GunSpec = preload("res://scripts/gun_spec.gd")
 @export var offset_left: Vector2 = Vector2(90, 20)
 @export var reload_time: float = 0.0
 
-var projectile_scene = preload("res://scenes/projectile.tscn")
+var _projectile_scene = preload("res://scenes/projectile.tscn")
 
 # Load the projectile types
 var projectile_library = {
@@ -78,7 +78,7 @@ var gun_sprite_positions: Dictionary = {
 	"machine gun": Vector2(-175, 0),
 	"sniper": Vector2(-200, 0),
 	"shotgun": Vector2(0, 0), 
-	"rocket launcher": Vector2(-120, -60)
+	"rocket launcher": Vector2(-200, -60)
 }
 
 # Projectile spawn location
@@ -90,6 +90,10 @@ var projectile_spawn_offsets: Dictionary = {
 	"rocket launcher": Vector2(250, 25)
 }
 
+# we don't want to read inputs if the gun manager belongs to an npc
+var npc: bool = false
+
+#TODO: don't hardcode the guns in the gun manager
 
 func _ready() -> void:
 	#guns = {
@@ -119,7 +123,6 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	_time_since_last_shot += _delta
-	
 	var mouse_pos = get_global_mouse_position()
 	var player_position = global_position
 	var mouse_direction = mouse_pos.x - player_position.x
@@ -205,7 +208,15 @@ func _process(_delta: float) -> void:
 				_start_reload(curr_gun_key, mag_size, curr_mag, curr_reserve)
 			else:
 				_no_ammo_fire()
+				
 
+
+func shoot() -> void:
+	var projectile: Projectile = _projectile_scene.instantiate()
+	
+	# make sure the projectile didn't instantly get destroyed
+	projectile.global_position = projectile_spawn.global_position
+	
 
 func _start_reload(gun_key: String, mag_size: int, curr_mag: int, curr_reserve: int) -> void:
 	if is_reloading:

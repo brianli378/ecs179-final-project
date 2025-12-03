@@ -1,4 +1,4 @@
-class_name Crosshair
+class_name MyCrosshair
 extends Node2D
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D

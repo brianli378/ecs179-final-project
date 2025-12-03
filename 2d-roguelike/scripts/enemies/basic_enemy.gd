@@ -22,8 +22,6 @@ var enemy_los: EnemyLineOfSight = null
 
 @onready
 var gun_manager: EnemyGunManager = $Body/EnemyGunManager
-@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
-
 
 @onready 
 var nav: NavigationAgent2D = $NavigationAgent2D
@@ -77,16 +75,11 @@ func _process(_delta: float) -> void:
 	if _player == null:
 		return
 		
-	
-		
 	# only look at the player if we are in the los
-	
 	if enemy_los.seeing_player:
-		pass
-		#anim.play("default")
-		#look_at(_player.global_position)
-	print(health)
-	if health <= 0:
+		look_at(_player.global_position)
+	
+	if health == 0:
 		_handle_death()
 
 

@@ -6,10 +6,12 @@ extends CharacterBody2D
 # This is the root world scene we can use to switch menus
 var _world:Node2D = World
 const SPEED := 700.0
-@onready var cam := $Camera2D
+@onready var cam := $Camera2Ds
 @onready var head: AnimatedSprite2D = $Head
 @onready var body_sprite: AnimatedSprite2D = $BodySprite
 @onready var health_bar = get_node("../CanvasLayer/HealthBar") 
+@onready var damage_sound = $damage_taken
+@onready var death_sound = $death_sound
 
 # dash
 const DASH_SPEED_MULT := 20.0
@@ -45,8 +47,14 @@ func _process(_delta: float) -> void:
 	mouse_position = get_global_mouse_position()
 	player_position = global_position
 	
+	# if player taking damage, play damage sound
+	if health_bar.value > health:
+		damage_sound.play()
+		print(damage_sound)
+		
 	health_bar.update_health(health)
-	if health < 0.0:
+
+	if health <= 0.0:
 		_on_death()
 	
 
@@ -126,4 +134,9 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func _on_death():
+	if not death_sound.playing:
+		death_sound.play()
+
+	await death_sound.finished
+	
 	_world.death_menu()

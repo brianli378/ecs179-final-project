@@ -7,4 +7,3 @@ enum ProjectileType { NORMAL, LASER, ROCKET }
 @export var scale: Vector2
 @export var damage: float
 @export var type: ProjectileType
-@export var shoot_sound: AudioStream

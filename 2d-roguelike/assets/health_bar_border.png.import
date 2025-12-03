@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bv4vl5jgtfhxp"
-path="res://.godot/imported/shotgun_sprite.png-3cc8cb9c0cd1e2e5402ae7aaeae0558a.ctex"
+uid="uid://bjrm7q5gp25pu"
+path="res://.godot/imported/health_bar_border.png-23c766b84b349b624b1e2bb0a58fae4c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/shotgun_sprite.png"
-dest_files=["res://.godot/imported/shotgun_sprite.png-3cc8cb9c0cd1e2e5402ae7aaeae0558a.ctex"]
+source_file="res://assets/health_bar_border.png"
+dest_files=["res://.godot/imported/health_bar_border.png-23c766b84b349b624b1e2bb0a58fae4c.ctex"]
 
 [params]
 

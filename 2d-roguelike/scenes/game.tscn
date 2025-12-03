@@ -1,14 +1,17 @@
-[gd_scene load_steps=28 format=3 uid="uid://dfob77al3r2l3"]
+[gd_scene load_steps=31 format=3 uid="uid://dfob77al3r2l3"]
 
 [ext_resource type="Script" uid="uid://ckotjxg6pcfyy" path="res://scripts/game.gd" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://cjfuyyu8dl486" path="res://scenes/player.tscn" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://ck8xgy356oeee" path="res://scenes/object.tscn" id="2_lnu2h"]
+[ext_resource type="Texture2D" uid="uid://bjrm7q5gp25pu" path="res://assets/health_bar_border.png" id="4_dinhu"]
 [ext_resource type="Script" uid="uid://c1ii6nabjc5qe" path="res://scripts/ammo_label.gd" id="4_lbhrr"]
 [ext_resource type="Script" uid="uid://ddmp30xmc3gcl" path="res://scripts/reload_label.gd" id="5_iywne"]
-[ext_resource type="Script" uid="uid://b522d38sbxeif" path="res://crosshair.gd" id="6_p57ef"]
+[ext_resource type="Texture2D" uid="uid://cqa7o5ak1q7s5" path="res://assets/health_bar_texture.png" id="5_kvuet"]
+[ext_resource type="Script" uid="uid://s363ofsklory" path="res://scenes/crosshair.gd" id="6_p57ef"]
 [ext_resource type="Texture2D" uid="uid://cvefbghncbgqw" path="res://assets/crosshair.png" id="7_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://bje63w7hiommj" path="res://assets/crosshair_reload.png" id="8_gee14"]
 [ext_resource type="PackedScene" uid="uid://cbp7rkfxj7ph8" path="res://scenes/maps.tscn" id="9_0tnpc"]
+[ext_resource type="Script" uid="uid://ye17l3xnaqjk" path="res://scenes/health_bar.gd" id="9_vtaks"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0tnpc"]
 atlas = ExtResource("8_gee14")
@@ -198,6 +201,13 @@ gun_manager_path = NodePath("../../Player/Body/Gun")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Crosshair"]
 sprite_frames = SubResource("SpriteFrames_u5sy4")
 animation = &"reload"
+
+[node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture_over = ExtResource("4_dinhu")
+texture_progress = ExtResource("5_kvuet")
+script = ExtResource("9_vtaks")
 
 [node name="Maps" parent="." instance=ExtResource("9_0tnpc")]
 visible = true

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bv4vl5jgtfhxp"
-path="res://.godot/imported/shotgun_sprite.png-3cc8cb9c0cd1e2e5402ae7aaeae0558a.ctex"
+uid="uid://dlrcvedlqbhoj"
+path="res://.godot/imported/basic_enemy_walk_right.png-d358506ccd4ea8a00c0364766121f09e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/shotgun_sprite.png"
-dest_files=["res://.godot/imported/shotgun_sprite.png-3cc8cb9c0cd1e2e5402ae7aaeae0558a.ctex"]
+source_file="res://assets/basic_enemy_walk_right.png"
+dest_files=["res://.godot/imported/basic_enemy_walk_right.png-d358506ccd4ea8a00c0364766121f09e.ctex"]
 
 [params]
 

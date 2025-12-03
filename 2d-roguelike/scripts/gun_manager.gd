@@ -1,6 +1,8 @@
 class_name GunManager
 extends Node2D
 
+const GunSpec = preload("res://scripts/gun_spec.gd")
+
 # Rotation pivot node was just added because godot is being mean about
 # me changing the rotation pivot of a gun.
 @onready var rotation_pivot: Node2D = $RotationPivot
@@ -11,8 +13,9 @@ extends Node2D
 
 @export var offset_right: Vector2 = Vector2(-90, 20)
 @export var offset_left: Vector2 = Vector2(90, 20)
+@export var reload_time: float = 0.0
 
-var projectile_scene = preload("res://scenes/projectile.tscn")
+var _projectile_scene = preload("res://scenes/projectile.tscn")
 
 # Load the projectile types
 var projectile_library = {
@@ -36,10 +39,17 @@ var curr_gun: Gun = null
 # Defaulted to normal projectile
 var curr_projectile_spec: ProjectileSpec = projectile_library["normal"]
 
+# ammo variables
+var ammo_in_mag: Dictionary = {}
+var ammo_in_reserve: Dictionary = {}
+var is_reloading: bool = false
+
 var gun_textures: Dictionary = {
 	"pistol": preload("res://assets/pistol_sprite_2.png"),
-	"machine gun": preload("res://assets/machinegun_sprite.png"), #TODO: change to machine gun
-	"sniper": preload("res://assets/sniper_sprite.png")
+	"machine gun": preload("res://assets/machinegun_sprite.png"), 
+	"sniper": preload("res://assets/sniper_sprite.png"),
+	"shotgun": preload("res://assets/shotgun_sprite.png"),
+	"rocket launcher": preload("res://assets/rocket_launcher_sprite.png") 
 }
 
 # Gun specific offsets when facing right
@@ -66,18 +76,22 @@ var gun_sprite_positions: Dictionary = {
 	"machine gun": Vector2(-175, 0),
 	"sniper": Vector2(-200, 0),
 	"shotgun": Vector2(0, 0), 
-	"rocket launcher": Vector2(0, 0)
+	"rocket launcher": Vector2(-200, -60)
 }
 
 # Projectile spawn location
 var projectile_spawn_offsets: Dictionary = {
 	"pistol": Vector2(50, 0),
-	"machine gun": Vector2(250, -2),
+	"machine gun": Vector2(120, 20),
 	"sniper": Vector2(430, 20),
-	"shotgun": Vector2(430, 20), 
-	"rocket launcher": Vector2(430, 20)
+	"shotgun": Vector2(250, 0), 
+	"rocket launcher": Vector2(250, 25)
 }
 
+# we don't want to read inputs if the gun manager belongs to an npc
+var npc: bool = false
+
+#TODO: don't hardcode the guns in the gun manager
 
 func _ready() -> void:
 	#guns = {
@@ -98,17 +112,36 @@ func _ready() -> void:
 	curr_projectile_spec = projectile_library[curr_gun.projectile_type]  # Set based on gun
 	_update_gun_texture()
 	_update_projectile_spawn_position()
+	
+	# initialize ammo
+	for gun_key in gun_keys:
+		var stats := GunSpec.get_stats(gun_key)
+		ammo_in_mag[gun_key] = int(stats.magazine_size)
+		ammo_in_reserve[gun_key] = int(stats.starting_reserve)
 
 func _process(_delta: float) -> void:
 	_time_since_last_shot += _delta
-	
 	var mouse_pos = get_global_mouse_position()
 	var player_position = global_position
 	var mouse_direction = mouse_pos.x - player_position.x
 	var curr_gun_key = gun_keys[curr_gun_index]
 	
+	# If player is looking left	
+	if mouse_direction > 100 :
+		scale.y = 1
+		position = gun_offsets_left[curr_gun_key]
+		facing_right = true
+		default_state = false
+		
+	# If player is looking right
+	elif mouse_direction < -100:
+		scale.y = -1
+		position = gun_offsets_right[curr_gun_key]
+		facing_right = false
+		default_state = false
+		
 	# If player is moving right
-	if player.velocity.x > 0 or default_state:
+	elif player.velocity.x > 0 or default_state:
 		scale.y = 1
 		position = gun_offsets_left[curr_gun_key]
 		facing_right = true
@@ -120,21 +153,7 @@ func _process(_delta: float) -> void:
 		position = gun_offsets_right[curr_gun_key]
 		facing_right = false
 		default_state = false
-		
-	# If player is moving left	
-	elif mouse_direction > 100 and player.velocity.x == 0:
-		scale.y = 1
-		position = gun_offsets_left[curr_gun_key]
-		facing_right = true
-		default_state = false
-		
-	# If player is looking right
-	elif mouse_direction < -100 and player.velocity.x == 0:
-		scale.y = -1
-		position = gun_offsets_right[curr_gun_key]
-		facing_right = false
-		default_state = false
-		
+
 	rotation_pivot.look_at(mouse_pos)
 		
 	if facing_right:
@@ -153,7 +172,11 @@ func _process(_delta: float) -> void:
 		curr_projectile_spec = projectile_library[curr_gun.projectile_type]  # Update projectile
 		_update_gun_texture()
 		_update_projectile_spawn_position()
-			
+		_time_since_last_shot = curr_gun.shot_delay
+		
+		var stats = GunSpec.get_stats(new_gun_key)
+		reload_time = float(stats.reload_time)
+
 	# Add logic here for switching projectiles (Rytham will do this later)
 		
 	var should_shoot := false
@@ -161,10 +184,74 @@ func _process(_delta: float) -> void:
 		should_shoot = Input.is_action_just_pressed("shoot")
 	elif curr_gun.firing_mode == Gun.FiringMode.AUTO:
 		should_shoot = Input.is_action_pressed("shoot")
+
+	var stats := GunSpec.get_stats(curr_gun_key)
+	var mag_size: int = int(stats.magazine_size)
+	reload_time = float(stats.reload_time)
+	var curr_mag: int = ammo_in_mag.get(curr_gun_key, 0)
+	var curr_reserve: int = ammo_in_reserve.get(curr_gun_key, 0)
+	var reload_pressed := Input.is_action_just_pressed("reload")
+	if reload_pressed:
+		_start_reload(curr_gun_key, mag_size, curr_mag, curr_reserve)
+
+	if should_shoot and not is_reloading:
+		if curr_mag > 0:
+			if _time_since_last_shot >= curr_gun.shot_delay:
+				_shoot()
+				_time_since_last_shot = 0.0
+				ammo_in_mag[curr_gun_key] = curr_mag - 1
+		else:
+			# auto reload
+			if curr_reserve > 0:
+				_start_reload(curr_gun_key, mag_size, curr_mag, curr_reserve)
+			else:
+				_no_ammo_fire()
+				
+
+
+func shoot() -> void:
+	var projectile: Projectile = _projectile_scene.instantiate()
 	
-	if should_shoot and _time_since_last_shot >= curr_gun.shot_delay:
-		_shoot()
-		_time_since_last_shot = 0.0
+	# make sure the projectile didn't instantly get destroyed
+	projectile.global_position = projectile_spawn.global_position
+	
+
+func _start_reload(gun_key: String, mag_size: int, curr_mag: int, curr_reserve: int) -> void:
+	if is_reloading:
+		return
+	if curr_mag >= mag_size:
+		return
+	if curr_reserve <= 0:
+		return
+	
+	is_reloading = true
+	# reload sound goes here
+	await get_tree().create_timer(reload_time).timeout
+	_finish_reload(gun_key)
+
+
+func _finish_reload(gun_key: String) -> void:
+	var stats = GunSpec.get_stats(gun_key)
+	var mag_size: int = int(stats.magazine_size)
+	var mag: int = int(ammo_in_mag.get(gun_key, 0))
+	var reserve: int = int(ammo_in_reserve.get(gun_key, 0))
+	var needed: int = mag_size - mag
+	
+	if needed <= 0:
+		is_reloading = false
+		return
+	
+	var taken: int = min(needed, reserve)
+	mag += taken
+	reserve -= taken
+	ammo_in_mag[gun_key] = mag
+	ammo_in_reserve[gun_key] = reserve
+	is_reloading = false
+
+
+func _no_ammo_fire() -> void:
+	# sound for when you shoot with empty gun (or anything else we should add for that) goes here
+	pass
 
 
 func _shoot() -> void:

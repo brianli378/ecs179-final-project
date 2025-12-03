@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EnemySpec" load_steps=3 format=3 uid="uid://b3of442l5f4hu"]
+
+[ext_resource type="PackedScene" uid="uid://doj05njfuwl4e" path="res://scenes/gun2.tscn" id="1_mmkgr"]
+[ext_resource type="Script" uid="uid://cphj1fdaujj61" path="res://scripts/enemy_spec.gd" id="2_6d37c"]
+
+[resource]
+script = ExtResource("2_6d37c")
+enemy_scene_path = "res://scenes/enemies/machine_gun_enemy.tscn"
+health = 100
+damage = 10.0
+speed = 5.0
+shooting_range = 1000.0
+gun_manager = ExtResource("1_mmkgr")
+furthest_leash = 700.0
+closest_leash = 500.0
+metadata/_custom_type_script = "uid://cphj1fdaujj61"

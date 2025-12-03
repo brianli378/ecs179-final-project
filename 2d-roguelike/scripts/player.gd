@@ -6,7 +6,9 @@ var _world:Node2D = World
 
 const SPEED := 700.0
 @onready var cam := $Camera2D
-@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+@onready var head: AnimatedSprite2D = $Head
+@onready var body_sprite: AnimatedSprite2D = $BodySprite
+@onready var health_bar = get_node("../CanvasLayer/HealthBar") 
 
 # dash
 const DASH_SPEED_MULT := 20.0
@@ -23,15 +25,32 @@ var mouse_position : Vector2
 var player_position : Vector2
 var last_horizontal_direction := 1  # 1 for right, -1 for left (default to right)
 
+var max_health := 100
+var health := 100.0
+
+func _ready() -> void:
+	print("PlayerAnimations exists? ", has_node("PlayerAnimations"))
+	print(name)
+	health_bar.max_value = max_health
+	health_bar.value = health
+	add_to_group("player")
+
+func play_synced_animation(anim_name: String) -> void:
+	head.play(anim_name)
+	body_sprite.play(anim_name)
+	
 func _process(_delta: float) -> void:
 	#look_at(get_global_mouse_position())
 	mouse_position = get_global_mouse_position()
 	player_position = global_position
 	
+	health_bar.update_health(health)
+	if health < 0.0:
+		_on_death()
+	
 
 func _physics_process(_delta: float) -> void:
 	var move_direction := Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
-
 	if Input.is_action_just_pressed("dash") and dash_cooldown <= 0.0 and move_direction != Vector2.ZERO:
 		dash_direction = move_direction
 		dash_time = DASH_TIME
@@ -70,15 +89,17 @@ func _physics_process(_delta: float) -> void:
 		_world.pause_menu()
 		
 	# Animation Handling
+	var facing_left = mouse_position.x < player_position.x
 	if move_direction == Vector2.ZERO:
 		# if player isnt moving, play idle animation
-		if mouse_position.x - player_position.x < 0:
-			anim.play("tiny_idle_left")
+		if facing_left:
+			play_synced_animation("tiny_idle_left")
 		else:
-			anim.play("tiny_idle_right")
+			play_synced_animation("tiny_idle_right")
 			
 	else:
-		# if player is moving horizontally
+		# old code, remove later
+		'''
 		if abs(move_direction.x) > abs(move_direction.y):
 			last_horizontal_direction = sign(move_direction.x) 
 			anim.play("tiny_walk_right" if move_direction.x > 0 else "tiny_walk_left")
@@ -89,5 +110,14 @@ func _physics_process(_delta: float) -> void:
 				anim.play("tiny_walk_left")
 			else:
 				anim.play("tiny_walk_right")
+		'''
+		if facing_left:
+			play_synced_animation("tiny_walk_left")
+		else:
+			play_synced_animation("tiny_walk_right")
+		
 		
 	move_and_slide()
+
+func _on_death():
+	_world.death_menu()

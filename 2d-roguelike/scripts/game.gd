@@ -2,7 +2,12 @@ class_name Game
 extends Node2D
 
 # loading basic player spec:
-var basic_enemy_spec = load("res://specs/basic_enemy_spec.tres")
+var pistol_enemy_spec = load("res://specs/pistol_enemy_spec.tres")
+var machine_gun_enemy_spec = load("res://specs/machine_gun_enemy_spec.tres")
+var sniper_enemy_spec = load("res://specs/sniper_enemy_spec.tres")
+var shotgun_enemy_spec = load("res://specs/shotgun_enemy_spec.tres")
+var rocket_launcher_enemy_spec = load("res://specs/rocket_launcher_enemy_spec.tres")
+
 var strong_enemy_spec = load("res://specs/strong_enemy_spec.tres")
 
 @onready var spawn_point_1 = $StaticBody2D
@@ -27,45 +32,31 @@ func _ready():
 	spawn_point_5.queue_free()
 	spawn_point_6.queue_free()
 	
-	var enemy1 = enemy_factory.build(basic_enemy_spec)
-	var enemy2 = enemy_factory.build(basic_enemy_spec)
-	var enemy3 = enemy_factory.build(basic_enemy_spec)
+	var enemy1 = enemy_factory.build(pistol_enemy_spec, self)
+	var enemy2 = enemy_factory.build(pistol_enemy_spec, self)
+	var enemy3 = enemy_factory.build(pistol_enemy_spec, self)
 	
 	"""
 		# this is if we don't want to modify the basic specs 
-		var spec_scaled = basic_enemy_spec.duplicate()
+		var spec_scaled = pistol_enemy_spec.duplicate()
 		spec_scaled.damage = ...
-		then pass spec_scaled instead of basic_enemy_spec
+		then pass spec_scaled instead of pistol_enemy_spec
 	"""
 	
 	# these 2 will have scaled damage for basic
-	var spec_scaled = basic_enemy_spec.duplicate()
+	var spec_scaled = pistol_enemy_spec.duplicate()
 	spec_scaled.damage *= 1.3
 	
-	var enemy4 = enemy_factory.build(spec_scaled)
-	var enemy5 = enemy_factory.build(spec_scaled)
+	var enemy4 = enemy_factory.build(spec_scaled, self)
+	var enemy5 = enemy_factory.build(spec_scaled, self)
 	
 	# this will be new enemy
-	var enemy6 = enemy_factory.build(strong_enemy_spec)
-
-	add_child(enemy1)
 	enemy1.position = spawn_position1
 	
-	add_child(enemy2)
 	enemy2.position = spawn_position2
 	
-	add_child(enemy3)
 	enemy3.position = spawn_position3
 	
-	add_child(enemy4)
 	enemy4.position = spawn_position4
 	
-	add_child(enemy5)
 	enemy5.position = spawn_position5
-	
-	add_child(enemy6)
-	enemy6.position = spawn_position6
-	
-	print("Enemy1 damage: ", enemy1.damage)
-	print("Enemy5 damage scaled: ", enemy5.damage)
-	print("New enemy type damage: ", enemy6.damage)

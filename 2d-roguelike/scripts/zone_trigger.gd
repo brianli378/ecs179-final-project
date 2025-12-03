@@ -6,6 +6,7 @@ func _ready() -> void:
 	return
 
 
-func _on_zone_entered(player: Player) -> void:
-	print("player.SPEED = ", player.SPEED)
+func _on_zone_entered(player: Node2D) -> void:
+	if player is Player:
+		print("player.SPEED = ", player.SPEED)
 	return

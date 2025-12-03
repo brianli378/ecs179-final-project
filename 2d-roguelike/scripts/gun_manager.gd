@@ -216,8 +216,6 @@ func shoot() -> void:
 	projectile.global_position = projectile_spawn.global_position
 	
 
-
-
 func _start_reload(gun_key: String, mag_size: int, curr_mag: int, curr_reserve: int) -> void:
 	if is_reloading:
 		return

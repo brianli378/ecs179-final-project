@@ -238,7 +238,7 @@ animation = &"tiny_walk_right"
 [node name="footstep" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_jej6c")
 
-[node name="damage_taken" type="AudioStreamPlayer2D" parent="."]
+[node name="damage_taken_sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_jej6c")
 volume_db = -13.619
 

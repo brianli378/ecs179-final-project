@@ -10,7 +10,7 @@ const SPEED := 700.0
 @onready var head: AnimatedSprite2D = $Head
 @onready var body_sprite: AnimatedSprite2D = $BodySprite
 @onready var health_bar = get_node("../CanvasLayer/HealthBar") 
-@onready var damage_sound = $damage_taken
+@onready var damage_sound = $damage_taken_sound
 @onready var death_sound = $death_sound
 
 # dash

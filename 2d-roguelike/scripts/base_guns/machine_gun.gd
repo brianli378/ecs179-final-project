@@ -9,3 +9,4 @@ func _init() -> void:
 	projectile_scale = Vector2(0.0075, 0.0075)
 	firing_mode = FiringMode.AUTO
 	projectile_type = "normal"
+	shoot_sound = preload("res://assets/sounds/machine_gun_sound.wav")

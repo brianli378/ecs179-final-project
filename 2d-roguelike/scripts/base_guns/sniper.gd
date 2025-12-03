@@ -9,3 +9,4 @@ func _init() -> void:
 	projectile_scale = Vector2(0.02, 0.02)
 	firing_mode = FiringMode.SEMI_AUTO
 	projectile_type = "laser"
+	shoot_sound = preload("res://assets/sounds/sniper_sound.wav")

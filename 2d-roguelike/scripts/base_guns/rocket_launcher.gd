@@ -10,3 +10,4 @@ func _init() -> void:
 	firing_mode = FiringMode.SEMI_AUTO
 	explosion_radius = 200.0
 	projectile_type = "rocket"
+	shoot_sound = preload("res://assets/sounds/rocket_launcher_sound.wav")

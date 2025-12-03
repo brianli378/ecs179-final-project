@@ -31,6 +31,7 @@ path_max_distance = 1000.0
 simplify_path = true
 simplify_epsilon = 10.0
 path_search_max_polygons = 1000
+debug_enabled = true
 
 [node name="Area2D" type="Area2D" parent="."]
 

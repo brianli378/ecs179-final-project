@@ -30,7 +30,6 @@ func _process(_delta: float) -> void:
 		scale.x = 1  # Normal orientation
 		position.x = abs(position.x)  # Move gun back to normal side
 
-	
 	rotation_pivot.look_at(_player.global_position)
 
 func shoot() -> void:

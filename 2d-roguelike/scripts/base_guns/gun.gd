@@ -12,3 +12,4 @@ enum FiringMode { SEMI_AUTO, AUTO }
 @export var spread_angle: float = 0.0
 @export var explosion_radius: float = 0.0
 @export var projectile_type: String = "normal"
+@export var shoot_sound: AudioStream

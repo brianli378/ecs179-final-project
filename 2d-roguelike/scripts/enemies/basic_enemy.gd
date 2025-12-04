@@ -37,11 +37,11 @@ func initialize(spec: EnemySpec):
 	self._closest_leash = spec.closest_leash
 
 func _ready():
-	print("BasicEnemy node:", self)
-	print("Children:", get_children())
-	print("gun_manager == null:", gun_manager == null)
+	#print("BasicEnemy node:", self)
+	#print("Children:", get_children())
+	#print("gun_manager == null:", gun_manager == null)
 
-	print("basic enemy ready")
+	#print("basic enemy ready")
 		# make sure we ignore user inputs
 	self.gun_manager.npc = true
 	
@@ -70,7 +70,7 @@ func _handle_death() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if _player == null:
-		print("player null")
+		#print("player null")
 		return
 	_time += _delta
 	

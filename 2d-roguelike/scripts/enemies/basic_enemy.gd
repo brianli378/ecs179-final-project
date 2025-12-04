@@ -61,7 +61,7 @@ func _process(_delta: float) -> void:
 		pass
 		#anim.play("default")
 		#look_at(_player.global_position)
-	print(health)
+	#print(health)
 	if health <= 0:
 		_handle_death()
 

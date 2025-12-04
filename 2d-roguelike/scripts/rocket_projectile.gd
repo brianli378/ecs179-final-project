@@ -25,6 +25,7 @@ func _explode() -> void:
 	
 	for result in results:
 		var body = result.collider
+		print(body)
 		
 		if body is Projectile or body is RocketProjectile:
 			continue
@@ -33,6 +34,6 @@ func _explode() -> void:
 		
 		var damage_multiplier = 1.0 - (distance / explosion_radius)
 		damage_multiplier = clamp(damage_multiplier, 0.0, 1.0)
-		
-		if body.has_method("take_damage"):
-			body.take_damage(damage * damage_multiplier)
+			
+		if body is BasicEnemy:
+			body.health -= damage * damage_multiplier

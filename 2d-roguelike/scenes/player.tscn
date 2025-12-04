@@ -15,7 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://cgvdjw247tiin" path="res://assets/sounds/death_sound.wav" id="13_f1ej7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
-size = Vector2(126, 123.5)
+size = Vector2(187, 338)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f1ej7"]
 atlas = ExtResource("5_d2wvv")
@@ -217,7 +217,7 @@ position = Vector2(75, 0)
 [node name="shooting_sound" type="AudioStreamPlayer2D" parent="Body/Gun"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.25)
+position = Vector2(-3.5, 0)
 shape = SubResource("RectangleShape2D_g2els")
 
 [node name="Camera2D" type="Camera2D" parent="."]

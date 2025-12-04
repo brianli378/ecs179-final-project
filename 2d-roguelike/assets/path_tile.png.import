@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chnae4e6b66o0"
-path="res://.godot/imported/pistol_sprite_2.png-d3f54b82434ebb1e603a9293dfd04ecc.ctex"
+uid="uid://qpc3w4kefsh6"
+path="res://.godot/imported/path_tile.png-3ec9cc4233d851a6096ca05691c5e7b9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/pistol_sprite_2.png"
-dest_files=["res://.godot/imported/pistol_sprite_2.png-d3f54b82434ebb1e603a9293dfd04ecc.ctex"]
+source_file="res://assets/path_tile.png"
+dest_files=["res://.godot/imported/path_tile.png-3ec9cc4233d851a6096ca05691c5e7b9.ctex"]
 
 [params]
 
@@ -23,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

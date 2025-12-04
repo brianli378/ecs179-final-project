@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bud45oq6r0m8k"]
+[gd_scene load_steps=3 format=3 uid="uid://ciun46ifyhx6v"]
 
 [ext_resource type="Script" uid="uid://c36483pxjdqw" path="res://scripts/gun_manager.gd" id="2_gp1hk"]
 [ext_resource type="Texture2D" uid="uid://d0opbe7n8wpat" path="res://assets/pistol_sprite.png" id="2_og67c"]
@@ -8,6 +8,9 @@ scale = Vector2(1.1484375, 0.3046875)
 centered = false
 offset = Vector2(-10, -75)
 script = ExtResource("2_gp1hk")
+offset_right = null
+offset_left = null
+reload_time = null
 
 [node name="RotationPivot" type="Node2D" parent="."]
 

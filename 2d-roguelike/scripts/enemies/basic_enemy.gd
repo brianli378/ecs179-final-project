@@ -91,9 +91,9 @@ func _physics_process(_delta: float) -> void:
 	elif distance < _closest_leash:
 		# Move away from player
 		velocity = -direction * _movement_speed
-	if velocity.x < 0:
+	if direction.x < 0:
 		anim.play("walk_left")
-	elif velocity.x > 0 :
+	elif direction.x > 0 :
 		anim.play("walk_right")
 	else:
 		anim.play("default")

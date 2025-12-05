@@ -22,8 +22,13 @@ func set_enemies(spawn_arr: Array, enemy_arr: Array) -> void:
 func _on_zone_entered(player: Node2D) -> void:
 	if player is Player and not triggered:
 		triggered = true;
-		while _spawnpoints.size() > 0:
-			var enemy = enemy_factory.build(_enemy_specs.pop_front(), self)
-			enemy.position = _spawnpoints.pop_front()
+		call_deferred("spawn_enemies")
 		print("Entered New Zone, Spawning Enemies!")
+	return
+
+func spawn_enemies() -> void:
+	while _spawnpoints.size() > 0:
+		var enemy_spec = _enemy_specs.pop_front()
+		var enemy = enemy_factory.build(enemy_spec, self)
+		enemy.position = _spawnpoints.pop_front()
 	return

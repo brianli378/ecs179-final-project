@@ -17,36 +17,42 @@ func _ready() -> void:
 	print("Creating Enemy Locations and Specs")
 	
 	# Zone 1 Handling
-	var spawnpoints = []
-	var enemies = []
+	var spawnpoints_1 = []
+	var enemies_1 = []
 	
-	spawnpoints.push_back(Vector2(1300, 400))
-	spawnpoints.push_back(Vector2(1300, 1200))
-	spawnpoints.push_back(Vector2(600, 1200))
-	spawnpoints.push_back(Vector2(2200, 1200))
-	enemies.push_back(pistol_enemy_spec)
-	enemies.push_back(pistol_enemy_spec)
-	enemies.push_back(pistol_enemy_spec)
-	enemies.push_back(pistol_enemy_spec)
-	zone_1.set_enemies(spawnpoints, enemies)
+	spawnpoints_1.push_back(Vector2(1300, 400))
+	spawnpoints_1.push_back(Vector2(1300, 1200))
+	spawnpoints_1.push_back(Vector2(600, 1200))
+	spawnpoints_1.push_back(Vector2(2200, 1200))
+	enemies_1.push_back(pistol_enemy_spec)
+	enemies_1.push_back(pistol_enemy_spec)
+	enemies_1.push_back(pistol_enemy_spec)
+	enemies_1.push_back(pistol_enemy_spec)
+	zone_1.set_enemies(spawnpoints_1, enemies_1)
 	
 	# Zone 2 Handling
-	#spawnpoints.clear()
-	#spawnpoints.push_back(Vector2())
-	#spawnpoints.push_back(Vector2())
-	#spawnpoints.push_back(Vector2())
-	#spawnpoints.push_back(Vector2())
-	#zone_2.set_enemies(spawnpoints, enemies)
-	#
-	## Zone 3 Handling
-	#spawnpoints.clear()
-	#spawnpoints.push_back(Vector2())
-	#spawnpoints.push_back(Vector2())
-	#spawnpoints.push_back(Vector2())
-	#spawnpoints.push_back(Vector2())
-	#zone_3.set_enemies(spawnpoints, enemies)
+	var spawnpoints_2 = []
+	var enemies_2 = []
+	spawnpoints_2.push_back(Vector2(1800, 400))
+	spawnpoints_2.push_back(Vector2(1800, 1200))
+	spawnpoints_2.push_back(Vector2(1000, 800))
+	spawnpoints_2.push_back(Vector2(2700, 1200))
+	enemies_2.push_back(pistol_enemy_spec)
+	enemies_2.push_back(pistol_enemy_spec)
+	enemies_2.push_back(pistol_enemy_spec)
+	enemies_2.push_back(pistol_enemy_spec)
+	zone_2.set_enemies(spawnpoints_2, enemies_2)
 	
-	#Clear Arrays
-	#spawnpoints.clear()
-	#enemies.clear()
+	# Zone 3 Handling
+	var spawnpoints_3 = []
+	var enemies_3 = []
+	spawnpoints_3.push_back(Vector2(1200, 1400))
+	spawnpoints_3.push_back(Vector2(400, 1400))
+	spawnpoints_3.push_back(Vector2(1800, 400))
+	spawnpoints_3.push_back(Vector2(1800, 2100))
+	enemies_3.push_back(pistol_enemy_spec)
+	enemies_3.push_back(pistol_enemy_spec)
+	enemies_3.push_back(pistol_enemy_spec)
+	enemies_3.push_back(pistol_enemy_spec)
+	zone_3.set_enemies(spawnpoints_3, enemies_3)
 	

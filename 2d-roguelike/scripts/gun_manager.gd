@@ -183,6 +183,21 @@ func _process(_delta: float) -> void:
 	var mouse_direction = mouse_pos.x - player_position.x
 	var curr_gun_key = gun_keys[curr_gun_index]
 	
+	if not guns.has(curr_gun_key):
+		if gun_keys.size() == 0:
+			return
+		for gun_key in gun_keys:
+			if guns.has(gun_key):
+				curr_gun_index = gun_keys.find(gun_key)
+				curr_gun_key = gun_key
+				curr_gun = guns[gun_key]
+				curr_projectile_spec = projectile_library[curr_gun.projectile_type]
+				_update_gun_texture()
+				_update_projectile_spawn_position()
+				break
+		if not guns.has(curr_gun_key):
+			return
+	
 	# If player is looking left	
 	if mouse_direction > 100 :
 		scale.y = 1
@@ -371,6 +386,9 @@ func _start_reload(gun_key: String, mag_size: int, curr_mag: int, curr_reserve: 
 
 
 func _finish_reload(gun_key: String) -> void:
+	if not guns.has(gun_key):
+		is_reloading = false
+		return
 	#var stats = GunSpec.get_stats(gun_key)
 	#var mag_size: int = int(stats.magazine_size)
 	var mag_size: int = guns[gun_key].magazine_size

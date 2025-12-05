@@ -1,14 +1,18 @@
 class_name Shistol
-extends Node2D
+extends Gun
 
-enum FiringMode { SEMI_AUTO, AUTO }
 
-@export var dmg_multiplier: float = 1
-@export var projectile_speed: int = 1000
-@export var shot_delay: float = 0.0
-@export var projectile_scale: Vector2 = Vector2.ONE
-@export var firing_mode: FiringMode = FiringMode.SEMI_AUTO
-@export var projectile_count: int = 1
-@export var spread_angle: float = 0.0
-@export var explosion_radius: float = 0.0
-@export var projectile_type: String = "normal"
+func _init() -> void:
+	dmg_multiplier = 0.6
+	projectile_speed = 1000
+	shot_delay = 0.9
+	projectile_scale = Vector2(0.005, 0.005)
+	firing_mode = FiringMode.SEMI_AUTO
+	projectile_count = 6
+	spread_angle = 20.0
+	projectile_type = "normal"
+	shoot_sound = preload("res://assets/sounds/shotgun_sound.wav")
+	magazine_size = 6
+	starting_reserve = 36
+	max_reserve = 72
+	reload_time = 0.9

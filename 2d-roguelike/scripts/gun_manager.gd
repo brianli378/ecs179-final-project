@@ -39,7 +39,7 @@ var guns: Dictionary = {
 	"sniper": Sniper.new(),
 	"shotgun": Shotgun.new(),
 	"rocket launcher": RocketLauncher.new(),
-	"fusion": PachineGun.new()
+	"fusion": ShachineGun.new()
 }
 	
 var gun_keys: Array[String] = ["pistol", "machine gun", "sniper", "shotgun", "rocket launcher", "fusion"] # Array for easy indexing
@@ -69,7 +69,7 @@ var gun_offsets_right: Dictionary = {
 	"sniper": Vector2(0, 0),
 	"shotgun": Vector2(0, 0), 
 	"rocket launcher": Vector2(0, 0),
-	"fusion": Vector2(0, 0)
+	"fusion": Vector2(-25, 0)
 }
 
 # Gun specific offsets when facing right
@@ -79,7 +79,7 @@ var gun_offsets_left: Dictionary = {
 	"sniper": Vector2(0, 0),
 	"shotgun": Vector2(0, 0), 
 	"rocket launcher": Vector2(0, 0),
-	"fusion": Vector2(0, 0)
+	"fusion": Vector2(25, 0)
 }
 
 # Rotation pivot location

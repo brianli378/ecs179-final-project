@@ -1,14 +1,18 @@
 class_name MachineGunGun
-extends Node2D
+extends Gun
 
-enum FiringMode { SEMI_AUTO, AUTO }
 
-@export var dmg_multiplier: float = 1
-@export var projectile_speed: int = 1000
-@export var shot_delay: float = 0.0
-@export var projectile_scale: Vector2 = Vector2.ONE
-@export var firing_mode: FiringMode = FiringMode.SEMI_AUTO
-@export var projectile_count: int = 1
-@export var spread_angle: float = 0.0
-@export var explosion_radius: float = 0.0
-@export var projectile_type: String = "normal"
+func _init() -> void:
+	dmg_multiplier = 0.2
+	projectile_speed = 1000
+	shot_delay = 0.2
+	projectile_scale = Vector2(0.0075, 0.0075)
+	firing_mode = FiringMode.AUTO
+	projectile_type = "normal"
+	projectile_count = 4
+	spread_angle = 24.0
+	shoot_sound = preload("res://assets/sounds/machine_gun_sound.wav")
+	magazine_size = 30
+	starting_reserve = 120
+	max_reserve = 360
+	reload_time = 3.5

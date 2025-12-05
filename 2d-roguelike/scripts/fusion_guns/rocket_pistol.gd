@@ -1,14 +1,17 @@
 class_name RocketPistol
-extends Node2D
+extends Gun
 
-enum FiringMode { SEMI_AUTO, AUTO }
 
-@export var dmg_multiplier: float = 1
-@export var projectile_speed: int = 1000
-@export var shot_delay: float = 0.0
-@export var projectile_scale: Vector2 = Vector2.ONE
-@export var firing_mode: FiringMode = FiringMode.SEMI_AUTO
-@export var projectile_count: int = 1
-@export var spread_angle: float = 0.0
-@export var explosion_radius: float = 0.0
-@export var projectile_type: String = "normal"
+func _init() -> void:
+	dmg_multiplier = 5
+	projectile_speed = 500
+	shot_delay = 0.75
+	projectile_scale = Vector2(0.05, 0.05)
+	firing_mode = FiringMode.SEMI_AUTO
+	explosion_radius = 100.0
+	projectile_type = "rocket"
+	shoot_sound = preload("res://assets/sounds/rocket_launcher_sound.wav")
+	magazine_size = 5
+	starting_reserve = 15
+	max_reserve = 30
+	reload_time = 3.5

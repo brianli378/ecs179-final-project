@@ -11,3 +11,7 @@ func _init() -> void:
 	spread_angle = 30.0
 	projectile_type = "normal"
 	shoot_sound = preload("res://assets/sounds/shotgun_sound.wav")
+	magazine_size = 8
+	starting_reserve = 30
+	max_reserve = 60
+	reload_time = 2.0

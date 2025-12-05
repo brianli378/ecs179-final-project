@@ -8,6 +8,7 @@ size = Vector2(40, 40)
 
 [node name="RocketProjectile" type="RigidBody2D"]
 gravity_scale = 0.0
+lock_rotation = true
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_6c3m4")

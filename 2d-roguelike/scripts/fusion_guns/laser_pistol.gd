@@ -1,14 +1,16 @@
 class_name LaserPistol
-extends Node2D
+extends Gun
 
-enum FiringMode { SEMI_AUTO, AUTO }
 
-@export var dmg_multiplier: float = 1
-@export var projectile_speed: int = 1000
-@export var shot_delay: float = 0.0
-@export var projectile_scale: Vector2 = Vector2.ONE
-@export var firing_mode: FiringMode = FiringMode.SEMI_AUTO
-@export var projectile_count: int = 1
-@export var spread_angle: float = 0.0
-@export var explosion_radius: float = 0.0
-@export var projectile_type: String = "normal"
+func _init() -> void:
+	dmg_multiplier = 1.5
+	projectile_speed = 2000
+	shot_delay = 0.9
+	projectile_scale = Vector2(0.02, 0.02)
+	firing_mode = FiringMode.SEMI_AUTO
+	projectile_type = "laser"
+	shoot_sound = preload("res://assets/sounds/laser-sound.wav")
+	magazine_size = 99999999
+	starting_reserve = 0
+	max_reserve = 0
+	reload_time = 0.0

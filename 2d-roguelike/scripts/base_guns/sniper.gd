@@ -10,3 +10,7 @@ func _init() -> void:
 	firing_mode = FiringMode.SEMI_AUTO
 	projectile_type = "laser"
 	shoot_sound = preload("res://assets/sounds/sniper_sound.wav")
+	magazine_size = 5
+	starting_reserve = 25
+	max_reserve = 50
+	reload_time = 1.0

@@ -34,14 +34,15 @@ var facing_right = false
 var default_state = true
 
 var guns: Dictionary = {
-		"pistol": Pistol.new(),
-		"machine gun": MachineGun.new(),
-		"sniper": Sniper.new(),
-		"shotgun": Shotgun.new(),
-		"rocket launcher": RocketLauncher.new()
-	}
+	"pistol": Pistol.new(),
+	"machine gun": MachineGun.new(),
+	"sniper": Sniper.new(),
+	"shotgun": Shotgun.new(),
+	"rocket launcher": RocketLauncher.new(),
+	"fusion": Piper.new()
+}
 	
-var gun_keys: Array[String] = ["pistol", "machine gun", "sniper", "shotgun", "rocket launcher"] # Array for easy indexing
+var gun_keys: Array[String] = ["pistol", "machine gun", "sniper", "shotgun", "rocket launcher", "fusion"] # Array for easy indexing
 var curr_gun_index: int = 0  # Index into gun_keys array
 var curr_gun: Gun = null
 # Defaulted to normal projectile
@@ -57,7 +58,8 @@ var gun_textures: Dictionary = {
 	"machine gun": preload("res://assets/machinegun_sprite.png"), 
 	"sniper": preload("res://assets/sniper_sprite.png"),
 	"shotgun": preload("res://assets/shotgun_sprite.png"),
-	"rocket launcher": preload("res://assets/rocket_launcher_sprite.png") 
+	"rocket launcher": preload("res://assets/rocket_launcher_sprite.png"),
+	"fusion": preload("res://assets/placeholder_gun.svg")
 }
 
 # Gun specific offsets when facing right
@@ -66,7 +68,8 @@ var gun_offsets_right: Dictionary = {
 	"machine gun": Vector2(-40, 25),
 	"sniper": Vector2(0, 0),
 	"shotgun": Vector2(0, 0), 
-	"rocket launcher": Vector2(0, 0)
+	"rocket launcher": Vector2(0, 0),
+	"fusion": Vector2(0, 0)
 }
 
 # Gun specific offsets when facing right
@@ -75,7 +78,8 @@ var gun_offsets_left: Dictionary = {
 	"machine gun": Vector2(40, 25),
 	"sniper": Vector2(0, 0),
 	"shotgun": Vector2(0, 0), 
-	"rocket launcher": Vector2(0, 0)
+	"rocket launcher": Vector2(0, 0),
+	"fusion": Vector2(0, 0)
 }
 
 # Rotation pivot location
@@ -84,7 +88,8 @@ var gun_sprite_positions: Dictionary = {
 	"machine gun": Vector2(-175, 0),
 	"sniper": Vector2(-200, 0),
 	"shotgun": Vector2(0, 0), 
-	"rocket launcher": Vector2(-200, -60)
+	"rocket launcher": Vector2(-200, -60),
+	"fusion": Vector2(0, 0)
 }
 
 # Projectile spawn location
@@ -93,7 +98,8 @@ var projectile_spawn_offsets: Dictionary = {
 	"machine gun": Vector2(120, 20),
 	"sniper": Vector2(430, 20),
 	"shotgun": Vector2(250, 0), 
-	"rocket launcher": Vector2(250, 25)
+	"rocket launcher": Vector2(250, 25),
+	"fusion": Vector2(250, 0)
 }
 
 # we don't want to read inputs if the gun manager belongs to an npc

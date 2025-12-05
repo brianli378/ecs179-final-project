@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=4 uid="uid://cbp7rkfxj7ph8"]
+[gd_scene load_steps=13 format=4 uid="uid://cbp7rkfxj7ph8"]
 
+[ext_resource type="Script" uid="uid://blj6lue1ay00" path="res://scripts/map_controller.gd" id="1_px2nk"]
 [ext_resource type="Script" uid="uid://c2kd2x0dfv1u2" path="res://scripts/zone_trigger.gd" id="2_3gnvq"]
 [ext_resource type="Texture2D" uid="uid://ddmygi1rpb7f4" path="res://assets/wall_and_floor.png" id="2_nbe4v"]
 [ext_resource type="Texture2D" uid="uid://ds25oercyocqv" path="res://assets/Lazy3x3Autotile_floorPalleteTemplate(1)-export.png" id="3_nbe4v"]
@@ -767,6 +768,7 @@ sources/2 = SubResource("TileSetAtlasSource_0h07o")
 
 [node name="Maps" type="Node2D"]
 top_level = true
+script = ExtResource("1_px2nk")
 
 [node name="Zone1" type="Area2D" parent="."]
 visible = false

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dah2wgypumw50"]
 
-[ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_ucygd"]
+[ext_resource type="Script" uid="uid://d3tinie4p7142" path="res://scenes/main_menu.gd" id="1_ucygd"]
 [ext_resource type="Texture2D" uid="uid://bgb67yjmtday4" path="res://assets/ui/Simulacrum(1)(1)-export.png" id="2_ucygd"]
 [ext_resource type="Texture2D" uid="uid://dhh4n0alf822c" path="res://assets/main_menu/label_new_game.png" id="3"]
 [ext_resource type="Script" uid="uid://b6qapnl5v8owt" path="res://scripts/start_game_button.gd" id="3_ucygd"]
@@ -43,6 +43,7 @@ texture_repeat = 2
 
 [node name="Parallax2D5" type="Parallax2D" parent="."]
 repeat_size = Vector2(1280, 0)
+repeat_times = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D5"]
 texture_repeat = 2

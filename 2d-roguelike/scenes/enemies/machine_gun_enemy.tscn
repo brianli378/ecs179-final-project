@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://lujl1bef4cp"]
+[gd_scene load_steps=4 format=3 uid="uid://lujl1bef4cp"]
 
 [ext_resource type="Script" uid="uid://btcugaplbsvlc" path="res://scripts/enemies/machine_gun_enemy.gd" id="1_1e4ta"]
 [ext_resource type="PackedScene" uid="uid://coypppkp7t2ii" path="res://scenes/enemies/basic_enemy.tscn" id="2_d05db"]
+[ext_resource type="Texture2D" uid="uid://dlnipkbxlrefj" path="res://assets/guns/machinegun_sprite.png" id="3_d05db"]
 
 [node name="MachineGunEnemy" type="Node2D"]
 script = ExtResource("1_1e4ta")
 
 [node name="BasicEnemy" parent="." instance=ExtResource("2_d05db")]
+
+[node name="sprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_d05db")

@@ -9,6 +9,8 @@ scale = Vector2(1.1484375, 0.3046875)
 texture = ExtResource("1_og67c")
 script = ExtResource("2_v7tf8")
 
+[node name="RotationPivot" type="Node2D" parent="."]
+
 [node name="ProjectileSpawn" type="Node2D" parent="."]
 position = Vector2(75, 0)
 

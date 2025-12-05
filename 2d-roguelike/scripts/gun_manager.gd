@@ -350,8 +350,8 @@ func fuse_guns(first_gun_key: String, second_gun_key: String) -> String:
 
 	var second_index: int = gun_keys.find(second_gun_key)
 	if second_index != -1:
-		if second_index > first_index and first_index != -1:
-			second_index -= 1
+		#if second_index > first_index and first_index != -1:
+			#second_index -= 1
 		gun_keys.remove_at(second_index)
 
 	guns[fusion_gun_key] = fusion_gun_instance

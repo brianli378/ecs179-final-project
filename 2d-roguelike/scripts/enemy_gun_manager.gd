@@ -17,8 +17,25 @@ var line_of_sight : EnemyLineOfSight = $EnemyLineOfSight
 
 func _ready() -> void:
 	_player = get_tree().get_first_node_in_group("player")
+	
+	_set_gun_sprite()
+
+func _set_gun_sprite() -> void:
+	var parent : Node = get_parent().get_parent().get_parent()
+	var gun_sprite : Sprite2D = Sprite2D.new()
+	
+	gun_sprite = parent.get_child(1)
+	var sprite : Sprite2D = gun_sprite.duplicate()
+	
+	sprite.visible = true
+	sprite.position.x -= 80
+	
+	get_child(0).add_child(sprite)
+
 
 func _process(_delta: float) -> void:
+	if _player == null:
+		return
 	_time_since_last_shot += _delta
 	var direction: Vector2 = (_player.global_position - global_position).normalized()
 	#look_at()

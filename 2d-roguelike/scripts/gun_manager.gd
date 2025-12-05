@@ -56,41 +56,41 @@ var default_gun_texture: Texture2D = preload("res://assets/placeholder_gun.svg")
 
 var gun_textures: Dictionary = {
 	# base guns
-	"pistol": preload("res://assets/pistol_sprite_2.png"),
-	"machine gun": preload("res://assets/machinegun_sprite.png"), 
-	"sniper": preload("res://assets/sniper_sprite.png"),
-	"shotgun": preload("res://assets/shotgun_sprite.png"),
-	"rocket launcher": preload("res://assets/rocket_launcher_sprite.png"),
+	"pistol": preload("res://assets/guns/pistol_sprite_2.png"),
+	"machine gun": preload("res://assets/guns/machinegun_sprite.png"), 
+	"sniper": preload("res://assets/guns/sniper_sprite.png"),
+	"shotgun": preload("res://assets/guns/shotgun_sprite.png"),
+	"rocket launcher": preload("res://assets/guns/rocket_launcher_sprite.png"),
 	
 	# pistol fusions
-	"potgun": preload("res://assets/potgun.png"),
-	"pocket launcher": preload("res://assets/pocket_launcher.png"),
-	"piper": preload("res://assets/pistol_sprite_2.png"),
-	"pachine gun": preload("res://assets/pistol_sprite_2.png"),
+	"potgun": preload("res://assets/guns/potgun_sprite.png"),
+	"pocket launcher": preload("res://assets/guns/pocket_launcher_sprite.png"),
+	"piper": preload("res://assets/guns/piper_sprite.png"),
+	"pachine gun": preload("res://assets/guns/pistol_sprite_2.png"),
 	
 	# shotgun fusions
-	"shistol": preload("res://assets/shotgun_sprite.png"),
-	"shocket launcher": preload("res://assets/shotgun_sprite.png"),
-	"shiper": preload("res://assets/shotgun_sprite.png"),
-	"shachine gun": preload("res://assets/shotgun_sprite.png"),
+	"shistol": preload("res://assets/guns/shotgun_sprite.png"),
+	"shocket launcher": preload("res://assets/guns/shotgun_sprite.png"),
+	"shiper": preload("res://assets/guns/shotgun_sprite.png"),
+	"shachine gun": preload("res://assets/guns/shotgun_sprite.png"),
 	
 	# rocket launcher fusions
-	"rocket pistol": preload("res://assets/rocket_launcher_sprite.png"),
-	"rocket shotgun":  preload("res://assets/rocket_launcher_sprite.png"),
-	"rocket sniper":  preload("res://assets/rocket_launcher_sprite.png"),
-	"rockchine gun":  preload("res://assets/rocket_launcher_sprite.png"),
+	"rocket pistol": preload("res://assets/guns/rocket_launcher_sprite.png"),
+	"rocket shotgun":  preload("res://assets/guns/rocket_launcher_sprite.png"),
+	"rocket sniper":  preload("res://assets/guns/rocket_launcher_sprite.png"),
+	"rockchine gun":  preload("res://assets/guns/rocket_launcher_sprite.png"),
 	
 	# sniper fusions
-	"laser pistol": preload("res://assets/sniper_sprite.png"),
-	"laser shotgun": preload("res://assets/sniper_sprite.png"),
-	"laser rocket launcher": preload("res://assets/sniper_sprite.png"),
-	"laser machine gun": preload("res://assets/sniper_sprite.png"),
+	"laser pistol": preload("res://assets/guns/sniper_sprite.png"),
+	"laser shotgun": preload("res://assets/guns/sniper_sprite.png"),
+	"laser rocket launcher": preload("res://assets/guns/sniper_sprite.png"),
+	"laser machine gun": preload("res://assets/guns/sniper_sprite.png"),
 	
 	# machine gun fusions
-	"machine pistol": preload("res://assets/machinegun_sprite.png"), 
-	"machinegungun": preload("res://assets/machinegun_sprite.png"), 
-	"machine launcher": preload("res://assets/machinegun_sprite.png"), 
-	"machine-per": preload("res://assets/machinegun_sprite.png")
+	"machine pistol": preload("res://assets/guns/machinegun_sprite.png"), 
+	"machinegungun": preload("res://assets/guns/machinegun_sprite.png"), 
+	"machine launcher": preload("res://assets/guns/machinegun_sprite.png"), 
+	"machine-per": preload("res://assets/guns/machinegun_sprite.png")
 	
 }
 

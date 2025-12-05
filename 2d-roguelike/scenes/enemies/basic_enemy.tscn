@@ -1,11 +1,11 @@
 [gd_scene load_steps=19 format=3 uid="uid://coypppkp7t2ii"]
 
 [ext_resource type="Script" uid="uid://birgv6eudsgmc" path="res://scripts/enemies/basic_enemy.gd" id="1_7jpia"]
-[ext_resource type="Texture2D" uid="uid://c7a3whp20hr42" path="res://assets/basic_enemy_walk_left.png" id="3_3ld4s"]
+[ext_resource type="Texture2D" uid="uid://c7a3whp20hr42" path="res://assets/enemies/basic_enemy_walk_left.png" id="3_3ld4s"]
 [ext_resource type="PackedScene" uid="uid://doj05njfuwl4e" path="res://scenes/gun2.tscn" id="3_ibjif"]
-[ext_resource type="Texture2D" uid="uid://bfe7hcosfb26f" path="res://assets/basic_enemy.png" id="4_4mpuu"]
-[ext_resource type="Texture2D" uid="uid://chnae4e6b66o0" path="res://assets/pistol_sprite_2.png" id="4_wsh5r"]
-[ext_resource type="Texture2D" uid="uid://dlrcvedlqbhoj" path="res://assets/basic_enemy_walk_right.png" id="4_y18r1"]
+[ext_resource type="Texture2D" uid="uid://bfe7hcosfb26f" path="res://assets/enemies/basic_enemy.png" id="4_4mpuu"]
+[ext_resource type="Texture2D" uid="uid://chnae4e6b66o0" path="res://assets/guns/pistol_sprite_2.png" id="4_wsh5r"]
+[ext_resource type="Texture2D" uid="uid://dlrcvedlqbhoj" path="res://assets/enemies/basic_enemy_walk_right.png" id="4_y18r1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8xi43"]
 size = Vector2(184, 370)

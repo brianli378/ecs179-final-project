@@ -38,11 +38,10 @@ var guns: Dictionary = {
 	"machine gun": MachineGun.new(),
 	"sniper": Sniper.new(),
 	"shotgun": Shotgun.new(),
-	"rocket launcher": RocketLauncher.new(),
-	"fusion": MachinePistol.new()
+	"rocket launcher": RocketLauncher.new()
 }
 	
-var gun_keys: Array[String] = ["pistol", "machine gun", "sniper", "shotgun", "rocket launcher", "fusion"] # Array for easy indexing
+var gun_keys: Array[String] = ["pistol", "machine gun", "sniper", "shotgun", "rocket launcher"] # Array for easy indexing
 var curr_gun_index: int = 0  # Index into gun_keys array
 var curr_gun: Gun = null
 # Defaulted to normal projectile
@@ -53,13 +52,14 @@ var ammo_in_mag: Dictionary = {}
 var ammo_in_reserve: Dictionary = {}
 var is_reloading: bool = false
 
+var default_gun_texture: Texture2D = preload("res://assets/placeholder_gun.svg")
+
 var gun_textures: Dictionary = {
 	"pistol": preload("res://assets/pistol_sprite_2.png"),
 	"machine gun": preload("res://assets/machinegun_sprite.png"), 
 	"sniper": preload("res://assets/sniper_sprite.png"),
 	"shotgun": preload("res://assets/shotgun_sprite.png"),
-	"rocket launcher": preload("res://assets/rocket_launcher_sprite.png"),
-	"fusion": preload("res://assets/placeholder_gun.svg")
+	"rocket launcher": preload("res://assets/rocket_launcher_sprite.png")
 }
 
 # Gun specific offsets when facing right
@@ -68,8 +68,7 @@ var gun_offsets_right: Dictionary = {
 	"machine gun": Vector2(-40, 25),
 	"sniper": Vector2(0, 0),
 	"shotgun": Vector2(0, 0), 
-	"rocket launcher": Vector2(0, 0),
-	"fusion": Vector2(-25, 0)
+	"rocket launcher": Vector2(0, 0)
 }
 
 # Gun specific offsets when facing right
@@ -78,8 +77,7 @@ var gun_offsets_left: Dictionary = {
 	"machine gun": Vector2(40, 25),
 	"sniper": Vector2(0, 0),
 	"shotgun": Vector2(0, 0), 
-	"rocket launcher": Vector2(0, 0),
-	"fusion": Vector2(25, 0)
+	"rocket launcher": Vector2(0, 0)
 }
 
 # Rotation pivot location
@@ -88,8 +86,7 @@ var gun_sprite_positions: Dictionary = {
 	"machine gun": Vector2(-175, 0),
 	"sniper": Vector2(-200, 0),
 	"shotgun": Vector2(0, 0), 
-	"rocket launcher": Vector2(-200, -60),
-	"fusion": Vector2(0, 0)
+	"rocket launcher": Vector2(-200, -60)
 }
 
 # Projectile spawn location
@@ -98,14 +95,61 @@ var projectile_spawn_offsets: Dictionary = {
 	"machine gun": Vector2(120, 20),
 	"sniper": Vector2(430, 20),
 	"shotgun": Vector2(250, 0), 
-	"rocket launcher": Vector2(250, 25),
-	"fusion": Vector2(250, 0)
+	"rocket launcher": Vector2(250, 25)
 }
 
 # we don't want to read inputs if the gun manager belongs to an npc
 var npc: bool = false
 
 #TODO: don't hardcode the guns in the gun manager
+
+# FUSION LOGIC
+var fusion_recipes: Dictionary = {
+	"pistol+shotgun": "potgun",
+	"pistol+rocket launcher": "pocket launcher",
+	"pistol+sniper": "piper",
+	"pistol+machine gun": "pachine gun",
+	"shotgun+pistol": "shistol",
+	"shotgun+rocket launcher": "shocket launcher",
+	"shotgun+sniper": "shiper",
+	"shotgun+machine gun": "shachine gun",
+	"rocket launcher+pistol": "rocket pistol",
+	"rocket launcher+shotgun": "rocket shotgun",
+	"rocket launcher+sniper": "rocket sniper",
+	"rocket launcher+machine gun": "rockchine gun",
+	"sniper+pistol": "laser pistol",
+	"sniper+shotgun": "laser shotgun",
+	"sniper+rocket launcher": "laser rocket launcher",
+	"sniper+machine gun": "laser machine gun",
+	"machine gun+pistol": "machine pistol",
+	"machine gun+shotgun": "machinegun gun",
+	"machine gun+rocket launcher": "machine launcher",
+	"machine gun+sniper": "machineper"
+}
+
+var fusion_gun_classes: Dictionary = {
+	"potgun": Potgun,
+	"pocket launcher": PocketLauncher,
+	"piper": Piper,
+	"pachine gun": PachineGun,
+	"shistol": Shistol,
+	"shocket launcher": ShocketLauncher,
+	"shiper": Shiper,
+	"shachine gun": ShachineGun,
+	"rocket pistol": RocketPistol,
+	"rocket shotgun": RocketShotgun,
+	"rocket sniper": RocketSniper,
+	"rockchine gun": RockchineGun,
+	"laser pistol": LaserPistol,
+	"laser shotgun": LaserShotgun,
+	"laser rocket launcher": LaserRocketLauncher,
+	"laser machine gun": LaserMachineGun,
+	"machine pistol": MachinePistol,
+	"machinegun gun": MachineGunGun,
+	"machine launcher": MachineLauncher,
+	"machineper": Machineper
+}
+
 
 func _ready() -> void:
 	#guns = {
@@ -230,6 +274,86 @@ func shoot() -> void:
 	
 	# make sure the projectile didn't instantly get destroyed
 	projectile.global_position = projectile_spawn.global_position
+
+
+func fuse_guns(first_gun_key: String, second_gun_key: String) -> String:
+	if not guns.has(first_gun_key) or not guns.has(second_gun_key):
+		return ""
+
+	var recipe_key: String = first_gun_key + "+" + second_gun_key
+	if not fusion_recipes.has(recipe_key):
+		return ""
+
+	var fusion_gun_key: String = fusion_recipes[recipe_key]
+	var fusion_gun_instance: Gun = _create_fusion_gun_instance(fusion_gun_key)
+	if fusion_gun_instance == null:
+		return ""
+
+	ammo_in_mag.erase(first_gun_key)
+	ammo_in_mag.erase(second_gun_key)
+	ammo_in_reserve.erase(first_gun_key)
+	ammo_in_reserve.erase(second_gun_key)
+
+	guns.erase(first_gun_key)
+	guns.erase(second_gun_key)
+
+	var first_index: int = gun_keys.find(first_gun_key)
+	if first_index != -1:
+		gun_keys.remove_at(first_index)
+
+	var second_index: int = gun_keys.find(second_gun_key)
+	if second_index != -1:
+		if second_index > first_index and first_index != -1:
+			second_index -= 1
+		gun_keys.remove_at(second_index)
+
+	guns[fusion_gun_key] = fusion_gun_instance
+	gun_keys.append(fusion_gun_key)
+
+	ammo_in_mag[fusion_gun_key] = fusion_gun_instance.magazine_size
+	ammo_in_reserve[fusion_gun_key] = fusion_gun_instance.starting_reserve
+
+	_copy_gun_offsets(first_gun_key, fusion_gun_key)
+
+	if gun_keys.size() > 0:
+		curr_gun_index = gun_keys.find(fusion_gun_key)
+		if curr_gun_index == -1:
+			curr_gun_index = 0
+		var curr_gun_key: String = gun_keys[curr_gun_index]
+		curr_gun = guns[curr_gun_key]
+		curr_projectile_spec = projectile_library[curr_gun.projectile_type]
+		_update_gun_texture()
+		_update_projectile_spawn_position()
+
+	return fusion_gun_key
+
+
+func get_owned_gun_keys() -> Array[String]:
+	return gun_keys.duplicate()
+
+
+func get_gun_texture(gun_key: String) -> Texture2D:
+	if gun_textures.has(gun_key):
+		return gun_textures[gun_key]
+	return default_gun_texture
+
+
+func _create_fusion_gun_instance(fusion_gun_key: String) -> Gun:
+	if not fusion_gun_classes.has(fusion_gun_key):
+		return null
+	var gun_class = fusion_gun_classes[fusion_gun_key]
+	return gun_class.new()
+
+
+func _copy_gun_offsets(source_gun_key: String, new_gun_key: String) -> void:
+	if gun_offsets_right.has(source_gun_key):
+		gun_offsets_right[new_gun_key] = gun_offsets_right[source_gun_key]
+	if gun_offsets_left.has(source_gun_key):
+		gun_offsets_left[new_gun_key] = gun_offsets_left[source_gun_key]
+	if gun_sprite_positions.has(source_gun_key):
+		gun_sprite_positions[new_gun_key] = gun_sprite_positions[source_gun_key]
+	if projectile_spawn_offsets.has(source_gun_key):
+		projectile_spawn_offsets[new_gun_key] = projectile_spawn_offsets[source_gun_key]
 	
 
 func _start_reload(gun_key: String, mag_size: int, curr_mag: int, curr_reserve: int) -> void:
@@ -319,13 +443,3 @@ func _update_projectile_spawn_position() -> void:
 		projectile_spawn.position = projectile_spawn_offsets[curr_gun_key]
 	else:
 		push_error("Invalid gun index or projectile_spawn not found: " + str(curr_gun_key))
-
-
-func get_owned_gun_keys() -> Array[String]:
-	return gun_keys.duplicate()
-
-
-func get_gun_texture(gun_key: String) -> Texture2D:
-	if gun_textures.has(gun_key):
-		return gun_textures[gun_key]
-	return null

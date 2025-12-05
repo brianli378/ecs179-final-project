@@ -204,6 +204,7 @@ script = ExtResource("5_iywne")
 gun_manager_path = NodePath("../../Player/Body/Gun")
 
 [node name="Crosshair" type="Node2D" parent="CanvasLayer"]
+z_index = 10
 script = ExtResource("6_p57ef")
 gun_manager_path = NodePath("../../Player/Body/Gun")
 
@@ -246,11 +247,20 @@ columns = 6
 [node name="Label" type="Label" parent="CanvasLayer/InventoryPanel"]
 layout_mode = 0
 offset_left = 425.0
+offset_top = -35.0
 offset_right = 556.0
-offset_bottom = 45.0
+offset_bottom = 10.0
 theme_override_colors/font_color = Color(1, 0.12941177, 0.2784314, 1)
 theme_override_font_sizes/font_size = 25
 text = "Inventory"
+
+[node name="FusionButton" type="Button" parent="CanvasLayer/InventoryPanel"]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 350.0
+offset_right = 574.0
+offset_bottom = 404.0
+text = "FUSE"
 
 [node name="Maps" parent="." instance=ExtResource("9_0tnpc")]
 

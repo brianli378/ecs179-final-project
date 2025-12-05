@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4lxxsh3cpjtu"
-path="res://.godot/imported/rocket_projectile.png-879fe6dff2bc947f27534cbb8a54fd42.ctex"
+uid="uid://dr5pn8gyb1712"
+path="res://.godot/imported/options.png-d1fb7952892655747177aeaca3b0faed.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/rocket_projectile.png"
-dest_files=["res://.godot/imported/rocket_projectile.png-879fe6dff2bc947f27534cbb8a54fd42.ctex"]
+source_file="res://assets/options.png"
+dest_files=["res://.godot/imported/options.png-d1fb7952892655747177aeaca3b0faed.ctex"]
 
 [params]
 
@@ -23,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

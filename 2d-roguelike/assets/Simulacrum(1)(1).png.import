@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4lxxsh3cpjtu"
-path="res://.godot/imported/rocket_projectile.png-879fe6dff2bc947f27534cbb8a54fd42.ctex"
+uid="uid://bba3cmqe31ccc"
+path="res://.godot/imported/Simulacrum(1)(1).png-c3f4a31aace1c63ace7f721bb88e7de0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/rocket_projectile.png"
-dest_files=["res://.godot/imported/rocket_projectile.png-879fe6dff2bc947f27534cbb8a54fd42.ctex"]
+source_file="res://assets/Simulacrum(1)(1).png"
+dest_files=["res://.godot/imported/Simulacrum(1)(1).png-c3f4a31aace1c63ace7f721bb88e7de0.ctex"]
 
 [params]
 

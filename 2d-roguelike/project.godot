@@ -26,6 +26,12 @@ PlayerSingleton="*res://scenes/player.tscn"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
+
+[gui]
+
+common/snap_controls_to_pixels=false
 
 [input]
 
@@ -82,5 +88,6 @@ reload={
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=2
+textures/canvas_textures/default_texture_filter=3
 renderer/rendering_method="mobile"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

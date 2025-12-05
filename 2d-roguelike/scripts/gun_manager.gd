@@ -319,3 +319,13 @@ func _update_projectile_spawn_position() -> void:
 		projectile_spawn.position = projectile_spawn_offsets[curr_gun_key]
 	else:
 		push_error("Invalid gun index or projectile_spawn not found: " + str(curr_gun_key))
+
+
+func get_owned_gun_keys() -> Array[String]:
+	return gun_keys.duplicate()
+
+
+func get_gun_texture(gun_key: String) -> Texture2D:
+	if gun_textures.has(gun_key):
+		return gun_textures[gun_key]
+	return null

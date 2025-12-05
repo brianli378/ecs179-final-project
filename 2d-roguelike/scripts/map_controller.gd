@@ -24,10 +24,10 @@ func _ready() -> void:
 	spawnpoints_1.push_back(Vector2(1300, 1200))
 	spawnpoints_1.push_back(Vector2(600, 1200))
 	spawnpoints_1.push_back(Vector2(2200, 1200))
-	enemies_1.push_back(pistol_enemy_spec)
-	enemies_1.push_back(pistol_enemy_spec)
-	enemies_1.push_back(pistol_enemy_spec)
-	enemies_1.push_back(pistol_enemy_spec)
+	enemies_1.push_back(sniper_enemy_spec)
+	enemies_1.push_back(sniper_enemy_spec)
+	enemies_1.push_back(sniper_enemy_spec)
+	enemies_1.push_back(sniper_enemy_spec)
 	zone_1.set_enemies(spawnpoints_1, enemies_1)
 	
 	# Zone 2 Handling

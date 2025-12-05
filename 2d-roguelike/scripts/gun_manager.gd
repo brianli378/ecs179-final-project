@@ -39,7 +39,7 @@ var guns: Dictionary = {
 	"sniper": Sniper.new(),
 	"shotgun": Shotgun.new(),
 	"rocket launcher": RocketLauncher.new(),
-	"fusion": Piper.new()
+	"fusion": PachineGun.new()
 }
 	
 var gun_keys: Array[String] = ["pistol", "machine gun", "sniper", "shotgun", "rocket launcher", "fusion"] # Array for easy indexing

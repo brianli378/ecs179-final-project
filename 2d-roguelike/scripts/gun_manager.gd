@@ -33,8 +33,14 @@ var _time_since_last_shot: float = 0.0
 var facing_right = false
 var default_state = true
 
-var guns: Dictionary = {} 
-#var gun_keys: Array[String] = ["pistol", "machine gun", "sniper"] # Array for easy indexing
+var guns: Dictionary = {
+		"pistol": Pistol.new(),
+		"machine gun": MachineGun.new(),
+		"sniper": Sniper.new(),
+		"shotgun": Shotgun.new(),
+		"rocket launcher": RocketLauncher.new()
+	}
+	
 var gun_keys: Array[String] = ["pistol", "machine gun", "sniper", "shotgun", "rocket launcher"] # Array for easy indexing
 var curr_gun_index: int = 0  # Index into gun_keys array
 var curr_gun: Gun = null
@@ -100,14 +106,9 @@ func _ready() -> void:
 		#"pistol": Pistol.new(),
 		#"machine gun": MachineGun.new(),
 		#"sniper": Sniper.new(),
+		#"shotgun": Shotgun.new(),
+		#"rocket launcher": RocketLauncher.new()
 	#}
-	guns = {
-		"pistol": Pistol.new(),
-		"machine gun": MachineGun.new(),
-		"sniper": Sniper.new(),
-		"shotgun": Shotgun.new(),
-		"rocket launcher": RocketLauncher.new()
-	}
 	
 	# Create index for current gun for easy switching
 	curr_gun = guns[gun_keys[curr_gun_index]]
@@ -116,10 +117,14 @@ func _ready() -> void:
 	_update_projectile_spawn_position()
 	
 	# initialize ammo
-	for gun_key in gun_keys:
-		var stats := GunSpec.get_stats(gun_key)
-		ammo_in_mag[gun_key] = int(stats.magazine_size)
-		ammo_in_reserve[gun_key] = int(stats.starting_reserve)
+	#for gun_key in gun_keys:
+		#var stats := GunSpec.get_stats(gun_key)
+		#ammo_in_mag[gun_key] = int(stats.magazine_size)
+		#ammo_in_reserve[gun_key] = int(stats.starting_reserve)
+	for gun in guns:
+		ammo_in_mag[gun] = guns[gun].magazine_size
+		ammo_in_reserve[gun] = guns[gun].starting_reserve
+
 
 func _process(_delta: float) -> void:
 	_time_since_last_shot += _delta
@@ -176,8 +181,9 @@ func _process(_delta: float) -> void:
 		_update_projectile_spawn_position()
 		_time_since_last_shot = curr_gun.shot_delay
 		
-		var stats = GunSpec.get_stats(new_gun_key)
-		reload_time = float(stats.reload_time)
+		#var stats = GunSpec.get_stats(new_gun_key)
+		#reload_time = float(stats.reload_time)
+		reload_time = guns[new_gun_key].reload_time
 
 	# Add logic here for switching projectiles (Rytham will do this later)
 		
@@ -187,9 +193,11 @@ func _process(_delta: float) -> void:
 	elif curr_gun.firing_mode == Gun.FiringMode.AUTO:
 		should_shoot = Input.is_action_pressed("shoot")
 
-	var stats := GunSpec.get_stats(curr_gun_key)
-	var mag_size: int = int(stats.magazine_size)
-	reload_time = float(stats.reload_time)
+	#var stats := GunSpec.get_stats(curr_gun_key)
+	#var mag_size: int = int(stats.magazine_size)
+	var mag_size: int = guns[curr_gun_key].magazine_size
+	#reload_time = float(stats.reload_time)
+	reload_time = guns[curr_gun_key].reload_time
 	var curr_mag: int = ammo_in_mag.get(curr_gun_key, 0)
 	var curr_reserve: int = ammo_in_reserve.get(curr_gun_key, 0)
 	var reload_pressed := Input.is_action_just_pressed("reload")
@@ -233,8 +241,9 @@ func _start_reload(gun_key: String, mag_size: int, curr_mag: int, curr_reserve: 
 
 
 func _finish_reload(gun_key: String) -> void:
-	var stats = GunSpec.get_stats(gun_key)
-	var mag_size: int = int(stats.magazine_size)
+	#var stats = GunSpec.get_stats(gun_key)
+	#var mag_size: int = int(stats.magazine_size)
+	var mag_size: int = guns[gun_key].magazine_size
 	var mag: int = int(ammo_in_mag.get(gun_key, 0))
 	var reserve: int = int(ammo_in_reserve.get(gun_key, 0))
 	var needed: int = mag_size - mag

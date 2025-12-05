@@ -10,3 +10,7 @@ func _init() -> void:
 	firing_mode = FiringMode.AUTO
 	projectile_type = "normal"
 	shoot_sound = preload("res://assets/sounds/machine_gun_sound.wav")
+	magazine_size = 75
+	starting_reserve = 150
+	max_reserve = 300
+	reload_time = 3.5

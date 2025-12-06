@@ -1,10 +1,13 @@
 class_name MapController
 extends Node2D
 
-@onready var zone_1: ZoneTrigger = $Zone1
-@onready var zone_2: ZoneTrigger = $Zone2
-@onready var zone_3: ZoneTrigger = $Zone3
+@onready var zone_1: EnemyZoneTrigger = $Zone1
+@onready var zone_2: EnemyZoneTrigger = $Zone2
+@onready var zone_3: EnemyZoneTrigger = $Zone3
+@onready var boss_zone: EnemyZoneTrigger = $BossZone
+@onready var world: World = $"/root/World"
 
+var enemy_emitter = preload("res://scripts/enemies/basic_enemy.gd")
 var pistol_enemy_spec = load("res://specs/pistol_enemy_spec.tres")
 var machine_gun_enemy_spec = load("res://specs/machine_gun_enemy_spec.tres")
 var sniper_enemy_spec = load("res://specs/sniper_enemy_spec.tres")
@@ -12,47 +15,114 @@ var shotgun_enemy_spec = load("res://specs/shotgun_enemy_spec.tres")
 var rocket_launcher_enemy_spec = load("res://specs/rocket_launcher_enemy_spec.tres")
 var strong_enemy_spec = load("res://specs/strong_enemy_spec.tres")
 
+var BASE_ENEMIES = [
+		pistol_enemy_spec, 
+		machine_gun_enemy_spec, 
+		sniper_enemy_spec, 
+		shotgun_enemy_spec, 
+		rocket_launcher_enemy_spec,
+]
+
+# Base Spawnpoint for Player
+const SPAWNPOINT_BASE_P = Vector2(499, 194)
+
+# Zone 1 Spawnpoints
+const SPAWNPOINTS_1 = [
+		Vector2(1300, 400),
+		Vector2(1300, 1200),
+		Vector2(600, 1200),
+		Vector2(2200, 1200),
+]
+
+# Zone 2 Spawnpoints
+const SPAWNPOINTS_2 = [
+		Vector2(1200, 1400),
+		Vector2(400, 1400),
+		Vector2(1800, 400),
+		Vector2(1800, 2100),
+]
+
+# Zone 3 Spawnpoints
+const SPAWNPOINTS_3 = [
+		Vector2(1800, 400),
+		Vector2(1800, 1200),
+		Vector2(1000, 800),
+		Vector2(2700, 1200),
+]
+
+# Boss Zone Spawnpoints
+const SPAWNPOINT_BOSS_B = [Vector2(1120, 560)]
+const SPAWNPOINT_BOSS_P = Vector2(1120, 1680)
+
+# Safe Zone Spawnpoints
+const SPAWNPOINT_SAFE_P = Vector2(500, 500)
+
+var num_enemies = 0;
+
+enum Stage {
+	SAFE,
+	BASE,
+	BOSS
+}
+
+var stage;
+
 func _ready() -> void:
-	# Confirm Map Ready
-	print("Creating Enemy Locations and Specs")
-	
+	world.enemy_death.connect(_on_enemy_death)
+	stage = Stage.SAFE
 	# Zone 1 Handling
-	var spawnpoints_1 = []
+	_set_base_zones(0.0);
+
+
+func _set_base_zones(difficulty: float) -> void:
+	#Zone 1 Handling
 	var enemies_1 = []
+	for i in range(4):
+		var rand_index = randi_range(0, 4)
+		enemies_1.push_back(BASE_ENEMIES[rand_index])
+	num_enemies += enemies_1.size();
+	zone_1.set_enemies(SPAWNPOINTS_1.duplicate(), enemies_1)
 	
-	spawnpoints_1.push_back(Vector2(1300, 400))
-	spawnpoints_1.push_back(Vector2(1300, 1200))
-	spawnpoints_1.push_back(Vector2(600, 1200))
-	spawnpoints_1.push_back(Vector2(2200, 1200))
-	enemies_1.push_back(sniper_enemy_spec)
-	enemies_1.push_back(sniper_enemy_spec)
-	enemies_1.push_back(sniper_enemy_spec)
-	enemies_1.push_back(sniper_enemy_spec)
-	zone_1.set_enemies(spawnpoints_1, enemies_1)
-	
-	# Zone 2 Handling
-	var spawnpoints_2 = []
+	#Zone 2 Handling
 	var enemies_2 = []
-	spawnpoints_2.push_back(Vector2(1200, 1400))
-	spawnpoints_2.push_back(Vector2(400, 1400))
-	spawnpoints_2.push_back(Vector2(1800, 400))
-	spawnpoints_2.push_back(Vector2(1800, 2100))
-	enemies_2.push_back(pistol_enemy_spec)
-	enemies_2.push_back(pistol_enemy_spec)
-	enemies_2.push_back(pistol_enemy_spec)
-	enemies_2.push_back(pistol_enemy_spec)
-	zone_2.set_enemies(spawnpoints_2, enemies_2)
+	for i in range(4):
+		var rand_index = randi_range(0, 4)
+		enemies_2.push_back(BASE_ENEMIES[rand_index])
+	num_enemies += enemies_2.size();
+	zone_2.set_enemies(SPAWNPOINTS_2.duplicate(), enemies_2)
 	
-	# Zone 3 Handling
-	var spawnpoints_3 = []
+	#Zone 3 Handling
 	var enemies_3 = []
-	spawnpoints_3.push_back(Vector2(1800, 400))
-	spawnpoints_3.push_back(Vector2(1800, 1200))
-	spawnpoints_3.push_back(Vector2(1000, 800))
-	spawnpoints_3.push_back(Vector2(2700, 1200))
-	enemies_3.push_back(pistol_enemy_spec)
-	enemies_3.push_back(pistol_enemy_spec)
-	enemies_3.push_back(pistol_enemy_spec)
-	enemies_3.push_back(pistol_enemy_spec)
-	zone_3.set_enemies(spawnpoints_3, enemies_3)
+	for i in range(4):
+		var rand_index = randi_range(0, 4)
+		enemies_3.push_back(BASE_ENEMIES[rand_index])
+	num_enemies += enemies_3.size();
+	zone_3.set_enemies(SPAWNPOINTS_3.duplicate(), enemies_3)
+	
+	return
+
+
+func _set_boss_zone(difficulty: float) -> void:
+	var enemies = [strong_enemy_spec]
+	boss_zone.set_enemies(SPAWNPOINT_BOSS_B.duplicate(), enemies)
+	num_enemies += 1
+	return
+
+
+func _on_enemy_death() -> void:
+	num_enemies -= 1
+	if num_enemies <= 0:
+		match stage:
+			Stage.BASE:
+				stage = Stage.BOSS
+				_set_boss_zone(0.0)
+				
+			Stage.BOSS:
+				# add guns
+				stage = Stage.SAFE
+
+
+func _on_begin_zone() -> void:
+	stage = Stage.BASE
+	return
 	

@@ -12,6 +12,7 @@ var _pause_menu_node:Node
 var _game:Resource = load("res://scenes/game.tscn")
 var _game_node:Node
 
+signal enemy_death
 #var _all_nodes:Array[Node] = [_menu_node, _death_menu_node, _game_node]
 	
 func start_menu() -> void:
@@ -67,3 +68,7 @@ func _clear_scene()  -> void:
 	var root = get_tree().current_scene
 	for child in root.get_children():
 		child.queue_free()
+
+
+func _on_enemy_death() -> void:
+	enemy_death.emit()

@@ -1,11 +1,11 @@
-class_name ZoneTrigger
+class_name EnemyZoneTrigger
 extends Area2D
+
+@onready var world_node = $"/root/World"
 
 var _spawnpoints := []
 var _enemy_specs := []
-var _active_enemies := []
 var triggered := false
-@onready var world_node = $"/root/World"
 
 
 
@@ -14,6 +14,8 @@ func _ready() -> void:
 	return
 
 func set_enemies(spawn_arr: Array, enemy_arr: Array) -> void:
+	if triggered:
+		triggered = false
 	if spawn_arr.size() == enemy_arr.size():
 		_spawnpoints = spawn_arr
 		_enemy_specs = enemy_arr

@@ -41,7 +41,7 @@ var guns: Dictionary = {
 	"rocket launcher": RocketLauncher.new()
 }
 	
-var gun_keys: Array[String] = ["pistol", "machine gun", "sniper", "shotgun", "rocket launcher"] # Array for easy indexing
+var gun_keys: Array[String] = ["pistol", "machine gun", "shotgun", "rocket launcher"] # Array for easy indexing
 var curr_gun_index: int = 0  # Index into gun_keys array
 var curr_gun: Gun = null
 # Defaulted to normal projectile

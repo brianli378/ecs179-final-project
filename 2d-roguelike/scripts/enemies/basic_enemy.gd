@@ -26,6 +26,8 @@ var gun_manager: EnemyGunManager = $Body/EnemyGunManager
 @onready
 var _player:Player
 
+signal enemy_death
+
 func initialize(spec: EnemySpec):
 	self.health = spec.health
 	self.damage = spec.damage
@@ -66,6 +68,7 @@ func _process(_delta: float) -> void:
 		_handle_death()
 
 func _handle_death() -> void:
+	enemy_death.emit()
 	queue_free()
 
 func _physics_process(_delta: float) -> void:

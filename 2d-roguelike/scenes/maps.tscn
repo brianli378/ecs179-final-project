@@ -1,13 +1,13 @@
 [gd_scene load_steps=13 format=4 uid="uid://cbp7rkfxj7ph8"]
 
 [ext_resource type="Script" uid="uid://blj6lue1ay00" path="res://scripts/map_controller.gd" id="1_px2nk"]
-[ext_resource type="Script" uid="uid://c2kd2x0dfv1u2" path="res://scripts/zone_trigger.gd" id="2_3gnvq"]
+[ext_resource type="Script" uid="uid://c2kd2x0dfv1u2" path="res://scripts/enemy_zone_trigger.gd" id="2_3gnvq"]
 [ext_resource type="Texture2D" uid="uid://ddmygi1rpb7f4" path="res://assets/map/wall_and_floor.png" id="2_nbe4v"]
 [ext_resource type="Texture2D" uid="uid://ds25oercyocqv" path="res://assets/map/Lazy3x3Autotile_floorPalleteTemplate(1)-export.png" id="3_nbe4v"]
 [ext_resource type="Texture2D" uid="uid://bpkm5xq8cww20" path="res://assets/map/Lazy3x3Autotile_wallPalleteTemplate_05high-Sheet-export.png" id="4_3cof4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0cqs5"]
-size = Vector2(2320, 1600)
+size = Vector2(2240, 2240)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3gnvq"]
 size = Vector2(2080, 2800)
@@ -770,6 +770,14 @@ sources/2 = SubResource("TileSetAtlasSource_0h07o")
 top_level = true
 script = ExtResource("1_px2nk")
 
+[node name="StartZone" type="Area2D" parent="."]
+visible = false
+position = Vector2(-48, -32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StartZone"]
+position = Vector2(1160, 800)
+shape = SubResource("RectangleShape2D_0cqs5")
+
 [node name="Zone1" type="Area2D" parent="."]
 visible = false
 position = Vector2(-48, -32)
@@ -796,6 +804,14 @@ script = ExtResource("2_3gnvq")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Zone3"]
 position = Vector2(1520, 920)
 shape = SubResource("RectangleShape2D_nbe4v")
+
+[node name="BossZone" type="Area2D" parent="."]
+position = Vector2(7472, -1552)
+script = ExtResource("2_3gnvq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossZone"]
+position = Vector2(1120, 1120)
+shape = SubResource("RectangleShape2D_0cqs5")
 
 [node name="StaticBoundary" type="TileMapLayer" parent="."]
 z_index = -1

@@ -10,6 +10,7 @@ var _enemy_char: CharacterBody2D = $BasicEnemy
 # set the gun for this enemy
 func _ready() -> void:
 	_gun_manager.curr_gun = MachineGun.new()
+	_gun_manager.curr_gun.shot_delay = 0.3
 
 func initialize(spec: EnemySpec):
 	_enemy_char.initialize(spec)

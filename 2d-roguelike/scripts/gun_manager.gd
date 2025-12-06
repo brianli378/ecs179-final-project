@@ -81,16 +81,16 @@ var gun_textures: Dictionary = {
 	"rockchine gun":  preload("res://assets/guns/rockchine_gun_sprite.png"),
 	
 	# sniper fusions
-	"laser pistol": preload("res://assets/guns/sniper_sprite.png"),
-	"laser shotgun": preload("res://assets/guns/sniper_sprite.png"),
-	"laser rocket launcher": preload("res://assets/guns/sniper_sprite.png"),
-	"laser machine gun": preload("res://assets/guns/sniper_sprite.png"),
+	"laser pistol": preload("res://assets/guns/laser_pistol_sprite.png"),
+	"laser shotgun": preload("res://assets/guns/laser_shotgun_sprite.png"),
+	"laser rocket launcher": preload("res://assets/guns/laser_rocket_launcher_sprite.png"),
+	"laser machine gun": preload("res://assets/guns/laser_machinegun_sprite.png"),
 	
 	# machine gun fusions
-	"machine pistol": preload("res://assets/guns/machinegun_sprite.png"), 
-	"machinegungun": preload("res://assets/guns/machinegun_sprite.png"), 
-	"machine launcher": preload("res://assets/guns/machinegun_sprite.png"), 
-	"machine-per": preload("res://assets/guns/machinegun_sprite.png")
+	"machine pistol": preload("res://assets/guns/machine_pistol_sprite.png"), 
+	"machinegungun": preload("res://assets/guns/machinegun_gun_sprite.png"), 
+	"machine launcher": preload("res://assets/guns/machine_launcher_sprite.png"), 
+	"machineper": preload("res://assets/guns/machine_per_sprite.png")
 }
 
 # Gun specific offsets when facing right

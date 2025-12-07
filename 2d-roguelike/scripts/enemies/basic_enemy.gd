@@ -73,6 +73,10 @@ func _process(_delta: float) -> void:
 		_handle_death()
 
 func _handle_death() -> void:
+	# give player the guns we have
+	if name == "BossEnemy":
+		print("boss died")
+		_player.gun_manager.gun_keys.append_array(gun_manager.guns_for_player)
 	enemy_death.emit()
 	queue_free()
 	

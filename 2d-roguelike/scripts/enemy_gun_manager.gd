@@ -160,6 +160,8 @@ var fusion_gun_classes: Dictionary = {
 	"machineper": Machineper
 }
 
+var guns_for_player: Array[String]
+
 @onready
 var _gun_manager: EnemyGunManager = $BossEnemy/Body/EnemyGunManager
 
@@ -214,6 +216,8 @@ func fuse_guns() -> String:
 	var gun_recipe: String = fusion_recipes.find_key(fusion_gun_key)
 	
 	var component_gun_keys: PackedStringArray = gun_recipe.split("+")
+	
+	guns_for_player = [component_gun_keys.get(0), component_gun_keys.get(1)]
 	
 	var first_gun_key: String = component_gun_keys.get(0)
 	

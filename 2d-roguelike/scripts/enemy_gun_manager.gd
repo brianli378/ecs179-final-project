@@ -215,6 +215,9 @@ func fuse_guns() -> String:
 	var recipe_key: String = first_gun_key + "+" + second_gun_key
 
 	var fusion_gun_key: String = fusion_recipes[recipe_key]
+	
+	print("boss gun: " + fusion_gun_key)
+	
 	var fusion_gun_instance: Gun = _create_fusion_gun_instance(fusion_gun_key)
 	if fusion_gun_instance == null:
 		return ""
@@ -239,7 +242,6 @@ func fuse_guns() -> String:
 		var curr_gun_key: String = gun_keys[curr_gun_index]
 		curr_gun = guns[curr_gun_key]
 		curr_projectile_spec = projectile_library[curr_gun.projectile_type]
-		print("updating gun texture")
 		_update_gun_texture()
 		_update_projectile_spawn_position()
 
@@ -251,11 +253,9 @@ func _update_gun_texture() -> void:
 	var curr_gun_key = gun_keys[curr_gun_index]
 	
 	if gun_textures.has(curr_gun_key):
-		print("setting gun sprite")
-		print(curr_gun_key)
+		gun_sprite.visible = true
 		gun_sprite.texture = gun_textures[curr_gun_key]
 		gun_sprite.position = gun_sprite_positions[curr_gun_key]
-		print("done")
 	else:
 		push_error("Invalid gun index or gun_sprite not found: " + str(curr_gun_key))
 		
@@ -276,11 +276,11 @@ func _ready() -> void:
 
 func _set_gun_sprite() -> void:
 	var parent : Node = get_parent().get_parent().get_parent()
-	gun_sprite = Sprite2D.new()
+	gun_sprite = parent.get_child(1).duplicate()
+
 		
 	gun_sprite.z_index = 50
 	gun_sprite.z_as_relative = false
-
 	
 	gun_sprite.visible = true
 	gun_sprite.position.x -= 80

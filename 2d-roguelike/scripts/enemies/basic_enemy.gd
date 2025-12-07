@@ -130,7 +130,7 @@ func _physics_process(_delta: float) -> void:
 		var next_path_position: Vector2 = nav.get_next_path_position()
 
 		# Calculate the new velocity
-		var new_velocity = current_agent_position.direction_to(next_path_position) * speed * 2
+		var new_velocity = current_agent_position.direction_to(next_path_position) * speed * 1.3
 
 		# Set correct velocity
 		if nav.avoidance_enabled:

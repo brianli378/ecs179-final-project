@@ -1,6 +1,8 @@
 class_name RocketProjectile
 extends Projectile
 
+var PLAYER_DAMAGE_REDUCTION: float = 15
+
 var explosion_radius: float = 200.0
 	
 
@@ -35,5 +37,11 @@ func _explode() -> void:
 		var damage_multiplier = 1.0 - (distance / explosion_radius)
 		damage_multiplier = clamp(damage_multiplier, 0.0, 1.0)
 			
-		if body is BasicEnemy:
+		if not npc_shot and body is BasicEnemy:
 			body.health -= damage * damage_multiplier
+		elif npc_shot and body is Player:
+			print(str(damage))
+			print(str((damage / PLAYER_DAMAGE_REDUCTION)))
+			print(str(damage_multiplier))
+			print("damage: " + str((damage / PLAYER_DAMAGE_REDUCTION) * damage_multiplier))
+			body.health -= (damage / PLAYER_DAMAGE_REDUCTION) * damage_multiplier

@@ -22,6 +22,8 @@ var enemy_los: EnemyLineOfSight = null
 var gun_manager: EnemyGunManager = $Body/EnemyGunManager
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 
+@onready 
+var nav: NavigationAgent2D = $NavigationAgent2D
 
 @onready
 var _player:Player
@@ -37,6 +39,17 @@ func initialize(spec: EnemySpec):
 	
 	self._furthest_leash = spec.furthest_leash
 	self._closest_leash = spec.closest_leash
+
+func actor_setup():
+	# Wait for the first physics frame so the NavigationServer can sync.
+	await get_tree().physics_frame
+
+	# Now that the navigation map is no longer empty, set the movement target.
+	set_movement_target(_player.position)
+
+
+func set_movement_target(movement_target: Vector2):
+	nav.target_position = movement_target
 
 func _ready():
 	#print("BasicEnemy node:", self)
@@ -70,6 +83,10 @@ func _process(_delta: float) -> void:
 func _handle_death() -> void:
 	enemy_death.emit()
 	queue_free()
+	
+	
+func _velocity_computed(safe_velocity: Vector2):
+	velocity = safe_velocity
 
 func _physics_process(_delta: float) -> void:
 	if _player == null:
@@ -82,24 +99,44 @@ func _physics_process(_delta: float) -> void:
 		_time = 0.0
 		gun_manager.shoot()
 	
-	# Calculate direction vector toward player
-	var direction: Vector2 = (_player.global_position - global_position).normalized()
-	var distance: float = _distance_to_player()
-	
+	if enemy_los.seeing_player:
+		# Calculate direction vector toward player
+		var direction: Vector2 = (_player.global_position - global_position).normalized()
+		var distance: float = _distance_to_player()
 
-	if distance > _furthest_leash:
-		#print("walk")
-		# Move toward player
-		velocity = direction * _movement_speed
-	elif distance < _closest_leash:
-		# Move away from player
-		velocity = -direction * _movement_speed
-	if direction.x < 0:
-		anim.play("walk_left")
-	elif direction.x > 0 :
-		anim.play("walk_right")
+		if distance > _furthest_leash:
+			#print("walk")
+			# Move toward player
+			velocity = direction * _movement_speed
+		elif distance < _closest_leash:
+			# Move away from player
+			velocity = -direction * _movement_speed
+		if direction.x < 0:
+			anim.play("walk_left")
+		elif direction.x > 0 :
+			anim.play("walk_right")
+		else:
+			anim.play("default")
 	else:
-		anim.play("default")
+		# smart pathfinding
+		set_movement_target(_player.position)
+		# If we're at the target, stop
+		if nav.is_navigation_finished():
+			print("at target")
+			return
+
+		# Get pathfinding information
+		var current_agent_position: Vector2 = global_position
+		var next_path_position: Vector2 = nav.get_next_path_position()
+
+		# Calculate the new velocity
+		var new_velocity = current_agent_position.direction_to(next_path_position) * speed * 1.3
+
+		# Set correct velocity
+		if nav.avoidance_enabled:
+			nav.set_velocity(new_velocity)
+		else:
+			_velocity_computed(new_velocity)
 		
 	move_and_slide()
 

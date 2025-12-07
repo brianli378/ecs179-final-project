@@ -6,8 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://bfe7hcosfb26f" path="res://assets/enemies/basic_enemy.png" id="4_4mpuu"]
 [ext_resource type="Texture2D" uid="uid://dlrcvedlqbhoj" path="res://assets/enemies/basic_enemy_walk_right.png" id="4_y18r1"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8xi43"]
-size = Vector2(184, 370)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wsh5r"]
+radius = 80.0
+height = 374.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4mpuu"]
 atlas = ExtResource("4_4mpuu")
@@ -103,11 +104,19 @@ script = ExtResource("1_7jpia")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, -1)
-shape = SubResource("RectangleShape2D_8xi43")
+shape = SubResource("CapsuleShape2D_wsh5r")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_y18r1")
 animation = &"walk_right"
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 93.46
+path_max_distance = 1000.0
+simplify_path = true
+simplify_epsilon = 10.0
+path_search_max_polygons = 1000
+debug_enabled = true
 
 [node name="Body" type="Sprite2D" parent="."]
 

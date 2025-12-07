@@ -114,7 +114,6 @@ func _set_boss_zone(difficulty: float) -> void:
 
 func _on_enemy_death() -> void:
 	num_enemies -= 1
-	print(num_enemies)
 	if num_enemies <= 0:
 		match stage:
 			Stage.BASE:

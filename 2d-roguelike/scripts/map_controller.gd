@@ -15,7 +15,7 @@ var machine_gun_enemy_spec = load("res://specs/machine_gun_enemy_spec.tres")
 var sniper_enemy_spec = load("res://specs/sniper_enemy_spec.tres")
 var shotgun_enemy_spec = load("res://specs/shotgun_enemy_spec.tres")
 var rocket_launcher_enemy_spec = load("res://specs/rocket_launcher_enemy_spec.tres")
-var strong_enemy_spec = load("res://specs/strong_enemy_spec.tres")
+var boss_enemy_spec = load("res://specs/boss_enemy_spec.tres")
 
 var BASE_ENEMIES = [
 		pistol_enemy_spec, 
@@ -106,7 +106,7 @@ func _set_base_zones(difficulty: float) -> void:
 
 
 func _set_boss_zone(difficulty: float) -> void:
-	var enemies = [machine_gun_enemy_spec]
+	var enemies = [boss_enemy_spec]
 	boss_zone.set_enemies(SPAWNPOINT_BOSS_B.duplicate(), enemies)
 	num_enemies += 1
 	return

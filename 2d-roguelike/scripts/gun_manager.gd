@@ -229,7 +229,7 @@ func _process(_delta: float) -> void:
 		if not guns.has(curr_gun_key):
 			return
 	
-	# If player is looking left	
+	# If player is looking left
 	if mouse_direction > 100 :
 		scale.y = 1
 		position = gun_offsets_left[curr_gun_key]
@@ -348,7 +348,7 @@ func fuse_guns(first_gun_key: String, second_gun_key: String) -> String:
 		gun_keys.remove_at(first_index)
 
 	var second_index: int = gun_keys.find(second_gun_key)
-	if second_index != -1:		
+	if second_index != -1:
 		gun_keys.remove_at(second_index)
 
 	guns[fusion_gun_key] = fusion_gun_instance

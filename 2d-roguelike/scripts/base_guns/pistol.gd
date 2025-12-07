@@ -4,7 +4,7 @@ extends Gun
 
 func _init() -> void:
 	dmg_multiplier = 1
-	projectile_speed = 1200
+	projectile_speed = 1300
 	shot_delay = 0.75
 	projectile_scale = Vector2(0.01, 0.01)
 	firing_mode = FiringMode.SEMI_AUTO

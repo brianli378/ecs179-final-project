@@ -52,14 +52,6 @@ func set_movement_target(movement_target: Vector2):
 	nav.target_position = movement_target
 
 func _ready():
-	#print("BasicEnemy node:", self)
-	#print("Children:", get_children())
-	#print("gun_manager == null:", gun_manager == null)
-
-	#print("basic enemy ready")
-		# make sure we ignore user inputs
-	self.gun_manager.npc = true
-	
 	self.enemy_los = self.gun_manager.line_of_sight
 	
 	_player = get_tree().get_first_node_in_group("player")
@@ -130,7 +122,7 @@ func _physics_process(_delta: float) -> void:
 		var next_path_position: Vector2 = nav.get_next_path_position()
 
 		# Calculate the new velocity
-		var new_velocity = current_agent_position.direction_to(next_path_position) * speed * 1.3
+		var new_velocity = current_agent_position.direction_to(next_path_position) * speed
 
 		# Set correct velocity
 		if nav.avoidance_enabled:

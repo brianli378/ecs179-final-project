@@ -30,6 +30,7 @@ func _on_zone_entered(player: Node2D) -> void:
 	return
 
 func spawn_enemies() -> void:
+	print(_spawnpoints.size())
 	while _spawnpoints.size() > 0:
 		var enemy_spec = _enemy_specs.pop_front()
 		var enemy = enemy_factory.build(enemy_spec, world_node)

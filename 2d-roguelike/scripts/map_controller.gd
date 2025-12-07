@@ -1,11 +1,13 @@
 class_name MapController
 extends Node2D
 
+@onready var safe_zone: StartZoneTrigger = $StartZone
 @onready var zone_1: EnemyZoneTrigger = $Zone1
 @onready var zone_2: EnemyZoneTrigger = $Zone2
 @onready var zone_3: EnemyZoneTrigger = $Zone3
 @onready var boss_zone: EnemyZoneTrigger = $BossZone
 @onready var world: World = $"/root/World"
+@onready var game: Game = $"../"
 
 var enemy_emitter = preload("res://scripts/enemies/basic_enemy.gd")
 var pistol_enemy_spec = load("res://specs/pistol_enemy_spec.tres")
@@ -55,7 +57,7 @@ const SPAWNPOINT_BOSS_B = [Vector2(1120, 560)]
 const SPAWNPOINT_BOSS_P = Vector2(1120, 1680)
 
 # Safe Zone Spawnpoints
-const SPAWNPOINT_SAFE_P = Vector2(500, 500)
+const SPAWNPOINT_SAFE_P = Vector2(-200, 500)
 
 var num_enemies = 0;
 
@@ -67,11 +69,12 @@ enum Stage {
 
 var stage;
 
+signal on_begin_zone
+
 func _ready() -> void:
+	on_begin_zone.connect(_on_begin_zone)
 	world.enemy_death.connect(_on_enemy_death)
 	stage = Stage.SAFE
-	# Zone 1 Handling
-	_set_base_zones(0.0);
 
 
 func _set_base_zones(difficulty: float) -> void:
@@ -116,13 +119,16 @@ func _on_enemy_death() -> void:
 			Stage.BASE:
 				stage = Stage.BOSS
 				_set_boss_zone(0.0)
-				
+				game.on_player_teleport.emit(global_position + boss_zone.position + SPAWNPOINT_BOSS_P)
 			Stage.BOSS:
 				# add guns
 				stage = Stage.SAFE
+				game.on_player_teleport.emit(global_position + safe_zone.position + SPAWNPOINT_SAFE_P)
 
 
 func _on_begin_zone() -> void:
 	stage = Stage.BASE
+	_set_base_zones(0)
+	game.on_player_teleport.emit(global_position + zone_1.position + SPAWNPOINT_BASE_P)
 	return
 	

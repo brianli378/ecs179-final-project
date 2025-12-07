@@ -235,8 +235,6 @@ func fuse_guns() -> String:
 		var curr_gun_key: String = gun_keys[curr_gun_index]
 		curr_gun = guns[curr_gun_key]
 		curr_projectile_spec = projectile_library[curr_gun.projectile_type]
-		if curr_gun.projectile_type != "rocket":
-			curr_projectile_spec.damage *= 2
 		_update_gun_texture()
 		_update_projectile_spawn_position()
 
@@ -274,17 +272,14 @@ func _update_projectile_spawn_position() -> void:
 		projectile_spawn.position = projectile_spawn_offsets[curr_gun_key]
 		match curr_gun_key:
 			"rocket sniper":
-				projectile_spawn.position.x -= 120
-				projectile_spawn.position.y -= 80
+				projectile_spawn.position.x += 80
+			"laser shotgun":
+				projectile_spawn.position.x += 80
 			"pachine gun":
 				projectile_spawn.position.x -= 30
 			"machineper":
 				projectile_spawn.position.x += 80
 				projectile_spawn.position.y -= 30
-			"laser shotgun":
-				projectile_spawn.position.x -= 360
-			"shocket launcher":
-				projectile_spawn.position.x -= 80
 			_:
 				pass
 	else:

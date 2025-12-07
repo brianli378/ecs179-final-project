@@ -24,6 +24,8 @@ var guns: Dictionary = {
 	"rocket launcher": RocketLauncher.new()
 }
 	
+var fusion_gun_keys: Array[String] = ["pachine gun", "shocket launcher", "rocket sniper", "laser shotgun", "machineper"]
+	
 var gun_keys: Array[String] = ["pistol", "machine gun", "shotgun", "rocket launcher"] # Array for easy indexing
 var curr_gun_index: int = 0  # Index into gun_keys array
 
@@ -204,31 +206,22 @@ func _copy_gun_offsets(source_gun_key: String, new_gun_key: String) -> void:
 		gun_sprite_positions[new_gun_key] = gun_sprite_positions[source_gun_key]
 	if projectile_spawn_offsets.has(source_gun_key):
 		projectile_spawn_offsets[new_gun_key] = projectile_spawn_offsets[source_gun_key]
-	
+		
 
 func fuse_guns() -> String:
-	var first_gun_key: String = gun_keys.pick_random()
-	var second_gun_key: String = gun_keys.pick_random()
-	while first_gun_key == second_gun_key:
-		second_gun_key = gun_keys.pick_random()
+	var fusion_gun_key: String = fusion_gun_keys.pick_random()
 	
-	var recipe_key: String = first_gun_key + "+" + second_gun_key
-
-	var fusion_gun_key: String = fusion_recipes[recipe_key]
+	var gun_recipe: String = fusion_recipes.find_key(fusion_gun_key)
+	
+	var component_gun_keys: PackedStringArray = gun_recipe.split("+")
+	
+	var first_gun_key: String = component_gun_keys.get(0)
 	
 	print("boss gun: " + fusion_gun_key)
 	
 	var fusion_gun_instance: Gun = _create_fusion_gun_instance(fusion_gun_key)
 	if fusion_gun_instance == null:
 		return ""
-
-	var first_index: int = gun_keys.find(first_gun_key)
-	if first_index != -1:
-		gun_keys.remove_at(first_index)
-
-	var second_index: int = gun_keys.find(second_gun_key)
-	if second_index != -1:
-		gun_keys.remove_at(second_index)
 
 	guns[fusion_gun_key] = fusion_gun_instance
 	gun_keys.append(fusion_gun_key)
@@ -256,6 +249,18 @@ func _update_gun_texture() -> void:
 		gun_sprite.visible = true
 		gun_sprite.texture = gun_textures[curr_gun_key]
 		gun_sprite.position = gun_sprite_positions[curr_gun_key]
+		match curr_gun_key:
+			"rocket sniper":
+				gun_sprite.position.x += 80
+			"laser shotgun":
+				gun_sprite.position.x += 80
+			"pachine gun":
+				gun_sprite.position.x -= 30
+			"machineper":
+				gun_sprite.position.x += 80
+				gun_sprite.position.y -= 30
+			_:
+				pass
 	else:
 		push_error("Invalid gun index or gun_sprite not found: " + str(curr_gun_key))
 		
@@ -265,6 +270,18 @@ func _update_projectile_spawn_position() -> void:
 	
 	if projectile_spawn and projectile_spawn_offsets.has(curr_gun_key):
 		projectile_spawn.position = projectile_spawn_offsets[curr_gun_key]
+		match curr_gun_key:
+			"rocket sniper":
+				projectile_spawn.position.x += 80
+			"laser shotgun":
+				projectile_spawn.position.x += 80
+			"pachine gun":
+				projectile_spawn.position.x -= 30
+			"machineper":
+				projectile_spawn.position.x += 80
+				projectile_spawn.position.y -= 30
+			_:
+				pass
 	else:
 		push_error("Invalid gun index or projectile_spawn not found: " + str(curr_gun_key))
 

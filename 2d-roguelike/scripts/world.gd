@@ -53,9 +53,8 @@ func _ready():
 	
 func _clear_scene()  -> void:
 	#TODO: for some reason, this loop doesn't work, but the if statements do
-	#for node in _all_nodes:
-	#	if node != null:
-	#		node.queue_free()
+	for child in get_children():
+		child.queue_free()
 	if _death_menu_node != null:
 		_death_menu_node.queue_free()
 	if _menu_node != null:

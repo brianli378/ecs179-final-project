@@ -12,6 +12,7 @@ const SPEED := 700.0
 @onready var health_bar = get_node("../CanvasLayer/HealthBar") 
 @onready var damage_sound = $damage_taken_sound
 @onready var death_sound = $death_sound
+@onready var map_controller: MapController = $"../Maps"
 
 # dash
 const DASH_SPEED_MULT := 20.0
@@ -19,6 +20,7 @@ const DASH_TIME := 0.2
 const DASH_COOLDOWN := 0.3
 const DASH_ACCEL := 15000.0
 const DASH_SLOWDOWN := 2000.0
+const SPAWN_START := Vector2(-4500,768)
 
 var dash_time := 0.0
 var dash_cooldown := 0.0
@@ -36,7 +38,9 @@ func _ready() -> void:
 	print(name)
 	health_bar.max_value = max_health
 	health_bar.value = health
+	global_position = SPAWN_START
 	add_to_group("player")
+	
 
 func play_synced_animation(anim_name: String) -> void:
 	head.play(anim_name)

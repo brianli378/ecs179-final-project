@@ -7,7 +7,6 @@ var machine_gun_enemy_spec = load("res://specs/machine_gun_enemy_spec.tres")
 var sniper_enemy_spec = load("res://specs/sniper_enemy_spec.tres")
 var shotgun_enemy_spec = load("res://specs/shotgun_enemy_spec.tres")
 var rocket_launcher_enemy_spec = load("res://specs/rocket_launcher_enemy_spec.tres")
-
 var strong_enemy_spec = load("res://specs/strong_enemy_spec.tres")
 
 @onready var spawn_point_1 = $StaticBody2D
@@ -16,15 +15,19 @@ var strong_enemy_spec = load("res://specs/strong_enemy_spec.tres")
 @onready var spawn_point_4 = $StaticBody2D4
 @onready var spawn_point_5 = $StaticBody2D5
 @onready var spawn_point_6 = $StaticBody2D6
+@onready var player: Player = $Player
+@onready var map_controller: MapController = $Maps
+
+signal on_player_teleport(position: Vector2)
 
 func _ready():
+	on_player_teleport.connect(_on_player_teleport)
 	#var spawn_position1 = spawn_point_1.position
 	#var spawn_position2 = spawn_point_2.position
 	#var spawn_position3 = spawn_point_3.position
 	#var spawn_position4 = spawn_point_4.position
 	#var spawn_position5 = spawn_point_5.position
 	#var spawn_position6 = spawn_point_6.position
-	
 	spawn_point_1.queue_free()
 	spawn_point_2.queue_free()
 	spawn_point_3.queue_free()
@@ -60,3 +63,6 @@ func _ready():
 	#enemy4.position = spawn_position4
 	#
 	#enemy5.position = spawn_position5
+
+func _on_player_teleport(pos: Vector2) -> void:
+	player.global_position = pos

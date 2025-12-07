@@ -1,0 +1,125 @@
+[gd_scene load_steps=18 format=3 uid="uid://dj15qqqwboe5r"]
+
+[ext_resource type="Script" uid="uid://birgv6eudsgmc" path="res://scripts/enemies/basic_enemy.gd" id="1_wm0l1"]
+[ext_resource type="Texture2D" uid="uid://bfe7hcosfb26f" path="res://assets/enemies/basic_enemy.png" id="2_ofms4"]
+[ext_resource type="Texture2D" uid="uid://c7a3whp20hr42" path="res://assets/enemies/basic_enemy_walk_left.png" id="3_vvlk3"]
+[ext_resource type="Texture2D" uid="uid://dlrcvedlqbhoj" path="res://assets/enemies/basic_enemy_walk_right.png" id="4_ca30k"]
+[ext_resource type="PackedScene" uid="uid://doj05njfuwl4e" path="res://scenes/gun2.tscn" id="5_dmum3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wsh5r"]
+radius = 80.0
+height = 374.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4mpuu"]
+atlas = ExtResource("2_ofms4")
+region = Rect2(0, 0, 200, 380)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wsh5r"]
+atlas = ExtResource("2_ofms4")
+region = Rect2(200, 0, 200, 380)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yo4tp"]
+atlas = ExtResource("3_vvlk3")
+region = Rect2(0, 0, 220, 380)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pksqs"]
+atlas = ExtResource("3_vvlk3")
+region = Rect2(220, 0, 220, 380)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mgm4g"]
+atlas = ExtResource("3_vvlk3")
+region = Rect2(440, 0, 220, 380)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qoibk"]
+atlas = ExtResource("3_vvlk3")
+region = Rect2(660, 0, 220, 380)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ox54m"]
+atlas = ExtResource("4_ca30k")
+region = Rect2(0, 0, 220, 380)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h8g6m"]
+atlas = ExtResource("4_ca30k")
+region = Rect2(220, 0, 220, 380)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojalv"]
+atlas = ExtResource("4_ca30k")
+region = Rect2(440, 0, 220, 380)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qh2ad"]
+atlas = ExtResource("4_ca30k")
+region = Rect2(660, 0, 220, 380)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y18r1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4mpuu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wsh5r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yo4tp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pksqs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mgm4g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qoibk")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ox54m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h8g6m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ojalv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qh2ad")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 5.0
+}]
+
+[node name="BossEnemy" type="CharacterBody2D"]
+script = ExtResource("1_wm0l1")
+
+[node name="Body" type="Sprite2D" parent="."]
+
+[node name="EnemyGunManager" parent="Body" instance=ExtResource("5_dmum3")]
+position = Vector2(122, 47.999992)
+scale = Vector2(1, 1)
+texture = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, -1)
+shape = SubResource("CapsuleShape2D_wsh5r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_y18r1")
+animation = &"walk_right"
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 93.46
+path_max_distance = 1000.0
+simplify_path = true
+simplify_epsilon = 10.0
+path_search_max_polygons = 1000
+debug_enabled = true

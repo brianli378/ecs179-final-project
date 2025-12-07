@@ -75,9 +75,6 @@ func _ready() -> void:
 	on_begin_zone.connect(_on_begin_zone)
 	world.enemy_death.connect(_on_enemy_death)
 	stage = Stage.SAFE
-	num_enemies -= 1
-	stage = Stage.BOSS
-	_set_boss_zone(0.0)
 
 
 func _set_base_zones(difficulty: float) -> void:
@@ -116,7 +113,7 @@ func _set_boss_zone(difficulty: float) -> void:
 
 
 func _on_enemy_death() -> void:
-	game.on_player_teleport.emit(global_position + boss_zone.position + SPAWNPOINT_BOSS_P)
+	num_enemies -= 1
 	if num_enemies <= 0:
 		match stage:
 			Stage.BASE:

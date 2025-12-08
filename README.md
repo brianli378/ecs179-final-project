@@ -60,7 +60,7 @@ This was okay, but it was a little too detailed to fit in with the rest of the g
 **Documentation for contributions to the project outside of the main and sub roles.** 
 
 
-# Team Member #2 #
+# Brian Li [github](https://github.com/brianli378) #
 ## Main Role
 
 **Documentation for main role.**

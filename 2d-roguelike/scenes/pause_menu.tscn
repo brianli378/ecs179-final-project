@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://bpyhbqnnhcgjq"]
+[gd_scene load_steps=5 format=3 uid="uid://bpyhbqnnhcgjq"]
 
-[ext_resource type="Texture2D" uid="uid://cb7kfgjabn6bf" path="res://assets/plaecholder_object.jpg" id="1_5d2l8"]
-[ext_resource type="Texture2D" uid="uid://b2hjpr3yg26x3" path="res://assets/main_menu/label_continue.png" id="2_5d2l8"]
+[ext_resource type="Texture2D" uid="uid://dpgyn8j47oeht" path="res://assets/ui/Continue2.png" id="1_kukqi"]
 [ext_resource type="Script" uid="uid://bnpt0yc1w3n8s" path="res://scripts/unpause_game_button.gd" id="3_5d2l8"]
+[ext_resource type="FontFile" uid="uid://b8yjskfb0oin0" path="res://assets/Minecraft.ttf" id="3_7l7mv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_v4r4p"]
+font = ExtResource("3_7l7mv")
+font_size = 76
 
 [node name="PauseMenu" type="MarginContainer"]
 process_mode = 3
@@ -19,16 +23,28 @@ layout_mode = 2
 [node name="Logo" type="TextureRect" parent="VBoxContainer/CenterContainer"]
 custom_minimum_size = Vector2(400, 300)
 layout_mode = 2
-texture = ExtResource("1_5d2l8")
 expand_mode = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/CenterContainer/Logo"]
+layout_mode = 0
+offset_left = -438.0
+offset_top = 304.0
+offset_right = 838.0
+offset_bottom = 485.0
 size_flags_vertical = 3
 alignment = 1
 
-[node name="TextureButton" type="TextureButton" parent="VBoxContainer/VBoxContainer"]
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/CenterContainer/Logo/VBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("2_5d2l8")
+texture_normal = ExtResource("1_kukqi")
 stretch_mode = 3
 script = ExtResource("3_5d2l8")
+
+[node name="Label" type="Label" parent="VBoxContainer/CenterContainer/Logo"]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 173.0
+offset_right = 352.0
+offset_bottom = 249.0
+text = "Paused"
+label_settings = SubResource("LabelSettings_v4r4p")

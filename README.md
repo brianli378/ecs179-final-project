@@ -89,7 +89,7 @@ being just basic enemies that may be also trapped in the simulation.
 
 **Health Bar**  
 <img width="366" height="61" alt="image" src="https://github.com/user-attachments/assets/3c3899c2-a69b-4397-9a68-1fd7c2166b9d" />  
-Created Animation for health bar changing, and designed health bar to fit with the cohersion of the game
+Created Animation for health bar changing, and designed health bar to fit with the game style.
 
 **Crosshair and reload animation**
 <img width="2023" height="90" alt="crosshair_reload" src="https://github.com/user-attachments/assets/2d05a8ee-817f-482e-9aa4-e047c595bd84" />
@@ -99,21 +99,24 @@ Created dynamic crosshair reload animation so that the time for the animation li
 ## Game Feel
 
 **Gun Aiming**
+<img width="353" height="527" alt="image" src="https://github.com/user-attachments/assets/3921030a-0d11-491a-929d-122c1329bba5" />
+Depending on where the player is looking, the model switches which direction it looks and the gun rotates with the mouse cursor to look exactly
+where the player is looking. This allows for smooth gameplay, where the player can focus aiming individually from movement. 
 
-
-
-**Projectile Spawn Offsets**
-
-**Gun Rotation and Position Offsets**
+**Gun Rotation, Position Offset, and Projectile Spawn Offsets**
+<img width="420" height="544" alt="image" src="https://github.com/user-attachments/assets/86d15348-7ee0-490a-883f-937f6c6a294d" />
+Manually changed the offsets and position of each gun to have the rotation to look natural even on the change of the size of the gun.
+All of this information was manually edited and is in (gun_data.gd)[https://github.com/brianli378/ecs179-final-project/blob/bd280ceb1ddd8d4181a454adb475c3dd9e8ed069/2d-roguelike/scripts/gun_data.gd#L1-L242]
 
 **Adjusting Map Collision**
-
-**Documentation for Sub-Role**
+<img width="256" height="98" alt="image" src="https://github.com/user-attachments/assets/a0ec1fa9-2add-487d-859e-459425d6d0d1" />
+Manually adjusting map collisions so enemies and players wouldnt get stuck on map objects, and make the movement more fluid.
 
 ## Other Contrubutions
 
-**Documentation for contributions to the project outside of the main and sub roles.** 
-
+**Designed All of the fusion guns**
+(Fusion gun design document)[https://docs.google.com/document/d/1bNHDFz7tdk0n9OXliNgc_nxGdNC5oqgv6N0_m0_iOEU/edit?tab=t.0]  
+Designed every gun fusion, including stats, inspiration images, and other game examples.
 
 # Brian Li [github](https://github.com/brianli378) #
 ## Game Logic

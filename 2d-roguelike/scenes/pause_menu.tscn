@@ -1,12 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://bpyhbqnnhcgjq"]
+[gd_scene load_steps=6 format=3 uid="uid://bpyhbqnnhcgjq"]
 
-[ext_resource type="Texture2D" uid="uid://dpgyn8j47oeht" path="res://assets/ui/Continue2.png" id="1_kukqi"]
 [ext_resource type="Script" uid="uid://bnpt0yc1w3n8s" path="res://scripts/unpause_game_button.gd" id="3_5d2l8"]
 [ext_resource type="FontFile" uid="uid://b8yjskfb0oin0" path="res://assets/Minecraft.ttf" id="3_7l7mv"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_myx47"]
+size = Vector2(0, 50)
 
 [sub_resource type="LabelSettings" id="LabelSettings_v4r4p"]
 font = ExtResource("3_7l7mv")
 font_size = 76
+
+[sub_resource type="LabelSettings" id="LabelSettings_kukqi"]
+font_size = 36
 
 [node name="PauseMenu" type="MarginContainer"]
 process_mode = 3
@@ -36,15 +41,26 @@ alignment = 1
 
 [node name="TextureButton" type="TextureButton" parent="VBoxContainer/CenterContainer/Logo/VBoxContainer"]
 layout_mode = 2
-texture_normal = ExtResource("1_kukqi")
+texture_normal = SubResource("PlaceholderTexture2D_myx47")
 stretch_mode = 3
 script = ExtResource("3_5d2l8")
 
 [node name="Label" type="Label" parent="VBoxContainer/CenterContainer/Logo"]
 layout_mode = 0
-offset_left = 75.0
-offset_top = 173.0
-offset_right = 352.0
-offset_bottom = 249.0
+offset_left = 82.0
+offset_top = 174.0
+offset_right = 359.0
+offset_bottom = 250.0
 text = "Paused"
 label_settings = SubResource("LabelSettings_v4r4p")
+
+[node name="Label2" type="Label" parent="VBoxContainer/CenterContainer/Logo"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 372.0
+offset_right = 354.0
+offset_bottom = 424.0
+text = "Continue"
+label_settings = SubResource("LabelSettings_kukqi")
+horizontal_alignment = 1
+vertical_alignment = 1

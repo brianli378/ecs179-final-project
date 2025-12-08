@@ -50,21 +50,26 @@ Using Aseprite, I created animations for our player character. The character des
 <img width="1153" height="554" alt="image" src="https://github.com/user-attachments/assets/3182e5ea-b740-4801-ba3e-a97f14792074" />
 This was okay, but it was a little too detailed to fit in with the rest of the game.
 
+
 *Final Character Design*
 <img width="1957" height="757" alt="image" src="https://github.com/user-attachments/assets/2e7b2c33-a38a-48fd-8c85-4a56f1c352e1" />
 Final character design is more in line with the scope of the game, and fits more with the style of the game (action rather than story)
+
 
 *Sprites for all guns*
 <img width="976" height="557" alt="image" src="https://github.com/user-attachments/assets/628ac3b9-312e-4a71-8e25-52a5525b097f" />
 25 unqiue sprites for each gun, including 5 base guns and 20 fusions
 
+
 *Sprites for maps*
 <img width="595" height="151" alt="image" src="https://github.com/user-attachments/assets/241b4fd4-8c70-4012-a47f-33d322922b55" />
 Designed the map tile set, working through multiple iterations to fit the cyberpunk theme and simulation asthetic. Painted the tile set for each map.
 
+
 *Title screen*
 <img width="1269" height="710" alt="image" src="https://github.com/user-attachments/assets/95a41769-a931-40c9-921d-0651d44dfd49" />
 Used an open source assets to create a parralax side scrolling meny screen, also designed the game name.
+
 
 *Crafting screen*
 <img width="1047" height="526" alt="image" src="https://github.com/user-attachments/assets/0deb0529-aa26-450c-b979-ddae4c164972" />

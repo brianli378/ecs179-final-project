@@ -66,6 +66,7 @@ offset_bottom = 489.0
 text = "Movement: WASD
 Shoot: Mouse Left Click
 Inventory: I or B
+Switch Guns: E
 Pause: P
 "
 label_settings = SubResource("LabelSettings_yd0o6")

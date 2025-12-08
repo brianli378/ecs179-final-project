@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dfob77al3r2l3"]
+[gd_scene load_steps=35 format=3 uid="uid://dfob77al3r2l3"]
 
 [ext_resource type="Script" uid="uid://ckotjxg6pcfyy" path="res://scripts/game.gd" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://cjfuyyu8dl486" path="res://scenes/player.tscn" id="1_yqjtg"]
@@ -157,6 +157,15 @@ border_width_right = 5
 border_width_bottom = 5
 border_color = Color(0.37254903, 0.8039216, 0.89411765, 1)
 
+[sub_resource type="Theme" id="Theme_kvuet"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trtic"]
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.37254903, 0.8039216, 0.89411765, 1)
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_lnu2h")
 
@@ -242,25 +251,12 @@ offset_bottom = 498.0
 
 [node name="GunsContainer" type="GridContainer" parent="CanvasLayer/InventoryPanel/MarginContainer"]
 layout_mode = 2
+theme = SubResource("Theme_kvuet")
 columns = 6
 
-[node name="Label" type="Label" parent="CanvasLayer/InventoryPanel"]
-layout_mode = 0
-offset_left = 425.0
-offset_top = -35.0
-offset_right = 556.0
-offset_bottom = 10.0
-theme_override_colors/font_color = Color(1, 0.12941177, 0.2784314, 1)
-theme_override_font_sizes/font_size = 25
-text = "Inventory"
-
-[node name="FusionButton" type="Button" parent="CanvasLayer/InventoryPanel"]
-layout_mode = 0
-offset_left = 400.0
-offset_top = 350.0
-offset_right = 574.0
-offset_bottom = 404.0
-text = "FUSE"
+[node name="Panel" type="Panel" parent="CanvasLayer/InventoryPanel/MarginContainer/GunsContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_trtic")
 
 [node name="Maps" parent="." instance=ExtResource("9_0tnpc")]
 

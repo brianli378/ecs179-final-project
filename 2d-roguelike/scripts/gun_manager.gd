@@ -88,7 +88,7 @@ var gun_textures: Dictionary = {
 	
 	# machine gun fusions
 	"machine pistol": preload("res://assets/guns/machine_pistol_sprite.png"), 
-	"machinegungun": preload("res://assets/guns/machinegun_gun_sprite.png"), 
+	"machinegun gun": preload("res://assets/guns/machinegun_gun_sprite.png"), 
 	"machine launcher": preload("res://assets/guns/machine_launcher_sprite.png"), 
 	"machineper": preload("res://assets/guns/machine_per_sprite.png")
 }
@@ -284,10 +284,13 @@ func _process(_delta: float) -> void:
 	# Add logic here for switching projectiles (Rytham will do this later)
 		
 	var should_shoot := false
-	if curr_gun.firing_mode == Gun.FiringMode.SEMI_AUTO:
-		should_shoot = Input.is_action_just_pressed("shoot")
-	elif curr_gun.firing_mode == Gun.FiringMode.AUTO:
-		should_shoot = Input.is_action_pressed("shoot")
+	# Don't shoot if inventory is open
+	var inventory = get_tree().get_first_node_in_group("inventory") as InventoryUI
+	if inventory == null or not inventory.is_open:
+		if curr_gun.firing_mode == Gun.FiringMode.SEMI_AUTO:
+			should_shoot = Input.is_action_just_pressed("shoot")
+		elif curr_gun.firing_mode == Gun.FiringMode.AUTO:
+			should_shoot = Input.is_action_pressed("shoot")
 
 	#var stats := GunSpec.get_stats(curr_gun_key)
 	#var mag_size: int = int(stats.magazine_size)
@@ -490,3 +493,15 @@ func _update_projectile_spawn_position() -> void:
 		projectile_spawn.position = projectile_spawn_offsets[curr_gun_key]
 	else:
 		push_error("Invalid gun index or projectile_spawn not found: " + str(curr_gun_key))
+		
+func get_fusion_result(gun_key_1: String, gun_key_2: String) -> String:
+	# Try both combinations since fusion_recipes uses "gun1+gun2" format
+	var recipe_key_1 = gun_key_1 + "+" + gun_key_2
+	var recipe_key_2 = gun_key_2 + "+" + gun_key_1
+	
+	if fusion_recipes.has(recipe_key_1):
+		return fusion_recipes[recipe_key_1]
+	elif fusion_recipes.has(recipe_key_2):
+		return fusion_recipes[recipe_key_2]
+	
+	return ""

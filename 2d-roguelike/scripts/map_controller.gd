@@ -96,6 +96,8 @@ func _get_scaled_spec(old_spec: EnemySpec) -> EnemySpec:
 	return new_spec
 
 func _set_base_zones(difficulty: float) -> void:
+	num_enemies = 0
+	
 	#Zone 1 Handling
 	var enemies_1 = []
 	for i in range(4):
@@ -135,8 +137,9 @@ func _set_boss_zone(difficulty: float) -> void:
 
 
 func _on_enemy_death() -> void:
-	print("enemy died")
 	num_enemies -= 1
+	#print("Enemy Died. Remaining: ", num_enemies)
+	
 	if num_enemies <= 0:
 		match stage:
 			Stage.BASE:
@@ -153,5 +156,4 @@ func _on_begin_zone() -> void:
 	stage = Stage.BASE
 	_set_base_zones(0)
 	game.on_player_teleport.emit(global_position + zone_1.position + SPAWNPOINT_BASE_P)
-	return
 	

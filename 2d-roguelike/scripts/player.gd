@@ -31,7 +31,7 @@ var player_position : Vector2
 var last_horizontal_direction := 1  # 1 for right, -1 for left (default to right)
 
 var max_health := 30
-var health := 30.0
+var health := 30
 
 @onready
 var gun_manager : GunManager = $Body/Gun

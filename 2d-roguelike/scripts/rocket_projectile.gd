@@ -49,4 +49,6 @@ func _explode() -> void:
 			#print(str((damage / PLAYER_DAMAGE_REDUCTION)))
 			#print(str(damage_multiplier))
 			#print("damage: " + str((damage / PLAYER_DAMAGE_REDUCTION) * damage_multiplier))
-			body.health -= (damage / PLAYER_DAMAGE_REDUCTION) * damage_multiplier
+			#body.health -= (damage / PLAYER_DAMAGE_REDUCTION) * damage_multiplier
+			var dmg := int(round((damage / PLAYER_DAMAGE_REDUCTION) * damage_multiplier))
+			body.health -= dmg

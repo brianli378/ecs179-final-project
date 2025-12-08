@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b3o364gauu71r"]
 
 [ext_resource type="Texture2D" uid="uid://dr4m8hio6mctl" path="res://assets/ui/NewGame.png" id="1_gm7js"]
-[ext_resource type="Script" uid="uid://b6qapnl5v8owt" path="res://scripts/start_game_button.gd" id="3_uldby"]
+[ext_resource type="Script" uid="uid://bh447cprryfhp" path="res://scenes/start_game_button.gd" id="2_gm7js"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gm7js"]
 font_size = 81
@@ -32,7 +32,7 @@ alignment = 1
 layout_mode = 2
 texture_normal = ExtResource("1_gm7js")
 stretch_mode = 3
-script = ExtResource("3_uldby")
+script = ExtResource("2_gm7js")
 
 [node name="Label" type="Label" parent="VBoxContainer/Logo"]
 layout_mode = 0

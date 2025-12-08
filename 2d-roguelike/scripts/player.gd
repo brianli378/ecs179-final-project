@@ -31,7 +31,7 @@ var player_position : Vector2
 var last_horizontal_direction := 1  # 1 for right, -1 for left (default to right)
 
 var max_health := 30
-var health := 30.0
+var health := 30
 
 @onready
 var gun_manager : GunManager = $Body/Gun
@@ -57,7 +57,6 @@ func _process(_delta: float) -> void:
 	# if player taking damage, play damage sound
 	if health_bar.value > health:
 		damage_sound.play()
-		print(damage_sound)
 		
 	health_bar.update_health(health)
 

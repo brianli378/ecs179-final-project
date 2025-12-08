@@ -32,6 +32,8 @@ var old_health: float
 @onready
 var _player:Player
 
+var _is_dying: bool = false
+
 signal enemy_death
 
 func initialize(spec: EnemySpec):
@@ -86,6 +88,12 @@ func _handle_death() -> void:
 	if name == "BossEnemy":
 		print("boss died")
 		_player.gun_manager.gun_keys.append_array(gun_manager.guns_for_player)
+	
+	if _is_dying:
+		return
+	
+	_is_dying = true
+	
 	enemy_death.emit()
 	queue_free()
 	

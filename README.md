@@ -6,10 +6,8 @@
 
 ## Project Resources
 
-[Web-playable version of your game.](https://itch.io/)  
-[Trailer](https://youtube.com)  
-[Press Kit](https://dopresskit.com/)  
-[Proposal: make your own copy of the linked doc.](https://docs.google.com/document/d/1qwWCpMwKJGOLQ-rRJt8G8zisCa2XHFhv6zSWars0eWM/edit?usp=sharing)  
+[Web-playable version of your game.](https://rythamdawar.itch.io/simulacrum)  
+[Proposal: make your own copy of the linked doc.](https://docs.google.com/document/d/1SkqecsexLy4xXZBQBKxyo_UqOyL4xPAojTE3pR8BuLM/edit?tab=t.0)  
 
 ## Gameplay Explanation ##
 
@@ -27,11 +25,27 @@ If you used tutorials or other intellectual guidance to create aspects of your p
 # Team Member Contributions #
 
 This section be repeated once for each team member. Each team member should provide their name and GitHub user information.
+For each team member, you shoudl work of your role and sub-role in terms of the content of the course. Please look at the role sections below for specific instructions for each role.
+
+Below is a template for you to highlight items of your work. These provide the evidence needed for your work to be evaluated. Try to have at least four such descriptions. They will be assessed on the quality of the underlying system and how they are linked to course content.
+
+Short Description - Long description of your work item that includes how it is relevant to topics discussed in class. link to evidence in your repository
+
+Here is an example:
+Procedural Terrain - The game's background consists of procedurally generated terrain produced with Perlin noise. The game can modify this terrain at run-time via a call to its script methods. The intent is to allow the player to modify the terrain. This system is based on the component design pattern and the procedural content generation portions of the course. The PCG terrain generation script.
+
+You should replay any bold text with your relevant information. Liberally use the template when necessary and appropriate.
+
+Add addition contributions in the Other Contributions section.
+
 
 # Alyssa Goldgeisser - [github](https://github.com/killmanjaro) #
 ## Animation and Visuals
 
-**Documentation for main role.**
+**Character Design**
+Using Aseprite, I created animations for our player character. The character design went through many iterations until it was something I was happy with. 
+First Character Design
+<img width="1153" height="554" alt="image" src="https://github.com/user-attachments/assets/3182e5ea-b740-4801-ba3e-a97f14792074" />
 
 ## Game Feel
 

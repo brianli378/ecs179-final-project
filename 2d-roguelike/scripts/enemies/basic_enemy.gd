@@ -97,6 +97,8 @@ func _handle_death() -> void:
 	#if name == "BossEnemy":
 		#print("boss died")
 		#_player.gun_manager.gun_keys.append_array(gun_manager.guns_for_player)
+	if name == "BossEnemy":
+		_player.health += 15
 	
 	enemy_death.emit()
 	queue_free()

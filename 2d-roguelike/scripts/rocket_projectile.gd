@@ -24,15 +24,9 @@ func _explode() -> void:
 	query.collide_with_bodies = true
 	
 	var results = space_state.intersect_shape(query)
-	var hit_bodies = []
 	
 	for result in results:
 		var body = result.collider
-		
-		if body in hit_bodies:
-			continue
-			
-		hit_bodies.append(body)
 		
 		if body is Projectile or body is RocketProjectile:
 			continue

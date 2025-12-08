@@ -31,11 +31,11 @@ This section be repeated once for each team member. Each team member should prov
 # Team Member #1 #
 ## Main Role
 
-** Documentation for main role. **
+**Documentation for main role.**
 
 ## Sub Role
 
-** Documentation for Sub-Role **
+**Documentation for Sub-Role**
 
 ## Other Contrubutions
 
@@ -45,11 +45,11 @@ This section be repeated once for each team member. Each team member should prov
 # Team Member #2 #
 ## Main Role
 
-** Documentation for main role. **
+**Documentation for main role.**
 
 ## Sub Role
 
-** Documentation for Sub-Role **
+**Documentation for Sub-Role**
 
 ## Other Contrubutions
 
@@ -59,25 +59,24 @@ This section be repeated once for each team member. Each team member should prov
 # Team Member #3 #
 ## Main Role
 
-** Documentation for main role. **
+**Documentation for main role.**
 
 ## Sub Role
 
-** Documentation for Sub-Role **
+**Documentation for Sub-Role**
 
 ## Other Contrubutions
 
 **Documentation for contributions to the project outside of the main and sub roles.** 
 
-
 # Team Member #4 #
 ## Main Role
 
-** Documentation for main role. **
+**Documentation for main role.**
 
 ## Sub Role
 
-** Documentation for Sub-Role **
+**Documentation for Sub-Role**
 
 ## Other Contrubutions
 
@@ -86,11 +85,11 @@ This section be repeated once for each team member. Each team member should prov
 # Team Member #5 #
 ## Main Role
 
-** Documentation for main role. **
+**Documentation for main role.**
 
 ## Sub Role
 
-** Documentation for Sub-Role **
+**Documentation for Sub-Role**
 
 ## Other Contrubutions
 
@@ -99,11 +98,11 @@ This section be repeated once for each team member. Each team member should prov
 # Team Member #6 #
 ## Main Role
 
-** Documentation for main role. **
+**Documentation for main role.**
 
 ## Sub Role
 
-** Documentation for Sub-Role **
+**Documentation for Sub-Role**
 
 ## Other Contrubutions
 

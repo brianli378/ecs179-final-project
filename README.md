@@ -87,7 +87,26 @@ Also adjusted the visuals for the fusion inventory to more match the cyberpunk t
 Created enemy sprites and animations, fiting the cyberpunk and simulation theme. Enemies are designed to be part of the simulation,
 being just basic enemies that may be also trapped in the simulation.
 
+**Health Bar**  
+<img width="366" height="61" alt="image" src="https://github.com/user-attachments/assets/3c3899c2-a69b-4397-9a68-1fd7c2166b9d" />  
+Created Animation for health bar changing, and designed health bar to fit with the cohersion of the game
+
+**Crosshair and reload animation**
+<img width="2023" height="90" alt="crosshair_reload" src="https://github.com/user-attachments/assets/2d05a8ee-817f-482e-9aa4-e047c595bd84" />
+Created dynamic crosshair reload animation so that the time for the animation lines up with the guns reload time.
+
+
 ## Game Feel
+
+**Gun Aiming**
+
+
+
+**Projectile Spawn Offsets**
+
+**Gun Rotation and Position Offsets**
+
+**Adjusting Map Collision**
 
 **Documentation for Sub-Role**
 

@@ -59,15 +59,13 @@ label_settings = SubResource("LabelSettings_wcb4j")
 
 [node name="Label2" type="Label" parent="VBoxContainer/CenterContainer/Logo"]
 layout_mode = 0
-offset_left = -11.0
-offset_top = 297.0
-offset_right = 392.0
-offset_bottom = 489.0
+offset_left = -411.0
+offset_top = 287.0
+offset_right = 80.0
+offset_bottom = 635.0
 text = "Movement: WASD
-Shoot: Mouse Left Click
-Inventory: I or B
-Switch Guns: E
-Pause: P
+Dash: Shift
+
 "
 label_settings = SubResource("LabelSettings_yd0o6")
 
@@ -80,3 +78,28 @@ offset_bottom = 639.0
 text = "Continue
 "
 label_settings = SubResource("LabelSettings_pf2fv")
+
+[node name="Label4" type="Label" parent="VBoxContainer/CenterContainer/Logo"]
+layout_mode = 0
+offset_left = 442.0
+offset_top = 281.0
+offset_right = 891.0
+offset_bottom = 629.0
+text = "Shoot: Mouse Left Click
+Switch Guns: E"
+label_settings = SubResource("LabelSettings_yd0o6")
+
+[node name="Label5" type="Label" parent="VBoxContainer/CenterContainer/Logo"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 284.0
+offset_right = 501.0
+offset_bottom = 632.0
+text = "Inventory: I or B
+Pause: P
+
+Fuse in your inventory!
+Bosses give more guns!
+
+"
+label_settings = SubResource("LabelSettings_yd0o6")

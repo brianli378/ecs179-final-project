@@ -44,12 +44,18 @@ Add addition contributions in the Other Contributions section.
 
 **Character Design**
 Using Aseprite, I created animations for our player character. The character design went through many iterations until it was something I was happy with. 
+
+
 *First Character Design*
 <img width="1153" height="554" alt="image" src="https://github.com/user-attachments/assets/3182e5ea-b740-4801-ba3e-a97f14792074" />
 This was okay, but it was a little too detailed to fit in with the rest of the game.
 
 *Final Character Design*
 <img width="1957" height="757" alt="image" src="https://github.com/user-attachments/assets/2e7b2c33-a38a-48fd-8c85-4a56f1c352e1" />
+
+*Sprites for all guns*
+<img width="976" height="557" alt="image" src="https://github.com/user-attachments/assets/628ac3b9-312e-4a71-8e25-52a5525b097f" />
+
 
 ## Game Feel
 

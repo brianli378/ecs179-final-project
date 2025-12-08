@@ -44,37 +44,48 @@ Add addition contributions in the Other Contributions section.
 
 **Character Design**
 Using Aseprite, I created animations for our player character. The character design went through many iterations until it was something I was happy with. 
+I wanted to design a character that would be visually distinct, with their own symbol/color so they could be recognizable. Her symbol is the red spade,
+which kinda looks like an ubside down heart due to the small amount of pixels. This character and her colors are supposed to look unique around the background
+of the simulation, showing the distinction between her and the rest of the world. 
 
-
-*First Character Design*
+**First Character Design**
 <img width="1153" height="554" alt="image" src="https://github.com/user-attachments/assets/3182e5ea-b740-4801-ba3e-a97f14792074" />
-This was okay, but it was a little too detailed to fit in with the rest of the game.
+This was okay, but it was a little too detailed to fit in with the rest of the game. I realized when working with guns they would need
+to fit the same level of detail which wasnt attainable. Also, the character looks a little unfit for a shooter game, where this type
+of sprite seems more fit for a story game.
 
 
-*Final Character Design*
+**Final Character Design**
 <img width="1957" height="757" alt="image" src="https://github.com/user-attachments/assets/2e7b2c33-a38a-48fd-8c85-4a56f1c352e1" />
-Final character design is more in line with the scope of the game, and fits more with the style of the game (action rather than story)
+Final character design is more in line with the scope of the game, and fits more with the style of the game (action rather than story).
 
 
-*Sprites for all guns*
+**Sprites for all guns**
 <img width="976" height="557" alt="image" src="https://github.com/user-attachments/assets/628ac3b9-312e-4a71-8e25-52a5525b097f" />
-25 unqiue sprites for each gun, including 5 base guns and 20 fusions  
+25 unqiue sprites for each gun, including 5 base guns and 20 fusions. Each fusion sprite takes elements from its parents, and is supposed
+to communicate its properties. The laser weapons are techy and blue, the rocket weapons are bright yellow/orange to show their explosive
+and dangerous nature, and the pistol is supposed to fit the player characters style (since it is her weapon at the start of the game).
 
 
-*Sprites for maps*  
+**Sprites for maps**  
 <img width="595" height="151" alt="image" src="https://github.com/user-attachments/assets/241b4fd4-8c70-4012-a47f-33d322922b55" />  
 Designed the map tile set, working through multiple iterations to fit the cyberpunk theme and simulation asthetic. Painted the tile set for each map.  
 
 
-*Title screen*
+**Title screen**
 <img width="1269" height="710" alt="image" src="https://github.com/user-attachments/assets/95a41769-a931-40c9-921d-0651d44dfd49" />
 Used an open source assets to create a parralax side scrolling meny screen, also designed the game name.
 
 
-*Crafting screen*
+**Crafting screen**
 <img width="1047" height="526" alt="image" src="https://github.com/user-attachments/assets/0deb0529-aa26-450c-b979-ddae4c164972" />
 Added upon an inventory system by creating slots for the fusion, and allowing the player to see the result of the fusion. 
-Also adjusted the visuals for the fusion inventory to more match the cyberpunk theme. 
+Also adjusted the visuals for the fusion inventory to more match the cyberpunk theme.  
+
+**Enemy animations**
+<img width="954" height="435" alt="image" src="https://github.com/user-attachments/assets/0e3a5309-e141-4b6d-9006-ec71408c9ccd" />
+Created enemy sprites and animations, fiting the cyberpunk and simulation theme. Enemies are designed to be part of the simulation,
+being just basic enemies that may be also trapped in the simulation.
 
 ## Game Feel
 

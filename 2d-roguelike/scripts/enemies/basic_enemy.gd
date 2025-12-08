@@ -25,6 +25,10 @@ var gun_manager: EnemyGunManager = $Body/EnemyGunManager
 @onready 
 var nav: NavigationAgent2D = $NavigationAgent2D
 
+@onready var hit_marker_sound = $HitMarkerSound
+var old_health: float
+
+
 @onready
 var _player:Player
 
@@ -34,6 +38,7 @@ func initialize(spec: EnemySpec):
 	self.health = spec.health
 	self.damage = spec.damage
 	self.speed  = spec.speed
+	old_health = self.health
 	
 	self.shooting_range = spec.shooting_range
 	
@@ -60,7 +65,9 @@ func _process(_delta: float) -> void:
 	if _player == null:
 		return
 		
-	
+	if health < old_health:
+		hit_marker_sound.play()
+		old_health = health
 		
 	# only look at the player if we are in the los
 	
@@ -70,6 +77,8 @@ func _process(_delta: float) -> void:
 		#look_at(_player.global_position)
 	#print(health)
 	if health <= 0:
+		if hit_marker_sound.playing:
+			await hit_marker_sound.finished
 		_handle_death()
 
 func _handle_death() -> void:

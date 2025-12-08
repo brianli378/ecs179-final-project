@@ -65,7 +65,7 @@ const gun_offsets_right: Dictionary = {
 	"rocket pistol": Vector2(-90, 20),
 	"rocket shotgun": Vector2(0, 0),
 	"rocket sniper": Vector2(0, 0),
-	"rockchine gun": Vector2(0, 0),
+	"rockchine gun": Vector2(-40, 25),
 	
 	# sniper fusions
 	"laser pistol": Vector2(-90, 20),
@@ -100,10 +100,10 @@ const gun_offsets_left: Dictionary = {
 	"shachine gun": Vector2(0, 0),
 	
 	# rocket launcher fusions
-	"rocket pistol": Vector2(0, 0),
+	"rocket pistol":  Vector2(90, 20),
 	"rocket shotgun": Vector2(0, 0),
 	"rocket sniper": Vector2(0, 0),
-	"rockchine gun": Vector2(0, 0),
+	"rockchine gun": Vector2(40, 25),
 	
 	# sniper fusions
 	"laser pistol": Vector2(90, 20),
@@ -138,10 +138,10 @@ const gun_sprite_positions: Dictionary = {
 	"shachine gun": Vector2(0, 0),
 	
 	# rocket launcher fusions
-	"rocket pistol": Vector2(0, 0),
+	"rocket pistol": Vector2(-20, 0),
 	"rocket shotgun": Vector2(0, 0),
-	"rocket sniper": Vector2(0, 0),
-	"rockchine gun": Vector2(0, 0),
+	"rocket sniper": Vector2(-200, 0),
+	"rockchine gun": Vector2(-175, 0),
 	
 	# sniper fusions
 	"laser pistol": Vector2(0, 0),
@@ -177,9 +177,9 @@ const projectile_spawn_offsets: Dictionary = {
 	
 	# rocket launcher fusions
 	"rocket pistol": Vector2(200, 0),
-	"rocket shotgun": Vector2(0, 0),
-	"rocket sniper": Vector2(0, 0),
-	"rockchine gun": Vector2(0, 0),
+	"rocket shotgun": Vector2(200, 0),
+	"rocket sniper": Vector2(430, 20),
+	"rockchine gun": Vector2(200, 0),
 	
 	# sniper fusions
 	"laser pistol": Vector2(200, 0),

@@ -9,6 +9,13 @@ var npc_shot: bool = false
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
+	
+	var timer = Timer.new()
+	timer.wait_time = 3.0
+	timer.one_shot = true
+	timer.timeout.connect(_on_timeout)
+	add_child(timer)
+	timer.start()
 
 func initialize(spec: ProjectileSpec, final_damage: float):
 	self.damage = final_damage
@@ -25,3 +32,6 @@ func _on_body_entered(_body: Node) -> void:
 			_body.health -= 50
 	if not _body is Projectile:
 		queue_free()
+
+func _on_timeout() -> void:
+	queue_free()

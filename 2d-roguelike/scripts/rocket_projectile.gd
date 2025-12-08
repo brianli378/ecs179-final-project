@@ -6,6 +6,9 @@ var PLAYER_DAMAGE_REDUCTION: float = 15
 var explosion_radius: float = 350.0
 	
 
+func _ready() -> void:
+	super._ready()
+
 func _on_body_entered(_body: Node) -> void:
 	if not _body is Projectile:
 		_explode()

@@ -28,12 +28,12 @@ If you used tutorials or other intellectual guidance to create aspects of your p
 
 This section be repeated once for each team member. Each team member should provide their name and GitHub user information.
 
-# Team Member #1 #
-## Main Role
+# Alyssa Goldgeisser - [github](https://github.com/killmanjaro) #
+## Animation and Visuals
 
 **Documentation for main role.**
 
-## Sub Role
+## Game Feel
 
 **Documentation for Sub-Role**
 

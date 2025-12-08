@@ -3,7 +3,7 @@ extends Projectile
 
 var PLAYER_DAMAGE_REDUCTION: float = 15
 
-var explosion_radius: float = 200.0
+var explosion_radius: float = 350.0
 	
 
 func _on_body_entered(_body: Node) -> void:

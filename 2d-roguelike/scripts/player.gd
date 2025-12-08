@@ -57,7 +57,6 @@ func _process(_delta: float) -> void:
 	# if player taking damage, play damage sound
 	if health_bar.value > health:
 		damage_sound.play()
-		print(damage_sound)
 		
 	health_bar.update_health(health)
 

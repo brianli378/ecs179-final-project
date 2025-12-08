@@ -68,6 +68,7 @@ enum Stage {
 }
 
 var stage;
+var current_round: int = 1
 
 signal on_begin_zone
 
@@ -78,29 +79,49 @@ func _ready() -> void:
 	game.enemy_death.connect(_on_enemy_death)
 	stage = Stage.SAFE
 
+func _get_scaled_spec(old_spec: EnemySpec) -> EnemySpec:
+	var new_spec = old_spec.duplicate()
+	
+	if current_round == 1:
+		return new_spec
+		
+	# health scaler:
+	var health_multiplier = 1.0 + (0.15 * sqrt(current_round))
+	# damage scaler
+	var dmg_multiplier = 1.0 + (0.10 * (log(current_round) / log(2)))
+
+	new_spec.health = int(old_spec.health * health_multiplier)
+	new_spec.damage = old_spec.damage * dmg_multiplier
+	
+	return new_spec
 
 func _set_base_zones(difficulty: float) -> void:
+	num_enemies = 0
+	
 	#Zone 1 Handling
 	var enemies_1 = []
 	for i in range(4):
-		var rand_index = 4#randi_range(0, 4)
-		enemies_1.push_back(BASE_ENEMIES[rand_index])
+		var rand_index = randi_range(0, 4)
+		var old_spec = BASE_ENEMIES[rand_index]
+		enemies_1.push_back(_get_scaled_spec(old_spec))
 	num_enemies += enemies_1.size();
 	zone_1.set_enemies(SPAWNPOINTS_1.duplicate(), enemies_1)
 	
 	#Zone 2 Handling
 	var enemies_2 = []
 	for i in range(4):
-		var rand_index = 4#randi_range(0, 4)
-		enemies_2.push_back(BASE_ENEMIES[rand_index])
+		var rand_index = randi_range(0, 4)
+		var old_spec = BASE_ENEMIES[rand_index]
+		enemies_2.push_back(_get_scaled_spec(old_spec))
 	num_enemies += enemies_2.size();
 	zone_2.set_enemies(SPAWNPOINTS_2.duplicate(), enemies_2)
 	
 	#Zone 3 Handling
 	var enemies_3 = []
 	for i in range(4):
-		var rand_index = 4#randi_range(0, 4)
-		enemies_3.push_back(BASE_ENEMIES[rand_index])
+		var rand_index = randi_range(0, 4)
+		var old_spec = BASE_ENEMIES[rand_index]
+		enemies_3.push_back(_get_scaled_spec(old_spec))
 	num_enemies += enemies_3.size();
 	zone_3.set_enemies(SPAWNPOINTS_3.duplicate(), enemies_3)
 	
@@ -108,15 +129,17 @@ func _set_base_zones(difficulty: float) -> void:
 
 
 func _set_boss_zone(difficulty: float) -> void:
-	var enemies = [boss_enemy_spec]
+	var scaled_boss = _get_scaled_spec(boss_enemy_spec)
+	var enemies = [scaled_boss]
 	boss_zone.set_enemies(SPAWNPOINT_BOSS_B.duplicate(), enemies)
 	num_enemies += 1
 	return
 
 
 func _on_enemy_death() -> void:
-	print("enemy died")
 	num_enemies -= 1
+	#print("Enemy Died. Remaining: ", num_enemies)
+	
 	if num_enemies <= 0:
 		match stage:
 			Stage.BASE:
@@ -126,12 +149,11 @@ func _on_enemy_death() -> void:
 			Stage.BOSS:
 				# add guns
 				stage = Stage.SAFE
+				current_round += 1
 				game.on_player_teleport.emit(global_position + safe_zone.position + SPAWNPOINT_SAFE_P)
-
 
 func _on_begin_zone() -> void:
 	stage = Stage.BASE
 	_set_base_zones(0)
 	game.on_player_teleport.emit(global_position + zone_1.position + SPAWNPOINT_BASE_P)
-	return
 	

@@ -24,10 +24,15 @@ func _explode() -> void:
 	query.collide_with_bodies = true
 	
 	var results = space_state.intersect_shape(query)
+	var hit_bodies = []
 	
 	for result in results:
 		var body = result.collider
-		print(body)
+		
+		if body in hit_bodies:
+			continue
+			
+		hit_bodies.append(body)
 		
 		if body is Projectile or body is RocketProjectile:
 			continue
@@ -40,8 +45,8 @@ func _explode() -> void:
 		if not npc_shot and body is BasicEnemy:
 			body.health -= damage * damage_multiplier
 		elif npc_shot and body is Player:
-			print(str(damage))
-			print(str((damage / PLAYER_DAMAGE_REDUCTION)))
-			print(str(damage_multiplier))
-			print("damage: " + str((damage / PLAYER_DAMAGE_REDUCTION) * damage_multiplier))
+			#print(str(damage))
+			#print(str((damage / PLAYER_DAMAGE_REDUCTION)))
+			#print(str(damage_multiplier))
+			#print("damage: " + str((damage / PLAYER_DAMAGE_REDUCTION) * damage_multiplier))
 			body.health -= (damage / PLAYER_DAMAGE_REDUCTION) * damage_multiplier

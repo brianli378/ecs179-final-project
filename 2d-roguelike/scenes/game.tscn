@@ -208,7 +208,7 @@ offset_left = 1114.0
 offset_top = 616.0
 offset_right = 1230.0
 offset_bottom = 639.0
-text = "REALOADING..."
+text = "RELOADING..."
 script = ExtResource("5_iywne")
 gun_manager_path = NodePath("../../Player/Body/Gun")
 

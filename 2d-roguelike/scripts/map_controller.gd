@@ -68,6 +68,7 @@ enum Stage {
 }
 
 var stage;
+var current_round: int = 1
 
 signal on_begin_zone
 
@@ -77,6 +78,7 @@ func _ready() -> void:
 	on_begin_zone.connect(_on_begin_zone)
 	game.enemy_death.connect(_on_enemy_death)
 	stage = Stage.SAFE
+	print("GAME START: Round ", current_round)
 
 
 func _set_base_zones(difficulty: float) -> void:
@@ -126,12 +128,26 @@ func _on_enemy_death() -> void:
 			Stage.BOSS:
 				# add guns
 				stage = Stage.SAFE
+				current_round += 1
+				print("BOSS DEFEATED! Starting Round: ", current_round)
 				game.on_player_teleport.emit(global_position + safe_zone.position + SPAWNPOINT_SAFE_P)
 
+#func _get_scaled_spec(old_spec: EnemySpec) -> EnemySpec:
+	#var new_spec = old_spec.duplicate()
+	## health scaler:
+	#var health_multiplier = 1.0 + (0.15 * sqrt(current_round))
+	## damage scaler
+	#var dmg_multiplier = 1.0 + (0.10 * (log(current_round) / log(2)))
+#
+	#new_spec.health = int(old_spec.health * health_multiplier)
+	#new_spec.damage = old_spec.damage * dmg_multiplier
+	#
+	#return new_spec
 
 func _on_begin_zone() -> void:
 	stage = Stage.BASE
 	_set_base_zones(0)
 	game.on_player_teleport.emit(global_position + zone_1.position + SPAWNPOINT_BASE_P)
+	print("STAGE", stage)
 	return
 	

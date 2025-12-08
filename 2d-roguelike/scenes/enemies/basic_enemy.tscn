@@ -128,3 +128,4 @@ texture = null
 
 [node name="HitMarkerSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_3ld4s")
+volume_db = -8.0

@@ -198,8 +198,8 @@ func fuse_guns(first_gun_key: String, second_gun_key: String) -> String:
 	ammo_in_reserve.erase(first_gun_key)
 	ammo_in_reserve.erase(second_gun_key)
 
-	guns.erase(first_gun_key)
-	guns.erase(second_gun_key)
+	#guns.erase(first_gun_key)
+	#guns.erase(second_gun_key)
 
 	var first_index: int = gun_keys.find(first_gun_key)
 	if first_index != -1:

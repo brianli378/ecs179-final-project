@@ -215,7 +215,6 @@ func fuse_guns(first_gun_key: String, second_gun_key: String) -> String:
 	ammo_in_mag[fusion_gun_key] = fusion_gun_instance.magazine_size
 	ammo_in_reserve[fusion_gun_key] = fusion_gun_instance.starting_reserve
 
-	# No need to copy offsets anymore - GunData handles inheritance automatically!
 
 	if gun_keys.size() > 0:
 		curr_gun_index = gun_keys.find(fusion_gun_key)

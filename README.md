@@ -61,17 +61,12 @@ This was okay, but it was a little too detailed to fit in with the rest of the g
 
 
 # Brian Li [github](https://github.com/brianli378) #
-## Main Role
+## Game Logic
+I developed and implemenyed the majority of the game logic, including the player movement, player aim, player dash, 2D lerp camera, camera shake, reload logic, inventory logic and fusion logic.
 
-**Documentation for main role.**
+## Gameplay Teating
+I performed extensive testing and also helped fix bugs that ended up surfacing, including bugs where the player sprite glitched from the lerp camera leash, needing to wait shot_delay when switching to a new weapon, needing to wait shot_delay after the player's final bullet before reloading, the player hurt sound repeating infinitely when hit by a rocket and the boss dropping too many guns due to the death logic being called multiples times.
 
-## Sub Role
-
-**Documentation for Sub-Role**
-
-## Other Contrubutions
-
-**Documentation for contributions to the project outside of the main and sub roles.** 
 
 
 # Team Member #3 #

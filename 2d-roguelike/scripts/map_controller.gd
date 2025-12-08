@@ -71,9 +71,11 @@ var stage;
 
 signal on_begin_zone
 
+signal enemy_death
+
 func _ready() -> void:
 	on_begin_zone.connect(_on_begin_zone)
-	world.enemy_death.connect(_on_enemy_death)
+	game.enemy_death.connect(_on_enemy_death)
 	stage = Stage.SAFE
 
 
@@ -113,6 +115,7 @@ func _set_boss_zone(difficulty: float) -> void:
 
 
 func _on_enemy_death() -> void:
+	print("enemy died")
 	num_enemies -= 1
 	if num_enemies <= 0:
 		match stage:

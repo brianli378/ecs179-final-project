@@ -19,6 +19,7 @@ var strong_enemy_spec = load("res://specs/strong_enemy_spec.tres")
 @onready var map_controller: MapController = $Maps
 
 signal on_player_teleport(position: Vector2)
+signal enemy_death
 
 func _ready():
 	on_player_teleport.connect(_on_player_teleport)
@@ -66,3 +67,6 @@ func _ready():
 
 func _on_player_teleport(pos: Vector2) -> void:
 	player.global_position = pos
+
+func _on_enemy_death() -> void:
+	enemy_death.emit()

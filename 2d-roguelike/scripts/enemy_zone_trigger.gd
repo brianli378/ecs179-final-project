@@ -33,6 +33,6 @@ func spawn_enemies() -> void:
 	print(_spawnpoints.size())
 	while _spawnpoints.size() > 0:
 		var enemy_spec = _enemy_specs.pop_front()
-		var enemy = enemy_factory.build(enemy_spec, world_node)
+		var enemy = enemy_factory.build(enemy_spec, world_node.get_child(0))
 		enemy.global_position = self.position + _spawnpoints.pop_front()
 	return

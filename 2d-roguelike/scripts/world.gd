@@ -12,7 +12,8 @@ var _pause_menu_node:Node
 var _game:Resource = load("res://scenes/game.tscn")
 var _game_node:Node
 
-signal enemy_death
+var visibleNames:Array[String] = []
+
 #var _all_nodes:Array[Node] = [_menu_node, _death_menu_node, _game_node]
 	
 func start_menu() -> void:
@@ -38,11 +39,24 @@ func death_menu() -> void:
 func pause_menu() -> void:
 	print("pause menu")
 	# instantisate the scene and add it as a child to the tree
+	for child in _game_node.get_children():
+		if child.visible == true:
+			visibleNames.append(child.name)
+			child.visible = false
 	_pause_menu_node = _pause_menu.instantiate()
-	add_child(_pause_menu_node)
+	_pause_menu_node.visible = true
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	var canvas = CanvasLayer.new()
+	canvas.layer = 128
+
+	add_child(canvas)
+	canvas.add_child(_pause_menu_node)
 
 func unpause() -> void:
 	_pause_menu_node.queue_free()
+	for child in _game_node.get_children():
+		if child.name in visibleNames:
+			child.visible = true
 
 func _ready():
 	$MainMenu.queue_free()
@@ -67,7 +81,3 @@ func _clear_scene()  -> void:
 	var root = get_tree().current_scene
 	for child in root.get_children():
 		child.queue_free()
-
-
-func _on_enemy_death() -> void:
-	enemy_death.emit()

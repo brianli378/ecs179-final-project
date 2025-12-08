@@ -58,11 +58,11 @@ Final character design is more in line with the scope of the game, and fits more
 
 *Sprites for all guns*
 <img width="976" height="557" alt="image" src="https://github.com/user-attachments/assets/628ac3b9-312e-4a71-8e25-52a5525b097f" />
-25 unqiue sprites for each gun, including 5 base guns and 20 fusions
+25 unqiue sprites for each gun, including 5 base guns and 20 fusions\
 
 
 *Sprites for maps*
-<img width="595" height="151" alt="image" src="https://github.com/user-attachments/assets/241b4fd4-8c70-4012-a47f-33d322922b55" />
+<img width="595" height="151" alt="image" src="https://github.com/user-attachments/assets/241b4fd4-8c70-4012-a47f-33d322922b55" />\
 Designed the map tile set, working through multiple iterations to fit the cyberpunk theme and simulation asthetic. Painted the tile set for each map.
 
 

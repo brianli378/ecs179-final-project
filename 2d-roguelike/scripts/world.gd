@@ -12,6 +12,9 @@ var _pause_menu_node:Node
 var _game:Resource = load("res://scenes/game.tscn")
 var _game_node:Node
 
+var _keybinds:Resource = load("res://scenes/keybinds.tscn")
+var _keybinds_node:Node
+
 var visibleNames:Array[String] = []
 
 #var _all_nodes:Array[Node] = [_menu_node, _death_menu_node, _game_node]
@@ -22,6 +25,13 @@ func start_menu() -> void:
 	# instantisate the scene and add it as a child to the tree
 	_menu_node = _menu.instantiate()
 	add_child(_menu_node)
+	
+func fusion_tutorial() -> void:
+	print("fusion_tutorial")
+	_clear_scene()
+	# instantisate the scene and add it as a child to the tree
+	_keybinds_node = _keybinds.instantiate()
+	add_child(_keybinds_node)
 
 func start_game() -> void:
 	print("start_game")

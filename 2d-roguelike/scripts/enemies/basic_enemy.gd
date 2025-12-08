@@ -13,9 +13,6 @@ var _closest_leash: float = 400.0
 
 var _movement_speed: float = 300.0 # units per frame
 
-#TODO: we could override shooting delay ourselves with one in this script
-#var shooting_delay: float
-
 var enemy_los: EnemyLineOfSight = null
 
 @onready
@@ -94,12 +91,12 @@ func _handle_death() -> void:
 	_is_dying = true
 		
 	# give player the guns we have
-	#if name == "BossEnemy":
-		#print("boss died")
-		#_player.gun_manager.gun_keys.append_array(gun_manager.guns_for_player)
+
 	if name == "BossEnemy":
-		_player.health += 15
-	
+		print("boss died")
+		_player.gun_manager.gun_keys.append_array(gun_manager.guns_for_player)
+    _player.health += 15
+		
 	enemy_death.emit()
 	queue_free()
 	

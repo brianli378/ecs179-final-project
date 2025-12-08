@@ -47,6 +47,7 @@ func initialize(spec: EnemySpec):
 	self._furthest_leash = spec.furthest_leash
 	self._closest_leash = spec.closest_leash
 
+
 func actor_setup():
 	# Wait for the first physics frame so the NavigationServer can sync.
 	await get_tree().physics_frame
@@ -58,10 +59,12 @@ func actor_setup():
 func set_movement_target(movement_target: Vector2):
 	nav.target_position = movement_target
 
+
 func _ready():
 	self.enemy_los = self.gun_manager.line_of_sight
 	
 	_player = get_tree().get_first_node_in_group("player")
+
 
 func _process(_delta: float) -> void:
 	if _player == null:
@@ -83,16 +86,17 @@ func _process(_delta: float) -> void:
 			await hit_marker_sound.finished
 		_handle_death()
 
+
 func _handle_death() -> void:
-	# give player the guns we have
-	if name == "BossEnemy":
-		print("boss died")
-		_player.gun_manager.gun_keys.append_array(gun_manager.guns_for_player)
-	
 	if _is_dying:
 		return
-	
+		
 	_is_dying = true
+		
+	# give player the guns we have
+	#if name == "BossEnemy":
+		#print("boss died")
+		#_player.gun_manager.gun_keys.append_array(gun_manager.guns_for_player)
 	
 	enemy_death.emit()
 	queue_free()
@@ -100,6 +104,7 @@ func _handle_death() -> void:
 	
 func _velocity_computed(safe_velocity: Vector2):
 	velocity = safe_velocity
+
 
 func _physics_process(_delta: float) -> void:
 	if _player == null:
@@ -164,6 +169,7 @@ func _distance_to_player() -> float:
 		return -1
 	else:
 		return self.global_position.distance_to(_player.global_position)
+
 
 func _vector_to_player() -> Vector2:
 	var x: float = _player.global_position.x - global_position.x

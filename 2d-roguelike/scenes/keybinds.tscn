@@ -86,7 +86,8 @@ offset_top = 281.0
 offset_right = 891.0
 offset_bottom = 629.0
 text = "Shoot: Mouse Left Click
-Switch Guns: E"
+Switch Guns: E
+Reload: R"
 label_settings = SubResource("LabelSettings_yd0o6")
 
 [node name="Label5" type="Label" parent="VBoxContainer/CenterContainer/Logo"]

@@ -83,7 +83,7 @@ func _set_base_zones(difficulty: float) -> void:
 	#Zone 1 Handling
 	var enemies_1 = []
 	for i in range(4):
-		var rand_index = randi_range(0, 4)
+		var rand_index = 4#randi_range(0, 4)
 		enemies_1.push_back(BASE_ENEMIES[rand_index])
 	num_enemies += enemies_1.size();
 	zone_1.set_enemies(SPAWNPOINTS_1.duplicate(), enemies_1)
@@ -91,7 +91,7 @@ func _set_base_zones(difficulty: float) -> void:
 	#Zone 2 Handling
 	var enemies_2 = []
 	for i in range(4):
-		var rand_index = randi_range(0, 4)
+		var rand_index = 4#randi_range(0, 4)
 		enemies_2.push_back(BASE_ENEMIES[rand_index])
 	num_enemies += enemies_2.size();
 	zone_2.set_enemies(SPAWNPOINTS_2.duplicate(), enemies_2)
@@ -99,7 +99,7 @@ func _set_base_zones(difficulty: float) -> void:
 	#Zone 3 Handling
 	var enemies_3 = []
 	for i in range(4):
-		var rand_index = randi_range(0, 4)
+		var rand_index = 4#randi_range(0, 4)
 		enemies_3.push_back(BASE_ENEMIES[rand_index])
 	num_enemies += enemies_3.size();
 	zone_3.set_enemies(SPAWNPOINTS_3.duplicate(), enemies_3)

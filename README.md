@@ -96,20 +96,23 @@ Created Animation for health bar changing, and designed health bar to fit with t
 Created dynamic crosshair reload animation so that the time for the animation lines up with the guns reload time.
 
 
-## Game Feel
+## Game Feel  
 
-**Gun Aiming**
-<img width="353" height="527" alt="image" src="https://github.com/user-attachments/assets/3921030a-0d11-491a-929d-122c1329bba5" />
+
+**Gun Aiming**  
+<img width="353" height="527" alt="image" src="https://github.com/user-attachments/assets/3921030a-0d11-491a-929d-122c1329bba5" />  
 Depending on where the player is looking, the model switches which direction it looks and the gun rotates with the mouse cursor to look exactly
 where the player is looking. This allows for smooth gameplay, where the player can focus aiming individually from movement. 
 
-**Gun Rotation, Position Offset, and Projectile Spawn Offsets**
-<img width="420" height="544" alt="image" src="https://github.com/user-attachments/assets/86d15348-7ee0-490a-883f-937f6c6a294d" />
+
+**Gun Rotation, Position Offset, and Projectile Spawn Offsets**  
+<img width="420" height="544" alt="image" src="https://github.com/user-attachments/assets/86d15348-7ee0-490a-883f-937f6c6a294d" />  
 Manually changed the offsets and position of each gun to have the rotation to look natural even on the change of the size of the gun.
 All of this information was manually edited and is in (gun_data.gd)[https://github.com/brianli378/ecs179-final-project/blob/bd280ceb1ddd8d4181a454adb475c3dd9e8ed069/2d-roguelike/scripts/gun_data.gd#L1-L242]
 
-**Adjusting Map Collision**
-<img width="256" height="98" alt="image" src="https://github.com/user-attachments/assets/a0ec1fa9-2add-487d-859e-459425d6d0d1" />
+
+**Adjusting Map Collision**  
+<img width="256" height="98" alt="image" src="https://github.com/user-attachments/assets/a0ec1fa9-2add-487d-859e-459425d6d0d1" />  
 Manually adjusting map collisions so enemies and players wouldnt get stuck on map objects, and make the movement more fluid.
 
 ## Other Contrubutions

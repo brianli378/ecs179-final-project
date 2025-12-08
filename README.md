@@ -42,13 +42,13 @@ Add addition contributions in the Other Contributions section.
 # Alyssa Goldgeisser - [github](https://github.com/killmanjaro) #
 ## Animation and Visuals
 
-**Character Design**
+**Character Design**  
 Using Aseprite, I created animations for our player character. The character design went through many iterations until it was something I was happy with. 
 I wanted to design a character that would be visually distinct, with their own symbol/color so they could be recognizable. Her symbol is the red spade,
 which kinda looks like an ubside down heart due to the small amount of pixels. This character and her colors are supposed to look unique around the background
 of the simulation, showing the distinction between her and the rest of the world. 
 
-**First Character Design**
+**First Character Design**  
 <img width="1153" height="554" alt="image" src="https://github.com/user-attachments/assets/3182e5ea-b740-4801-ba3e-a97f14792074" />
 This was okay, but it was a little too detailed to fit in with the rest of the game. I realized when working with guns they would need
 to fit the same level of detail which wasnt attainable. Also, the character looks a little unfit for a shooter game, where this type

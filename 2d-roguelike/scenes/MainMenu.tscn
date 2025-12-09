@@ -9,7 +9,7 @@
 font_size = 56
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ow34m"]
-size = Vector2(1, 64)
+size = Vector2(0, 64)
 
 [node name="MainMenu" type="MarginContainer"]
 offset_right = 1280.0

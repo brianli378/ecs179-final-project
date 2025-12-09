@@ -26,10 +26,11 @@ func initialize(spec: ProjectileSpec, final_damage: float):
 func _on_body_entered(_body: Node) -> void:
 	if npc_shot:
 		if _body is Player:
-			_body.health -= 1
+			_body.health -= damage/2
 	else:
 		if _body is BasicEnemy:
-			_body.health -= 50
+			_body.health -= damage
+			print(damage)
 	if not _body is Projectile:
 		queue_free()
 

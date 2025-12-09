@@ -274,9 +274,9 @@ func _finish_reload(gun_key: String) -> void:
 	
 	var taken: int = min(needed, reserve)
 	mag += taken
-	reserve -= taken
+	#reserve -= taken
 	ammo_in_mag[gun_key] = mag
-	ammo_in_reserve[gun_key] = reserve
+	#ammo_in_reserve[gun_key] = reserve
 	is_reloading = false
 
 

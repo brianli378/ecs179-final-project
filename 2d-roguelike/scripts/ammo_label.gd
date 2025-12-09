@@ -12,6 +12,6 @@ func _process(_delta: float) -> void:
 	var index = gun_manager.curr_gun_index
 	var key = gun_keys[index]
 	var mag = int(gun_manager.ammo_in_mag.get(key, 0))
-	var reserve = int(gun_manager.ammo_in_reserve.get(key, 0))
+	#var reserve = int(gun_manager.ammo_in_reserve.get(key, 0))
 	
-	text = "%d / %d" % [mag, reserve]
+	text = "%d" % [mag]

@@ -38,127 +38,15 @@ var default_gun_texture: Texture2D = preload("res://assets/placeholder_gun.svg")
 
 var gun_sprite: Sprite2D
 
-var gun_textures: Dictionary = {
-	# base guns
-	"pistol": preload("res://assets/guns/pistol_sprite_2.png"),
-	"machine gun": preload("res://assets/guns/machinegun_sprite.png"), 
-	"sniper": preload("res://assets/guns/sniper_sprite.png"),
-	"shotgun": preload("res://assets/guns/shotgun_sprite.png"),
-	"rocket launcher": preload("res://assets/guns/rocket_launcher_sprite.png"),
-	
-	# pistol fusions
-	"potgun": preload("res://assets/guns/potgun_sprite.png"),
-	"pocket launcher": preload("res://assets/guns/pocket_launcher_sprite.png"),
-	"piper": preload("res://assets/guns/piper_sprite.png"),
-	"pachine gun": preload("res://assets/guns/pachine_gun_sprite.png"),
-	
-	# shotgun fusions
-	"shistol": preload("res://assets/guns/shistol_sprite.png"),
-	"shocket launcher": preload("res://assets/guns/shocket_launcher_sprite.png"),
-	"shiper": preload("res://assets/guns/shiper_sprite.png"),
-	"shachine gun": preload("res://assets/guns/shachine_gun_sprite.png"),
-	
-	# rocket launcher fusions
-	"rocket pistol": preload("res://assets/guns/rocket_pistol_sprite.png"),
-	"rocket shotgun":  preload("res://assets/guns/rocket_shotgun_sprite.png"),
-	"rocket sniper":  preload("res://assets/guns/rocket_sniper_sprite.png"),
-	"rockchine gun":  preload("res://assets/guns/rockchine_gun_sprite.png"),
-	
-	# sniper fusions
-	"laser pistol": preload("res://assets/guns/laser_pistol_sprite.png"),
-	"laser shotgun": preload("res://assets/guns/laser_shotgun_sprite.png"),
-	"laser rocket launcher": preload("res://assets/guns/laser_rocket_launcher_sprite.png"),
-	"laser machine gun": preload("res://assets/guns/laser_machinegun_sprite.png"),
-	
-	# machine gun fusions
-	"machine pistol": preload("res://assets/guns/machine_pistol_sprite.png"), 
-	"machinegungun": preload("res://assets/guns/machinegun_gun_sprite.png"), 
-	"machine launcher": preload("res://assets/guns/machine_launcher_sprite.png"), 
-	"machineper": preload("res://assets/guns/machine_per_sprite.png")
-}
+# replaced with values from GunData
+var gun_textures: Dictionary = GunData.gun_textures
+var gun_offsets_right: Dictionary = GunData.gun_offsets_right
+var gun_offsets_left: Dictionary = GunData.gun_offsets_left
+var gun_sprite_positions: Dictionary = GunData.gun_sprite_positions
+var projectile_spawn_offsets: Dictionary = GunData.projectile_spawn_offsets
+var fusion_recipes: Dictionary = GunData.fusion_recipes
+var fusion_gun_classes: Dictionary = GunData.fusion_gun_classes
 
-# Gun specific offsets when facing right
-var gun_offsets_right: Dictionary = {
-	"pistol": Vector2(-90, 20),
-	"machine gun": Vector2(-40, 25),
-	"sniper": Vector2(0, 0),
-	"shotgun": Vector2(0, 0), 
-	"rocket launcher": Vector2(0, 0)
-}
-
-# Gun specific offsets when facing right
-var gun_offsets_left: Dictionary = {
-	"pistol": Vector2(90, 20),
-	"machine gun": Vector2(40, 25),
-	"sniper": Vector2(0, 0),
-	"shotgun": Vector2(0, 0), 
-	"rocket launcher": Vector2(0, 0)
-}
-
-# Rotation pivot location
-var gun_sprite_positions: Dictionary = {
-	"pistol": Vector2(-20, 0),
-	"machine gun": Vector2(-175, 0),
-	"sniper": Vector2(-200, 0),
-	"shotgun": Vector2(0, 0), 
-	"rocket launcher": Vector2(-200, -60)
-}
-
-# Projectile spawn location
-var projectile_spawn_offsets: Dictionary = {
-	"pistol": Vector2(50, 0),
-	"machine gun": Vector2(120, 20),
-	"sniper": Vector2(430, 20),
-	"shotgun": Vector2(250, 0), 
-	"rocket launcher": Vector2(250, 25)
-}
-
-# FUSION LOGIC
-var fusion_recipes: Dictionary = {
-	"pistol+shotgun": "potgun",
-	"pistol+rocket launcher": "pocket launcher",
-	"pistol+sniper": "piper",
-	"pistol+machine gun": "pachine gun",
-	"shotgun+pistol": "shistol",
-	"shotgun+rocket launcher": "shocket launcher",
-	"shotgun+sniper": "shiper",
-	"shotgun+machine gun": "shachine gun",
-	"rocket launcher+pistol": "rocket pistol",
-	"rocket launcher+shotgun": "rocket shotgun",
-	"rocket launcher+sniper": "rocket sniper",
-	"rocket launcher+machine gun": "rockchine gun",
-	"sniper+pistol": "laser pistol",
-	"sniper+shotgun": "laser shotgun",
-	"sniper+rocket launcher": "laser rocket launcher",
-	"sniper+machine gun": "laser machine gun",
-	"machine gun+pistol": "machine pistol",
-	"machine gun+shotgun": "machinegun gun",
-	"machine gun+rocket launcher": "machine launcher",
-	"machine gun+sniper": "machineper"
-}
-
-var fusion_gun_classes: Dictionary = {
-	"potgun": Potgun,
-	"pocket launcher": PocketLauncher,
-	"piper": Piper,
-	"pachine gun": PachineGun,
-	"shistol": Shistol,
-	"shocket launcher": ShocketLauncher,
-	"shiper": Shiper,
-	"shachine gun": ShachineGun,
-	"rocket pistol": RocketPistol,
-	"rocket shotgun": RocketShotgun,
-	"rocket sniper": RocketSniper,
-	"rockchine gun": RockchineGun,
-	"laser pistol": LaserPistol,
-	"laser shotgun": LaserShotgun,
-	"laser rocket launcher": LaserRocketLauncher,
-	"laser machine gun": LaserMachineGun,
-	"machine pistol": MachinePistol,
-	"machinegun gun": MachineGunGun,
-	"machine launcher": MachineLauncher,
-	"machineper": Machineper
-}
 
 var guns_for_player: Array[String]
 

@@ -1,0 +1,263 @@
+[gd_scene load_steps=35 format=3 uid="uid://dfob77al3r2l3"]
+
+[ext_resource type="Script" uid="uid://ckotjxg6pcfyy" path="res://scripts/game.gd" id="1_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://cjfuyyu8dl486" path="res://scenes/player.tscn" id="1_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://ck8xgy356oeee" path="res://scenes/object.tscn" id="2_lnu2h"]
+[ext_resource type="Texture2D" uid="uid://bjrm7q5gp25pu" path="res://assets/ui/health_bar_border.png" id="4_dinhu"]
+[ext_resource type="Script" uid="uid://c1ii6nabjc5qe" path="res://scripts/ammo_label.gd" id="4_lbhrr"]
+[ext_resource type="Script" uid="uid://ddmp30xmc3gcl" path="res://scripts/reload_label.gd" id="5_iywne"]
+[ext_resource type="Texture2D" uid="uid://cqa7o5ak1q7s5" path="res://assets/ui/health_bar_texture.png" id="5_kvuet"]
+[ext_resource type="Script" uid="uid://s363ofsklory" path="res://scenes/crosshair.gd" id="6_p57ef"]
+[ext_resource type="Texture2D" uid="uid://cvefbghncbgqw" path="res://assets/ui/crosshair.png" id="7_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://bje63w7hiommj" path="res://assets/ui/crosshair_reload.png" id="8_gee14"]
+[ext_resource type="PackedScene" uid="uid://cbp7rkfxj7ph8" path="res://scenes/maps.tscn" id="9_0tnpc"]
+[ext_resource type="Script" uid="uid://ye17l3xnaqjk" path="res://scenes/health_bar.gd" id="9_vtaks"]
+[ext_resource type="Script" uid="uid://bqayfm018yn32" path="res://scripts/inventory_ui.gd" id="12_kvuet"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tnpc"]
+atlas = ExtResource("8_gee14")
+region = Rect2(0, 0, 119, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtaks"]
+atlas = ExtResource("8_gee14")
+region = Rect2(119, 0, 119, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvpfn"]
+atlas = ExtResource("8_gee14")
+region = Rect2(238, 0, 119, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dinhu"]
+atlas = ExtResource("8_gee14")
+region = Rect2(357, 0, 119, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvuet"]
+atlas = ExtResource("8_gee14")
+region = Rect2(476, 0, 119, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trtic"]
+atlas = ExtResource("8_gee14")
+region = Rect2(595, 0, 119, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ir15t"]
+atlas = ExtResource("8_gee14")
+region = Rect2(714, 0, 119, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ca42v"]
+atlas = ExtResource("8_gee14")
+region = Rect2(833, 0, 119, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rysoc"]
+atlas = ExtResource("8_gee14")
+region = Rect2(952, 0, 119, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ssvqc"]
+atlas = ExtResource("8_gee14")
+region = Rect2(1071, 0, 119, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_264po"]
+atlas = ExtResource("8_gee14")
+region = Rect2(1190, 0, 119, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1kice"]
+atlas = ExtResource("8_gee14")
+region = Rect2(1309, 0, 119, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5newe"]
+atlas = ExtResource("8_gee14")
+region = Rect2(1428, 0, 119, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37s47"]
+atlas = ExtResource("8_gee14")
+region = Rect2(1547, 0, 119, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bt5mj"]
+atlas = ExtResource("8_gee14")
+region = Rect2(1666, 0, 119, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1j6l"]
+atlas = ExtResource("8_gee14")
+region = Rect2(1785, 0, 119, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pl11u"]
+atlas = ExtResource("8_gee14")
+region = Rect2(1904, 0, 119, 90)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u5sy4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_u5sy4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0tnpc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtaks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvpfn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dinhu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvuet")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_trtic")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ir15t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ca42v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rysoc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ssvqc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_264po")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1kice")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5newe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37s47")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bt5mj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e1j6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pl11u")
+}],
+"loop": true,
+"name": &"reload",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dinhu"]
+bg_color = Color(0.16078432, 0.15686275, 0.20392157, 1)
+border_width_left = 7
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.37254903, 0.8039216, 0.89411765, 1)
+
+[sub_resource type="Theme" id="Theme_kvuet"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trtic"]
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.37254903, 0.8039216, 0.89411765, 1)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_lnu2h")
+
+[node name="Player" parent="." instance=ExtResource("1_yqjtg")]
+position = Vector2(499, 194)
+scale = Vector2(0.5, 0.5)
+
+[node name="StaticBody2D" parent="." instance=ExtResource("2_lnu2h")]
+position = Vector2(177, 144)
+
+[node name="StaticBody2D2" parent="." instance=ExtResource("2_lnu2h")]
+position = Vector2(490, 414)
+
+[node name="StaticBody2D3" parent="." instance=ExtResource("2_lnu2h")]
+position = Vector2(894, 68)
+
+[node name="StaticBody2D4" parent="." instance=ExtResource("2_lnu2h")]
+position = Vector2(1056, 470)
+
+[node name="StaticBody2D5" parent="." instance=ExtResource("2_lnu2h")]
+position = Vector2(673, 664)
+
+[node name="StaticBody2D6" parent="." instance=ExtResource("2_lnu2h")]
+position = Vector2(82, 577)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 1093.0
+offset_top = 634.0
+offset_right = 1240.0
+offset_bottom = 693.0
+theme_override_font_sizes/font_size = 39
+text = "0 / 0"
+script = ExtResource("4_lbhrr")
+gun_manager_path = NodePath("../../Player/Body/Gun")
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_left = 1114.0
+offset_top = 616.0
+offset_right = 1230.0
+offset_bottom = 639.0
+text = "RELOADING..."
+script = ExtResource("5_iywne")
+gun_manager_path = NodePath("../../Player/Body/Gun")
+
+[node name="Crosshair" type="Node2D" parent="CanvasLayer"]
+z_index = 10
+script = ExtResource("6_p57ef")
+gun_manager_path = NodePath("../../Player/Body/Gun")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Crosshair"]
+sprite_frames = SubResource("SpriteFrames_u5sy4")
+animation = &"reload"
+
+[node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture_over = ExtResource("4_dinhu")
+texture_progress = ExtResource("5_kvuet")
+script = ExtResource("9_vtaks")
+
+[node name="InventoryPanel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -490.0
+offset_top = -260.0
+offset_right = 510.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dinhu")
+script = ExtResource("12_kvuet")
+gun_manager_path = NodePath("../../Player/Body/Gun")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/InventoryPanel"]
+layout_mode = 0
+offset_right = 1000.0
+offset_bottom = 498.0
+
+[node name="GunsContainer" type="GridContainer" parent="CanvasLayer/InventoryPanel/MarginContainer"]
+layout_mode = 2
+theme = SubResource("Theme_kvuet")
+columns = 6
+
+[node name="Panel" type="Panel" parent="CanvasLayer/InventoryPanel/MarginContainer/GunsContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_trtic")
+
+[node name="Maps" parent="." instance=ExtResource("9_0tnpc")]
+
+[editable path="Player"]

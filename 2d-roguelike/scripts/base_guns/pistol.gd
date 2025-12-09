@@ -3,7 +3,7 @@ extends Gun
 
 
 func _init() -> void:
-	dmg_multiplier = 1
+	dmg_multiplier = 5.0
 	projectile_speed = 1300
 	shot_delay = 0.75
 	projectile_scale = Vector2(0.01, 0.01)

@@ -169,7 +169,7 @@ func _process(_delta: float) -> void:
 				ammo_in_mag[curr_gun_key] = curr_mag - 1
 		else:
 			# auto reload
-			if curr_reserve > 0:
+			if curr_reserve >= 0:
 				_start_reload(curr_gun_key, mag_size, curr_mag, curr_reserve)
 			else:
 				_no_ammo_fire()

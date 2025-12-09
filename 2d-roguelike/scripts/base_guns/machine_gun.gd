@@ -3,7 +3,7 @@ extends Gun
 
 
 func _init() -> void:
-	dmg_multiplier = 0.2
+	dmg_multiplier = 2.0
 	projectile_speed = 1300
 	shot_delay = 0.1
 	projectile_scale = Vector2(0.0075, 0.0075)
@@ -13,4 +13,4 @@ func _init() -> void:
 	magazine_size = 75
 	starting_reserve = 150
 	max_reserve = 300
-	reload_time = 3.5
+	reload_time = 2.0

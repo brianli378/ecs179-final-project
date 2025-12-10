@@ -33,7 +33,7 @@ var guns: Dictionary = {
 	"shotgun": Shotgun.new(),
 	"rocket launcher": RocketLauncher.new()
 }
-	
+
 var gun_keys: Array[String] = ["pistol", "machine gun", "shotgun", "rocket launcher", "sniper"]
 var curr_gun_index: int = 0
 var curr_gun: Gun = null

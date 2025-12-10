@@ -15,8 +15,11 @@ var projectile_library = {
 
 # set the gun for this enemy
 func _ready() -> void:
+	_gun_manager.gun_keys = ['sniper']
 	_gun_manager.curr_gun = Sniper.new()
 	_gun_manager.curr_projectile_spec = projectile_library["laser"]
+	
+	_gun_manager.setup_gun()
 
 func initialize(spec: EnemySpec):
 	_enemy_char.initialize(spec)

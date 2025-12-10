@@ -1,8 +1,8 @@
 class_name ProjectileFactory
 extends Node
 
-var projectile_scene = preload("res://scenes/projectile.tscn")
-var rocket_projectile_scene = preload("res://scenes/rocket_projectile.tscn")
+var projectile_scene = preload("res://scenes/projectiles/projectile.tscn")
+var rocket_projectile_scene = preload("res://scenes/projectiles/rocket_projectile.tscn")
 
 func create_projectile(spec: ProjectileSpec, final_damage: float) ->  Projectile:
 	var projectile: Projectile

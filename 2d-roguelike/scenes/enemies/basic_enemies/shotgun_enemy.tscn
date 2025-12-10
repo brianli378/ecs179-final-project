@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://1cbmn23pmvic"]
 
-[ext_resource type="Script" uid="uid://dlo1ok411d8wj" path="res://scripts/enemies/shotgun_enemy.gd" id="1_swia0"]
+[ext_resource type="Script" uid="uid://dlo1ok411d8wj" path="res://scripts/enemies/enemy_setup/shotgun_enemy.gd" id="1_swia0"]
 [ext_resource type="PackedScene" uid="uid://coypppkp7t2ii" path="res://scenes/enemies/basic_enemy.tscn" id="2_8l5qr"]
 [ext_resource type="Texture2D" uid="uid://bv4vl5jgtfhxp" path="res://assets/guns/shotgun_sprite.png" id="3_8l5qr"]
 

@@ -1,18 +1,18 @@
 extends Node2D
 
-var _menu:Resource = load("res://scenes/MainMenu.tscn")
+var _menu:Resource = load("res://scenes/menus/main_menu.tscn")
 var _menu_node:Node
 
-var _death_menu:Resource = load("res://scenes/death_menu.tscn")
+var _death_menu:Resource = load("res://scenes/menus/death_menu.tscn")
 var _death_menu_node:Node
 
-var _pause_menu:Resource = load("res://scenes/pause_menu.tscn")
+var _pause_menu:Resource = load("res://scenes/menus/pause_menu.tscn")
 var _pause_menu_node:Node
 
 var _game:Resource = load("res://scenes/game.tscn")
 var _game_node:Node
 
-var _controls:Resource = load("res://scenes/controls.tscn")
+var _controls:Resource = load("res://scenes/menus/controls_menu.tscn")
 var _controls_node:Node
 
 var visibleNames:Array[String] = []

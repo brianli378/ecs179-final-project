@@ -2,17 +2,17 @@
 
 [ext_resource type="Script" uid="uid://ckotjxg6pcfyy" path="res://scripts/game.gd" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://cjfuyyu8dl486" path="res://scenes/player.tscn" id="1_yqjtg"]
-[ext_resource type="PackedScene" uid="uid://ck8xgy356oeee" path="res://scenes/object.tscn" id="2_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://ck8xgy356oeee" path="res://scenes/maps/object.tscn" id="2_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://bjrm7q5gp25pu" path="res://assets/ui/health_bar_border.png" id="4_dinhu"]
-[ext_resource type="Script" uid="uid://c1ii6nabjc5qe" path="res://scripts/menus/ammo_label.gd" id="4_lbhrr"]
-[ext_resource type="Script" uid="uid://ddmp30xmc3gcl" path="res://scripts/menus/reload_label.gd" id="5_iywne"]
+[ext_resource type="Script" uid="uid://c1ii6nabjc5qe" path="res://scripts/ui/ammo_label.gd" id="4_lbhrr"]
+[ext_resource type="Script" uid="uid://ddmp30xmc3gcl" path="res://scripts/ui/reload_label.gd" id="5_iywne"]
 [ext_resource type="Texture2D" uid="uid://cqa7o5ak1q7s5" path="res://assets/ui/health_bar_texture.png" id="5_kvuet"]
-[ext_resource type="Script" uid="uid://s363ofsklory" path="res://scenes/crosshair.gd" id="6_p57ef"]
+[ext_resource type="Script" uid="uid://s363ofsklory" path="res://scripts/ui/crosshair.gd" id="6_p57ef"]
 [ext_resource type="Texture2D" uid="uid://cvefbghncbgqw" path="res://assets/ui/crosshair.png" id="7_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://bje63w7hiommj" path="res://assets/ui/crosshair_reload.png" id="8_gee14"]
-[ext_resource type="PackedScene" uid="uid://cbp7rkfxj7ph8" path="res://scenes/maps.tscn" id="9_0tnpc"]
-[ext_resource type="Script" uid="uid://ye17l3xnaqjk" path="res://scenes/health_bar.gd" id="9_vtaks"]
-[ext_resource type="Script" uid="uid://bqayfm018yn32" path="res://scripts/menus/inventory_ui.gd" id="12_kvuet"]
+[ext_resource type="PackedScene" uid="uid://cbp7rkfxj7ph8" path="res://scenes/maps/maps.tscn" id="9_0tnpc"]
+[ext_resource type="Script" uid="uid://ye17l3xnaqjk" path="res://scripts/ui/health_bar.gd" id="9_vtaks"]
+[ext_resource type="Script" uid="uid://bqayfm018yn32" path="res://scripts/ui/inventory_ui.gd" id="12_kvuet"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0tnpc"]
 atlas = ExtResource("8_gee14")
@@ -166,7 +166,7 @@ border_width_right = 3
 border_width_bottom = 3
 border_color = Color(0.37254903, 0.8039216, 0.89411765, 1)
 
-[node name="Node2D" type="Node2D"]
+[node name="Game" type="Node2D"]
 script = ExtResource("1_lnu2h")
 
 [node name="Player" parent="." instance=ExtResource("1_yqjtg")]

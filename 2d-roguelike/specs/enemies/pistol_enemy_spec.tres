@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="EnemySpec" load_steps=3 format=3 uid="uid://df5i42mpyebqu"]
 
-[ext_resource type="PackedScene" uid="uid://doj05njfuwl4e" path="res://scenes/gun2.tscn" id="1_mh6a8"]
-[ext_resource type="Script" uid="uid://cphj1fdaujj61" path="res://scripts/enemies/enemy_spec.gd" id="2_lbyyo"]
+[ext_resource type="PackedScene" uid="uid://doj05njfuwl4e" path="res://scenes/enemies/enemy_gun.tscn" id="1_mh6a8"]
+[ext_resource type="Script" uid="uid://cphj1fdaujj61" path="res://specs/enemies/enemy_spec.gd" id="2_lbyyo"]
 
 [resource]
 script = ExtResource("2_lbyyo")
-enemy_scene_path = "res://scenes/enemies/pistol_enemy.tscn"
+enemy_scene_path = "res://scenes/enemies/basic_enemies/pistol_enemy.tscn"
 health = 100
 damage = 10.0
 speed = 600.0

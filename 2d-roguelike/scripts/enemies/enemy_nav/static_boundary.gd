@@ -1,4 +1,5 @@
 ## source: https://casraf.dev/2024/09/pathfinding-guide-for-2d-top-view-tiles-in-godot-4-3/
+# optimized with help from LLMs
 
 extends TileMapLayer
 
@@ -11,10 +12,10 @@ func _populate_obstacle_cells() -> void:
 	for cell in get_used_cells():
 		var tile_data = get_cell_tile_data(cell)
 		if tile_data.get_collision_polygons_count(0) > 0:
-			_obstacle_cells[cell] = true  # store cell as key
+			_obstacle_cells[cell] = true
 
 func _is_used_by_obstacle(coords: Vector2i) -> bool:
-	return _obstacle_cells.has(coords)  # O(1) lookup
+	return _obstacle_cells.has(coords)
 
 func _use_tile_data_runtime_update(coords: Vector2i) -> bool:
 	return not _is_used_by_obstacle(coords)

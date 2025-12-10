@@ -9,7 +9,7 @@ extends Node2D
 @onready var world: World = $"/root/World"
 @onready var game: Game = $"../"
 
-var enemy_emitter = preload("res://scripts/enemies/basic_enemy.gd")
+var enemy_emitter = preload("res://scripts/enemies/enemy.gd")
 var pistol_enemy_spec = load("res://specs/enemies/pistol_enemy_spec.tres")
 var machine_gun_enemy_spec = load("res://specs/enemies/machine_gun_enemy_spec.tres")
 var sniper_enemy_spec = load("res://specs/enemies/sniper_enemy_spec.tres")

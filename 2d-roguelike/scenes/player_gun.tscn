@@ -1,13 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://ciun46ifyhx6v"]
 
-[ext_resource type="Script" uid="uid://c36483pxjdqw" path="res://scripts/guns/gun_manager.gd" id="2_gp1hk"]
-[ext_resource type="Texture2D" uid="uid://d0opbe7n8wpat" path="res://assets/guns/pistol_sprite.png" id="2_og67c"]
+[ext_resource type="Script" uid="uid://c36483pxjdqw" path="res://scripts/guns/gun_manager.gd" id="1_wjk2r"]
+[ext_resource type="Texture2D" uid="uid://d0opbe7n8wpat" path="res://assets/guns/pistol_sprite.png" id="2_gf8w7"]
 
-[node name="Gun" type="Sprite2D"]
+[node name="PlayerGun" type="Sprite2D"]
 scale = Vector2(1.1484375, 0.3046875)
 centered = false
 offset = Vector2(-10, -75)
-script = ExtResource("2_gp1hk")
+script = ExtResource("1_wjk2r")
 offset_right = null
 offset_left = null
 reload_time = null
@@ -17,7 +17,7 @@ reload_time = null
 [node name="Sprite2D" type="Sprite2D" parent="RotationPivot"]
 z_index = 1
 position = Vector2(-10, 0)
-texture = ExtResource("2_og67c")
+texture = ExtResource("2_gf8w7")
 centered = false
 offset = Vector2(-11.346943, -36.10241)
 

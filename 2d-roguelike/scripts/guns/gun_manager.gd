@@ -14,7 +14,7 @@ const GunSpec = preload("res://specs/gun_spec.gd")
 @export var offset_left: Vector2 = Vector2(90, 20)
 @export var reload_time: float = 0.0
 
-var _projectile_scene = preload("res://scenes/projectile.tscn")
+var _projectile_scene = preload("res://scenes/projectiles/projectile.tscn")
 
 var projectile_library = {
 	"normal": preload("res://specs/projectiles/normal_projectile.tres"),

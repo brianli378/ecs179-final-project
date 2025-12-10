@@ -35,7 +35,7 @@ func _on_body_entered(_body: Node) -> void:
 			
 			
 	else:
-		if _body is BasicEnemy:
+		if _body is Enemy:
 			_body.health -= damage
 			print(damage)
 	if not _body is Projectile:

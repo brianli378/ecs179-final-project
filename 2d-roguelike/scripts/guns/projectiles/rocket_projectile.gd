@@ -40,7 +40,7 @@ func _explode() -> void:
 		var damage_multiplier = 1.0 - (distance / explosion_radius)
 		damage_multiplier = clamp(damage_multiplier, 0.0, 1.0)
 			
-		if not npc_shot and body is BasicEnemy:
+		if not npc_shot and body is Enemy:
 			body.health -= damage * damage_multiplier
 		elif npc_shot and body is Player:
 			#print(str(damage))

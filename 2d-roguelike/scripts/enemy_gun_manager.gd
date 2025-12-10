@@ -39,13 +39,13 @@ var default_gun_texture: Texture2D = preload("res://assets/placeholder_gun.svg")
 var gun_sprite: Sprite2D
 
 # replaced with values from GunData
-var gun_textures: Dictionary = GunData.gun_textures
-var gun_offsets_right: Dictionary = GunData.gun_offsets_right
-var gun_offsets_left: Dictionary = GunData.gun_offsets_left
-var gun_sprite_positions: Dictionary = GunData.gun_sprite_positions
-var projectile_spawn_offsets: Dictionary = GunData.projectile_spawn_offsets
-var fusion_recipes: Dictionary = GunData.fusion_recipes
-var fusion_gun_classes: Dictionary = GunData.fusion_gun_classes
+var gun_offsets_right: Dictionary = GunData.gun_offsets_right.duplicate(true)
+var gun_offsets_left: Dictionary = GunData.gun_offsets_left.duplicate(true)
+var gun_sprite_positions: Dictionary = GunData.gun_sprite_positions.duplicate(true)
+var projectile_spawn_offsets: Dictionary = GunData.projectile_spawn_offsets.duplicate(true)
+var gun_textures: Dictionary = GunData.gun_textures.duplicate(true)
+var fusion_recipes: Dictionary = GunData.fusion_recipes.duplicate(true)  # only if you modify it
+var fusion_gun_classes: Dictionary = GunData.fusion_gun_classes.duplicate(true) # only if you modify it
 
 
 var guns_for_player: Array[String]

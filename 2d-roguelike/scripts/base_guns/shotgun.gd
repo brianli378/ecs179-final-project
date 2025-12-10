@@ -2,7 +2,7 @@ class_name Shotgun
 extends Gun
 
 func _init() -> void:
-	dmg_multiplier = 0.8
+	dmg_multiplier = 2.0
 	projectile_speed = 1000
 	shot_delay = 1.5
 	projectile_scale = Vector2(0.01, 0.01)

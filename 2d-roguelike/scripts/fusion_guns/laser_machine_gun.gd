@@ -1,16 +1,23 @@
 class_name LaserMachineGun
-extends Gun
-
+extends LaserGun
 
 func _init() -> void:
-	dmg_multiplier = 0.1
+	super._init()
+	dmg_multiplier = 0.6
 	projectile_speed = 1200
 	shot_delay = 0.1
-	projectile_scale = Vector2(0.02, 0.02)
+	base_shot_delay = 0.1
+	min_shot_delay = 0.05
+	projectile_scale = Vector2(0.03, 0.03)
 	firing_mode = FiringMode.AUTO
-	projectile_type = "laser"
+	projectile_count = 1
+	spread_angle = 3.0
 	shoot_sound = preload("res://assets/sounds/laser-sound.wav")
-	magazine_size = 9999999
-	starting_reserve = 0
-	max_reserve = 0
-	reload_time = 0.0
+	
+	# Overheat properties
+	max_heat = 100.0
+	heat_per_shot = 5.0
+	cooling_rate = 15.0
+	base_spread = 3.0
+	max_heat_spread = 20.0
+	scales_fire_rate_with_heat = true  # Fire rate increases with heat!

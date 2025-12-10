@@ -26,12 +26,13 @@ func initialize(spec: ProjectileSpec, final_damage: float):
 func _on_body_entered(_body: Node) -> void:
 	if npc_shot:
 		if _body is Player:
-			print(_body.health, "health start")
-			print(damage, "damage")
-			var scaled_damage = damage/4
-			print(scaled_damage, "scaled")
-			print(_body.health - scaled_damage, "health remaining")
-			_body.health -= scaled_damage
+			pass
+			#print(_body.health, "health start")
+			#print(damage, "damage")
+			#var scaled_damage = damage/4
+			#print(scaled_damage, "scaled")
+			#print(_body.health - scaled_damage, "health remaining")
+			#_body.health -= scaled_damage
 			
 			
 	else:

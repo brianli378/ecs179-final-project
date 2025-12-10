@@ -170,6 +170,14 @@ const basic_enemy_gun_offsets_x: Dictionary = {
 	"shotgun": 0,
 }
 
+const base_weapon_to_projectile: Dictionary = {
+	"rocket launcher": "rocket",
+	"sniper": "laser",
+	"machine gun": "normal",
+	"pistol": "normal",
+	"shotgun": "normal",
+}
+
 const projectile_spawn_offsets: Dictionary = {
 	"pistol": Vector2(200, 0),
 	"machine gun": Vector2(220, 20),

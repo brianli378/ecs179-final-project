@@ -30,6 +30,8 @@ var gun_textures: Dictionary = GunData.gun_textures.duplicate(true)
 var fusion_recipes: Dictionary = GunData.fusion_recipes.duplicate(true)  # only if you modify it
 var fusion_gun_classes: Dictionary = GunData.fusion_gun_classes.duplicate(true) # only if you modify it
 var basic_enemy_gun_offsets_x: Dictionary = GunData.basic_enemy_gun_offsets_x.duplicate(true)
+var base_weapon_to_projectile: Dictionary = GunData.base_weapon_to_projectile.duplicate(true)
+
 
 var guns_for_player: Array[String]
 
@@ -132,7 +134,17 @@ func shoot() -> void:
 		
 		self.get_tree().current_scene.add_child(projectile)
 
-func setup_gun():
+func setup_gun(gun_key: String):
+	gun_keys = [gun_key]
+	curr_gun = GunData.guns[gun_key]
+	
+	# slow down machine gun enemy fire rate
+	if gun_key == "machine gun":
+		curr_gun.shot_delay = 0.3
+	
+	curr_projectile_spec = GunData.projectile_library[base_weapon_to_projectile[gun_key]]
+	
+	
 	_set_gun_sprite()
 
 func _create_fusion_gun_instance(fusion_gun_key: String) -> Gun:

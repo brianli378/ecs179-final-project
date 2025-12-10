@@ -121,7 +121,7 @@ Manually adjusting map collisions so enemies and players wouldnt get stuck on ma
 (Fusion gun design document)[https://docs.google.com/document/d/1bNHDFz7tdk0n9OXliNgc_nxGdNC5oqgv6N0_m0_iOEU/edit?tab=t.0]  
 Designed every gun fusion, including stats, inspiration images, and other game examples.
 
-# Brian Li [github](https://github.com/brianli378) #
+# Brian Li - [github](https://github.com/brianli378) #
 ## Game Logic
 My main role was Game Logic. Throughout development, my main focuses on the project were the logic and implementation of the core gameplay systems, including player logic (movement, aim, dash), camera logic (2d lerp camera, camera shake), reload logic, inventory logic and fusion logic. 
 

@@ -28,6 +28,7 @@ var fusion_preview_result: String = ""
 
 # color scheme
 var cyan_color = Color(0, 1, 1, 1)  # Cyan
+var red_color = Color(1, 0, 0, 1)
 var white_color = Color(1, 1, 1, 1)  # White
 
 func _ready() -> void:
@@ -256,7 +257,10 @@ func _refresh_guns() -> void:
 		box_style.border_width_top = 2
 		box_style.border_width_right = 2
 		box_style.border_width_bottom = 2
-		box_style.border_color = cyan_color  # Cyan border
+		if (owned_gun_keys.size() - owned_gun_keys.find(gun_key)) >= 5:
+			box_style.border_color = red_color
+		else:
+			box_style.border_color = cyan_color  # Cyan border
 		gun_box.add_theme_stylebox_override("panel", box_style)
 		gun_box.custom_minimum_size = Vector2(150, 150)
 		

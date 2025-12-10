@@ -6,7 +6,6 @@ extends CharacterBody2D
 # This is the root world scene we can use to switch menus
 var _world:Node2D = World
 const SPEED := 700.0
-@onready var cam := $Camera2Ds
 @onready var head: AnimatedSprite2D = $Head
 @onready var body_sprite: AnimatedSprite2D = $BodySprite
 @onready var health_bar = get_node("../CanvasLayer/HealthBar") 

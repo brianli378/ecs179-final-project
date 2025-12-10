@@ -32,6 +32,7 @@ var last_horizontal_direction := 1  # 1 for right, -1 for left (default to right
 
 var max_health := 100
 var health := 100
+var _dead : bool = false
 
 @onready
 var gun_manager : GunManager = $Body/Gun
@@ -65,6 +66,8 @@ func _process(_delta: float) -> void:
 	
 
 func _physics_process(_delta: float) -> void:
+	if _dead:
+		return
 	var move_direction := Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
 	if Input.is_action_just_pressed("dash") and dash_cooldown <= 0.0 and move_direction != Vector2.ZERO:
 		dash_direction = move_direction
@@ -95,13 +98,11 @@ func _physics_process(_delta: float) -> void:
 
 	if dash_cooldown > 0.0:
 		dash_cooldown = max(0.0, dash_cooldown - _delta)
-
-	if Input.is_action_just_pressed("ui_accept"):
-		_world.death_menu()
 	
 	if Input.is_action_just_pressed("pause"):
 		get_tree().paused = true
 		_world.pause_menu()
+		return
 		
 	# Animation Handling
 	var facing_left = mouse_position.x < player_position.x
@@ -140,6 +141,7 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func _on_death():
+	_dead = true
 	if not death_sound.playing:
 		death_sound.play()
 

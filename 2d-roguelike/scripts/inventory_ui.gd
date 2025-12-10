@@ -244,6 +244,7 @@ func _refresh_guns() -> void:
 		return
 	
 	var owned_gun_keys: Array[String] = gun_manager.get_owned_gun_keys()
+	var i = 0
 	for gun_key in owned_gun_keys:
 		var texture: Texture2D = gun_manager.get_gun_texture(gun_key)
 		if texture == null:
@@ -252,15 +253,15 @@ func _refresh_guns() -> void:
 		# create a container with cyan border
 		var gun_box := Panel.new()
 		var box_style := StyleBoxFlat.new()
-		box_style.bg_color = Color(0.15, 0.15, 0.2, 1)
+		var opacity := 0.0
+		if owned_gun_keys.size() - i > 4:
+			opacity = 1.0
+		box_style.bg_color = Color(0.4, 0.03, 0.03, opacity)
 		box_style.border_width_left = 2
 		box_style.border_width_top = 2
 		box_style.border_width_right = 2
 		box_style.border_width_bottom = 2
-		if (owned_gun_keys.size() - owned_gun_keys.find(gun_key)) >= 5:
-			box_style.border_color = red_color
-		else:
-			box_style.border_color = cyan_color  # Cyan border
+		box_style.border_color = cyan_color  # cyan border
 		gun_box.add_theme_stylebox_override("panel", box_style)
 		gun_box.custom_minimum_size = Vector2(150, 150)
 		
@@ -276,6 +277,7 @@ func _refresh_guns() -> void:
 		guns_container.add_child(gun_box)
 		gun_button_by_key[gun_key] = gun_button
 		gun_box_by_key[gun_key] = gun_box
+		i += 1
 
 func _clear_fusion_slot(slot: Panel) -> void:
 	# clear fusion slot when unselected
@@ -364,7 +366,7 @@ func _update_gun_box_highlight(gun_key: String, highlighted: bool) -> void:
 			box_style.border_width_right = 3
 			box_style.border_width_bottom = 3
 		else:
-			box_style.border_color = cyan_color  # cyan normally
+			box_style.border_color = cyan_color  # cyan border
 			box_style.border_width_left = 2
 			box_style.border_width_top = 2
 			box_style.border_width_right = 2

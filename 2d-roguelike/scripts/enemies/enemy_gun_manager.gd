@@ -31,7 +31,8 @@ var fusion_recipes: Dictionary = GunData.fusion_recipes.duplicate(true)  # only 
 var fusion_gun_classes: Dictionary = GunData.fusion_gun_classes.duplicate(true) # only if you modify it
 var basic_enemy_gun_offsets_x: Dictionary = GunData.basic_enemy_gun_offsets_x.duplicate(true)
 var base_weapon_to_projectile: Dictionary = GunData.base_weapon_to_projectile.duplicate(true)
-
+var boss_gun_offsets: Dictionary = GunData.boss_gun_offsets.duplicate(true)
+var boss_projectile_spawn_offsets: Dictionary = GunData.boss_projectile_spawn_offsets.duplicate(true)
 
 var guns_for_player: Array[String]
 
@@ -60,6 +61,7 @@ func get_gun_texture(gun_key: String) -> Texture2D:
 	if gun_textures.has(gun_key):
 		return gun_textures[gun_key]
 	return default_gun_texture
+
 
 func fuse_guns() -> String:
 	var fusion_gun_key: String = fusion_gun_keys.pick_random()
@@ -131,8 +133,8 @@ func shoot() -> void:
 		
 		shooting_sound.stream = gun_sound
 		shooting_sound.play()
-		
 		self.get_tree().current_scene.add_child(projectile)
+
 
 func setup_gun(gun_key: String):
 	gun_keys = [gun_key]
@@ -144,8 +146,14 @@ func setup_gun(gun_key: String):
 	
 	curr_projectile_spec = GunData.projectile_library[base_weapon_to_projectile[gun_key]]
 	
-	
 	_set_gun_sprite()
+
+
+func _ready() -> void:
+	curr_projectile_spec = GunData.projectile_library["normal"]
+	
+	_player = get_tree().get_first_node_in_group("player")
+
 
 func _create_fusion_gun_instance(fusion_gun_key: String) -> Gun:
 	if not fusion_gun_classes.has(fusion_gun_key):
@@ -172,50 +180,23 @@ func _update_gun_texture_for_boss() -> void:
 		gun_sprite.visible = true
 		gun_sprite.texture = gun_textures[curr_gun_key]
 		gun_sprite.position = gun_sprite_positions[curr_gun_key]
-		match curr_gun_key:
-			"rocket sniper":
-				gun_sprite.position.x += 80
-			"laser shotgun":
-				gun_sprite.position.x += 80
-			"pachine gun":
-				gun_sprite.position.x -= 30
-			"machineper":
-				gun_sprite.position.x += 80
-				gun_sprite.position.y -= 30
-			_:
-				pass
+		
+		if curr_gun_key in boss_gun_offsets:
+			gun_sprite.position += boss_gun_offsets[curr_gun_key]
 	else:
 		push_error("Invalid gun index or gun_sprite not found: " + str(curr_gun_key))
-		
+
 
 func _update_projectile_spawn_position_for_boss() -> void:
 	var curr_gun_key = gun_keys[curr_gun_index]
 	
 	if projectile_spawn and projectile_spawn_offsets.has(curr_gun_key):
 		projectile_spawn.position = projectile_spawn_offsets[curr_gun_key]
-		match curr_gun_key:
-			"rocket sniper":
-				projectile_spawn.position.x -= 120
-				projectile_spawn.position.y -= 80
-			"pachine gun":
-				projectile_spawn.position.x -= 30
-			"machineper":
-				projectile_spawn.position.x += 80
-				projectile_spawn.position.y -= 30
-			"laser shotgun":
-				projectile_spawn.position.x -= 360
-			"shocket launcher":
-				projectile_spawn.position.x -= 80
-			_:
-				pass
+		
+		if curr_gun_key in boss_projectile_spawn_offsets:
+			projectile_spawn.position += boss_projectile_spawn_offsets[curr_gun_key]
 	else:
 		push_error("Invalid gun index or projectile_spawn not found: " + str(curr_gun_key))
-
-
-func _ready() -> void:
-	curr_projectile_spec = GunData.projectile_library["normal"]
-	
-	_player = get_tree().get_first_node_in_group("player")
 
 
 func _set_gun_sprite() -> void:
@@ -229,8 +210,6 @@ func _set_gun_sprite() -> void:
 	
 	gun_sprite.visible = true
 	gun_sprite.position.x += basic_enemy_gun_offsets_x[curr_gun_key]
-	
-	get_child(0).add_child(gun_sprite)
 
 
 func _process(_delta: float) -> void:
@@ -238,7 +217,6 @@ func _process(_delta: float) -> void:
 		return
 	_time_since_last_shot += _delta
 	var direction: Vector2 = (_player.global_position - global_position).normalized()
-	#look_at()
 	
 	if direction.x < 0:
 		scale.x = -1  # Flip the gun vertically

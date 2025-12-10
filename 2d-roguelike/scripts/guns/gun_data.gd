@@ -178,6 +178,21 @@ const base_weapon_to_projectile: Dictionary = {
 	"shotgun": "normal",
 }
 
+const boss_gun_offsets: Dictionary = {
+	"rocket sniper": Vector2(80, 0),
+	"laser shotgun": Vector2(80, 0),
+	"pachine gun": Vector2(-30, 0),
+	"machineper": Vector2(80, -30),
+}
+
+const boss_projectile_spawn_offsets: Dictionary = {
+	"rocket sniper": Vector2(-120, -80),
+	"pachine gun": Vector2(-200, -30),
+	"machineper": Vector2(-40, -50),
+	"laser shotgun": Vector2(-360, 0),
+	"shocket launcher": Vector2(-80, 0),
+}
+
 const projectile_spawn_offsets: Dictionary = {
 	"pistol": Vector2(200, 0),
 	"machine gun": Vector2(220, 20),

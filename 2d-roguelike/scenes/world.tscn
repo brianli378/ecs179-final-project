@@ -13,8 +13,7 @@ script = ExtResource("1_4wyf3")
 [node name="MainMenu" parent="." instance=ExtResource("2_k0juu")]
 visible = false
 
-[node name="DeathMenu" parent="." instance=ExtResource("4_k0juu")]
-visible = false
+[node name="Game" parent="." instance=ExtResource("3_71j4m")]
 
 [node name="PauseMenu" parent="." instance=ExtResource("5_71j4m")]
 visible = false
@@ -23,7 +22,8 @@ offset_top = -2.0
 offset_right = 1247.0
 offset_bottom = 693.0
 
-[node name="Game" parent="." instance=ExtResource("3_71j4m")]
+[node name="DeathMenu" parent="." instance=ExtResource("4_k0juu")]
+visible = false
 
 [node name="ControlsMenu" parent="." instance=ExtResource("6_qfnet")]
 visible = false

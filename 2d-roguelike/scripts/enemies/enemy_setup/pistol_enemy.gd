@@ -5,7 +5,7 @@ extends Node2D
 var _gun_manager: EnemyGunManager = $BasicEnemy/Body/EnemyGunManager
 
 @onready
-var _enemy_char: BasicEnemy = $BasicEnemy
+var _enemy_char: Enemy = $BasicEnemy
 
 # set the gun for this enemy
 func _ready() -> void:

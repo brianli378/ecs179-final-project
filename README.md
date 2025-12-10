@@ -123,10 +123,39 @@ Designed every gun fusion, including stats, inspiration images, and other game e
 
 # Brian Li [github](https://github.com/brianli378) #
 ## Game Logic
-I developed and implemenyed the majority of the game logic, including the player movement, player aim, player dash, 2D lerp camera, camera shake, reload logic, inventory logic and fusion logic.
+My main role was Game Logic. Throughout development, my main focuses on the project were the logic and implementation of the core gameplay systems, including player logic (movement, aim, dash), camera logic (2d lerp camera, camera shake), reload logic, inventory logic and fusion logic. 
+
+**Player and Camera**
+The player is implemented as a CharacterBody2D with movement and a dash mechanic. The player script reads and responds to the basic WASD user input and "looks at" the global mouse position. On top of basic movement, I also implemented a smooth dash mechanic. When the dash input is pressed, velocity is boosted in the direction the player is moving then decelerates back down to the normal movement velocity. The smooth acceleration and deceleration on the dash make the player movement feel more fluid, and combined with the 2D lerp camera provides a polished movement experience for the player.
+
+I also implemented the camera behavior. Instead of the default 2D position lock camera, I drew inspiration from exercise 2 to implement a 2D version of the 3D lerp position lock camera from the assignment. I also added a camera screen shake function called by the gun manager any time a gun is fired. The add_shake function works by choosing a random offset for x and y between -1.0 and 1.0 and applying it to the camera. The function also takes in a float shake_multiplier as input, allowing adjustable shake intensity for different guns.
+
+**Ammo and Reload**
+When the guns were first added, there was no existing ammo system so all guns could be shot for as long as possible without the need to reload or worry about ammo. I implemented the ammo and reload system inside the gun manager and also added a gun spec file which kept track of the magazine size, starting reserve, max reserve and reload of each weapon. When the player shoots, ammo in the current magazine gets decremented. If the magazine is empty and the player tries to shoot, an auto reload system automatically begins a reload for the player. I also implemented a manual reload triggered by pressing “R” in case the player is low on ammo and wants to reload before getting into a fight. 
+
+To support the reload system, I implemented a CanvasLayer into the game for the player’s HUD. The script would read the current gun key and pull the ammo in the player’s current guns magazine and reserve, displaying them in the standard mag/reserve format. A reloading label also appears whenever the player begins a reload, providing a heads up so the player knows they can’t shoot during that time.
+
+**Inventory**
+The player could cycle through the different guns they were holding, but there was still no way to display all the guns. We also needed somewhere to perform the fusion, so I was in charge of creating the player’s inventory. On button press, a CanvasLayer that contains the inventory appears with containers for each of the player’s weapons. This inventory_ui.gd script connects to the GunManager and reads its gun_keys to determine which weapons the player currently owns. The inventory then dynamically displays those guns for the player. This inventory system was also the base of which I built the fusion system on.
+
+**Fusion**
+To implement the fusion system, I built on the existing gun logic that Alex worked on. The GunManager had a collection of guns identified by string keys for both base weapons (ex: "pistol", "machine gun", "sniper", etc) and fusion weapons ("laser machine gun", "pachine gun", etc). I added the fusion recipes, a mapping from pairs of gun keys to a resulting gun key, and mapping from those fusion gun keys to the actual gun classes that Alex had created. In the inventory UI, I added a fuse button and selection logic. In my original implementation, the player would begin fusion by pressing the fuse button, then click on any two guns in the inventory and press the fuse button one more time to finalize the fusion, removing the consumed weapons (along with their ammo entries) and adding in the new fused weapon into the player inventory. It then initializes the new fusion gun's ammo.
+
 
 ## Gameplay Teating
-I performed extensive testing and also helped fix bugs that ended up surfacing, including bugs where the player sprite glitched from the lerp camera leash, needing to wait shot_delay when switching to a new weapon, needing to wait shot_delay after the player's final bullet before reloading, the player hurt sound repeating infinitely when hit by a rocket and the boss dropping too many guns due to the death logic being called multiples times.
+My secondary role was Gameplay Testing. Along with constantly testing and iterating on my own implementations to make sure they were bug free, I also spent time handling bug fixes that popped up during development. A few notable examples are:
+
+**Weapon swap and fire timing: **
+After the weapon implementation, there was a bug where every time the player switched guns they had to wait _time_since_last_shot until they could shoot the gun they switched to. While this had minimal effect on guns like the machine gun that could shoot very quickly, it could clearly be felt when switching to a sniper or rocket launcher and having to wait a few seconds before being able to shoot the first bullet. I fixed this by resetting the timer on gun switch, making the gun swapping feel a lot more responsive.
+
+**Reloading during fusion: **
+After implementing the fusion system, I ran into a bug where if you reloaded a non-fused gun then fused it and switched to the newly fused gun, the game would completely crash. This was due to the reload logic from guns that no longer existed being accessed. I fixed this by adding safeguards to values accessed in the gun manager.
+
+**Boss dropping duplicate guns: **
+One of our core game mechanics is that the boss drops the player new base weapons which the player can then use to fuse new weapons. While playtesting one day, I ran into an issue where when I killed the boss with a machine gun I would receive way more than the regular 2 guns I was supposed to receive. This ended up being due to the enemy _handle_death function being called multiple times upon boss death. The fix to this was pretty simple, I just moved the _is_dying guard from the bottom of the function to the top so it would return instantly and no longer provide multiple duplicate guns.
+
+**Player hurt sound played nonstop when hit by a rocket: **
+This was another issue that emerged when playtesting. The player's hurt sound was being played repeatedly forever whenever the player got hit by an enemy rocket. The damage sound was played whenever health_bar.value > health and health_bar.update_health(health) was called after. Regular bullets use integer damage but the rocket used float damage and the health_bar was also integer based, so when the player got hit by a float damage rocket and the health dropped to a float number (for example, 7.7), the health bar value would still update to integer 8 so it would loop 8 > 7.7 and play the sound forever. I fixed this by rounding the player damage taken to an integer.
 
 
 

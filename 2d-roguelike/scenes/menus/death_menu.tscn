@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3o364gauu71r"]
+
+[ext_resource type="Texture2D" uid="uid://dr4m8hio6mctl" path="res://assets/ui/NewGame.png" id="1_gm7js"]
+[ext_resource type="Script" uid="uid://bh447cprryfhp" path="res://scripts/menus/start_game_button.gd" id="2_gm7js"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gm7js"]
+font_size = 81
+
+[node name="DeathMenu" type="MarginContainer"]
+offset_left = -36.0
+offset_top = -25.0
+offset_right = 1244.0
+offset_bottom = 704.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Logo" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+stretch_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Logo"]
+layout_mode = 0
+offset_left = 582.0
+offset_top = 344.0
+offset_right = 816.0
+offset_bottom = 458.0
+size_flags_vertical = 3
+alignment = 1
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/Logo/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("1_gm7js")
+stretch_mode = 3
+script = ExtResource("2_gm7js")
+
+[node name="Label" type="Label" parent="VBoxContainer/Logo"]
+layout_mode = 0
+offset_left = 530.0
+offset_top = 175.0
+offset_right = 854.0
+offset_bottom = 257.0
+text = "You died"
+label_settings = SubResource("LabelSettings_gm7js")

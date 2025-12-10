@@ -9,13 +9,13 @@ extends Node2D
 @onready var world: World = $"/root/World"
 @onready var game: Game = $"../"
 
-var enemy_emitter = preload("res://scripts/enemies/basic_enemy.gd")
-var pistol_enemy_spec = load("res://specs/pistol_enemy_spec.tres")
-var machine_gun_enemy_spec = load("res://specs/machine_gun_enemy_spec.tres")
-var sniper_enemy_spec = load("res://specs/sniper_enemy_spec.tres")
-var shotgun_enemy_spec = load("res://specs/shotgun_enemy_spec.tres")
-var rocket_launcher_enemy_spec = load("res://specs/rocket_launcher_enemy_spec.tres")
-var boss_enemy_spec = load("res://specs/boss_enemy_spec.tres")
+var enemy_emitter = preload("res://scripts/enemies/enemy.gd")
+var pistol_enemy_spec = load("res://specs/enemies/pistol_enemy_spec.tres")
+var machine_gun_enemy_spec = load("res://specs/enemies/machine_gun_enemy_spec.tres")
+var sniper_enemy_spec = load("res://specs/enemies/sniper_enemy_spec.tres")
+var shotgun_enemy_spec = load("res://specs/enemies/shotgun_enemy_spec.tres")
+var rocket_launcher_enemy_spec = load("res://specs/enemies/rocket_launcher_enemy_spec.tres")
+var boss_enemy_spec = load("res://specs/enemies/boss_enemy_spec.tres")
 
 var BASE_ENEMIES = [
 		pistol_enemy_spec, 

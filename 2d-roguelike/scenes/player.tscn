@@ -1,7 +1,7 @@
 [gd_scene load_steps=33 format=3 uid="uid://cjfuyyu8dl486"]
 
 [ext_resource type="Script" uid="uid://dpfhd8ckyl4nx" path="res://scripts/player.gd" id="1_3vyb7"]
-[ext_resource type="Script" uid="uid://c36483pxjdqw" path="res://scripts/gun_manager.gd" id="4_dqkch"]
+[ext_resource type="Script" uid="uid://c36483pxjdqw" path="res://scripts/guns/gun_manager.gd" id="4_dqkch"]
 [ext_resource type="Texture2D" uid="uid://48xfikcoknbv" path="res://assets/player/tiny_head_left.png" id="5_d2wvv"]
 [ext_resource type="Script" uid="uid://khln6qoy0c4f" path="res://scripts/position_lock_lerp_camera.gd" id="5_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://d0opbe7n8wpat" path="res://assets/guns/pistol_sprite.png" id="5_y4r1p"]

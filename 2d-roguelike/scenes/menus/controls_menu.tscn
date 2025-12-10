@@ -1,0 +1,115 @@
+[gd_scene load_steps=7 format=3 uid="uid://cc7bae2mmc1i"]
+
+[ext_resource type="FontFile" uid="uid://b8yjskfb0oin0" path="res://assets/Minecraft.ttf" id="1_kdy74"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_at4y3"]
+size = Vector2(0, 50)
+
+[sub_resource type="GDScript" id="GDScript_5qlyv"]
+script/source = "extends TextureButton
+
+var _world:Node2D = World
+
+func _pressed():
+	print(\"starting game\")
+	_world.start_game()
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_wcb4j"]
+font = ExtResource("1_kdy74")
+font_size = 76
+
+[sub_resource type="LabelSettings" id="LabelSettings_yd0o6"]
+font_size = 36
+
+[sub_resource type="LabelSettings" id="LabelSettings_pf2fv"]
+font_size = 46
+
+[node name="ControlsMenu" type="MarginContainer"]
+process_mode = 3
+top_level = true
+offset_right = 1276.0
+offset_bottom = 695.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Logo" type="TextureRect" parent="VBoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(400, 300)
+layout_mode = 2
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/CenterContainer/Logo"]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 526.0
+offset_right = 284.0
+offset_bottom = 598.0
+size_flags_vertical = 3
+alignment = 1
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/CenterContainer/Logo/VBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("PlaceholderTexture2D_at4y3")
+stretch_mode = 3
+script = SubResource("GDScript_5qlyv")
+
+[node name="Title" type="Label" parent="VBoxContainer/CenterContainer/Logo"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 116.0
+offset_right = 346.0
+offset_bottom = 192.0
+text = "Controls"
+label_settings = SubResource("LabelSettings_wcb4j")
+
+[node name="Movement" type="Label" parent="VBoxContainer/CenterContainer/Logo"]
+layout_mode = 0
+offset_left = -411.0
+offset_top = 287.0
+offset_right = 80.0
+offset_bottom = 635.0
+text = "Movement: WASD
+Dash: Shift
+
+"
+label_settings = SubResource("LabelSettings_yd0o6")
+
+[node name="Continue" type="Label" parent="VBoxContainer/CenterContainer/Logo"]
+layout_mode = 0
+offset_left = 79.0
+offset_top = 542.0
+offset_right = 274.0
+offset_bottom = 639.0
+text = "Continue
+"
+label_settings = SubResource("LabelSettings_pf2fv")
+
+[node name="GunStuff" type="Label" parent="VBoxContainer/CenterContainer/Logo"]
+layout_mode = 0
+offset_left = 442.0
+offset_top = 281.0
+offset_right = 891.0
+offset_bottom = 629.0
+text = "Shoot: Mouse Left Click
+Switch Guns: E
+Reload: R"
+label_settings = SubResource("LabelSettings_yd0o6")
+
+[node name="Misc" type="Label" parent="VBoxContainer/CenterContainer/Logo"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 284.0
+offset_right = 501.0
+offset_bottom = 632.0
+text = "Inventory: I or B
+Pause: P
+
+Fuse in your inventory!
+Bosses give more guns!
+
+"
+label_settings = SubResource("LabelSettings_yd0o6")

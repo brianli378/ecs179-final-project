@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ProjectileSpec" load_steps=3 format=3 uid="uid://ba007xiaie8al"]
 
-[ext_resource type="Script" uid="uid://baktn8742q1rt" path="res://scripts/projectile_spec.gd" id="1_i24js"]
+[ext_resource type="Script" uid="uid://baktn8742q1rt" path="res://scripts/guns/projectiles/projectile_spec.gd" id="1_i24js"]
 [ext_resource type="Texture2D" uid="uid://3vjhqdex4vtp" path="res://assets/projectiles/laser_bullet.png" id="2_yujsi"]
 
 [resource]

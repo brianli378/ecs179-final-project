@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://csdcglssx12od"]
 
 [ext_resource type="Script" uid="uid://dporqdc815ox1" path="res://scripts/world.gd" id="1_4wyf3"]
-[ext_resource type="PackedScene" uid="uid://dah2wgypumw50" path="res://scenes/MainMenu.tscn" id="2_k0juu"]
+[ext_resource type="PackedScene" uid="uid://dah2wgypumw50" path="res://scenes/menus/main_menu.tscn" id="2_k0juu"]
 [ext_resource type="PackedScene" uid="uid://dfob77al3r2l3" path="res://scenes/game.tscn" id="3_71j4m"]
-[ext_resource type="PackedScene" uid="uid://b3o364gauu71r" path="res://scenes/death_menu.tscn" id="4_k0juu"]
-[ext_resource type="PackedScene" uid="uid://bpyhbqnnhcgjq" path="res://scenes/pause_menu.tscn" id="5_71j4m"]
-[ext_resource type="PackedScene" uid="uid://cc7bae2mmc1i" path="res://scenes/controls.tscn" id="6_qfnet"]
+[ext_resource type="PackedScene" uid="uid://b3o364gauu71r" path="res://scenes/menus/death_menu.tscn" id="4_k0juu"]
+[ext_resource type="PackedScene" uid="uid://bpyhbqnnhcgjq" path="res://scenes/menus/pause_menu.tscn" id="5_71j4m"]
+[ext_resource type="PackedScene" uid="uid://cc7bae2mmc1i" path="res://scenes/menus/controls_menu.tscn" id="6_qfnet"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_4wyf3")
@@ -25,5 +25,5 @@ offset_bottom = 693.0
 
 [node name="Game" parent="." instance=ExtResource("3_71j4m")]
 
-[node name="Controls" parent="." instance=ExtResource("6_qfnet")]
+[node name="ControlsMenu" parent="." instance=ExtResource("6_qfnet")]
 visible = false

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EnemySpec" load_steps=3 format=3 uid="uid://cvtfynr473vib"]
+
+[ext_resource type="PackedScene" uid="uid://doj05njfuwl4e" path="res://scenes/enemies/enemy_gun.tscn" id="1_usmep"]
+[ext_resource type="Script" uid="uid://cphj1fdaujj61" path="res://specs/enemies/enemy_spec.gd" id="2_fv5tg"]
+
+[resource]
+script = ExtResource("2_fv5tg")
+enemy_scene_path = "res://scenes/enemies/basic_enemies/rocket_launcher_enemy.tscn"
+health = 100
+damage = 10.0
+speed = 400.0
+shooting_range = 1000.0
+gun_manager = ExtResource("1_usmep")
+furthest_leash = 800.0
+closest_leash = 600.0
+metadata/_custom_type_script = "uid://cphj1fdaujj61"

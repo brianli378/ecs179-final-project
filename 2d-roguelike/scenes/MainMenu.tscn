@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d3tinie4p7142" path="res://scenes/main_menu.gd" id="1_ucygd"]
 [ext_resource type="Texture2D" uid="uid://bgb67yjmtday4" path="res://assets/ui/Simulacrum(1)(1)-export.png" id="2_ucygd"]
-[ext_resource type="Script" uid="uid://b6qapnl5v8owt" path="res://scripts/go_to_controls_button.gd" id="3_ucygd"]
+[ext_resource type="Script" uid="uid://b6qapnl5v8owt" path="res://scripts/menus/go_to_controls_button.gd" id="3_ucygd"]
 [ext_resource type="Texture2D" uid="uid://cr6xyl01pogv" path="res://assets/main_menu/version.png" id="5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ow34m"]

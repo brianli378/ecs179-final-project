@@ -1,7 +1,7 @@
 class_name GunManager
 extends Node2D
 
-const GunSpec = preload("res://scripts/gun_spec.gd")
+const GunSpec = preload("res://specs/gun_spec.gd")
 
 @onready var shooting_sound: AudioStreamPlayer2D = $shooting_sound
 @onready var rotation_pivot: Node2D = $RotationPivot

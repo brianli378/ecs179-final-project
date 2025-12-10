@@ -1,8 +1,8 @@
 [gd_scene load_steps=19 format=4 uid="uid://cbp7rkfxj7ph8"]
 
-[ext_resource type="Script" uid="uid://blj6lue1ay00" path="res://scripts/map_controller.gd" id="1_px2nk"]
-[ext_resource type="Script" uid="uid://dnoj8k73diu2p" path="res://scripts/start_zone_trigger.gd" id="2_0h07o"]
-[ext_resource type="Script" uid="uid://c2kd2x0dfv1u2" path="res://scripts/enemy_zone_trigger.gd" id="2_3gnvq"]
+[ext_resource type="Script" uid="uid://blj6lue1ay00" path="res://scripts/menus/map_controller.gd" id="1_px2nk"]
+[ext_resource type="Script" uid="uid://dnoj8k73diu2p" path="res://scripts/menus/start_zone_trigger.gd" id="2_0h07o"]
+[ext_resource type="Script" uid="uid://c2kd2x0dfv1u2" path="res://scripts/menus/enemy_zone_trigger.gd" id="2_3gnvq"]
 [ext_resource type="Texture2D" uid="uid://ddmygi1rpb7f4" path="res://assets/map/wall_and_floor.png" id="2_nbe4v"]
 [ext_resource type="Texture2D" uid="uid://ds25oercyocqv" path="res://assets/map/Lazy3x3Autotile_floorPalleteTemplate(1)-export.png" id="3_nbe4v"]
 [ext_resource type="Texture2D" uid="uid://bpkm5xq8cww20" path="res://assets/map/Lazy3x3Autotile_wallPalleteTemplate_05high-Sheet-export.png" id="4_3cof4"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ciun46ifyhx6v"]
 
-[ext_resource type="Script" uid="uid://c36483pxjdqw" path="res://scripts/gun_manager.gd" id="2_gp1hk"]
+[ext_resource type="Script" uid="uid://c36483pxjdqw" path="res://scripts/guns/gun_manager.gd" id="2_gp1hk"]
 [ext_resource type="Texture2D" uid="uid://d0opbe7n8wpat" path="res://assets/guns/pistol_sprite.png" id="2_og67c"]
 
 [node name="Gun" type="Sprite2D"]

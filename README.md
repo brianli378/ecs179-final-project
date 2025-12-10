@@ -2,7 +2,7 @@
 
 ## Summary ##
 
-**A paragraph-length pitch for your game.**
+**In a cyberpunk dystopian world, you (the player) know very little of your current predicament, but what you do know is enough. One: this is not real, and two: whoever or whatever put you here is not above killing their captives. In this trapped simulation, your only option for survival lies in an odd nature of the guns you collect. Within this simulated world, these guns can be fused together into deadly combination, and these weapons are the key to your survival. Your limits will be tested, and you have a sneaking suspicion that your captors aren't afraid of that; In fact, they count it.**
 
 ## Project Resources
 
@@ -167,16 +167,46 @@ This was another issue that emerged when playtesting. The player's hurt sound wa
 
 
 
-# Team Member #3 #
-## Main Role
+# Sean Weber #
+## Map and Level Design/Control
 
-**Documentation for main role.**
+**Base Map Design, Collision Tile Settings**
+Created Base Map Layout of 3 main rooms, the Boss Map, and the Start Map. Each of these maps uses collissions set in TileSet, with specific tiles being collision tiles while others being movable. This delineated the floor versus the walls. The design used was based on a cyberpunk city look, with blue brick walls and tiled floors with vents, which matches the simulation look with an almost dungeon aesthetic. I tested the map creation against player movement and also determined the size of walls, needing to increase the tile size so as to not slow the game down from enemy pathfinding. Furthermore, the size of the walls were created to fit the bullet spawnpoint as best as possible for weapons. While some weapons still can shoot through walls (Rocket types are the main ones), most bullets were prevented from shooting out of the map.
 
-## Sub Role
+**Stylizing for all Map Zones and Sections**
 
-**Documentation for Sub-Role**
+The Start Zone was created to effectively provide a breather between rounds in which the player is given the time to fuse newly collected guns and try out the guns they have so far without danger. In the Base Map, the goal was to not create a map that wasn't just a bullet hell of enemies while also not feeling exactly linear in gameplay. As such, the Base Map contains 3 medium sized zones that contain enemies with pathways between ever zone. The Boss map contains 4 corner L shaped objects which is used as safe areas for the player to not get shot by the Boss, which takes control of the middle area very quickly. The Boss Design was intentional to force the player to the edges of the map to put the player on a back foot against the bosses, as the boss design made being in the middle near impossible with their size and weapon. Final note for the Safe Zone, since there is a teleport location, I used the different floor designs to indicate the natural flow of the player into the teleportation zone.
+
+
+**Implementing of Zone control to handle enemy spawning**
+There were 2 styles of zones created for the maps, teleport zones and enemy spawn zones. By using a map controller that attaches to the main maps scene, I provided a state enum that would determine the current stage that the map was in (Safe, Base, or Boss). Then, each type of zone had on body entered signals that would handle how to deal with the zone. For spawn enemies zones, it spawns enemies based on the set list of enemies created in the zone, and teleport zones send a signal to the main gme to teleport the player to a location.
+
+## Narrative Design
+
+**Updates for Story**
+With the established stretch goals that we had for the game, we all agreed upon a cyberpunk feel. With this interpretation, the initial idea was to have a common
+night life within the cyberpunk 2077 universe with you effectively moving around and 
+fighting the enemies, which would be cops. However, as I was designing the map and how teleportation between maps would work instead of a fully linear path to take, 
+I realized this didn't make much sense as to what the story was suggesting. Because
+of this, I knew a simulation sort of story would make sense instead. In tandem, there
+would reasonably be some entity or entities that trapped the player in here. With 
+the ability to fuse guns, it's likely that this simulation is to test these guns by
+taking the player and constantly pushing them to their limit.
+
+**Final Interpretation and Implementation of story within game**
+With the teleportation nature and how the enemies spawn and scale, we went for a simulation story with an unknown company. Even though we all know that the company is effectively testing the gun fusion and how powerful these guns are, we don't inform the player of this. This is mostly because in reality, the player shouldn't actually need to know what is happening. Instead, we decided to provide the big hint about the nature of the game: the title being Simulacrum. This word is similar in nature to simulation, representing something created that is fake. With this in mind, with the teleportation, it is obvious that with the cyberpunk feel that most likely some company is pulling the strings here. What they are doing specifically is left for the player's interpretation to enjoy decyphering the nature of the game, but the intention is that the company is testing their fusion guns, which is supported by how defeating boss provides guns to the player to test new ones. 
 
 ## Other Contrubutions
+
+**Teleportation between Maps to control round movement**
+Teleportation is controlled partially by zones, but they are also controlled by some round movement by identifying the number of enemies on the map, and for the safe zone, just the regular teleportation zone code. I've already explained the teleport zone code, which effectively just signals the base game with a location to teleport the player, but the map controller also uses these signals after killing enemies to teleport between zones as well. Given the fact that the enmy spawn zones have the same code for both the Boss Map and the Base Map, they also function in the same way with the map controller in identifying teleportation. This is done by also adding to a number of enemies that is maintained by the map controller. On any enemy death, the dying enemy notifies the map controller, and the map controller decrements the number of enemies by 1. For both the Boss Map and the Base Map, all zones are populated and add to the map controllers at the same time. This ensures that the Base Map, which contains multiple zones, doesn't teleport the player prematurely if no enemies exist on the map, even though some zones haven't spawned enemies yet. Finally, once the map controller sees that the number of enemies goes to 0, the map does a calculation based on the current stage as to whether a simple teleportation is needed or if the next zones need to be populated with enemies.
+
+**Spawning enemies and bosses within the maps**
+I provided code that spawns enemies within the maps as well as populates the relavant spawn points and enemy specifications. The setting of the populated enemies is based on the current stage of the map controller. These functions was utilized by the round management developer to add scaling based on the round of the map controller to make the enemies scale in difficulty and damage. This code was also used by the Boss developer to spawn the boss during the boss stage. The spawn enemy zone is utilized in both basic enemies as well as boss enemies since both are types of a higher level class hierarchy of enemies, and as such there was no need to duplicate code.
+
+**Pushing out guns to enforce a max size**
+One issue we ran into with the inventory systems was getting too many guns would lead to the gun inventory pushing out the fusion ui, making fusion at somem point impossible. This was gauranteed to happen since there was no way to remove guns from the inventory, which also made the game slightly boring since you could just fight forever and potentially lose your fusion ability, which is the main purpose of the game. To combat this, I designed a way to delete from the inventory that is out of the control of the player. This helps add difficulty since guns will be deleted in such a way that makes the player need to use the newly collected weapons. The method to do this is to identify the maximum inevntory size before the fusion ui moves into an odd location, and then if this size is exceeded, you pop out the front of the gun inventory list until you are within the maximum inventory. Popping from the front is key since it means the guns that have existed for the longest get deleted from you inventory, which means you constantly have to create new combinations and even the as the game progresses those new combinations will at a point get deleted, and a new combination will need to be used. This enforces variety in the guns you have access to. To indicate which guns will get deleted in the inventory, I added an extra visual to indicate based on the current inventory which guns would get deleted in the next round by highlighting the slot in red.
+
 
 **Documentation for contributions to the project outside of the main and sub roles.** 
 

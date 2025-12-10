@@ -1,0 +1,102 @@
+[gd_scene load_steps=7 format=3 uid="uid://dah2wgypumw50"]
+
+[ext_resource type="Script" uid="uid://d3tinie4p7142" path="res://scripts/menus/main_menu.gd" id="1_wu84c"]
+[ext_resource type="Texture2D" uid="uid://bgb67yjmtday4" path="res://assets/ui/Simulacrum(1)(1)-export.png" id="2_8ln24"]
+[ext_resource type="Script" uid="uid://b6qapnl5v8owt" path="res://scripts/menus/go_to_controls_button.gd" id="3_rtw2f"]
+[ext_resource type="Texture2D" uid="uid://cr6xyl01pogv" path="res://assets/main_menu/version.png" id="4_oa1go"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ow34m"]
+font_size = 56
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ow34m"]
+size = Vector2(0, 64)
+
+[node name="MainMenu" type="MarginContainer"]
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 0
+script = ExtResource("1_wu84c")
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+repeat_size = Vector2(1280, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+texture_repeat = 2
+
+[node name="Parallax2D2" type="Parallax2D" parent="."]
+repeat_size = Vector2(1280, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D2"]
+texture_repeat = 2
+
+[node name="Parallax2D3" type="Parallax2D" parent="."]
+repeat_size = Vector2(1280, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D3"]
+texture_repeat = 2
+
+[node name="Parallax2D4" type="Parallax2D" parent="."]
+repeat_size = Vector2(1280, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D4"]
+texture_repeat = 2
+
+[node name="Parallax2D5" type="Parallax2D" parent="."]
+repeat_size = Vector2(1280, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D5"]
+texture_repeat = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 0
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 200
+
+[node name="Logo" type="TextureRect" parent="HBoxContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("2_8ln24")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/MarginContainer/Logo"]
+layout_mode = 0
+offset_left = -251.0
+offset_top = 297.0
+offset_right = 1029.0
+offset_bottom = 353.0
+text = "New Game"
+label_settings = SubResource("LabelSettings_ow34m")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/MarginContainer/Logo"]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 271.0
+offset_right = 552.0
+offset_bottom = 367.0
+size_flags_vertical = 3
+alignment = 1
+
+[node name="ControlButton" type="TextureButton" parent="HBoxContainer/VBoxContainer/MarginContainer/Logo/VBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("PlaceholderTexture2D_ow34m")
+stretch_mode = 3
+script = ExtResource("3_rtw2f")
+
+[node name="Version" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_oa1go")
+stretch_mode = 3

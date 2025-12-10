@@ -111,27 +111,27 @@ func fuse_guns() -> String:
 
 
 func shoot() -> void:
-	var multiplier = curr_gun.dmg_multiplier 
-	var projectile_damage = curr_projectile_spec.damage
-	var damage = projectile_damage * multiplier
-	var base_direction: Vector2 = projectile_spawn.global_transform.x.normalized()
-	var gun_sound = curr_gun.shoot_sound
+	var _multiplier: float = curr_gun.dmg_multiplier 
+	var _projectile_damage: float = curr_projectile_spec.damage
+	var _damage: float = _projectile_damage * _multiplier
+	var _base_direction: Vector2 = projectile_spawn.global_transform.x.normalized()
+	var _gun_sound: AudioStream = curr_gun.shoot_sound
 	
 	for i in range(curr_gun.projectile_count):
-		var projectile = projectile_factory.create_projectile(curr_projectile_spec, damage)
+		var projectile: Projectile = projectile_factory.create_projectile(curr_projectile_spec, _damage)
 		projectile.global_position = projectile_spawn.global_position
 		projectile.rotation = projectile_spawn.global_rotation
 		projectile.npc_shot = true
 		
-		var angle_offset := 0.0
+		var angle_offset: float = 0.0
 		if curr_gun.projectile_count > 1:
-			var step := curr_gun.spread_angle / (curr_gun.projectile_count - 1)
+			var step: float= curr_gun.spread_angle / (curr_gun.projectile_count - 1)
 			angle_offset = -curr_gun.spread_angle / 2.0 + (i * step)
 		
-		var direction := base_direction.rotated(deg_to_rad(angle_offset))
+		var direction: Vector2 = _base_direction.rotated(deg_to_rad(angle_offset))
 		projectile.linear_velocity = direction * curr_gun.projectile_speed
 		
-		shooting_sound.stream = gun_sound
+		shooting_sound.stream = _gun_sound
 		shooting_sound.play()
 		self.get_tree().current_scene.add_child(projectile)
 

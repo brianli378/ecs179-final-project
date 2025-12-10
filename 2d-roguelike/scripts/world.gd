@@ -12,8 +12,8 @@ var _pause_menu_node:Node
 var _game:Resource = load("res://scenes/game.tscn")
 var _game_node:Node
 
-var _keybinds:Resource = load("res://scenes/keybinds.tscn")
-var _keybinds_node:Node
+var _controls:Resource = load("res://scenes/controls.tscn")
+var _controls_node:Node
 
 var visibleNames:Array[String] = []
 
@@ -26,12 +26,12 @@ func start_menu() -> void:
 	_menu_node = _menu.instantiate()
 	add_child(_menu_node)
 	
-func fusion_tutorial() -> void:
-	print("fusion_tutorial")
+func controls_menu() -> void:
+	print("controls menu")
 	_clear_scene()
 	# instantisate the scene and add it as a child to the tree
-	_keybinds_node = _keybinds.instantiate()
-	add_child(_keybinds_node)
+	_controls_node = _controls.instantiate()
+	add_child(_controls_node)
 
 func start_game() -> void:
 	print("start_game")
@@ -76,7 +76,6 @@ func _ready():
 	start_menu()
 	
 func _clear_scene()  -> void:
-	#TODO: for some reason, this loop doesn't work, but the if statements do
 	for child in get_children():
 		if child.name == "BackgroundMusic":
 			continue

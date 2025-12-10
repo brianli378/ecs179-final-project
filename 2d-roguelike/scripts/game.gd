@@ -7,7 +7,6 @@ var machine_gun_enemy_spec = load("res://specs/machine_gun_enemy_spec.tres")
 var sniper_enemy_spec = load("res://specs/sniper_enemy_spec.tres")
 var shotgun_enemy_spec = load("res://specs/shotgun_enemy_spec.tres")
 var rocket_launcher_enemy_spec = load("res://specs/rocket_launcher_enemy_spec.tres")
-var strong_enemy_spec = load("res://specs/strong_enemy_spec.tres")
 
 @onready var spawn_point_1 = $StaticBody2D
 @onready var spawn_point_2 = $StaticBody2D2

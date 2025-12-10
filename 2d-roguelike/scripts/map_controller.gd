@@ -152,6 +152,7 @@ func _on_enemy_death() -> void:
 				current_round += 1
 				game.on_player_teleport.emit(global_position + safe_zone.position + SPAWNPOINT_SAFE_P)
 
+
 func _on_begin_zone() -> void:
 	stage = Stage.BASE
 	_set_base_zones(0)

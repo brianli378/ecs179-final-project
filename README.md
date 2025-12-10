@@ -146,7 +146,7 @@ The player could cycle through the different guns they were holding, but there w
 To implement the fusion system, I built on the existing gun logic that Alex worked on. The GunManager had a collection of guns identified by string keys for both base weapons (ex: "pistol", "machine gun", "sniper", etc) and fusion weapons ("laser machine gun", "pachine gun", etc). I added the fusion recipes, a mapping from pairs of gun keys to a resulting gun key, and mapping from those fusion gun keys to the actual gun classes that Alex had created. In the inventory UI, I added a fuse button and selection logic. In my original implementation, the player would begin fusion by pressing the fuse button, then click on any two guns in the inventory and press the fuse button one more time to finalize the fusion, removing the consumed weapons (along with their ammo entries) and adding in the new fused weapon into the player inventory. It then initializes the new fusion gun's ammo.
 
 
-## Gameplay Testing
+## Gameplay Testing and Other Contributions
 My secondary role was Gameplay Testing. Along with constantly testing and iterating on my own implementations to make sure they were bug free, I also spent time handling bug fixes that popped up during development. A few notable examples are:
 
 **Weapon swap and fire timing:**

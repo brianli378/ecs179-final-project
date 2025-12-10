@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cc7bae2mmc1i"]
 
-[ext_resource type="Script" uid="uid://dgt4l8aoxwhtc" path="res://scenes/keybinds_continue.gd" id="1_wcb4j"]
+[ext_resource type="Script" uid="uid://dgt4l8aoxwhtc" path="res://scenes/controls_continue.gd" id="1_wcb4j"]
 [ext_resource type="FontFile" uid="uid://b8yjskfb0oin0" path="res://assets/Minecraft.ttf" id="2_n5yad"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_at4y3"]
@@ -16,7 +16,7 @@ font_size = 36
 [sub_resource type="LabelSettings" id="LabelSettings_pf2fv"]
 font_size = 46
 
-[node name="Keybinds" type="MarginContainer"]
+[node name="Controls" type="MarginContainer"]
 process_mode = 3
 top_level = true
 offset_right = 1276.0
@@ -35,10 +35,10 @@ expand_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/CenterContainer/Logo"]
 layout_mode = 0
-offset_left = -438.0
-offset_top = 407.0
-offset_right = 838.0
-offset_bottom = 726.0
+offset_left = 69.0
+offset_top = 526.0
+offset_right = 284.0
+offset_bottom = 598.0
 size_flags_vertical = 3
 alignment = 1
 
@@ -48,16 +48,16 @@ texture_normal = SubResource("PlaceholderTexture2D_at4y3")
 stretch_mode = 3
 script = ExtResource("1_wcb4j")
 
-[node name="Label" type="Label" parent="VBoxContainer/CenterContainer/Logo"]
+[node name="Title" type="Label" parent="VBoxContainer/CenterContainer/Logo"]
 layout_mode = 0
 offset_left = 18.0
 offset_top = 116.0
 offset_right = 346.0
 offset_bottom = 192.0
-text = "Keybinds"
+text = "Controls"
 label_settings = SubResource("LabelSettings_wcb4j")
 
-[node name="Label2" type="Label" parent="VBoxContainer/CenterContainer/Logo"]
+[node name="Movement" type="Label" parent="VBoxContainer/CenterContainer/Logo"]
 layout_mode = 0
 offset_left = -411.0
 offset_top = 287.0
@@ -69,7 +69,7 @@ Dash: Shift
 "
 label_settings = SubResource("LabelSettings_yd0o6")
 
-[node name="Label3" type="Label" parent="VBoxContainer/CenterContainer/Logo"]
+[node name="Continue" type="Label" parent="VBoxContainer/CenterContainer/Logo"]
 layout_mode = 0
 offset_left = 79.0
 offset_top = 542.0
@@ -79,7 +79,7 @@ text = "Continue
 "
 label_settings = SubResource("LabelSettings_pf2fv")
 
-[node name="Label4" type="Label" parent="VBoxContainer/CenterContainer/Logo"]
+[node name="GunStuff" type="Label" parent="VBoxContainer/CenterContainer/Logo"]
 layout_mode = 0
 offset_left = 442.0
 offset_top = 281.0
@@ -90,7 +90,7 @@ Switch Guns: E
 Reload: R"
 label_settings = SubResource("LabelSettings_yd0o6")
 
-[node name="Label5" type="Label" parent="VBoxContainer/CenterContainer/Logo"]
+[node name="Misc" type="Label" parent="VBoxContainer/CenterContainer/Logo"]
 layout_mode = 0
 offset_left = 10.0
 offset_top = 284.0

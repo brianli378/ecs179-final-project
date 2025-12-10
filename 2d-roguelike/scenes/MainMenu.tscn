@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d3tinie4p7142" path="res://scenes/main_menu.gd" id="1_ucygd"]
 [ext_resource type="Texture2D" uid="uid://bgb67yjmtday4" path="res://assets/ui/Simulacrum(1)(1)-export.png" id="2_ucygd"]
-[ext_resource type="Script" uid="uid://b6qapnl5v8owt" path="res://scripts/fusion_tutorial_button.gd" id="3_ucygd"]
+[ext_resource type="Script" uid="uid://b6qapnl5v8owt" path="res://scripts/go_to_controls_button.gd" id="3_ucygd"]
 [ext_resource type="Texture2D" uid="uid://cr6xyl01pogv" path="res://assets/main_menu/version.png" id="5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ow34m"]
@@ -81,12 +81,16 @@ text = "New Game"
 label_settings = SubResource("LabelSettings_ow34m")
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
-layout_mode = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/MarginContainer/Logo"]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 271.0
+offset_right = 552.0
+offset_bottom = 367.0
 size_flags_vertical = 3
 alignment = 1
 
-[node name="TextureButton" type="TextureButton" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
+[node name="ControlButton" type="TextureButton" parent="HBoxContainer/VBoxContainer/MarginContainer/Logo/VBoxContainer"]
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_ow34m")
 stretch_mode = 3

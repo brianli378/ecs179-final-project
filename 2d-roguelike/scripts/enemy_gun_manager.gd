@@ -50,12 +50,6 @@ var fusion_gun_classes: Dictionary = GunData.fusion_gun_classes.duplicate(true) 
 
 var guns_for_player: Array[String]
 
-@onready
-var _gun_manager: EnemyGunManager = $BossEnemy/Body/EnemyGunManager
-
-@onready
-var _enemy_char: CharacterBody2D = $BossEnemy
-
 @onready 
 var shooting_sound: AudioStreamPlayer2D = $shooting_sound
 

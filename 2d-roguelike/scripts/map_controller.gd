@@ -57,7 +57,7 @@ const SPAWNPOINT_BOSS_B = [Vector2(1120, 560)]
 const SPAWNPOINT_BOSS_P = Vector2(1120, 1680)
 
 # Safe Zone Spawnpoints
-const SPAWNPOINT_SAFE_P = Vector2(-200, 500)
+const SPAWNPOINT_SAFE_P = Vector2(-700, 540)
 
 var num_enemies = 0;
 

@@ -2,7 +2,7 @@
 
 ## Summary ##
 
-**In a cyberpunk dystopian world, you (the player) know very little of your current predicament, but what you do know is enough. One: this is not real, and two: whoever or whatever put you here is not above killing their captives. In this trapped simulation, your only option for survival lies in an odd nature of the guns you collect. Within this simulated world, these guns can be fused together into deadly combination, and these weapons are the key to your survival. Your limits will be tested, and you have a sneaking suspicion that your captors aren't afraid of that; In fact, they count it.**
+**In a cyberpunk dystopian world, you know very little of your current predicament, but what you do know is enough. One: this is not real, and two: whoever or whatever put you here is not above killing their captives. In this trapped simulation, your only option for survival lies in an odd nature of the guns you collect. Within this simulated world, these guns can be fused together into deadly combination, and these weapons are the key to your survival. Your limits will be tested, and you have a sneaking suspicion that your captors aren't afraid of that; In fact, they count on it.**
 
 ## Project Resources
 

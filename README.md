@@ -277,7 +277,7 @@ This was another issue that emerged when playtesting. The player's hurt sound wa
 
 
 
-# Sean Weber - [github](https://github.com/Septro31-SeanWeber)#
+# Sean Weber - [github](https://github.com/Septro31-SeanWeber) #
 ## Map and Level Design/Control
 
 **Base Map Design, Collision Tile Settings**

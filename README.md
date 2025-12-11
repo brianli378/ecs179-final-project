@@ -48,6 +48,7 @@ I wanted to design a character that would be visually distinct, with their own s
 which kinda looks like an ubside down heart due to the small amount of pixels. This character and her colors are supposed to look unique around the background
 of the simulation, showing the distinction between her and the rest of the world. 
 
+
 **First Character Design**  
 <img width="1153" height="554" alt="image" src="https://github.com/user-attachments/assets/3182e5ea-b740-4801-ba3e-a97f14792074" />
 This was okay, but it was a little too detailed to fit in with the rest of the game. I realized when working with guns they would need
@@ -82,18 +83,22 @@ Used an open source assets to create a parralax side scrolling meny screen, also
 Added upon an inventory system by creating slots for the fusion, and allowing the player to see the result of the fusion. 
 Also adjusted the visuals for the fusion inventory to more match the cyberpunk theme.  
 
+
 **Enemy animations**
 <img width="954" height="435" alt="image" src="https://github.com/user-attachments/assets/0e3a5309-e141-4b6d-9006-ec71408c9ccd" />
 Created enemy sprites and animations, fiting the cyberpunk and simulation theme. Enemies are designed to be part of the simulation,
 being just basic enemies that may be also trapped in the simulation.
 
+
 **Health Bar**  
 <img width="366" height="61" alt="image" src="https://github.com/user-attachments/assets/3c3899c2-a69b-4397-9a68-1fd7c2166b9d" />  
 Created Animation for health bar changing, and designed health bar to fit with the game style.
 
+
 **Crosshair and reload animation**
 <img width="2023" height="90" alt="crosshair_reload" src="https://github.com/user-attachments/assets/2d05a8ee-817f-482e-9aa4-e047c595bd84" />
 Created dynamic crosshair reload animation so that the time for the animation lines up with the guns reload time.  
+
   
 **Create a visual for explosions**  
 <img width="487" height="614" alt="image" src="https://github.com/user-attachments/assets/ba5a9bbb-74bf-47b2-8685-7b335c6a1d7a" />  
@@ -101,7 +106,9 @@ Created a visual explosion such that players could see the radius of rockets
 
 
 ## Game Feel  
-
+Here I mostly focused on having the game *feel* fun to play, with having the aiming be fun and not limiting, and the game to be semi balanced so it
+wasnt too difficult or too easy. I also tried to make most of the guns viable (with fusions being better than base guns), though some fusions
+definetely are better than others. This is fine, as part of become better at the game is discovering what works for your playstyle and what doesn't.
 
 **Gun Aiming**  
 https://github.com/brianli378/ecs179-final-project/blob/b230fc00ffed08b438a4a62bb368e78be7c1cfce/2d-roguelike/scripts/gun_manager.gd#L100-L135
@@ -120,14 +127,21 @@ All of this information was manually edited.
 Manually adjusting map collisions so enemies and players wouldnt get stuck on map objects, and make the movement more fluid.
 
 
-**Adjusted Sniper and Pistol Gun Damage**
-Adjusted sniper damage to one shot, and for pistol damage to be higher in order to contest with full auto/explosion guns
+**Adjusted Sniper and Pistol Gun Damage**  
+Adjusted sniper damage to one shot, and for pistol damage to be higher in order to contest with full auto/explosion guns  
 
-**Scaled damage inflicted on player**
-Scaled the damage inflicted on player so that the player (at the start) does way more damage to enemies then enemies do damage to the player
 
-**General adjustment of gun values**
-Tested out most of the guns to see if they were viable, and adjusted values accordingly.
+**Scaled damage inflicted on player** 
+Scaled the damage inflicted on player so that the player (at the start) does way more damage to enemies then enemies do damage to the player 
+
+
+**General adjustment of gun values** 
+Tested out most of the guns to see if they were viable, and adjusted values accordingly.  
+
+
+**Adjustment of Laser Weapons**  
+https://github.com/brianli378/ecs179-final-project/blob/9bc012d87b1f506ba7cb577ff9827f84df922752/2d-roguelike/scripts/guns/fusion_guns/laser_gun.gd#L1-L94  
+Changed laser weapons to be unique, rather than having a reload they have a heat mechanic. 
 
 ****
 

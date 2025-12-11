@@ -95,6 +95,10 @@ Created Animation for health bar changing, and designed health bar to fit with t
 <img width="2023" height="90" alt="crosshair_reload" src="https://github.com/user-attachments/assets/2d05a8ee-817f-482e-9aa4-e047c595bd84" />
 Created dynamic crosshair reload animation so that the time for the animation lines up with the guns reload time.
 
+**Create a visual for explosions**
+<img width="487" height="614" alt="image" src="https://github.com/user-attachments/assets/ba5a9bbb-74bf-47b2-8685-7b335c6a1d7a" />
+Created a visual explosion such that players could see the radius of rockets
+
 
 ## Game Feel  
 
@@ -114,6 +118,18 @@ All of this information was manually edited.
 **Adjusting Map Collision**  
 <img width="256" height="98" alt="image" src="https://github.com/user-attachments/assets/a0ec1fa9-2add-487d-859e-459425d6d0d1" />  
 Manually adjusting map collisions so enemies and players wouldnt get stuck on map objects, and make the movement more fluid.
+
+
+**Adjusted Sniper and Pistol Gun Damage**
+Adjusted sniper damage to one shot, and for pistol damage to be higher in order to contest with full auto/explosion guns
+
+**Scaled damage inflicted on player**
+Scaled the damage inflicted on player so that the player (at the start) does way more damage to enemies then enemies do damage to the player
+
+**General adjustment of gun values**
+Tested out most of the guns to see if they were viable, and adjusted values accordingly.
+
+****
 
 ## Other Contrubutions
 

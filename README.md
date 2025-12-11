@@ -176,7 +176,7 @@ https://github.com/brianli378/ecs179-final-project/blob/a34c228d4fc5f65937dfd0f4
 **Ammo and Reload**
 
 When the guns were first added, there was no existing ammo system so all guns could be shot for as long as possible without the need to reload or worry about ammo. I implemented the ammo and reload system inside the gun manager and also added a gun spec file which kept track of the magazine size, starting reserve, max reserve and reload of each weapon. When the player shoots, ammo in the current magazine gets decremented. If the magazine is empty and the player tries to shoot, an auto reload system automatically begins a reload for the player. I also implemented a manual reload triggered by pressing “R” in case the player is low on ammo and wants to reload before getting into a fight. 
-https://github.com/brianli378/ecs179-final-project/blob/647016933854a99de688c1d6553265ed6472b780/2d-roguelike/scripts/guns/gun_manager.gd#L201-210
+https://github.com/brianli378/ecs179-final-project/blob/647016933854a99de688c1d6553265ed6472b780/2d-roguelike/scripts/guns/gun_manager.gd#L201-L210
 
 To support the reload system, I implemented a CanvasLayer into the game for the player’s HUD. The script would read the current gun key and pull the ammo in the player’s current guns magazine and reserve, displaying them in the standard mag/reserve format. A reloading label also appears whenever the player begins a reload, providing a heads up so the player knows they can’t shoot during that time.
 

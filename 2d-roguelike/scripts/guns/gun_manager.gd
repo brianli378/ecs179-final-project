@@ -219,7 +219,7 @@ func _shoot_charged() -> void:
 	if curr_gun is LaserShotgun:
 		var shotgun = curr_gun as LaserShotgun
 		var proj_count = shotgun.get_charged_projectile_count()
-		var spread = shotgun.get_charged_spread()
+		var spread = shotgun.get_current_spread()
 		var damage_mult = shotgun.get_charged_damage_multiplier()
 		var damage = projectile_damage * damage_mult
 		

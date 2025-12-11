@@ -26,7 +26,11 @@ When you enter the main room, there are a couple of randomly generated enemies. 
 If your project contains code that: 1) your team did not write, and 2) does not fit cleanly into a role, please document it in this section. Please include the author of the code, where to find the code, and note which scripts, folders, or other files that comprise the external contribution. Additionally, include the license for the external code that permits you to use it. You do not need to include the license for code provided by the instruction team.
 
 If you used tutorials or other intellectual guidance to create aspects of your project, include reference to that information as well.
+  
+[Side scrolling background of main menu](https://craftpix.net/freebies/free-scrolling-city-backgrounds-pixel-art/?num=1&count=1381&sq=scrolling%20city%20backgrounds%20pixel%20art%20gif&pos=3)  
 
+[Tile map helper](https://arttale.itch.io/tilemap-templates) - Used these online tile map templates to ease the repetition of drawing many tiles (These tile sets and tutorial allow for what you draw to be automatically replicated on other tiles)
+  
 # Team Member Contributions #
 
 This section be repeated once for each team member. Each team member should provide their name and GitHub user information.
@@ -64,6 +68,7 @@ of sprite seems more fit for a story game.
 **Final Character Design**
 <img width="1957" height="757" alt="image" src="https://github.com/user-attachments/assets/2e7b2c33-a38a-48fd-8c85-4a56f1c352e1" />
 Final character design is more in line with the scope of the game, and fits more with the style of the game (action rather than story).
+Used Aseprite to create animations for the character, moving in both directions. 
 
 
 **Sprites for all guns**

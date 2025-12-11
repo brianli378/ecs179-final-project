@@ -1,12 +1,12 @@
 class_name LaserShotgun
 extends LaserGun
 
-var min_projectile_count: int = 3  # when fully charged
-var max_projectile_count: int = 8  # when not charged
+var min_projectile_count: int = 5  # when fully charged
+var max_projectile_count: int = 3  # when not charged
 
 func _init() -> void:
 	super._init()
-	dmg_multiplier = 1.2
+	dmg_multiplier = 0.7
 	projectile_speed = 1200
 	shot_delay = 0.7
 	projectile_scale = Vector2(0.04, 0.04)
@@ -15,10 +15,10 @@ func _init() -> void:
 	shoot_sound = preload("res://assets/sounds/laser-sound.wav")
 	
 	max_heat = 100.0
-	heat_per_shot = 20.0
+	heat_per_shot = 30.0
 	cooling_rate = 20.0
-	base_spread = 30.0        # Base shotgun spread (not charged, no heat)
-	max_heat_spread = 50.0    # Maximum spread when overheated
+	base_spread = 50.0        # Base shotgun spread (not charged, no heat)
+	max_heat_spread = 80.0    # Maximum spread when overheated
 	
 	# Enable charging
 	is_chargeable = true

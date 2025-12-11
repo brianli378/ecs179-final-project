@@ -12,6 +12,11 @@
 ## Gameplay Explanation ##
 
 **In this section, explain how the game should be played. Treat this as a manual within a game. Explaining the button mappings and the most optimal gameplay strategy is encouraged.**
+You spawn in a safe zone, given some time to try out the weapons before heading to the right to the main map.  
+
+This game has the general WASD movement. You can also press shift to dash. P is the pause button. I or B is your inventory button. In your inventory, at the top is a list of weapons that you have. You start with all 5 weapons at the top, the pistol, the shotgun, the machine gun, the sniper and the rocket launcher. You are encouraged to try out a fusion in the inventory, look through the results of a couple of fusions. In the fusion menu, the first slot is generally the firing style and the second slot is generally the projectile type. This rule does get broken, the entire reference sheet is here: [Fusion gun design document](https://docs.google.com/document/d/1bNHDFz7tdk0n9OXliNgc_nxGdNC5oqgv6N0_m0_iOEU/edit?tab=t.0). The inventory only has 5 slots, and if you gain any items, the item in red will be deleted. So, generally we expect players to make a fusion or two every round so this doesnt happen.  
+  
+When you enter the main room, there are a couple of randomly generated enemies. Clear through them, and keep exploring the map, looking for enemies to kill. Once all the enemies on the map are killed, you will be transported to the Boss fight. The Boss has a randomly generated fusion gun, and is generally tougher than the basic enemies. You must clear the boss to proceed. One you kill the boss, he will drop you the components of the fusion in your inventory. You will be automatically transported into the safe room (careful not to move out of it on accident), where you will be able to try out the new fusions. You get a bit of health back, but the game is designed to be played in these rounds endlessly. Enemies get tougher every round, so it becomes harder and harder to clear. But, you also get to try out more fusions, and eventually find some fusion that helps you clear farther. 
 
 
 **Add it here if you did work that should be factored into your grade but does not fit easily into the proscribed roles! Please include links to resources and descriptions of game-related material that does not fit into roles here.**
@@ -21,6 +26,8 @@
 If your project contains code that: 1) your team did not write, and 2) does not fit cleanly into a role, please document it in this section. Please include the author of the code, where to find the code, and note which scripts, folders, or other files that comprise the external contribution. Additionally, include the license for the external code that permits you to use it. You do not need to include the license for code provided by the instruction team.
 
 If you used tutorials or other intellectual guidance to create aspects of your project, include reference to that information as well.
+  
+[Side scrolling background of main menu](https://craftpix.net/freebies/free-scrolling-city-backgrounds-pixel-art/?num=1&count=1381&sq=scrolling%20city%20backgrounds%20pixel%20art%20gif&pos=3)  
 
 Lines used:
 https://github.com/brianli378/ecs179-final-project/blob/de3ba5dd1f2bea377e7523c52d9e15072a447001/2d-roguelike/scripts/enemies/enemy_nav/line_of_sight.gd#L16-L17
@@ -42,6 +49,10 @@ Lines used/files: I used the scene files as a teplate to build my own menus, the
 Author: Juan Linietsky, Ariel Manzur and the Godot community
 License: Permissive Creative Commons Attribution 3.0 (CC-BY 3.0) license, with attribution to “Juan Linietsky, Ariel Manzur and the Godot Engine community”.
 
+[Tile map helper](https://arttale.itch.io/tilemap-templates) - Used these online tile map templates to ease the repetition of drawing many tiles (These tile sets and tutorial allow for what you draw to be automatically replicated on other tiles)
+
+[Pixel Art Font](https://www.dafont.com/minecraft.font) - used open source minecraft font to give the game a consistent art style
+  
 # Team Member Contributions #
 
 This section be repeated once for each team member. Each team member should provide their name and GitHub user information.
@@ -79,6 +90,7 @@ of sprite seems more fit for a story game.
 **Final Character Design**
 <img width="1957" height="757" alt="image" src="https://github.com/user-attachments/assets/2e7b2c33-a38a-48fd-8c85-4a56f1c352e1" />
 Final character design is more in line with the scope of the game, and fits more with the style of the game (action rather than story).
+Used Aseprite to create animations for the character, moving in both directions. 
 
 
 **Sprites for all guns**
@@ -86,22 +98,28 @@ Final character design is more in line with the scope of the game, and fits more
 25 unqiue sprites for each gun, including 5 base guns and 20 fusions. Each fusion sprite takes elements from its parents, and is supposed
 to communicate its properties. The laser weapons are techy and blue, the rocket weapons are bright yellow/orange to show their explosive
 and dangerous nature, and the pistol is supposed to fit the player characters style (since it is her weapon at the start of the game).
+Creating all these sprited took a lot of research, as a lot of them are inspired by real life guns or in game guns. I spent a lot of time
+also creating the fusion guns to look unique, futuristic, and also a combination of its two base guns (enough to be semi recognizable).
 
 
 **Sprites for maps**  
 <img width="595" height="151" alt="image" src="https://github.com/user-attachments/assets/241b4fd4-8c70-4012-a47f-33d322922b55" />  
 Designed the map tile set, working through multiple iterations to fit the cyberpunk theme and simulation asthetic. Painted the tile set for each map.  
+As said before, I used [Tile map helper](https://arttale.itch.io/tilemap-templates) to ease some of the repetition in creating the tile
+sets ( all final tiles are drawn by me, just used the tool). 
 
 
 **Title screen**
 <img width="1269" height="710" alt="image" src="https://github.com/user-attachments/assets/95a41769-a931-40c9-921d-0651d44dfd49" />
-Used an open source assets to create a parralax side scrolling meny screen, also designed the game name.
+Used an open source assets [Side scrolling background of main menu](https://craftpix.net/freebies/free-scrolling-city-backgrounds-pixel-art/?num=1&count=1381&sq=scrolling%20city%20backgrounds%20pixel%20art%20gif&pos=3) to create a parralax side scrolling meny screen, also designed the game name.
+Used inspiration from some online tech fonts to create the title of the game in asperite. 
 
 
 **Crafting screen**
 <img width="1047" height="526" alt="image" src="https://github.com/user-attachments/assets/0deb0529-aa26-450c-b979-ddae4c164972" />
 Added upon an inventory system by creating slots for the fusion, and allowing the player to see the result of the fusion. 
-Also adjusted the visuals for the fusion inventory to more match the cyberpunk theme.  
+Also adjusted the visuals for the fusion inventory to more match the cyberpunk theme. The inventory also displays what parts
+of each gun the fusion will receive, and also what type of projectile/firing type the guns have. 
 
 
 **Enemy animations**
@@ -112,7 +130,7 @@ being just basic enemies that may be also trapped in the simulation.
 
 **Health Bar**  
 <img width="366" height="61" alt="image" src="https://github.com/user-attachments/assets/3c3899c2-a69b-4397-9a68-1fd7c2166b9d" />  
-Created Animation for health bar changing, and designed health bar to fit with the game style.
+Created Animation for health bar changing, and designed health bar in aseprite to fit with the game style.
 
 
 **Crosshair and reload animation**
@@ -122,11 +140,13 @@ Created dynamic crosshair reload animation so that the time for the animation li
   
 **Create a visual for explosions**  
 <img width="487" height="614" alt="image" src="https://github.com/user-attachments/assets/ba5a9bbb-74bf-47b2-8685-7b335c6a1d7a" />  
-Created a visual explosion such that players could see the radius of rockets  
+Created a visual explosion such that players could see the radius of rockets, using godots internal node system rathen than a png.
+This was created with help of AI assistance, to help create the visual using godot's code.
 
 
 **Create asset for rockets**  
 <img width="974" height="258" alt="image" src="https://github.com/user-attachments/assets/6d179324-baff-46e1-9266-5d47562f14ab" />  
+Created the asset for the rockets in aseprite.
 
 
 **Create Dynamic Heat Bar**  
@@ -134,6 +154,9 @@ Created a visual explosion such that players could see the radius of rockets
 https://github.com/brianli378/ecs179-final-project/blob/b4ef9fe949e6a1a82833548e59537d87f5a57b8d/2d-roguelike/scenes/heat_bar.gd#L1-L64  
 Created a dynamic heatbar so that players would know the current heat status of their weapon  
 
+**Import Font to fit Pixel Art Style**
+Used a open source minecraft font to make the games text fit the pixel art aesthetic. [Pixel Art Font](https://www.dafont.com/minecraft.font) 
+  
 
 ## Game Feel  
 Here I mostly focused on having the game *feel* fun to play, with having the aiming be fun and not limiting, and the game to be semi balanced so it
@@ -158,15 +181,17 @@ Manually adjusting map collisions so enemies and players wouldnt get stuck on ma
 
 
 **Adjusted Sniper and Pistol Gun Damage**  
-Adjusted sniper damage to one shot, and for pistol damage to be higher in order to contest with full auto/explosion guns  
+Adjusted sniper damage to one shot, and for pistol damage to be higher in order to contest with full auto/explosion guns.
 
 
 **Scaled damage inflicted on player** 
-Scaled the damage inflicted on player so that the player (at the start) does way more damage to enemies then enemies do damage to the player 
+Scaled the damage inflicted on player so that the player (at the start) does way more damage to enemies then enemies do damage to the player.
+This is to allow the game to be a bit easier at the start as the player adjusts, but still have some scaling as the player adjusts to the game and/or gets a better gun.
 
 
 **General adjustment of gun values** 
-Tested out most of the guns to see if they were viable, and adjusted values accordingly.  
+Tested out most of the guns to see if they were viable, and adjusted values accordingly. This included adjusting the spread, the damage, the reload speed,
+the recharge speed of some laser guns, projectile speeds, and many other small adjustments. 
 
 
 **Adjustment of Laser Weapons**  
@@ -181,6 +206,11 @@ Changed laser weapons to be unique, rather than having a reload they have a heat
 [Fusion gun design document](https://docs.google.com/document/d/1bNHDFz7tdk0n9OXliNgc_nxGdNC5oqgv6N0_m0_iOEU/edit?tab=t.0)
 Designed every gun fusion, including stats, inspiration images, and other game examples.
 
+**Created the Slide for the Presentation**
+
+**Wrote the description on how to play the game in this document, and formatted this document.**
+  
+
 # Brian Li - [github](https://github.com/brianli378) #
 ## Game Logic
 My main role was Game Logic. Throughout development, my main focuses on the project were the logic and implementation of the core gameplay systems, including player logic (movement, aim, dash), camera logic (2d lerp camera, camera shake), reload logic, inventory logic and fusion logic. 
@@ -188,12 +218,15 @@ My main role was Game Logic. Throughout development, my main focuses on the proj
 **Player and Camera**
 
 The player is implemented as a CharacterBody2D with movement and a dash mechanic. The player script reads and responds to the basic WASD user input and "looks at" the global mouse position. On top of basic movement, I also implemented a smooth dash mechanic. When the dash input is pressed, velocity is boosted in the direction the player is moving then decelerates back down to the normal movement velocity. The smooth acceleration and deceleration on the dash make the player movement feel more fluid, and combined with the 2D lerp camera provides a polished movement experience for the player.
+https://github.com/brianli378/ecs179-final-project/blob/a34c228d4fc5f65937dfd0f47e620f07dc98f666/2d-roguelike/scripts/player.gd#L67-L99
 
 I also implemented the camera behavior. Instead of the default 2D position lock camera, I drew inspiration from exercise 2 to implement a 2D version of the 3D lerp position lock camera from the assignment. I also added a camera screen shake function called by the gun manager any time a gun is fired. The add_shake function works by choosing a random offset for x and y between -1.0 and 1.0 and applying it to the camera. The function also takes in a float shake_multiplier as input, allowing adjustable shake intensity for different guns.
+https://github.com/brianli378/ecs179-final-project/blob/a34c228d4fc5f65937dfd0f47e620f07dc98f666/2d-roguelike/scripts/position_lock_lerp_camera.gd#L11-L47
 
 **Ammo and Reload**
 
 When the guns were first added, there was no existing ammo system so all guns could be shot for as long as possible without the need to reload or worry about ammo. I implemented the ammo and reload system inside the gun manager and also added a gun spec file which kept track of the magazine size, starting reserve, max reserve and reload of each weapon. When the player shoots, ammo in the current magazine gets decremented. If the magazine is empty and the player tries to shoot, an auto reload system automatically begins a reload for the player. I also implemented a manual reload triggered by pressing “R” in case the player is low on ammo and wants to reload before getting into a fight. 
+https://github.com/brianli378/ecs179-final-project/blob/647016933854a99de688c1d6553265ed6472b780/2d-roguelike/scripts/guns/gun_manager.gd#L201-L210
 
 To support the reload system, I implemented a CanvasLayer into the game for the player’s HUD. The script would read the current gun key and pull the ammo in the player’s current guns magazine and reserve, displaying them in the standard mag/reserve format. A reloading label also appears whenever the player begins a reload, providing a heads up so the player knows they can’t shoot during that time.
 
@@ -204,6 +237,7 @@ The player could cycle through the different guns they were holding, but there w
 **Fusion**
 
 To implement the fusion system, I built on the existing gun logic that Alex worked on. The GunManager had a collection of guns identified by string keys for both base weapons (ex: "pistol", "machine gun", "sniper", etc) and fusion weapons ("laser machine gun", "pachine gun", etc). I added the fusion recipes, a mapping from pairs of gun keys to a resulting gun key, and mapping from those fusion gun keys to the actual gun classes that Alex had created. In the inventory UI, I added a fuse button and selection logic. In my original implementation, the player would begin fusion by pressing the fuse button, then click on any two guns in the inventory and press the fuse button one more time to finalize the fusion, removing the consumed weapons (along with their ammo entries) and adding in the new fused weapon into the player inventory. It then initializes the new fusion gun's ammo.
+https://github.com/brianli378/ecs179-final-project/blob/4e8256ea982b27de25fe8364207538a7d8c02e59/2d-roguelike/scripts/guns/gun_manager.gd#L300-L355
 
 
 ## Gameplay Testing and Other Contributions
@@ -232,17 +266,17 @@ This was another issue that emerged when playtesting. The player's hurt sound wa
 
 **Base Map Design, Collision Tile Settings**
 (2d-roguelike/scenes/maps/maps.tscn)
-Created Base Map Layout of 3 main rooms, the Boss Map, and the Start Map. Each of these maps uses collissions set in TileSet, with specific tiles being collision tiles while others being movable. This delineated the floor versus the walls. The design used was based on a cyberpunk city look, with blue brick walls and tiled floors with vents, which matches the simulation look with an almost dungeon aesthetic. I tested the map creation against player movement and also determined the size of walls, needing to increase the tile size so as to not slow the game down from enemy pathfinding. Furthermore, the size of the walls were created to fit the bullet spawnpoint as best as possible for weapons. While some weapons still can shoot through walls (Rocket types are the main ones), most bullets were prevented from shooting out of the map. 
+Created Base Map Layout of 3 main rooms, the Boss Map, and the Start Map. Each of these maps uses collissions set in TileSet, with specific tiles being collision tiles while others being movable. This delineated the floor versus the walls. The design used was based on a cyberpunk city look, with blue brick walls and tiled floors with vents, which matches the simulation look with an almost dungeon aesthetic. I tested the map creation against player movement and also determined the size of walls, needing to increase the tile size so as to not slow the game down from enemy pathfinding. Furthermore, the size of the walls were created to fit the bullet spawnpoint as best as possible for weapons. While some weapons still can shoot through walls (Rocket types are the main ones), most bullets were prevented from shooting out of the map. This utilized class materials in creating tile maps and layers, as well as implementing collision boxes for them.
 
 **Stylizing for all Map Zones and Sections**
 (2d-roguelike/scenes/maps/maps.tscn)
-The Start Zone was created to effectively provide a breather between rounds in which the player is given the time to fuse newly collected guns and try out the guns they have so far without danger. In the Base Map, the goal was to not create a map that wasn't just a bullet hell of enemies while also not feeling exactly linear in gameplay. As such, the Base Map contains 3 medium sized zones that contain enemies with pathways between ever zone. The Boss map contains 4 corner L shaped objects which is used as safe areas for the player to not get shot by the Boss, which takes control of the middle area very quickly. The Boss Design was intentional to force the player to the edges of the map to put the player on a back foot against the bosses, as the boss design made being in the middle near impossible with their size and weapon. Final note for the Safe Zone, since there is a teleport location, I used the different floor designs to indicate the natural flow of the player into the teleportation zone.
+The Start Zone was created to effectively provide a breather between rounds in which the player is given the time to fuse newly collected guns and try out the guns they have so far without danger. In the Base Map, the goal was to not create a map that wasn't just a bullet hell of enemies while also not feeling exactly linear in gameplay. As such, the Base Map contains 3 medium sized zones that contain enemies with pathways between ever zone. The Boss map contains 4 corner L shaped objects which is used as safe areas for the player to not get shot by the Boss, which takes control of the middle area very quickly. The Boss Design was intentional to force the player to the edges of the map to put the player on a back foot against the bosses, as the boss design made being in the middle near impossible with their size and weapon. Final note for the Safe Zone, since there is a teleport location, I used the different floor designs to indicate the natural flow of the player into the teleportation zone. These used design decisions to make a clear and challenging game.
 
 
 **Implementing of Zone control to handle enemy spawning**
 [enemy zone trigger](https://github.com/brianli378/ecs179-final-project/blob/fa73743499acabbb05abc331016b22b0eb813da9/2d-roguelike/scripts/menus/enemy_zone_trigger.gd#L1)
 [start zone trigger](https://github.com/brianli378/ecs179-final-project/blob/fa73743499acabbb05abc331016b22b0eb813da9/2d-roguelike/scripts/menus/start_zone_trigger.gd#L1)
-There were 2 styles of zones created for the maps, teleport zones and enemy spawn zones. By using a map controller that attaches to the main maps scene, I provided a state enum that would determine the current stage that the map was in (Safe, Base, or Boss). Then, each type of zone had on body entered signals that would handle how to deal with the zone. For spawn enemies zones, it spawns enemies based on the set list of enemies created in the zone, and teleport zones send a signal to the main gme to teleport the player to a location.
+There were 2 styles of zones created for the maps, teleport zones and enemy spawn zones. By using a map controller that attaches to the main maps scene, I provided a state enum that would determine the current stage that the map was in (Safe, Base, or Boss). Then, each type of zone had on body entered signals that would handle how to deal with the zone. For spawn enemies zones, it spawns enemies based on the set list of enemies created in the zone, and teleport zones send a signal to the main game to teleport the player to a location. This utilizes the signal pattern to effectively communicate between parts of the game.
 
 ## Narrative Design
 
@@ -258,23 +292,23 @@ the ability to fuse guns, it's likely that this simulation is to test these guns
 taking the player and constantly pushing them to their limit.
 
 **Final Interpretation and Implementation of story within game**
-With the teleportation nature and how the enemies spawn and scale, we went for a simulation story with an unknown company. Even though we all know that the company is effectively testing the gun fusion and how powerful these guns are, we don't inform the player of this. This is mostly because in reality, the player shouldn't actually need to know what is happening. Instead, we decided to provide the big hint about the nature of the game: the title being Simulacrum. This word is similar in nature to simulation, representing something created that is fake. With this in mind, with the teleportation, it is obvious that with the cyberpunk feel that most likely some company is pulling the strings here. What they are doing specifically is left for the player's interpretation to enjoy decyphering the nature of the game, but the intention is that the company is testing their fusion guns, which is supported by how defeating boss provides guns to the player to test new ones. 
+With the teleportation nature and how the enemies spawn and scale, we went for a simulation story with an unknown company. Even though we all know that the company is effectively testing the gun fusion and how powerful these guns are, we don't inform the player of this. This is mostly because in reality, the player shouldn't actually need to know what is happening. Instead, we decided to provide the big hint about the nature of the game: the title being Simulacrum. This word is similar in nature to simulation, representing something created that is fake. With this in mind, with the teleportation, it is obvious that with the cyberpunk feel that most likely some company is pulling the strings here. What they are doing specifically is left for the player's interpretation to enjoy decyphering the nature of the game, but the intention is that the company is testing their fusion guns, which is supported by how defeating boss provides guns to the player to test new ones, while forcing you to create new fusions to survive as the max inventory is enforced by removing older guns. Finally, clear pathways to sections indicate the existence of some outer entity controlling where they want you to move.
 
 ## Other Contrubutions
 
 **Teleportation between Maps to control round movement**
 [map controller (other members worked on scaling enemy difficulty within this class)](https://github.com/brianli378/ecs179-final-project/blob/fa73743499acabbb05abc331016b22b0eb813da9/2d-roguelike/scripts/map_controller.gd#L1)
 [enemy death signaling and handling for round control](https://github.com/brianli378/ecs179-final-project/blob/fa73743499acabbb05abc331016b22b0eb813da9/2d-roguelike/scripts/map_controller.gd#L139)
-Teleportation is controlled partially by zones, but they are also controlled by some round movement by identifying the number of enemies on the map, and for the safe zone, just the regular teleportation zone code. I've already explained the teleport zone code, which effectively just signals the base game with a location to teleport the player, but the map controller also uses these signals after killing enemies to teleport between zones as well. Given the fact that the enmy spawn zones have the same code for both the Boss Map and the Base Map, they also function in the same way with the map controller in identifying teleportation. This is done by also adding to a number of enemies that is maintained by the map controller. On any enemy death, the dying enemy notifies the map controller, and the map controller decrements the number of enemies by 1. For both the Boss Map and the Base Map, all zones are populated and add to the map controllers at the same time. This ensures that the Base Map, which contains multiple zones, doesn't teleport the player prematurely if no enemies exist on the map, even though some zones haven't spawned enemies yet. Finally, once the map controller sees that the number of enemies goes to 0, the map does a calculation based on the current stage as to whether a simple teleportation is needed or if the next zones need to be populated with enemies.
+Teleportation is controlled partially by zones, but they are also controlled by some round movement by identifying the number of enemies on the map, and for the safe zone, just the regular teleportation zone code. I've already explained the teleport zone code, which effectively just signals the base game with a location to teleport the player, but the map controller also uses these signals after killing enemies to teleport between zones as well. Given the fact that the enmy spawn zones have the same code for both the Boss Map and the Base Map, they also function in the same way with the map controller in identifying teleportation. This is done by also adding to a number of enemies that is maintained by the map controller. On any enemy death, the dying enemy notifies the map controller, and the map controller decrements the number of enemies by 1. For both the Boss Map and the Base Map, all zones are populated and add to the map controllers at the same time. This ensures that the Base Map, which contains multiple zones, doesn't teleport the player prematurely if no enemies exist on the map, even though some zones haven't spawned enemies yet. Finally, once the map controller sees that the number of enemies goes to 0, the map does a calculation based on the current stage as to whether a simple teleportation is needed or if the next zones need to be populated with enemies. This used a control design pattern that served as an intermediary between the main game class and the lower level zones to handle both round spawning and teleportation.
 
 **Spawning enemies and bosses within the maps**
 [base enemy spawn settings](https://github.com/brianli378/ecs179-final-project/blob/fa73743499acabbb05abc331016b22b0eb813da9/2d-roguelike/scripts/map_controller.gd#L98)
-I provided code that spawns enemies within the maps as well as populates the relavant spawn points and enemy specifications. The setting of the populated enemies is based on the current stage of the map controller. These functions was utilized by the round management developer to add scaling based on the round of the map controller to make the enemies scale in difficulty and damage. This code was also used by the Boss developer to spawn the boss during the boss stage. The spawn enemy zone is utilized in both basic enemies as well as boss enemies since both are types of a higher level class hierarchy of enemies, and as such there was no need to duplicate code.
+I provided code that spawns enemies within the maps as well as populates the relavant spawn points and enemy specifications. The setting of the populated enemies is based on the current stage of the map controller. These functions was utilized by the round management developer to add scaling based on the round of the map controller to make the enemies scale in difficulty and damage. This code was also used by the Boss developer to spawn the boss during the boss stage. The spawn enemy zone is utilized in both basic enemies as well as boss enemies since both are types of a higher level class hierarchy of enemies, and as such there was no need to duplicate code. This utilized the enemy factory pattern in a way by storing enemy specs within the controller design pattern.
 
 **Pushing out guns to enforce a max size**
 [adjustment for background colors of removed guns in next round](https://github.com/brianli378/ecs179-final-project/blob/fa73743499acabbb05abc331016b22b0eb813da9/2d-roguelike/scripts/ui/inventory_ui.gd#L256)
 [remove guns from front to match max of 6 inventory slots for guns](https://github.com/brianli378/ecs179-final-project/blob/fa73743499acabbb05abc331016b22b0eb813da9/2d-roguelike/scripts/enemies/enemy.gd#L99)
-One issue we ran into with the inventory systems was getting too many guns would lead to the gun inventory pushing out the fusion ui, making fusion at somem point impossible. This was gauranteed to happen since there was no way to remove guns from the inventory, which also made the game slightly boring since you could just fight forever and potentially lose your fusion ability, which is the main purpose of the game. To combat this, I designed a way to delete from the inventory that is out of the control of the player. This helps add difficulty since guns will be deleted in such a way that makes the player need to use the newly collected weapons. The method to do this is to identify the maximum inevntory size before the fusion ui moves into an odd location, and then if this size is exceeded, you pop out the front of the gun inventory list until you are within the maximum inventory. Popping from the front is key since it means the guns that have existed for the longest get deleted from you inventory, which means you constantly have to create new combinations and even the as the game progresses those new combinations will at a point get deleted, and a new combination will need to be used. This enforces variety in the guns you have access to. To indicate which guns will get deleted in the inventory, I added an extra visual to indicate based on the current inventory which guns would get deleted in the next round by highlighting the slot in red.
+One issue we ran into with the inventory systems was getting too many guns would lead to the gun inventory pushing out the fusion ui, making fusion at somem point impossible. This was gauranteed to happen since there was no way to remove guns from the inventory, which also made the game slightly boring since you could just fight forever and potentially lose your fusion ability, which is the main purpose of the game. To combat this, I designed a way to delete from the inventory that is out of the control of the player. This helps add difficulty since guns will be deleted in such a way that makes the player need to use the newly collected weapons. The method to do this is to identify the maximum inevntory size before the fusion ui moves into an odd location, and then if this size is exceeded, you pop out the front of the gun inventory list until you are within the maximum inventory. Popping from the front is key since it means the guns that have existed for the longest get deleted from you inventory, which means you constantly have to create new combinations and even the as the game progresses those new combinations will at a point get deleted, and a new combination will need to be used. This enforces variety in the guns you have access to. To indicate which guns will get deleted in the inventory, I added an extra visual to indicate based on the current inventory which guns would get deleted in the next round by highlighting the slot in red. This was mostly for game clarity and to ensure main functions in our game were accessible.
 
 
 **Documentation for contributions to the project outside of the main and sub roles.** 
@@ -422,18 +456,72 @@ I balanced some of these myself such as increasing the projectile speed on machi
 
 Some of the tuning I worked on included speed of enemies, enemy distance to player, fire rate, and sprite and projectile spawn positioning. [Commit Example of Tuning Changes](https://github.com/brianli378/ecs179-final-project/commit/4491b040077d8f0db918d26ad54cbbbc0c1c4174#diff-fac714f53a51c354668a6c5b8169d6125dfa8d820bd9073bbfa54ad1cb64a7ee)
 
-# Team Member #5 #
-## Main Role
 
-**Documentation for main role.**
+# Alex Yao - [github](https://github.com/yAlex78) #
+## User Interface and Input
 
-## Sub Role
+Although my main role is titled "User Interface and Input", my work aligned more with the "User Input" section of that main role. Throughout the development of this project, my primary focus was on creating the mechanics for shooting, as well as creating all of the guns in the game and most of the foundation for all of the projectiles in the game. I've listed out my major contributions here:
 
-**Documentation for Sub-Role**
+**Base Guns**
+
+During the first week of project development, I focused on creating a base Gun class that would be the base for all future Gun classes. Initially, this Gun class contained the logic for shooting Projectiles, and only had a few attributes, such as damage, projectile_speed, and shot_delay. This base Gun script was attached to the placeholder Gun sprite within the Player CharacterBody2D. Since there was already implemented logic that allowed the Player to spin and face the direction of the cursor, the initial shooting logic consisted of spawning a Projectile everytime the Player clicked, and making the Projectile fly in the direction of the cursor. I reused some code from my Exercise 1, where I had implemented a similar shooting and Projectile mechanic. 
+
+I would then implement the remaining 5 base guns using standard inheritance principles: Pistol, Machine Gun, Sniper, Shotgun, and Rocket Launcher. The Pistol, Machine Gun, and Sniper were implemented first; they extended the Gun class and introduced new attributes to be included in the base Gun class, such as a projectile_scale variable and a projectile_speed variable. The Pistol is a copy of the original Gun class I created, the Machine Gun boasts short shot_delay but has much smaller projectiles, and the Sniper has a fast-traveling Projectile but can only shoot once every few seconds.
+Implementing the Shotgun involved adding more attributes to the base Gun class, such as projectile_count and spread_angle. This was because I wanted the Shotgun to fire multiple Projectiles starting from the same spawn point, but each Projectile would travel in a different direction slightly offset from each other. As a result, the shooting logic was modified to loop through the current gun's projectile_count, applying an angle offset to each spawned Projectile. This change in logic didn't effect any other gun besides the Shotgun, as it is the only Gun to have a projectile_count greater than 1. 
+The RocketLauncher was the last to be implemented, and required creating a special Projectile type (detailed in the following section). The RocketLauncher's Projectile is the slowest out of all the Guns, but also has the highest damage. For the RocketLauncher, a new attribute was added to the base Gun class: explosion_radius. 
+
+
+**Projectile and RocketProjectile**
+
+When creating the base Gun class, I also created a very simple Projectile class. Using a simple sprite of a small black dot, I created a scene for a RigidBody2D, gave it a CollisionShape2D, and added a very basic script that would despawn the Projectile upon collision with anything besides other Projectiles. Over time, more code was added to this script by my teammates, including logic to reduce the health if a body entered belongs to the Player or an Enemy. 
+
+The RocketProjectile was a special projectile that was created solely for the RocketLauncher class. Similar to the regular Projectile, I created a scene with the same setup and gave it a script that would despawn the RocketProjectile upon a collision with anything besides other Projectiles. The main difference of the RocketProjectile is the _explode() function, which is used to apply the AoE effect of the RocketProjectile. This was achieved through creating an invisible circle with a radius of explosion_radius, detecting any bodies within this circle, and applying damage (with damage falloff calculations) to those bodies if they belong to the Player or an Enemy. 
+
+
+**Gun_Manager script, gun switching, and a dedicated shoot() function**
+
+With the addition of different guns into the game, there needed to be a way to manage all of the guns in one place, and logic was needed to allow the Player to cycle between guns. I created the gun_manager script to handle all of this, which now contains most of the logic related to our game. Initially, the gun_manager script contained the _shoot() function that was called when a left click was detected. I created an array containing an instance of each of the 5 base Guns, as well as binding the "E" key to switching guns. From there, a simple pointer variable would refer to which Gun the Player currently had equipped, and that pointer would be incremented every time "E" was pressed. 
+
+
+**Fusion Guns**
+
+In addition to creating the base Guns as well as both Projectile classes, I implemented the base versions of all 20 unique fusion guns. Using the "Gun Fusion Doc" created by Alyssa as a reference, I created a unique class for each fusion and tuned the parameters of each fusion to match the description that was present in the "Gun Fusion Doc". Due to time constraints as well as many fusions introducing new features that would be too time-consuming to implement, I ended up "re-imagining" most of the gun fusions, documenting my changed approach within the "Gun Fusion Doc". With this, I was able to create unique mechanics using already-existing Gun attributes and without creating new complex mechanics that I deemed to be unrealistic given the time constraint. For example, I gave most of the Sniper + (Gun) fusions infinite ammo, which became the primary gimmick for most of the "Laser" fusions.
+
+
+## Gameplay Testing
+
+As a gameplay tester, I spent a considerable amount of time playing through the game to identify any strange behavior. This mostly involved thoroughly testing all 5 base guns as well as all 20 fusion guns, as I was responsible for implementing these. Here are some other examples of areas that I fixed thanks to my testing:
+
+**Projectiles frozen in place**
+
+I noticed that in certain scenarios, projectile would end up freezing in place. Since Enemies were unlikely to run into these Projectiles, they would sit there and do nothing for the entire game. This issue was likely stemming from weird collisions between the Player and the Projectiles that resulted from the properties of the Projectile scene that I set up. To resolve this issue, I created a Timer in both Projectile and RocketProjectile that would auto-despawn the Projectile after a few seconds, preventing any Projectiles from floating in place forever.
+
+**Certain gun fusions crashing the game**
+
+After the fusion mechanic was first implemented, I discovered that for specific gun fusions, creating them would leave their crafting components in the array of Guns stored inside gun_manager despite not actually existing. This meant that you would eventually cycle to a gun that you no longer had access to, resulting in an Index Error that would crash the game. By thoroughly looking through the logic within gun_manager that handles the removal of guns and addition of a fusion gun, I was able to identify the issue: an if-statement that was causing a pointer to point to an undefined position. This was a major roadblock that our team was experiencing, so resolving it was a big relief.
+
+**RocketProjectile AoE not working**
+
+While conducting thorough testing of all 20 unique fusion guns, I noticed that the Player wasn't taking damage from RocketProjectiles that had impacted an area close to the Player. At the time, there was no visual effect for the AoE of the RocketProjectile, so it was difficult to tell if a Character was within the explosion radius of a RocketProjectile. By using print statements, I was able to discover that there was an issue within the _explode() function of RocketProjectile, where damage wasn't properly being applied to bodies within the AoE.
+
+**Projectiles rotating as they travel**
+
+Thanks to testing the Guns that I created, I noticed that projectiles would often rotate in the air as they traveled. This was especially apparent in fusions that involved the Shotgun, as multiple Projectiles were being spat out of one spawnpoint, causing strange things to happen with collisions. Thankfully, this was easily fixed by setting the "Lock Rotation" setting to true within my Projectile and RocketProjectile scenes.
+
 
 ## Other Contrubutions
 
-**Documentation for contributions to the project outside of the main and sub roles.** 
+**Semi Auto and Full Auto firing modes**
+
+Initially, the 5 base guns were all semi automatic, meaning that they fired whenever the user clicked the left mouse button. One of my teammates suggested that the Machine Gun be fully automatic, as that felt more intuitive. I implemented this by creating an enum within the base Gun class that represents the 2 different firing modes, and using if-statements within gun_manager to determine which firing mode should be used for the current gun. With a fully automatic firing style, the Gun would shoot as long as the left mouse button was held down, and this became the gimmick for most of the Machine Gun fusions.
+
+**GunSpec removal**
+
+At some point during development, a GunSpec class was created that defined certain properties of a Gun such as magazine size, starting reserve, maximum reserve, and reload time. Before implementing all 20 fusion guns, I decided get rid of the GunSpec class and simply incorporate those values into the individual Gun classes, as it felt redundant to have 2 different sources of information for a specific Gun. Doing this made implementing the fusion guns significantly quicker, as I didn't need to create a separate GunSpec entry for each fusion gun: instead, I could simply include the GunSpec attributes within the specific fusion class. 
+
+**Health regen**
+
+I added a simple +50% heal that the Player would receive each time they defeated the Boss Enemy. 
 
 # Team Member #6 #
 ## Main Role

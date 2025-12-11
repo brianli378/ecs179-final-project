@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cbp7rkfxj7ph8" path="res://scenes/maps/maps.tscn" id="9_0tnpc"]
 [ext_resource type="Script" uid="uid://ye17l3xnaqjk" path="res://scripts/ui/health_bar.gd" id="9_vtaks"]
 [ext_resource type="Script" uid="uid://bqayfm018yn32" path="res://scripts/ui/inventory_ui.gd" id="12_kvuet"]
-[ext_resource type="Script" uid="uid://cqw0f38lj6rgh" path="res://scenes/heat_bar.gd" id="13_trtic"]
+[ext_resource type="Script" path="res://scenes/heat_bar.gd" id="13_trtic"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0tnpc"]
 atlas = ExtResource("8_gee14")

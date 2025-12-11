@@ -31,6 +31,7 @@ If you used tutorials or other intellectual guidance to create aspects of your p
 
 
 **Author: Imran Alam**
+
 Lines used:
 
 https://github.com/brianli378/ecs179-final-project/blob/de3ba5dd1f2bea377e7523c52d9e15072a447001/2d-roguelike/scripts/enemies/enemy_nav/line_of_sight.gd#L16-L17
@@ -42,6 +43,7 @@ License: MIT License
 
 
 **Author: Chen Asraf**
+
 Lines used:
 
 https://github.com/brianli378/ecs179-final-project/blob/de3ba5dd1f2bea377e7523c52d9e15072a447001/2d-roguelike/scripts/enemies/enemy_nav/static_boundary.gd#L48-L57
@@ -56,6 +58,7 @@ License: I didn't find a license for this code, but I do believe based on the au
 
 
 **Author: Juan Linietsky, Ariel Manzur and the Godot community**
+
 Lines used/files: I used the scene files as a teplate to build my own menus, the scenes are: death_menu.tscn, main_menu.tscn, pause_menu.tscn, controls_menu.tscn
 
 [Menu Tutorial Source](https://docs.godotengine.org/en/3.0/getting_started/step_by_step/ui_main_menu.html)

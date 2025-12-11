@@ -9,7 +9,7 @@ var _enemy_char: Enemy = $BasicEnemy
 
 # set the gun for this enemy
 func _ready() -> void:
-	_gun_manager.curr_gun = Pistol.new()
+	_gun_manager.setup_gun('pistol')
 
 func initialize(spec: EnemySpec):
 	_enemy_char.initialize(spec)

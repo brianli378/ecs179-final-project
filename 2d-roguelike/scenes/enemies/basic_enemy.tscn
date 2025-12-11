@@ -122,9 +122,8 @@ debug_enabled = true
 [node name="Body" type="Sprite2D" parent="."]
 
 [node name="EnemyGunManager" parent="Body" instance=ExtResource("3_ibjif")]
-position = Vector2(122, 47.999992)
+position = Vector2(70, 46)
 scale = Vector2(1, 1)
-texture = null
 
 [node name="HitMarkerSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_3ld4s")

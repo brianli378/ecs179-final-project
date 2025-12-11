@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsv0yy33dcumc"]
+
+[ext_resource type="Script" uid="uid://c6qav8q30irta" path="res://scripts/enemies/enemy_setup/boss.gd" id="1_tunmm"]
+[ext_resource type="PackedScene" uid="uid://cuqg3rfwtjo8x" path="res://scenes/enemies/bosses/boss_enemy.tscn" id="2_cp0fh"]
+[ext_resource type="AudioStream" uid="uid://bymju31twbcpk" path="res://assets/sounds/hitmarker_2.wav" id="3_s47p1"]
+
+[node name="Boss" type="Node2D"]
+scale = Vector2(0.7, 0.7)
+script = ExtResource("1_tunmm")
+
+[node name="BossEnemy" parent="." instance=ExtResource("2_cp0fh")]
+
+[node name="sprite" type="Sprite2D" parent="."]
+visible = false
+
+[node name="HitMarkerSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_s47p1")

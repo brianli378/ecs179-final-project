@@ -43,11 +43,6 @@ func _explode() -> void:
 		if not npc_shot and body is Enemy:
 			body.health -= damage * damage_multiplier
 		elif npc_shot and body is Player:
-			#print(str(damage))
-			#print(str((damage / PLAYER_DAMAGE_REDUCTION)))
-			#print(str(damage_multiplier))
-			#print("damage: " + str((damage / PLAYER_DAMAGE_REDUCTION) * damage_multiplier))
-			#body.health -= (damage / PLAYER_DAMAGE_REDUCTION) * damage_multiplier
 			var dmg := int(round((damage / PLAYER_DAMAGE_REDUCTION) * damage_multiplier))
 			# tweak this variable
 			body.health -= dmg

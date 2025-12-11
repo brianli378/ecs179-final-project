@@ -1,8 +1,7 @@
-[gd_scene load_steps=36 format=3 uid="uid://dfob77al3r2l3"]
+[gd_scene load_steps=34 format=3 uid="uid://dfob77al3r2l3"]
 
 [ext_resource type="Script" uid="uid://ckotjxg6pcfyy" path="res://scripts/game.gd" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://cjfuyyu8dl486" path="res://scenes/player.tscn" id="1_yqjtg"]
-[ext_resource type="PackedScene" uid="uid://ck8xgy356oeee" path="res://scenes/maps/object.tscn" id="2_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://bjrm7q5gp25pu" path="res://assets/ui/health_bar_border.png" id="4_dinhu"]
 [ext_resource type="Script" uid="uid://c1ii6nabjc5qe" path="res://scripts/ui/ammo_label.gd" id="4_lbhrr"]
 [ext_resource type="Script" uid="uid://ddmp30xmc3gcl" path="res://scripts/ui/reload_label.gd" id="5_iywne"]
@@ -13,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://cbp7rkfxj7ph8" path="res://scenes/maps/maps.tscn" id="9_0tnpc"]
 [ext_resource type="Script" uid="uid://ye17l3xnaqjk" path="res://scripts/ui/health_bar.gd" id="9_vtaks"]
 [ext_resource type="Script" uid="uid://bqayfm018yn32" path="res://scripts/ui/inventory_ui.gd" id="12_kvuet"]
-[ext_resource type="Script" uid="uid://cqw0f38lj6rgh" path="res://scenes/heat_bar.gd" id="13_trtic"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0tnpc"]
 atlas = ExtResource("8_gee14")
@@ -174,24 +172,6 @@ script = ExtResource("1_lnu2h")
 position = Vector2(499, 194)
 scale = Vector2(0.5, 0.5)
 
-[node name="StaticBody2D" parent="." instance=ExtResource("2_lnu2h")]
-position = Vector2(177, 144)
-
-[node name="StaticBody2D2" parent="." instance=ExtResource("2_lnu2h")]
-position = Vector2(490, 414)
-
-[node name="StaticBody2D3" parent="." instance=ExtResource("2_lnu2h")]
-position = Vector2(894, 68)
-
-[node name="StaticBody2D4" parent="." instance=ExtResource("2_lnu2h")]
-position = Vector2(1056, 470)
-
-[node name="StaticBody2D5" parent="." instance=ExtResource("2_lnu2h")]
-position = Vector2(673, 664)
-
-[node name="StaticBody2D6" parent="." instance=ExtResource("2_lnu2h")]
-position = Vector2(82, 577)
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Label" type="Label" parent="CanvasLayer"]
@@ -258,41 +238,6 @@ columns = 6
 [node name="Panel" type="Panel" parent="CanvasLayer/InventoryPanel/MarginContainer/GunsContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_trtic")
-
-[node name="HeatBar" type="Control" parent="CanvasLayer"]
-custom_minimum_size = Vector2(200, 30)
-layout_mode = 3
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 1060.0
-offset_top = -40.0
-offset_right = 1260.0
-offset_bottom = -10.0
-grow_vertical = 0
-script = ExtResource("13_trtic")
-gun_manager_path = NodePath("../../Player/Body/Gun")
-
-[node name="Background" type="ColorRect" parent="CanvasLayer/HeatBar"]
-custom_minimum_size = Vector2(200, 30)
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 30.0
-
-[node name="HeatFill" type="ColorRect" parent="CanvasLayer/HeatBar"]
-layout_mode = 0
-offset_left = 2.0
-offset_top = 2.0
-offset_right = 2.0
-offset_bottom = 28.0
-
-[node name="HeatLabel" type="Label" parent="CanvasLayer/HeatBar"]
-custom_minimum_size = Vector2(200, 30)
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 30.0
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Maps" parent="." instance=ExtResource("9_0tnpc")]
 

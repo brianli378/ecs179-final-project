@@ -11,7 +11,7 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	
 	var timer = Timer.new()
-	timer.wait_time = 3.0
+	timer.wait_time = 6.0
 	timer.one_shot = true
 	timer.timeout.connect(_on_timeout)
 	add_child(timer)

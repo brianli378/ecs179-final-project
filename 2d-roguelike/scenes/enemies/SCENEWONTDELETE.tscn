@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://d25whx35gdwy2"]
+
+[ext_resource type="Script" uid="uid://c6qav8q30irta" path="res://scripts/enemies/enemy_setup/boss.gd" id="1_vf2vq"]
+[ext_resource type="PackedScene" uid="uid://cuqg3rfwtjo8x" path="res://scenes/enemies/bosses/boss_enemy.tscn" id="2_l07vc"]
+
+[node name="Boss" type="Node2D"]
+script = ExtResource("1_vf2vq")
+
+[node name="BossEnemy" parent="." instance=ExtResource("2_l07vc")]
+
+[node name="sprite" type="Sprite2D" parent="."]
+visible = false

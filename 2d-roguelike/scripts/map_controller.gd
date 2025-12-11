@@ -139,7 +139,9 @@ func _set_boss_zone(difficulty: float) -> void:
 func _on_enemy_death() -> void:
 	num_enemies -= 1
 	#print("Enemy Died. Remaining: ", num_enemies)
-	
+	stage = Stage.BOSS
+	_set_boss_zone(0.0)
+	game.on_player_teleport.emit(global_position + boss_zone.position + SPAWNPOINT_BOSS_P)
 	if num_enemies <= 0:
 		match stage:
 			Stage.BASE:

@@ -407,6 +407,7 @@ Some of the tuning I worked on included speed of enemies, enemy distance to play
 Although my main role is titled "User Interface and Input", my work aligned more with the "User Input" section of that main role. Throughout the development of this project, my primary focus was on creating the mechanics for shooting, as well as creating all of the guns in the game and most of the foundation for all of the projectiles in the game. I've listed out my major contributions here:
 
 **Base Guns**
+
 During the first week of project development, I focused on creating a base Gun class that would be the base for all future Gun classes. Initially, this Gun class contained the logic for shooting Projectiles, and only had a few attributes, such as damage, projectile_speed, and shot_delay. This base Gun script was attached to the placeholder Gun sprite within the Player CharacterBody2D. Since there was already implemented logic that allowed the Player to spin and face the direction of the cursor, the initial shooting logic consisted of spawning a Projectile everytime the Player clicked, and making the Projectile fly in the direction of the cursor. I reused some code from my Exercise 1, where I had implemented a similar shooting and Projectile mechanic. 
 
 I would then implement the remaining 5 base guns using standard inheritance principles: Pistol, Machine Gun, Sniper, Shotgun, and Rocket Launcher. The Pistol, Machine Gun, and Sniper were implemented first; they extended the Gun class and introduced new attributes to be included in the base Gun class, such as a projectile_scale variable and a projectile_speed variable. The Pistol is a copy of the original Gun class I created, the Machine Gun boasts short shot_delay but has much smaller projectiles, and the Sniper has a fast-traveling Projectile but can only shoot once every few seconds.
@@ -415,16 +416,19 @@ The RocketLauncher was the last to be implemented, and required creating a speci
 
 
 **Projectile and RocketProjectile**
+
 When creating the base Gun class, I also created a very simple Projectile class. Using a simple sprite of a small black dot, I created a scene for a RigidBody2D, gave it a CollisionShape2D, and added a very basic script that would despawn the Projectile upon collision with anything besides other Projectiles. Over time, more code was added to this script by my teammates, including logic to reduce the health if a body entered belongs to the Player or an Enemy. 
 
 The RocketProjectile was a special projectile that was created solely for the RocketLauncher class. Similar to the regular Projectile, I created a scene with the same setup and gave it a script that would despawn the RocketProjectile upon a collision with anything besides other Projectiles. The main difference of the RocketProjectile is the _explode() function, which is used to apply the AoE effect of the RocketProjectile. This was achieved through creating an invisible circle with a radius of explosion_radius, detecting any bodies within this circle, and applying damage (with damage falloff calculations) to those bodies if they belong to the Player or an Enemy. 
 
 
 **Gun_Manager script, gun switching, and a dedicated shoot() function**
+
 With the addition of different guns into the game, there needed to be a way to manage all of the guns in one place, and logic was needed to allow the Player to cycle between guns. I created the gun_manager script to handle all of this, which now contains most of the logic related to our game. Initially, the gun_manager script contained the _shoot() function that was called when a left click was detected. I created an array containing an instance of each of the 5 base Guns, as well as binding the "E" key to switching guns. From there, a simple pointer variable would refer to which Gun the Player currently had equipped, and that pointer would be incremented every time "E" was pressed. 
 
 
 **Fusion Guns**
+
 In addition to creating the base Guns as well as both Projectile classes, I implemented the base versions of all 20 unique fusion guns. Using the "Gun Fusion Doc" created by Alyssa as a reference, I created a unique class for each fusion and tuned the parameters of each fusion to match the description that was present in the "Gun Fusion Doc". Due to time constraints as well as many fusions introducing new features that would be too time-consuming to implement, I ended up "re-imagining" most of the gun fusions, documenting my changed approach within the "Gun Fusion Doc". With this, I was able to create unique mechanics using already-existing Gun attributes and without creating new complex mechanics that I deemed to be unrealistic given the time constraint. For example, I gave most of the Sniper + (Gun) fusions infinite ammo, which became the primary gimmick for most of the "Laser" fusions.
 
 
@@ -433,27 +437,34 @@ In addition to creating the base Guns as well as both Projectile classes, I impl
 As a gameplay tester, I spent a considerable amount of time playing through the game to identify any strange behavior. This mostly involved thoroughly testing all 5 base guns as well as all 20 fusion guns, as I was responsible for implementing these. Here are some other examples of areas that I fixed thanks to my testing:
 
 **Projectiles frozen in place**
+
 I noticed that in certain scenarios, projectile would end up freezing in place. Since Enemies were unlikely to run into these Projectiles, they would sit there and do nothing for the entire game. This issue was likely stemming from weird collisions between the Player and the Projectiles that resulted from the properties of the Projectile scene that I set up. To resolve this issue, I created a Timer in both Projectile and RocketProjectile that would auto-despawn the Projectile after a few seconds, preventing any Projectiles from floating in place forever.
 
 **Certain gun fusions crashing the game**
+
 After the fusion mechanic was first implemented, I discovered that for specific gun fusions, creating them would leave their crafting components in the array of Guns stored inside gun_manager despite not actually existing. This meant that you would eventually cycle to a gun that you no longer had access to, resulting in an Index Error that would crash the game. By thoroughly looking through the logic within gun_manager that handles the removal of guns and addition of a fusion gun, I was able to identify the issue: an if-statement that was causing a pointer to point to an undefined position. This was a major roadblock that our team was experiencing, so resolving it was a big relief.
 
 **RocketProjectile AoE not working**
+
 While conducting thorough testing of all 20 unique fusion guns, I noticed that the Player wasn't taking damage from RocketProjectiles that had impacted an area close to the Player. At the time, there was no visual effect for the AoE of the RocketProjectile, so it was difficult to tell if a Character was within the explosion radius of a RocketProjectile. By using print statements, I was able to discover that there was an issue within the _explode() function of RocketProjectile, where damage wasn't properly being applied to bodies within the AoE.
 
 **Projectiles rotating as they travel**
+
 Thanks to testing the Guns that I created, I noticed that projectiles would often rotate in the air as they traveled. This was especially apparent in fusions that involved the Shotgun, as multiple Projectiles were being spat out of one spawnpoint, causing strange things to happen with collisions. Thankfully, this was easily fixed by setting the "Lock Rotation" setting to true within my Projectile and RocketProjectile scenes.
 
 
 ## Other Contrubutions
 
-** Semi Auto and Full Auto firing modes **
+**Semi Auto and Full Auto firing modes**
+
 Initially, the 5 base guns were all semi automatic, meaning that they fired whenever the user clicked the left mouse button. One of my teammates suggested that the Machine Gun be fully automatic, as that felt more intuitive. I implemented this by creating an enum within the base Gun class that represents the 2 different firing modes, and using if-statements within gun_manager to determine which firing mode should be used for the current gun. With a fully automatic firing style, the Gun would shoot as long as the left mouse button was held down, and this became the gimmick for most of the Machine Gun fusions.
 
 **GunSpec removal**
+
 At some point during development, a GunSpec class was created that defined certain properties of a Gun such as magazine size, starting reserve, maximum reserve, and reload time. Before implementing all 20 fusion guns, I decided get rid of the GunSpec class and simply incorporate those values into the individual Gun classes, as it felt redundant to have 2 different sources of information for a specific Gun. Doing this made implementing the fusion guns significantly quicker, as I didn't need to create a separate GunSpec entry for each fusion gun: instead, I could simply include the GunSpec attributes within the specific fusion class. 
 
 **Health regen**
+
 I added a simple +50% heal that the Player would receive each time they defeated the Boss Enemy. 
 
 # Team Member #6 #

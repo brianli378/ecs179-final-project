@@ -492,13 +492,16 @@ The RocketLauncher was the last to be implemented, and required creating a speci
 **Projectile and RocketProjectile**
 
 When creating the base Gun class, I also created a very simple Projectile class. Using a simple sprite of a small black dot, I created a scene for a RigidBody2D, gave it a CollisionShape2D, and added a very basic script that would despawn the Projectile upon collision with anything besides other Projectiles. Over time, more code was added to this script by my teammates, including logic to reduce the health if a body entered belongs to the Player or an Enemy. 
+https://github.com/brianli378/ecs179-final-project/blob/main/2d-roguelike/scripts/guns/projectiles/projectile.gd#L10-L42
 
 The RocketProjectile was a special projectile that was created solely for the RocketLauncher class. Similar to the regular Projectile, I created a scene with the same setup and gave it a script that would despawn the RocketProjectile upon a collision with anything besides other Projectiles. The main difference of the RocketProjectile is the _explode() function, which is used to apply the AoE effect of the RocketProjectile. This was achieved through creating an invisible circle with a radius of explosion_radius, detecting any bodies within this circle, and applying damage (with damage falloff calculations) to those bodies if they belong to the Player or an Enemy. 
+https://github.com/brianli378/ecs179-final-project/blob/main/2d-roguelike/scripts/guns/projectiles/rocket_projectile.gd#L17-L48
 
 
 **Gun_Manager script, gun switching, and a dedicated shoot() function**
 
 With the addition of different guns into the game, there needed to be a way to manage all of the guns in one place, and logic was needed to allow the Player to cycle between guns. I created the gun_manager script to handle all of this, which now contains most of the logic related to our game. Initially, the gun_manager script contained the _shoot() function that was called when a left click was detected. I created an array containing an instance of each of the 5 base Guns, as well as binding the "E" key to switching guns. From there, a simple pointer variable would refer to which Gun the Player currently had equipped, and that pointer would be incremented every time "E" was pressed. 
+https://github.com/brianli378/ecs179-final-project/blob/main/2d-roguelike/scripts/guns/gun_manager.gd#L132-L144
 
 
 **Fusion Guns**
@@ -532,6 +535,7 @@ Thanks to testing the Guns that I created, I noticed that projectiles would ofte
 **Semi Auto and Full Auto firing modes**
 
 Initially, the 5 base guns were all semi automatic, meaning that they fired whenever the user clicked the left mouse button. One of my teammates suggested that the Machine Gun be fully automatic, as that felt more intuitive. I implemented this by creating an enum within the base Gun class that represents the 2 different firing modes, and using if-statements within gun_manager to determine which firing mode should be used for the current gun. With a fully automatic firing style, the Gun would shoot as long as the left mouse button was held down, and this became the gimmick for most of the Machine Gun fusions.
+https://github.com/brianli378/ecs179-final-project/blob/main/2d-roguelike/scripts/guns/base_guns/gun.gd#L4-L19
 
 **GunSpec removal**
 

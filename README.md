@@ -250,18 +250,53 @@ One issue we ran into with the inventory systems was getting too many guns would
 
 **Documentation for contributions to the project outside of the main and sub roles.** 
 
-# Team Member #4 #
-## Main Role
+# Aditya Sharma #
+## AI and behavior designer
 
-**Documentation for main role.**
+**Basic Functionality**
+movement based on weapons
+integrating different weapons for the enemies, and fusion weapons for the bosses
+tuning the weapons for the enemies (damage, fire rate, projectile spawn points, sprite positions)
+designed the enemy behavior, walking faster when they don't have los to player to make fights more urgent and engaging
+brainstormed with Alyssa and Sean on how to differentiate the enemy boss from the basic enemies
+damage taken by enemies and player, ensure they can't impact other enemies
+implemented A* for pathing with help from tutorial: (https://casraf.dev/2024/09/pathfinding-guide-for-2d-top-view-tiles-in-godot-4-3/)
+implemented line of sight for the enemies with help from tutorial: (https://www.makeuseof.com/godot-raycast2d-nodes-line-of-sight-detection/)
+decomposed fusion weapons to give player the parts on death, fixed a bug where player couldn't merge those weapons
 
-## Sub Role
 
-**Documentation for Sub-Role**
+## Performance optimization
+
+**A\* Pathing**
+Realized that A* pathing was significantly slowing down game, utilized profiler to confirm. 
+- diagnosed why the enemies were getting stuck during A* pathing (colliding with walls due to collision shape with edges, implemented fix for collision shape)
+- identified why performance was so bad with A* pathing and how to fix (small tiles)
+- utilized LLMs to optimize obstacle marking code
+
+**Gun instance caching**
+Cached gun objects in the GunData shared resource so they wouldn't be duplicated across npcs or the player, reducing runtime memory usage.
+
+**Enemy Death Signal Chain Optimization**
+Improved enemy death tracking by eliminating an extra layer of signals so the enemies would directly signal the tracker in ___.gd
+
+**Reduced game overhead and improved gameplay through design choices**
+Proposed each weapon type sharing ammo across weapons to encourage player to fuse new weapons rather than have multiple of the same weapon. 
 
 ## Other Contrubutions
 
-**Documentation for contributions to the project outside of the main and sub roles.** 
+**Menus** 
+I followed a Godot tutorial (https://docs.godotengine.org/en/3.0/getting_started/step_by_step/ui_main_menu.html) to learn how to design the UI for the main menu and did my own research to understand how to link the images to buttons to allow for menu and scene switching to create this flow:
+
+main menu -> controls menu -> game -> either pause or death menu -> game
+
+I also had to make sure to clear the scene tree of all leftover nodes when switching between some of the menus to ensure there would be no overlapping visuals or logic. I fixed a few bugs here concerned with the player being able to pause at the same time as they die and thus seeing both the pause and death screen at the same time. I realized this was due to the queue_free() of the player node not executing immediately (because its queued to free at the end of the current frame), so I implemented a flag which prevents _physics_process() runs after the death handle function is triggered. I also ran into an issue where projectiles and enemies were still showing up on the pause/death screens despite the scene tree clearing I was already doing. I realized this was because those nodes were not part of the same tree as the player and UI and the map, so clearing the game scene tree wasn't enough, and modified the clearing to accomodate this.
+
+I also learned how to pause the scene tree and unpause it, but this is built into Godot so it was easy to implement.
+
+Please note the look of the menus (especially the title screen) were Alyssa's work, I mainly worked on the functionality and backend of the menus. 
+
+**Linting**
+I set up a Godot linter (https://github.com/Scony/godot-gdscript-toolkit) through Github actions to help the team adhere to best practices and the GDScript style/format guide. The linter was set up to run on just pull requests to ensure we didn't use too many credits, and allow for small discrepencies in formatting before the review process. 
 
 # Team Member #5 #
 ## Main Role

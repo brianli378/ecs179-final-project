@@ -29,6 +29,42 @@ If you used tutorials or other intellectual guidance to create aspects of your p
   
 [Side scrolling background of main menu](https://craftpix.net/freebies/free-scrolling-city-backgrounds-pixel-art/?num=1&count=1381&sq=scrolling%20city%20backgrounds%20pixel%20art%20gif&pos=3)  
 
+
+**Author: Imran Alam**
+
+Lines used:
+
+https://github.com/brianli378/ecs179-final-project/blob/de3ba5dd1f2bea377e7523c52d9e15072a447001/2d-roguelike/scripts/enemies/enemy_nav/line_of_sight.gd#L16-L17
+file: line_of_sight.gd
+
+(Raycast Tutorial Article)[https://www.makeuseof.com/godot-raycast2d-nodes-line-of-sight-detection/]
+
+License: MIT License
+
+
+**Author: Chen Asraf**
+
+Lines used:
+
+https://github.com/brianli378/ecs179-final-project/blob/de3ba5dd1f2bea377e7523c52d9e15072a447001/2d-roguelike/scripts/enemies/enemy_nav/static_boundary.gd#L48-L57
+
+https://github.com/brianli378/ecs179-final-project/blob/de3ba5dd1f2bea377e7523c52d9e15072a447001/2d-roguelike/scripts/enemies/enemy_nav/static_boundary.gd#L143-L161
+
+file: static_boundary.gd
+
+(A* Pathfinding Tutorial)[https://casraf.dev/2024/09/pathfinding-guide-for-2d-top-view-tiles-in-godot-4-3/]
+
+License: I didn't find a license for this code, but I do believe based on the author's wording in the article, it's allowed for readers to use it in their projects: "This tutorial will do much of the same, but I will try to give you a more flexible way to handle obstacle tiles, so that it is more scalable for your game, and easier to manage and expand on."
+
+
+**Author: Juan Linietsky, Ariel Manzur and the Godot community**
+
+Lines used/files: I used the scene files as a teplate to build my own menus, the scenes are: death_menu.tscn, main_menu.tscn, pause_menu.tscn, controls_menu.tscn
+
+[Menu Tutorial Source](https://docs.godotengine.org/en/3.0/getting_started/step_by_step/ui_main_menu.html)
+
+License: Permissive Creative Commons Attribution 3.0 (CC-BY 3.0) license, with attribution to “Juan Linietsky, Ariel Manzur and the Godot Engine community”.
+
 [Tile map helper](https://arttale.itch.io/tilemap-templates) - Used these online tile map templates to ease the repetition of drawing many tiles (These tile sets and tutorial allow for what you draw to be automatically replicated on other tiles)
 
 [Pixel Art Font](https://www.dafont.com/minecraft.font) - used open source minecraft font to give the game a consistent art style
@@ -298,33 +334,47 @@ One issue we ran into with the inventory systems was getting too many guns would
 
 **General Functionality**
 
-I implemented movement for the enemies, their combat behavior, and modified the player gun manager to work as an enemy gun manager and kept it up to date with changes to the gun system. 
+I implemented movement for the enemies, their combat behavior, and modified the player gun manager to work as an enemy gun manager and kept it up to date with changes to the gun system.
 
 [Enemy Functionality File](https://github.com/brianli378/ecs179-final-project/blame/56d12f68b7984a7a77158215ab2e52038ea6f184/2d-roguelike/scripts/enemies/enemy.gd)
 
 [Enemy Gun Manager File](https://github.com/brianli378/ecs179-final-project/blame/56d12f68b7984a7a77158215ab2e52038ea6f184/2d-roguelike/scripts/enemies/enemy_gun_manager.gd)
 
-I built the functionality for enemies and the player to take damage and die through the _on_body_entered() signal and collision layers/masks, also ensuring that there's no friendly fire by modifying the projectile spec to track who fired the projectile. 
+I built the functionality for enemies and the player to take damage and die through the _on_body_entered() signal and collision layers/masks, also ensuring that there's no friendly fire by modifying the projectile spec to track who fired the projectile. This is similar to what was done in homework 3, with the shield factory and projectiles.
 
 https://github.com/brianli378/ecs179-final-project/blob/56d12f68b7984a7a77158215ab2e52038ea6f184/2d-roguelike/scripts/guns/projectiles/projectile.gd#L26-L42
 
 **Enemy Behavior**
 
-My goal with the enemy behavior was to center it around the guns themselves, since the main aspect of our game is the gun system. I knew that enemies with different guns would want to use them in different ways, for example, an enemy with a shotgun would want to get closer to the player than one with a sniper. To implement this, I gave each enemy a close leash and far leash and wrote logic for the enemy to approach the player when the distance is > the far leash, and move away from the player when distance is < the close leash. This resulted in an engaging tug of war that was fun even in an empty room with no cover. 
+My goal with the enemy behavior was to center it around the guns themselves, since the main aspect of our game is the gun system. I knew that enemies with different guns would want to use them in different ways, for example, an enemy with a shotgun would want to get closer to the player than one with a sniper. To implement this, I gave each enemy a close leash and far leash and wrote logic for the enemy to approach the player when the distance is > the far leash, and move away from the player when distance is < the close leash. This resulted in an engaging tug of war that was fun even in an empty room with no cover. The idea that a game should be fun in an empty room is similar to ideas presented in the game feel videos, where Celeste developers mentioned that they wanted their movement to feel good even if it was just in an empty room.
+
+Enemy leash behavior:
+https://github.com/brianli378/ecs179-final-project/blob/de3ba5dd1f2bea377e7523c52d9e15072a447001/2d-roguelike/scripts/enemies/enemy.gd#L128-L140
+
+Note that the enemies don't have a state where they stop moving, they either move towards the player, or away from the player. This is intentional to create more action on the player's screen to create more of a chaotic combat experience. In playtesting, this behavior doesn't seem noticed by the player since our combat promotes constant movement. However, this behavior ensures if the player does stand still, the enemies are still moving and doing something interesting and the flow of action doesn't slow down. This relates to the course concept of making sure npcs are always doing something. 
 
 
 **Enemy Line Of Sight**
 
 To deal with cover, I implemented line of sight (LOS) for the enemies through a ray cast 2d object attached to the enemy gun manager. I learned how LOS typically worked in Godot through this tutorial: https://www.makeuseof.com/godot-raycast2d-nodes-line-of-sight-detection/, and adjusted the map tileset's collision masks to ensure only walls would block LOS. Then I integrated the basic enemy behavior by ensuring the enemies only shoot at the player when they have LOS.
 
+I chose a raycast length that wasn't too short so enemies with higher ranges would have no issue seeing the player at their range, but also not too long for performance reasons.
+
+Enemy line of sight behavior:
+https://github.com/brianli378/ecs179-final-project/blob/de3ba5dd1f2bea377e7523c52d9e15072a447001/2d-roguelike/scripts/enemies/enemy.gd#L119-L141
 
 **A\* Navigation**
 
-With LOS working, I needed a way to have the enemies navigate around obstacles to regain LOS with the player when an obstacle was blocking them, which led me to A* navigation. I learned how to implement this in Godot through this tutorial: https://www.makeuseof.com/godot-raycast2d-nodes-line-of-sight-detection/, and modified the details to work for our structure. Particularly, I found the tutorial's suggested code performed very poorly, which I will expand upon later. I once again modified the map tileset by painting a navigation layer on the tiles for the floor to inform the navigation agent on what it can use for pathing. I also implemented tutorial code to identify all obstacles in the level based on collision polygons.
+With LOS working, I needed a way to have the enemies navigate around obstacles to regain LOS with the player when an obstacle was blocking them, which led me to A* navigation. I learned how to implement this in Godot through this tutorial: [A* in Godot tutorial](https://casraf.dev/2024/09/pathfinding-guide-for-2d-top-view-tiles-in-godot-4-3/), and modified the details to work for our structure. Particularly, I found the tutorial's suggested code for obstacle selection performed very poorly, which I will expand upon later. I once again modified the map tileset by painting a navigation layer on the tiles for the floor to inform the navigation agent on what it can use for pathing.
 
-The A* navigation succeeded in enabling the enemies to regain LOS with the player, but I noticed they initially got stuck against the obstacles and slowed down to a halt while grinding against the walls. I identified this issue as being due to navigation tiles being so close to the wall and the shape of the collision object being a square. To mitigate this I changed the collision object to an oval, which fixed the issue for the most part but not around corners. I found I could implement a navigation server and create meses away from the wall to prevent this, but unfortunately did not have time. Instead, we modified the edges of the corners to be a bit more rounded to help with this issue. 
+The A* navigation succeeded in enabling the enemies to regain LOS with the player, but I noticed they initially got stuck against the obstacles and slowed down to a halt while grinding against the walls. I identified this issue as being due to navigation tiles being so close to the wall and the shape of the collision object being a square. To mitigate this I changed the collision object to an oval, which fixed the issue for the most part but not around corners. I found I could implement a navigation server and create meses away from the wall to prevent this, but unfortunately did not have the time to implement this in a polished quality. Instead, we modified the edges of the corners to be a bit more rounded to help with this issue. 
+
+Class discussions on collision objects made me initially try out a sphere, but in the end I felt an oval shape would fit the game better since our sprites were very rectangular, and a sphere shape would result in odd-looking collisions for the enemies.
 
 I decided to speed up the enemies while they were in A* navigation to help reduce the effect of sliding against collision objects like walls, and keep the gameplay engaging and urgent. Both the A* and LOS behavior together also resulted in enemies utilizing cover to shoot at the player, which made the combat more realistic and made the player's positioning relative to obstacles more relevant. 
+
+Enemy pathfinding behavior:
+https://github.com/brianli378/ecs179-final-project/blob/de3ba5dd1f2bea377e7523c52d9e15072a447001/2d-roguelike/scripts/enemies/enemy.gd#L141-L162
 
 
 **Fusion Weapons For Bosses**
@@ -333,32 +383,44 @@ To come up with an engaging boss design, I proposed some options to the team and
 
 To differentiate the bosses from basic enemies, we decided to make them larger, have more health, and use fusion weapons to showcase some more combinations to the player. On death, the boss also gives the two weapons used to make its fusion to the player. I implemented all of this, and had to make some significant adjustments to the fusion system for the player to let it work for the bosses. I also fixed a bug where the player could not fuse these weapons received from the boss due to the way the fusion system worked.
 
+Giving player guns on death:
+https://github.com/brianli378/ecs179-final-project/blob/de3ba5dd1f2bea377e7523c52d9e15072a447001/2d-roguelike/scripts/enemies/enemy.gd#L87-L105
+
 First, we chose a smaller pool of weapons for the bosses to pull from to ensure the experience was polished before adding in more bosses. We made our decision through team discussino, but generally tried to give the player a good variety of weapons to experience fighting against. The fusion weapons needed unique tuning to the boss in terms of sprite position and projectile spawn position compared to the player, which I determined through trial and error. I also noticed some issues with the LOS and pathing compared to the normal enemies, which were mitigated by attaching the LOS ray to the eye position of the enemies, which made them act more realistically based on whether their eyes could see the player. To deal with the pathing, I made the boss smaller as suggested by Alyssa.
+
+In terms of implementation, the Boss shares most of its functionality with the basic enemy, so they both rely on the same script. The main difference lies in the scale and health of the boss, which is determined by the node and the spec that's passed to enemy factory respectively, and the fusion gun setup in the enemy_gun_manager.gd script which basic enemies don't utilize. To set up the fusion weapons, I modified logic from the Player gun_manager.gd script to work for the boss.
+
+I took some inspiration from hw3 from class to try to consolidate all enemies to one script, and have slight code modifications to deal with multiple types of enemies, like how we had one projectile which looked different and did damage differently in hw3 depending on the type. Duplicating the script 
+
+Boss setup script:
+https://github.com/brianli378/ecs179-final-project/blob/de3ba5dd1f2bea377e7523c52d9e15072a447001/2d-roguelike/scripts/enemies/enemy_setup/boss.gd#L1-L15
+
+Boss fusion setup function:
+https://github.com/brianli378/ecs179-final-project/blob/de3ba5dd1f2bea377e7523c52d9e15072a447001/2d-roguelike/scripts/enemies/enemy_gun_manager.gd#L58-L108
 
 
 ## Performance optimization
 
 **A\* Pathing**
 
-After implementing A* pathing, I immediately noticed a significant performance drop with multiple enemies. I first utilized the profiler to confirm this was due to the pathing, and found two issues to solve. First, the tutorial's method for calculating the obstacles and marking them for the navigation agent was very slow due to it using a list for storage, I checked with an LLM to confirm how to optimize the code as Godot doesn't have a Set data structure which I wanted to use, and replaced the list with a dictionary for faster lookup. 
+After implementing A* pathing, I immediately noticed a significant performance drop with multiple enemies. I first utilized the profiler to confirm this was due to the pathing, and found two issues to solve. First, the tutorial's method for calculating the obstacles and marking them for the navigation agent was very slow due to it using a list for storage, I checked with an LLM to confirm how to optimize the code as Godot doesn't have a Set data structure which I wanted to use, and replaced the list with a dictionary for faster lookup.
+
+[Obstacle Grouping File](https://github.com/brianli378/ecs179-final-project/blob/de3ba5dd1f2bea377e7523c52d9e15072a447001/2d-roguelike/scripts/enemies/enemy_nav/static_boundary.gd)
 
 This significantly improved performance, but the other issue was the small tile size. I realized this through online research, and believe it's due to the density of the mesh the navigation agent must traverse to find the shortest path to the target. I wasn't sure if this was the fix, but I suggested increasing tile size which Sean helped with, which solved the problem.
 
 
 **Gun instance caching**
 
-I noticed that the enemies and player were rebuilding gun objects which could be shared between them, so I added a variable in our GunData resource to cache the gun objects for reuse, reducing memory usage.
+I noticed that the enemies and player were rebuilding gun objects which could be shared between them, so I added a variable in our GunData resource to cache the gun objects for reuse, reducing memory usage. This is the caching code in the Player's gun_manager.gd script:
 
-
-**Enemy Death Signal Chain Optimization**
-
-When refactoring the enemy code, I noticed that the enemy death tracking done by the round manager (in map_controller.gd, and set up in the enemy factory) was receiving signals indirectly through game.gd, which received on death signals from the enemy, instead of map_controller directly receiving the on_death signal emitted by enemies. I removed game.gd from this process to improve performance through reduced code execution and fewer signal emissions/handles. 
-
+https://github.com/brianli378/ecs179-final-project/blob/de3ba5dd1f2bea377e7523c52d9e15072a447001/2d-roguelike/scripts/guns/gun_manager.gd#L312-L324
 
 **Reduced game overhead and improved gameplay through design choices**
 
 I proposed each weapon type sharing ammo across weapons to encourage player to fuse new weapons rather than have multiple of the same weapon, which allowed us to simplify the gun system by not needing each weapon instance to track it's ammo. This also enabled the gun object caching mentioned earlier. 
 
+This is related to concepts discussed in class on designing cameras to support intended game feel. For example, in class we talked about a shinobi game that didn't move the camera upwards until the shinobi landed higher or lower from a jump, which made the player have to be more careful about jumping and think about verticality; in the same way, we restrict the player by providing no benefit to having multiple of the same weapon, encouraging exploring more fusions which is the core mechanic of our game. Thematically, the simulation overlords are the ones encouraging the player to try out new weapons for their testing.
 
 ## Other Contrubutions
 
@@ -370,9 +432,17 @@ main menu -> controls menu -> game -> either pause or death menu -> game
 
 I also had to make sure to clear the scene tree of all leftover nodes when switching between some of the menus to ensure there would be no overlapping visuals or logic. 
 
-I fixed a few bugs here concerned with the player being able to pause at the same time as they die and thus seeing both the pause and death screen at the same time. I realized this was due to the queue_free() of the player node not executing immediately (because its queued to free at the end of the current frame), so I implemented a flag which prevents _physics_process() runs after the death handle function is triggered. 
+[Menu Management Script](https://github.com/brianli378/ecs179-final-project/blob/main/2d-roguelike/scripts/world.gd)
 
-I also ran into an issue where projectiles and enemies were still showing up on the pause/death screens despite the scene tree clearing I was already doing. I realized this was because those nodes were not part of the same tree as the player and UI and the map, so clearing the game scene tree wasn't enough, and modified the clearing to accomodate this.
+Example menu button script:
+
+https://github.com/brianli378/ecs179-final-project/blob/a34c228d4fc5f65937dfd0f47e620f07dc98f666/2d-roguelike/scripts/menus/go_to_controls_button.gd#L1-L6
+
+I fixed a bug concerned with the player being able to pause at the same time as they die and thus seeing both the pause and death screen at the same time. I realized this was due to the queue_free() of the player node not executing immediately (because its queued to free at the end of the current frame), so I implemented a flag which prevents _physics_process() runs after the death handle function is triggered. 
+
+[Commit To Fix Pause and Death Bug](https://github.com/brianli378/ecs179-final-project/commit/eb817ba71682c3cee3896b2d3fad931c774ddaeb)
+
+I also ran into an issue where projectiles and enemies were still showing up on the pause/death screens despite the scene tree clearing I was already doing. I realized this was because those nodes were not part of the same tree as the player and UI and the map, so clearing the game scene tree wasn't enough, and modified the clearing to accomodate this. Experience I gained from class in understanding and traversing node trees in the class homeworks and lectures helped here.
 
 [Commit Fixing Pause Projectiles](https://github.com/brianli378/ecs179-final-project/commit/4aec400f7194284c4a9209a87f844d8b75d82056)
 
@@ -391,6 +461,8 @@ https://github.com/brianli378/ecs179-final-project/blob/b16f086c586f394d463f21e8
 **Code Refactor**
 
 I refactored the file structure to separate scenes from scripts from specs completely, and added in folders to organize files more logically to improve codebase quality.
+
+[Refactor Commit](https://github.com/brianli378/ecs179-final-project/commit/36e29311bb5d10ba9d6aaa298ba53026bab2494c)
 
 **Playtesting**
 

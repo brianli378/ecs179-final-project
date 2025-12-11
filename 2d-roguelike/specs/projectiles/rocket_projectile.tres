@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ProjectileSpec" load_steps=3 format=3 uid="uid://bnilbt1el36aj"]
 
 [ext_resource type="Script" uid="uid://baktn8742q1rt" path="res://scripts/guns/projectiles/projectile_spec.gd" id="1_ar4yc"]
-[ext_resource type="Texture2D" uid="uid://cnbpcd1rnmbsb" path="res://assets/rocket_projectile.png" id="2_kcrt8"]
+[ext_resource type="Texture2D" uid="uid://cyguw3l3ccfy" path="res://assets/rocket_projectile.png" id="2_kcrt8"]
 
 [resource]
 script = ExtResource("1_ar4yc")

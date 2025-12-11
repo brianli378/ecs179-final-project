@@ -1,6 +1,8 @@
 class_name Enemy
 extends CharacterBody2D
 
+signal enemy_death
+
 var health: int
 var speed: float
 var damage: float
@@ -15,6 +17,8 @@ var _movement_speed: float = 300.0 # units per frame
 
 var enemy_los: EnemyLineOfSight = null
 
+var _is_dying: bool = false
+
 @onready
 var gun_manager: EnemyGunManager = $Body/EnemyGunManager
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
@@ -25,13 +29,8 @@ var nav: NavigationAgent2D = $NavigationAgent2D
 @onready var hit_marker_sound = $HitMarkerSound
 var old_health: float
 
-
 @onready
 var _player:Player
-
-var _is_dying: bool = false
-
-signal enemy_death
 
 func initialize(spec: EnemySpec):
 	self.health = spec.health
@@ -132,6 +131,7 @@ func _physics_process(_delta: float) -> void:
 		elif distance < _closest_leash:
 			# Move away from player
 			velocity = -direction * _movement_speed
+		
 		if direction.x < 0:
 			anim.play("walk_left")
 		elif direction.x > 0 :
@@ -161,8 +161,6 @@ func _physics_process(_delta: float) -> void:
 		
 	move_and_slide()
 
-
-#TODO: take damage (similar to exercise 3)
 
 func _distance_to_player() -> float:
 	if _player == null:

@@ -99,7 +99,7 @@ func _handle_death() -> void:
 		while _player.gun_manager.gun_keys.size() > 6:
 				_player.gun_manager.gun_keys.pop_front()
 		
-		_player.health += 15
+		_player.health += 50
 		
 	enemy_death.emit()
 	queue_free()

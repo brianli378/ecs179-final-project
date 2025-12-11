@@ -373,11 +373,11 @@ func _start_reload(gun_key: String, mag_size: int, curr_mag: int, curr_reserve: 
 		return
 	if curr_mag >= mag_size:
 		return
-	if curr_reserve <= 0:
-		return
 	
 	is_reloading = true
-	await get_tree().create_timer(reload_time).timeout
+	var gun_reload_time = guns[gun_key].reload_time
+	reload_time = gun_reload_time
+	await get_tree().create_timer(gun_reload_time).timeout
 	_finish_reload(gun_key)
 
 func _finish_reload(gun_key: String) -> void:
@@ -385,17 +385,8 @@ func _finish_reload(gun_key: String) -> void:
 		is_reloading = false
 		return
 	var mag_size: int = guns[gun_key].magazine_size
-	var mag: int = int(ammo_in_mag.get(gun_key, 0))
-	var reserve: int = int(ammo_in_reserve.get(gun_key, 0))
-	var needed: int = mag_size - mag
 	
-	if needed <= 0:
-		is_reloading = false
-		return
-	
-	var taken: int = min(needed, reserve)
-	mag += taken
-	ammo_in_mag[gun_key] = mag
+	ammo_in_mag[gun_key] = mag_size
 	is_reloading = false
 
 func _no_ammo_fire() -> void:

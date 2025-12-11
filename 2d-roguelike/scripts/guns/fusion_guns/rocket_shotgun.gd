@@ -14,6 +14,6 @@ func _init() -> void:
 	projectile_type = "rocket"
 	shoot_sound = preload("res://assets/sounds/rocket_launcher_sound.wav")
 	magazine_size = 1
-	starting_reserve = 5
-	max_reserve = 10
+	starting_reserve = 50000
+	max_reserve = 10000
 	reload_time = 3.0

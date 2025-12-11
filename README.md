@@ -545,16 +545,43 @@ At some point during development, a GunSpec class was created that defined certa
 
 I added a simple +50% heal that the Player would receive each time they defeated the Boss Enemy. 
 
-# Team Member #6 #
-## Main Role
+# Rytham Dawar - [Github](https://github.com/Rytham1)
+## Systems and Tools Engineer
 
-**Documentation for main role.**
+**Enemy Generation through Enemy Factory** I architected an enemy creation system using Godot's Resource class and Factory Design Pattern (similar to Exercise 3). I started by creating a custom EnemySpec that exposes variables like (health and speed) to the inspector. Afterwards, I created the EnemyFactory (implemented as an Autoload) which consumes resource files created from the EnemySpec. This made it easier for the people working on enemies (mainly Aditya) to build new enemies and modify their behavior without writing too much code. (this was directly influenced by exersise 3)
 
-## Sub Role
+- [EnemyFactory Script](https://github.com/brianli378/ecs179-final-project/blob/main/2d-roguelike/scripts/enemies/enemy_factory.gd)
+- [EnemySpec Script](https://github.com/brianli378/ecs179-final-project/blob/main/2d-roguelike/specs/enemies/enemy_spec.gd)
 
-**Documentation for Sub-Role**
+**Projectile Generation through Projectile Factory** I applied similar architectural design as the enemy creation to Projectiles by creating a Projectile Factory. I started by creating a ProjectileSpec that exposes variables for projectile like (Damage, Projectile Texture). Then I defined a template resource (.tres) file that uses the ProjectileSpec. These resource files were used by ProjectileFactory (implemented as an Autoload). This made it easier to build new projectiles and even simpler to modify behavior their behavior, such as texture, and damage. (this was directly influenced by exersise 3)
+
+- [ProjectileFactory Script](https://github.com/brianli378/ecs179-final-project/blob/main/2d-roguelike/scripts/guns/projectiles/projectile_factory.gd)
+- [ProjectileSpec](https://github.com/brianli378/ecs179-final-project/blob/main/2d-roguelike/scripts/guns/projectiles/projectile_spec.gd)
+
+**Tool documentation and template files** To ensure that others understood what I was doing, I wrote everything in a doc, including a step-by-step for using these factories. It included images of where to navigate in Godot, how to create the scences, and how to properly instantiate the factory. In addition to this, I built many template files, I created three resource files for the projectiles (normal, rocket, and laser) and set up the basic code where guns used these projectiles from the Factory;this code was later adjusted by the people working on guns (mainly Alex). I did something similar for Enemies, where I created a two types of enemies as examples to showcase how the patterns worked, allowing others to easily build on top of them. (I cannot share the code for that since it was very early stage and most of it is overwritten now.
+
+- [Factory Documentation - Google Doc](https://docs.google.com/document/d/1EfRla1oDep6WFkYDPISp_YceNTLfbSbKk4sQ7_uS12M/edit?tab=t.0)
+- [Example of resource file](https://github.com/brianli378/ecs179-final-project/blob/main/2d-roguelike/specs/projectiles/laser_projectile.tres)
+
+**Round Management** We had a shift of plans towards the end due to time and concluded on a Round Management approach. At this point, I discussed with the team, and since they didn't have anything they could benefit from immediately, I decided to take up Round Management. I then worked off code Sean had written and added a variable which would track the round you are on. This increments after every successful boss fight. Then, in the code where we spawned new enemies, I passed the original scaled spec function which would scale their damage and health based on the round. I made it so in round 2 you could easily recognize that they've gotten stronger, but as rounds increase afterward, it utilizes soft scaling, meaning they got a little stronger.
+
+- [Enemy/Boss Scaling based on Round](https://github.com/brianli378/ecs179-final-project/blob/f5fae6d159ac51f12cf5bbb743b40eb48fdd4d21/2d-roguelike/scripts/map_controller.gd#L82)
+  
+## Audio (Switched from Build and Release Management)
+
+*Note: I transitioned from Build and Release to Audio as that was more important for our game.
+
+**Sound Asset Selection** I was responsible for all the sound effects in our game, including the background music. I went through over 400+ sound effects to find the ones most appropriate for our game. I found some of them from free resources such as Pixabay, Mixkit and also Unity Asset Store ( as suggested by Teresa during her office hours). I also used [JSFXR](https://sfxr.me/) sound generator and created some sounds using this tool. I even tried using an AI platform for sound generation known as ElevenLabs; however, it was difficult to get the sound I was looking for since the prompt had to be very specific, but it did an okay job; The sound I did use from this AI platform was for background music which took so many prompts and made me run out of my free tokens. You can find all the sounds used in the game in this [folder](https://github.com/brianli378/ecs179-final-project/tree/main/2d-roguelike/assets/sounds); note that this was a very small subset of what I downloaded and it mainly consists of what we finalized. Some sounds were in mp3 format, so I used an online converter to change them to .wav file to keep things consistent.
+
+**Sound Generation & Editing** I did a lot of sound tuning and editing on Mac. I used QuickTime Player for audio trimming since a lot of the free sound files I downloaded were either too long, or I wanted something in-between, or combine short snippets from multiple sounds. I also used GarageBand on Mac to adjust pitch and EQ; this part was honestly just playing around with different numbers. In Godot, I played around with decibels and pitch scale to ensure the sound effects weren't too loud during gameplay. For the background music, I loaded it globally (Autoload) and then I adjusted the .wav file to set the Loop Mode to Forward; this ensured that the 15 second sound played in a loop. 
+
+**Audio Connection to Gameplay** After I had most of the sound effects, I looked at the past assignments to see how we were loading the sounds and playing them during gameplay. I followed that structure and created AudioStreamPlayer2D nodes in the appropriate scenes. Then, I referenced those nodes and added the logic to play them at appropriate times in the script. One example is for gun sound effects: I added a [shoot_sound variable for each gun script](https://github.com/brianli378/ecs179-final-project/blob/5a346dab46f7fa3be50d297f8efb0dd6f874af88/2d-roguelike/scripts/guns/base_guns/machine_gun.gd#L12) (initially, I assigned the sounds to projectile types in their appropriate resource file, but later decided to make them based on guns and, if time permitted, find a way to combine the sound based on the fusion) where I preloaded the sound from the assets folder. Then, in the Gun Manager script, [I made it play the sound based on the current gun type](https://github.com/brianli378/ecs179-final-project/blob/a34c228d4fc5f65937dfd0f47e620f07dc98f666/2d-roguelike/scripts/guns/gun_manager.gd#L264). I did the same in other areas where the sound effects are played, such as on the [enemy hit marker](https://github.com/brianli378/ecs179-final-project/blob/5a346dab46f7fa3be50d297f8efb0dd6f874af88/2d-roguelike/scripts/enemies/enemy.gd#L70), [player damage](https://github.com/brianli378/ecs179-final-project/blob/5a346dab46f7fa3be50d297f8efb0dd6f874af88/2d-roguelike/scripts/player.gd#L58), etc.
+
+All the sounds I used were royalty-free and didn't require any licensing or credits. 
 
 ## Other Contrubutions
+**Fixed Telportation Logic** One main issue with our game was incorrect teleportation behavior. The player would teleport to the boss room even before all the enemies were killed. I knew the issue was related to enemy count logic since, which triggered the teleport. To debug this, I tracked enemy count via print statement and realized that killing an enemy fast counted as multiple deaths since we were emitting death signal multiple times, this was because of enemy removal delay after death. I then added a boolean guard that helped resolve this as it would only emit the signal once per enemy death. [small part of what I added](https://github.com/brianli378/ecs179-final-project/blob/76ab86f62710714e8044e30817ab997cce1f77b7/2d-roguelike/scripts/enemies/enemy.gd#L88)
 
-**Documentation for contributions to the project outside of the main and sub roles.** 
+**Game Publisher** I was the team member responsible for publishing our game, this involved exporting the final build and publishing it on itch.io, pretty straightforward.
 
+**Game Feel Testing** I conduced play testing sessions dedicated to just finding bugs and would report them to the team (*Note that pretty much everyone in our team did this).

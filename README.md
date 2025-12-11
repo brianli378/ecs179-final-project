@@ -329,7 +329,7 @@ One issue we ran into with the inventory systems was getting too many guns would
 
 **Documentation for contributions to the project outside of the main and sub roles.** 
 
-# Aditya Sharma #
+# Aditya Sharma - [github](https://github.com/Cl0ck21)#
 ## AI and behavior designer
 
 **General Functionality**

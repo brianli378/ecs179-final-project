@@ -22,6 +22,26 @@ If your project contains code that: 1) your team did not write, and 2) does not 
 
 If you used tutorials or other intellectual guidance to create aspects of your project, include reference to that information as well.
 
+Lines used:
+https://github.com/brianli378/ecs179-final-project/blob/de3ba5dd1f2bea377e7523c52d9e15072a447001/2d-roguelike/scripts/enemies/enemy_nav/line_of_sight.gd#L16-L17
+file: line_of_sight.gd
+(Raycast Tutorial Article)[https://www.makeuseof.com/godot-raycast2d-nodes-line-of-sight-detection/]
+Author: Imran Alam
+License: MIT License
+
+Lines used:
+https://github.com/brianli378/ecs179-final-project/blob/de3ba5dd1f2bea377e7523c52d9e15072a447001/2d-roguelike/scripts/enemies/enemy_nav/static_boundary.gd#L48-L57
+https://github.com/brianli378/ecs179-final-project/blob/de3ba5dd1f2bea377e7523c52d9e15072a447001/2d-roguelike/scripts/enemies/enemy_nav/static_boundary.gd#L143-L161
+file: static_boundary.gd
+(A* Pathfinding Tutorial)[https://casraf.dev/2024/09/pathfinding-guide-for-2d-top-view-tiles-in-godot-4-3/]
+Author: Chen Asraf
+License: I didn't find a license for this code, but I do believe based on the author's wording in the article, it's allowed for readers to use it in their projects: "This tutorial will do much of the same, but I will try to give you a more flexible way to handle obstacle tiles, so that it is more scalable for your game, and easier to manage and expand on."
+
+Lines used/files: I used the scene files as a teplate to build my own menus, the scenes are: death_menu.tscn, main_menu.tscn, pause_menu.tscn, controls_menu.tscn
+[Menu Tutorial Source](https://docs.godotengine.org/en/3.0/getting_started/step_by_step/ui_main_menu.html)
+Author: Juan Linietsky, Ariel Manzur and the Godot community
+License: Permissive Creative Commons Attribution 3.0 (CC-BY 3.0) license, with attribution to “Juan Linietsky, Ariel Manzur and the Godot Engine community”.
+
 # Team Member Contributions #
 
 This section be repeated once for each team member. Each team member should provide their name and GitHub user information.
@@ -288,14 +308,16 @@ Note that the enemies don't have a state where they stop moving, they either mov
 
 To deal with cover, I implemented line of sight (LOS) for the enemies through a ray cast 2d object attached to the enemy gun manager. I learned how LOS typically worked in Godot through this tutorial: https://www.makeuseof.com/godot-raycast2d-nodes-line-of-sight-detection/, and adjusted the map tileset's collision masks to ensure only walls would block LOS. Then I integrated the basic enemy behavior by ensuring the enemies only shoot at the player when they have LOS.
 
+I chose a raycast length that wasn't too short so enemies with higher ranges would have no issue seeing the player at their range, but also not too long for performance reasons.
+
 Enemy line of sight behavior:
 https://github.com/brianli378/ecs179-final-project/blob/de3ba5dd1f2bea377e7523c52d9e15072a447001/2d-roguelike/scripts/enemies/enemy.gd#L119-L141
 
 **A\* Navigation**
 
-With LOS working, I needed a way to have the enemies navigate around obstacles to regain LOS with the player when an obstacle was blocking them, which led me to A* navigation. I learned how to implement this in Godot through this tutorial: https://www.makeuseof.com/godot-raycast2d-nodes-line-of-sight-detection/, and modified the details to work for our structure. Particularly, I found the tutorial's suggested code performed very poorly, which I will expand upon later. I once again modified the map tileset by painting a navigation layer on the tiles for the floor to inform the navigation agent on what it can use for pathing. I also implemented tutorial code to identify all obstacles in the level based on collision polygons.
+With LOS working, I needed a way to have the enemies navigate around obstacles to regain LOS with the player when an obstacle was blocking them, which led me to A* navigation. I learned how to implement this in Godot through this tutorial: [A* in Godot tutorial](https://casraf.dev/2024/09/pathfinding-guide-for-2d-top-view-tiles-in-godot-4-3/), and modified the details to work for our structure. Particularly, I found the tutorial's suggested code for obstacle selection performed very poorly, which I will expand upon later. I once again modified the map tileset by painting a navigation layer on the tiles for the floor to inform the navigation agent on what it can use for pathing.
 
-The A* navigation succeeded in enabling the enemies to regain LOS with the player, but I noticed they initially got stuck against the obstacles and slowed down to a halt while grinding against the walls. I identified this issue as being due to navigation tiles being so close to the wall and the shape of the collision object being a square. To mitigate this I changed the collision object to an oval, which fixed the issue for the most part but not around corners. I found I could implement a navigation server and create meses away from the wall to prevent this, but unfortunately did not have time. Instead, we modified the edges of the corners to be a bit more rounded to help with this issue. 
+The A* navigation succeeded in enabling the enemies to regain LOS with the player, but I noticed they initially got stuck against the obstacles and slowed down to a halt while grinding against the walls. I identified this issue as being due to navigation tiles being so close to the wall and the shape of the collision object being a square. To mitigate this I changed the collision object to an oval, which fixed the issue for the most part but not around corners. I found I could implement a navigation server and create meses away from the wall to prevent this, but unfortunately did not have the time to implement this in a polished quality. Instead, we modified the edges of the corners to be a bit more rounded to help with this issue. 
 
 Class discussions on collision objects made me initially try out a sphere, but in the end I felt an oval shape would fit the game better since our sprites were very rectangular, and a sphere shape would result in odd-looking collisions for the enemies.
 

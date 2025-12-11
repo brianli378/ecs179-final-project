@@ -6,7 +6,7 @@ var heat_per_second: float = 40.0  # continuous heat buildup
 
 func _init() -> void:
 	super._init()
-	dmg_multiplier = 0.1
+	dmg_multiplier = 0.2
 	projectile_speed = 2000
 	shot_delay = 0.05  # fires continuously when held
 	projectile_scale = Vector2(0.15, 0.15)

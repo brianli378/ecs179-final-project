@@ -376,6 +376,8 @@ I decided to speed up the enemies while they were in A* navigation to help reduc
 Enemy pathfinding behavior:
 https://github.com/brianli378/ecs179-final-project/blob/de3ba5dd1f2bea377e7523c52d9e15072a447001/2d-roguelike/scripts/enemies/enemy.gd#L141-L162
 
+Note that we chose to keep the A* pathing lines on for the player to see because the team thought it looked cool. 
+
 
 **Fusion Weapons For Bosses**
 

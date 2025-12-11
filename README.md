@@ -148,7 +148,7 @@ Changed laser weapons to be unique, rather than having a reload they have a heat
 ## Other Contrubutions
 
 **Designed All of the fusion guns**
-(Fusion gun design document)[https://docs.google.com/document/d/1bNHDFz7tdk0n9OXliNgc_nxGdNC5oqgv6N0_m0_iOEU/edit?tab=t.0]  
+[Fusion gun design document](https://docs.google.com/document/d/1bNHDFz7tdk0n9OXliNgc_nxGdNC5oqgv6N0_m0_iOEU/edit?tab=t.0)
 Designed every gun fusion, including stats, inspiration images, and other game examples.
 
 # Brian Li - [github](https://github.com/brianli378) #

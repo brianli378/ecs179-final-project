@@ -19,6 +19,7 @@ position = Vector2(-39.183674, -121.4359)
 rotation = -1.5760323
 scale = Vector2(10, 56.641)
 collision_mask = 2
+hit_from_inside = true
 collide_with_areas = true
 script = ExtResource("3_p5d8v")
 

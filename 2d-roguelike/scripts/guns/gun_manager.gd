@@ -306,9 +306,22 @@ func fuse_guns(first_gun_key: String, second_gun_key: String) -> String:
 		return ""
 
 	var fusion_gun_key: String = fusion_recipes[recipe_key]
-	var fusion_gun_instance: Gun = _create_fusion_gun_instance(fusion_gun_key)
-	if fusion_gun_instance == null:
-		return ""
+	
+	var fusion_gun_instance: Gun = null
+	
+	# create the instance and add it to the shared resource if we don't have it already
+	if not (fusion_gun_key in GunData.guns):
+		fusion_gun_instance = _create_fusion_gun_instance(fusion_gun_key)
+		
+		# if we failed then return
+		if fusion_gun_instance == null:
+			return ""
+		
+		# cache the instance for later
+		GunData.guns[fusion_gun_key] = fusion_gun_instance
+	else:
+		# fusion gun already exists in shared resource, we'll just grab it
+		fusion_gun_instance = GunData.guns[fusion_gun_key]
 
 	ammo_in_mag.erase(first_gun_key)
 	ammo_in_mag.erase(second_gun_key)

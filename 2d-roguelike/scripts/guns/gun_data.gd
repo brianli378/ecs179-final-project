@@ -190,7 +190,7 @@ const boss_projectile_spawn_offsets: Dictionary = {
 	"pachine gun": Vector2(-200, -30),
 	"machineper": Vector2(-40, -50),
 	"laser shotgun": Vector2(-360, 0),
-	"shocket launcher": Vector2(-80, 0),
+	"shocket launcher": Vector2(-120, 0),
 }
 
 const projectile_spawn_offsets: Dictionary = {

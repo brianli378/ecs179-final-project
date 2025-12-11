@@ -21,6 +21,7 @@ World="*res://scenes/world.tscn"
 enemy_factory="*res://scripts/enemies/enemy_factory.gd"
 projectile_factory="*res://scripts/guns/projectiles/projectile_factory.gd"
 MusicManager="*res://scenes/music_manager.tscn"
+PlayerSingleton="*res://scenes/player.tscn"
 
 [display]
 

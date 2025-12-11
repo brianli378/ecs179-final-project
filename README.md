@@ -12,6 +12,11 @@
 ## Gameplay Explanation ##
 
 **In this section, explain how the game should be played. Treat this as a manual within a game. Explaining the button mappings and the most optimal gameplay strategy is encouraged.**
+You spawn in a safe zone, given some time to try out the weapons before heading to the right to the main map.  
+
+This game has the general WASD movement. You can also press shift to dash. P is the pause button. I or B is your inventory button. In your inventory, at the top is a list of weapons that you have. You start with all 5 weapons at the top, the pistol, the shotgun, the machine gun, the sniper and the rocket launcher. You are encouraged to try out a fusion in the inventory, look through the results of a couple of fusions. In the fusion menu, the first slot is generally the firing style and the second slot is generally the projectile type. This rule does get broken, the entire reference sheet is here: [Fusion gun design document](https://docs.google.com/document/d/1bNHDFz7tdk0n9OXliNgc_nxGdNC5oqgv6N0_m0_iOEU/edit?tab=t.0). The inventory only has 5 slots, and if you gain any items, the item in red will be deleted. So, generally we expect players to make a fusion or two every round so this doesnt happen.  
+  
+When you enter the main room, there are a couple of randomly generated enemies. Clear through them, and keep exploring the map, looking for enemies to kill. Once all the enemies on the map are killed, you will be transported to the Boss fight. The Boss has a randomly generated fusion gun, and is generally tougher than the basic enemies. You must clear the boss to proceed. One you kill the boss, he will drop you the components of the fusion in your inventory. You will be automatically transported into the safe room (careful not to move out of it on accident), where you will be able to try out the new fusions. You get a bit of health back, but the game is designed to be played in these rounds endlessly. Enemies get tougher every round, so it becomes harder and harder to clear. But, you also get to try out more fusions, and eventually find some fusion that helps you clear farther. 
 
 
 **Add it here if you did work that should be factored into your grade but does not fit easily into the proscribed roles! Please include links to resources and descriptions of game-related material that does not fit into roles here.**

@@ -255,9 +255,11 @@ One issue we ran into with the inventory systems was getting too many guns would
 
 **Functionality**
 
-I implemented movement for the enemies, their health, modified the player gun manager to work as an enemy gun manager and kept it up to date with changes to the gun system. I also built the functionality for enemies and the player to take damage and die through the _on_body_entered() signal and collision layers/masks, also ensuring that there's no friendly fire by modifying the projectile spec to track who fired the projectile. 
+I implemented movement for the enemies, their combat behavior, and modified the player gun manager to work as an enemy gun manager and kept it up to date with changes to the gun system. [Enemy Functionality File](https://github.com/brianli378/ecs179-final-project/blame/56d12f68b7984a7a77158215ab2e52038ea6f184/2d-roguelike/scripts/enemies/enemy.gd) [Enemy Gun Manager File](https://github.com/brianli378/ecs179-final-project/blame/56d12f68b7984a7a77158215ab2e52038ea6f184/2d-roguelike/scripts/enemies/enemy_gun_manager.gd) I also built the functionality for enemies and the player to take damage and die through the _on_body_entered() signal and collision layers/masks, also ensuring that there's no friendly fire by modifying the projectile spec to track who fired the projectile. 
 
-I also was constantly tuning the enemies in terms of speed, distance to player, fire rate, and sprite and projectile spawn positioning.
+https://github.com/brianli378/ecs179-final-project/blob/56d12f68b7984a7a77158215ab2e52038ea6f184/2d-roguelike/scripts/guns/projectiles/projectile.gd#L26C1-L42C15
+
+I also was constantly tuning the enemies in terms of speed, distance to player, fire rate, and sprite and projectile spawn positioning. [Commit Example of Tuning Changes](https://github.com/brianli378/ecs179-final-project/commit/4491b040077d8f0db918d26ad54cbbbc0c1c4174#diff-fac714f53a51c354668a6c5b8169d6125dfa8d820bd9073bbfa54ad1cb64a7ee)
 
 
 **Enemy Behavior**

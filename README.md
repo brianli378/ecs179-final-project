@@ -168,12 +168,15 @@ My main role was Game Logic. Throughout development, my main focuses on the proj
 **Player and Camera**
 
 The player is implemented as a CharacterBody2D with movement and a dash mechanic. The player script reads and responds to the basic WASD user input and "looks at" the global mouse position. On top of basic movement, I also implemented a smooth dash mechanic. When the dash input is pressed, velocity is boosted in the direction the player is moving then decelerates back down to the normal movement velocity. The smooth acceleration and deceleration on the dash make the player movement feel more fluid, and combined with the 2D lerp camera provides a polished movement experience for the player.
+https://github.com/brianli378/ecs179-final-project/blob/a34c228d4fc5f65937dfd0f47e620f07dc98f666/2d-roguelike/scripts/player.gd#L67-L99
 
 I also implemented the camera behavior. Instead of the default 2D position lock camera, I drew inspiration from exercise 2 to implement a 2D version of the 3D lerp position lock camera from the assignment. I also added a camera screen shake function called by the gun manager any time a gun is fired. The add_shake function works by choosing a random offset for x and y between -1.0 and 1.0 and applying it to the camera. The function also takes in a float shake_multiplier as input, allowing adjustable shake intensity for different guns.
+https://github.com/brianli378/ecs179-final-project/blob/a34c228d4fc5f65937dfd0f47e620f07dc98f666/2d-roguelike/scripts/position_lock_lerp_camera.gd#L11-L47
 
 **Ammo and Reload**
 
 When the guns were first added, there was no existing ammo system so all guns could be shot for as long as possible without the need to reload or worry about ammo. I implemented the ammo and reload system inside the gun manager and also added a gun spec file which kept track of the magazine size, starting reserve, max reserve and reload of each weapon. When the player shoots, ammo in the current magazine gets decremented. If the magazine is empty and the player tries to shoot, an auto reload system automatically begins a reload for the player. I also implemented a manual reload triggered by pressing “R” in case the player is low on ammo and wants to reload before getting into a fight. 
+https://github.com/brianli378/ecs179-final-project/blob/647016933854a99de688c1d6553265ed6472b780/2d-roguelike/scripts/guns/gun_manager.gd#L201-210
 
 To support the reload system, I implemented a CanvasLayer into the game for the player’s HUD. The script would read the current gun key and pull the ammo in the player’s current guns magazine and reserve, displaying them in the standard mag/reserve format. A reloading label also appears whenever the player begins a reload, providing a heads up so the player knows they can’t shoot during that time.
 
@@ -184,6 +187,7 @@ The player could cycle through the different guns they were holding, but there w
 **Fusion**
 
 To implement the fusion system, I built on the existing gun logic that Alex worked on. The GunManager had a collection of guns identified by string keys for both base weapons (ex: "pistol", "machine gun", "sniper", etc) and fusion weapons ("laser machine gun", "pachine gun", etc). I added the fusion recipes, a mapping from pairs of gun keys to a resulting gun key, and mapping from those fusion gun keys to the actual gun classes that Alex had created. In the inventory UI, I added a fuse button and selection logic. In my original implementation, the player would begin fusion by pressing the fuse button, then click on any two guns in the inventory and press the fuse button one more time to finalize the fusion, removing the consumed weapons (along with their ammo entries) and adding in the new fused weapon into the player inventory. It then initializes the new fusion gun's ammo.
+https://github.com/brianli378/ecs179-final-project/blob/4e8256ea982b27de25fe8364207538a7d8c02e59/2d-roguelike/scripts/guns/gun_manager.gd#L300-L355
 
 
 ## Gameplay Testing and Other Contributions

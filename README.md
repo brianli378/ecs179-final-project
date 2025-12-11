@@ -30,6 +30,8 @@ If you used tutorials or other intellectual guidance to create aspects of your p
 [Side scrolling background of main menu](https://craftpix.net/freebies/free-scrolling-city-backgrounds-pixel-art/?num=1&count=1381&sq=scrolling%20city%20backgrounds%20pixel%20art%20gif&pos=3)  
 
 [Tile map helper](https://arttale.itch.io/tilemap-templates) - Used these online tile map templates to ease the repetition of drawing many tiles (These tile sets and tutorial allow for what you draw to be automatically replicated on other tiles)
+
+[Pixel Art Font](https://www.dafont.com/minecraft.font) - used open source minecraft font to give the game a consistent art style
   
 # Team Member Contributions #
 
@@ -76,22 +78,28 @@ Used Aseprite to create animations for the character, moving in both directions.
 25 unqiue sprites for each gun, including 5 base guns and 20 fusions. Each fusion sprite takes elements from its parents, and is supposed
 to communicate its properties. The laser weapons are techy and blue, the rocket weapons are bright yellow/orange to show their explosive
 and dangerous nature, and the pistol is supposed to fit the player characters style (since it is her weapon at the start of the game).
+Creating all these sprited took a lot of research, as a lot of them are inspired by real life guns or in game guns. I spent a lot of time
+also creating the fusion guns to look unique, futuristic, and also a combination of its two base guns (enough to be semi recognizable).
 
 
 **Sprites for maps**  
 <img width="595" height="151" alt="image" src="https://github.com/user-attachments/assets/241b4fd4-8c70-4012-a47f-33d322922b55" />  
 Designed the map tile set, working through multiple iterations to fit the cyberpunk theme and simulation asthetic. Painted the tile set for each map.  
+As said before, I used [Tile map helper](https://arttale.itch.io/tilemap-templates) to ease some of the repetition in creating the tile
+sets ( all final tiles are drawn by me, just used the tool). 
 
 
 **Title screen**
 <img width="1269" height="710" alt="image" src="https://github.com/user-attachments/assets/95a41769-a931-40c9-921d-0651d44dfd49" />
-Used an open source assets to create a parralax side scrolling meny screen, also designed the game name.
+Used an open source assets [Side scrolling background of main menu](https://craftpix.net/freebies/free-scrolling-city-backgrounds-pixel-art/?num=1&count=1381&sq=scrolling%20city%20backgrounds%20pixel%20art%20gif&pos=3) to create a parralax side scrolling meny screen, also designed the game name.
+Used inspiration from some online tech fonts to create the title of the game in asperite. 
 
 
 **Crafting screen**
 <img width="1047" height="526" alt="image" src="https://github.com/user-attachments/assets/0deb0529-aa26-450c-b979-ddae4c164972" />
 Added upon an inventory system by creating slots for the fusion, and allowing the player to see the result of the fusion. 
-Also adjusted the visuals for the fusion inventory to more match the cyberpunk theme.  
+Also adjusted the visuals for the fusion inventory to more match the cyberpunk theme. The inventory also displays what parts
+of each gun the fusion will receive, and also what type of projectile/firing type the guns have. 
 
 
 **Enemy animations**
@@ -102,7 +110,7 @@ being just basic enemies that may be also trapped in the simulation.
 
 **Health Bar**  
 <img width="366" height="61" alt="image" src="https://github.com/user-attachments/assets/3c3899c2-a69b-4397-9a68-1fd7c2166b9d" />  
-Created Animation for health bar changing, and designed health bar to fit with the game style.
+Created Animation for health bar changing, and designed health bar in aseprite to fit with the game style.
 
 
 **Crosshair and reload animation**
@@ -112,11 +120,13 @@ Created dynamic crosshair reload animation so that the time for the animation li
   
 **Create a visual for explosions**  
 <img width="487" height="614" alt="image" src="https://github.com/user-attachments/assets/ba5a9bbb-74bf-47b2-8685-7b335c6a1d7a" />  
-Created a visual explosion such that players could see the radius of rockets  
+Created a visual explosion such that players could see the radius of rockets, using godots internal node system rathen than a png.
+This was created with help of AI assistance, to help create the visual using godot's code.
 
 
 **Create asset for rockets**  
 <img width="974" height="258" alt="image" src="https://github.com/user-attachments/assets/6d179324-baff-46e1-9266-5d47562f14ab" />  
+Created the asset for the rockets in aseprite.
 
 
 **Create Dynamic Heat Bar**  
@@ -124,6 +134,9 @@ Created a visual explosion such that players could see the radius of rockets
 https://github.com/brianli378/ecs179-final-project/blob/b4ef9fe949e6a1a82833548e59537d87f5a57b8d/2d-roguelike/scenes/heat_bar.gd#L1-L64  
 Created a dynamic heatbar so that players would know the current heat status of their weapon  
 
+**Import Font to fit Pixel Art Style**
+Used a open source minecraft font to make the games text fit the pixel art aesthetic. [Pixel Art Font](https://www.dafont.com/minecraft.font) 
+  
 
 ## Game Feel  
 Here I mostly focused on having the game *feel* fun to play, with having the aiming be fun and not limiting, and the game to be semi balanced so it
@@ -148,15 +161,17 @@ Manually adjusting map collisions so enemies and players wouldnt get stuck on ma
 
 
 **Adjusted Sniper and Pistol Gun Damage**  
-Adjusted sniper damage to one shot, and for pistol damage to be higher in order to contest with full auto/explosion guns  
+Adjusted sniper damage to one shot, and for pistol damage to be higher in order to contest with full auto/explosion guns.
 
 
 **Scaled damage inflicted on player** 
-Scaled the damage inflicted on player so that the player (at the start) does way more damage to enemies then enemies do damage to the player 
+Scaled the damage inflicted on player so that the player (at the start) does way more damage to enemies then enemies do damage to the player.
+This is to allow the game to be a bit easier at the start as the player adjusts, but still have some scaling as the player adjusts to the game and/or gets a better gun.
 
 
 **General adjustment of gun values** 
-Tested out most of the guns to see if they were viable, and adjusted values accordingly.  
+Tested out most of the guns to see if they were viable, and adjusted values accordingly. This included adjusting the spread, the damage, the reload speed,
+the recharge speed of some laser guns, projectile speeds, and many other small adjustments. 
 
 
 **Adjustment of Laser Weapons**  
@@ -170,6 +185,11 @@ Changed laser weapons to be unique, rather than having a reload they have a heat
 **Designed All of the fusion guns**
 [Fusion gun design document](https://docs.google.com/document/d/1bNHDFz7tdk0n9OXliNgc_nxGdNC5oqgv6N0_m0_iOEU/edit?tab=t.0)
 Designed every gun fusion, including stats, inspiration images, and other game examples.
+
+**Created the Slide for the Presentation**
+
+**Wrote the description on how to play the game in this document, and formatted this document.**
+  
 
 # Brian Li - [github](https://github.com/brianli378) #
 ## Game Logic

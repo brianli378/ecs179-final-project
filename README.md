@@ -29,6 +29,8 @@ If you used tutorials or other intellectual guidance to create aspects of your p
   
 [Side scrolling background of main menu](https://craftpix.net/freebies/free-scrolling-city-backgrounds-pixel-art/?num=1&count=1381&sq=scrolling%20city%20backgrounds%20pixel%20art%20gif&pos=3)  
 
+
+**Author: Imran Alam**
 Lines used:
 
 https://github.com/brianli378/ecs179-final-project/blob/de3ba5dd1f2bea377e7523c52d9e15072a447001/2d-roguelike/scripts/enemies/enemy_nav/line_of_sight.gd#L16-L17
@@ -36,10 +38,10 @@ file: line_of_sight.gd
 
 (Raycast Tutorial Article)[https://www.makeuseof.com/godot-raycast2d-nodes-line-of-sight-detection/]
 
-Author: Imran Alam
-
 License: MIT License
 
+
+**Author: Chen Asraf**
 Lines used:
 
 https://github.com/brianli378/ecs179-final-project/blob/de3ba5dd1f2bea377e7523c52d9e15072a447001/2d-roguelike/scripts/enemies/enemy_nav/static_boundary.gd#L48-L57
@@ -50,15 +52,13 @@ file: static_boundary.gd
 
 (A* Pathfinding Tutorial)[https://casraf.dev/2024/09/pathfinding-guide-for-2d-top-view-tiles-in-godot-4-3/]
 
-Author: Chen Asraf
-
 License: I didn't find a license for this code, but I do believe based on the author's wording in the article, it's allowed for readers to use it in their projects: "This tutorial will do much of the same, but I will try to give you a more flexible way to handle obstacle tiles, so that it is more scalable for your game, and easier to manage and expand on."
 
+
+**Author: Juan Linietsky, Ariel Manzur and the Godot community**
 Lines used/files: I used the scene files as a teplate to build my own menus, the scenes are: death_menu.tscn, main_menu.tscn, pause_menu.tscn, controls_menu.tscn
 
 [Menu Tutorial Source](https://docs.godotengine.org/en/3.0/getting_started/step_by_step/ui_main_menu.html)
-
-Author: Juan Linietsky, Ariel Manzur and the Godot community
 
 License: Permissive Creative Commons Attribution 3.0 (CC-BY 3.0) license, with attribution to “Juan Linietsky, Ariel Manzur and the Godot Engine community”.
 

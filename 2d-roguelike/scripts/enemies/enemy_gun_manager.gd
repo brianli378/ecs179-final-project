@@ -146,6 +146,9 @@ func setup_gun(gun_key: String):
 	# slow down machine gun enemy fire rate
 	if gun_key == "machine gun":
 		curr_gun.shot_delay = 0.3
+	elif gun_key == "rocket launcher":
+		projectile_spawn.position.x += 80
+		projectile_spawn.position.y -= 60
 	
 	# set the gun sprite
 	_set_gun_sprite()

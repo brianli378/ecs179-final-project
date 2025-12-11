@@ -49,11 +49,11 @@ func death_menu() -> void:
 func pause_menu() -> void:
 	print("pause menu")
 	# instantisate the scene and add it as a child to the tree
-	#var root = get_tree().current_scene
-	#for child in root.get_children():
-	#	if child.visible == true:
-	#		visibleNames.append(child.name)
-	#		child.visible = false
+	var root = get_tree().current_scene
+	for child in root.get_children():
+		if child.visible == true:
+			visibleNames.append(child.name)
+			child.visible = false
 	
 	for child in _game_node.get_children():
 		if child.visible == true:
@@ -71,6 +71,13 @@ func pause_menu() -> void:
 
 func unpause() -> void:
 	_pause_menu_node.queue_free()
+	
+	var root = get_tree().current_scene
+	for child in root.get_children():
+		if child.name in visibleNames:
+			child.visible = true
+			visibleNames.erase(child.name)
+	
 	for child in _game_node.get_children():
 		if child.name in visibleNames:
 			child.visible = true

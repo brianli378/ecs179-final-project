@@ -7,10 +7,10 @@
 font_size = 81
 
 [node name="DeathMenu" type="MarginContainer"]
-offset_left = -36.0
-offset_top = -25.0
-offset_right = 1244.0
-offset_bottom = 704.0
+offset_left = 2.0
+offset_top = -37.0
+offset_right = 1282.0
+offset_bottom = 692.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -21,9 +21,9 @@ stretch_mode = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Logo"]
 layout_mode = 0
-offset_left = 582.0
+offset_left = 523.0
 offset_top = 344.0
-offset_right = 816.0
+offset_right = 757.0
 offset_bottom = 458.0
 size_flags_vertical = 3
 alignment = 1
@@ -36,9 +36,9 @@ script = ExtResource("2_gm7js")
 
 [node name="Label" type="Label" parent="VBoxContainer/Logo"]
 layout_mode = 0
-offset_left = 530.0
-offset_top = 175.0
-offset_right = 854.0
-offset_bottom = 257.0
+offset_left = 477.0
+offset_top = 184.0
+offset_right = 801.0
+offset_bottom = 266.0
 text = "You died"
 label_settings = SubResource("LabelSettings_gm7js")

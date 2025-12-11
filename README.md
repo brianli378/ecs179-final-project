@@ -104,6 +104,14 @@ Created dynamic crosshair reload animation so that the time for the animation li
 <img width="487" height="614" alt="image" src="https://github.com/user-attachments/assets/ba5a9bbb-74bf-47b2-8685-7b335c6a1d7a" />  
 Created a visual explosion such that players could see the radius of rockets  
 
+**Create asset for rockets**
+<img width="974" height="258" alt="image" src="https://github.com/user-attachments/assets/6d179324-baff-46e1-9266-5d47562f14ab" />
+
+**Create Dynamic Heat Bar**
+<img width="321" height="108" alt="image" src="https://github.com/user-attachments/assets/ea897ae5-cafd-47fd-83ff-7e1136c4fdaa" />
+https://github.com/brianli378/ecs179-final-project/blob/b4ef9fe949e6a1a82833548e59537d87f5a57b8d/2d-roguelike/scenes/heat_bar.gd#L1-L64
+Created a dynamic heatbar so that players would know the current heat status of their weapon
+
 
 ## Game Feel  
 Here I mostly focused on having the game *feel* fun to play, with having the aiming be fun and not limiting, and the game to be semi balanced so it

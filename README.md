@@ -262,14 +262,17 @@ One issue we ran into with the inventory systems was getting too many guns would
 # Aditya Sharma #
 ## AI and behavior designer
 
-**Functionality**
+**General Functionality**
 
-I implemented movement for the enemies, their combat behavior, and modified the player gun manager to work as an enemy gun manager and kept it up to date with changes to the gun system. [Enemy Functionality File](https://github.com/brianli378/ecs179-final-project/blame/56d12f68b7984a7a77158215ab2e52038ea6f184/2d-roguelike/scripts/enemies/enemy.gd) [Enemy Gun Manager File](https://github.com/brianli378/ecs179-final-project/blame/56d12f68b7984a7a77158215ab2e52038ea6f184/2d-roguelike/scripts/enemies/enemy_gun_manager.gd) I also built the functionality for enemies and the player to take damage and die through the _on_body_entered() signal and collision layers/masks, also ensuring that there's no friendly fire by modifying the projectile spec to track who fired the projectile. 
+I implemented movement for the enemies, their combat behavior, and modified the player gun manager to work as an enemy gun manager and kept it up to date with changes to the gun system. 
+
+[Enemy Functionality File](https://github.com/brianli378/ecs179-final-project/blame/56d12f68b7984a7a77158215ab2e52038ea6f184/2d-roguelike/scripts/enemies/enemy.gd)
+
+[Enemy Gun Manager File](https://github.com/brianli378/ecs179-final-project/blame/56d12f68b7984a7a77158215ab2e52038ea6f184/2d-roguelike/scripts/enemies/enemy_gun_manager.gd)
+
+I built the functionality for enemies and the player to take damage and die through the _on_body_entered() signal and collision layers/masks, also ensuring that there's no friendly fire by modifying the projectile spec to track who fired the projectile. 
 
 https://github.com/brianli378/ecs179-final-project/blob/56d12f68b7984a7a77158215ab2e52038ea6f184/2d-roguelike/scripts/guns/projectiles/projectile.gd#L26-L42
-
-I also was constantly tuning the enemies in terms of speed, distance to player, fire rate, and sprite and projectile spawn positioning. [Commit Example of Tuning Changes](https://github.com/brianli378/ecs179-final-project/commit/4491b040077d8f0db918d26ad54cbbbc0c1c4174#diff-fac714f53a51c354668a6c5b8169d6125dfa8d820bd9073bbfa54ad1cb64a7ee)
-
 
 **Enemy Behavior**
 
@@ -331,7 +334,13 @@ I followed a Godot tutorial (https://docs.godotengine.org/en/3.0/getting_started
 
 main menu -> controls menu -> game -> either pause or death menu -> game
 
-I also had to make sure to clear the scene tree of all leftover nodes when switching between some of the menus to ensure there would be no overlapping visuals or logic. I fixed a few bugs here concerned with the player being able to pause at the same time as they die and thus seeing both the pause and death screen at the same time. I realized this was due to the queue_free() of the player node not executing immediately (because its queued to free at the end of the current frame), so I implemented a flag which prevents _physics_process() runs after the death handle function is triggered. I also ran into an issue where projectiles and enemies were still showing up on the pause/death screens despite the scene tree clearing I was already doing. I realized this was because those nodes were not part of the same tree as the player and UI and the map, so clearing the game scene tree wasn't enough, and modified the clearing to accomodate this.
+I also had to make sure to clear the scene tree of all leftover nodes when switching between some of the menus to ensure there would be no overlapping visuals or logic. 
+
+I fixed a few bugs here concerned with the player being able to pause at the same time as they die and thus seeing both the pause and death screen at the same time. I realized this was due to the queue_free() of the player node not executing immediately (because its queued to free at the end of the current frame), so I implemented a flag which prevents _physics_process() runs after the death handle function is triggered. 
+
+I also ran into an issue where projectiles and enemies were still showing up on the pause/death screens despite the scene tree clearing I was already doing. I realized this was because those nodes were not part of the same tree as the player and UI and the map, so clearing the game scene tree wasn't enough, and modified the clearing to accomodate this.
+
+[Commit Fixing Pause Projectiles](https://github.com/brianli378/ecs179-final-project/commit/4aec400f7194284c4a9209a87f844d8b75d82056)
 
 I also learned how to pause the scene tree and unpause it, but this is built into Godot so it was easy to implement.
 
@@ -341,6 +350,8 @@ Please note the look of the menus (especially the title screen) were Alyssa's wo
 **Linting**
 
 I set up a Godot linter (https://github.com/Scony/godot-gdscript-toolkit) through Github actions to help the team adhere to best practices and the GDScript style/format guide. The linter was set up to run on just pull requests to ensure we didn't use too many credits, and allow for small discrepencies in formatting before the review process.
+
+https://github.com/brianli378/ecs179-final-project/blob/b16f086c586f394d463f21e81ac46b5093dc1411/.github/workflows/gdlinting.yml#L1-L15
 
 
 **Code Refactor**
@@ -352,6 +363,8 @@ I refactored the file structure to separate scenes from scripts from specs compl
 To ensure enemies were behaving as they should, I did a lot of playtesting, which helped me suggest balance changes such as the rocket sniper being too weak, the laser machine gun being too strong, and the base sniper being too weak. I also found bugs like the player still shooting when in the inventory menu and rockets not triggering impacts when the player walks into them from the side.
 
 I balanced some of these myself such as increasing the projectile speed on machine guns to make them feel more responsive to the player.
+
+Some of the tuning I worked on included speed of enemies, enemy distance to player, fire rate, and sprite and projectile spawn positioning. [Commit Example of Tuning Changes](https://github.com/brianli378/ecs179-final-project/commit/4491b040077d8f0db918d26ad54cbbbc0c1c4174#diff-fac714f53a51c354668a6c5b8169d6125dfa8d820bd9073bbfa54ad1cb64a7ee)
 
 # Team Member #5 #
 ## Main Role

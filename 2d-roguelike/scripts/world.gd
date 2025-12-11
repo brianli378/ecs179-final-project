@@ -49,12 +49,19 @@ func death_menu() -> void:
 func pause_menu() -> void:
 	print("pause menu")
 	# instantisate the scene and add it as a child to the tree
+	#var root = get_tree().current_scene
+	#for child in root.get_children():
+	#	if child.visible == true:
+	#		visibleNames.append(child.name)
+	#		child.visible = false
+	
 	for child in _game_node.get_children():
 		if child.visible == true:
 			visibleNames.append(child.name)
 			child.visible = false
 	_pause_menu_node = _pause_menu.instantiate()
 	_pause_menu_node.visible = true
+	
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	var canvas = CanvasLayer.new()
 	canvas.layer = 128
@@ -80,14 +87,6 @@ func _clear_scene()  -> void:
 		if child.name == "BackgroundMusic":
 			continue
 		child.queue_free()
-	if _death_menu_node != null:
-		_death_menu_node.queue_free()
-	if _menu_node != null:
-		_menu_node.queue_free()
-	if _game_node != null:
-		_game_node.queue_free()
-	if _pause_menu_node != null:
-		_pause_menu_node.queue_free()
 		
 	var root = get_tree().current_scene
 	for child in root.get_children():

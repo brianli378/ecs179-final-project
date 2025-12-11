@@ -41,10 +41,10 @@ var shooting_sound: AudioStreamPlayer2D = $shooting_sound
 var projectile_spawn: Node2D = $RotationPivot/ProjectileSpawn
 
 @onready 
-var _player:Player
+var _player: Player = null
 
 @onready 
-var enemy = get_parent().get_parent()
+var enemy: Enemy = get_parent().get_parent()
 
 @onready 
 var rotation_pivot: Node2D = $RotationPivot
@@ -176,7 +176,7 @@ func _process(_delta: float) -> void:
 func _create_fusion_gun_instance(fusion_gun_key: String) -> Gun:
 	if not fusion_gun_classes.has(fusion_gun_key):
 		return null
-	var gun_class = fusion_gun_classes[fusion_gun_key]
+	var gun_class: GDScript = fusion_gun_classes[fusion_gun_key]
 	return gun_class.new()
 
 
@@ -192,7 +192,7 @@ func _copy_gun_offsets(source_gun_key: String, new_gun_key: String) -> void:
 
 
 func _update_gun_texture_for_boss() -> void:
-	var _curr_gun_key = gun_keys[curr_gun_index]
+	var _curr_gun_key: String = gun_keys[curr_gun_index]
 	
 	if gun_textures.has(_curr_gun_key):
 		gun_sprite.visible = true
@@ -206,7 +206,7 @@ func _update_gun_texture_for_boss() -> void:
 
 
 func _update_projectile_spawn_position_for_boss() -> void:
-	var _curr_gun_key = gun_keys[curr_gun_index]
+	var _curr_gun_key: String = gun_keys[curr_gun_index]
 	
 	if projectile_spawn and projectile_spawn_offsets.has(_curr_gun_key):
 		projectile_spawn.position = projectile_spawn_offsets[_curr_gun_key]
@@ -218,7 +218,7 @@ func _update_projectile_spawn_position_for_boss() -> void:
 
 
 func _set_gun_sprite() -> void:
-	var _curr_gun_key = gun_keys[0]
+	var _curr_gun_key: String = gun_keys[0]
 	
 	gun_sprite.texture = gun_textures[_curr_gun_key]
 	gun_sprite.position = gun_sprite_positions[_curr_gun_key]

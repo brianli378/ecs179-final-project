@@ -19,6 +19,3 @@ func _physics_process(delta: float) -> void:
 			seeing_player = true
 		else:
 			seeing_player = false
-			
-
-	

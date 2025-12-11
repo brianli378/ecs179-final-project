@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("2_33lvp")
-enemy_scene_path = "res://scenes/enemies/bosses/boss_enemy_1.tscn"
+enemy_scene_path = "res://scenes/enemies/bosses/boss.tscn"
 health = 1000
 damage = 25.0
 speed = 400.0

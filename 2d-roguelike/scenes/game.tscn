@@ -1,8 +1,7 @@
-[gd_scene load_steps=35 format=3 uid="uid://dfob77al3r2l3"]
+[gd_scene load_steps=34 format=3 uid="uid://dfob77al3r2l3"]
 
 [ext_resource type="Script" uid="uid://ckotjxg6pcfyy" path="res://scripts/game.gd" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://cjfuyyu8dl486" path="res://scenes/player.tscn" id="1_yqjtg"]
-[ext_resource type="PackedScene" uid="uid://ck8xgy356oeee" path="res://scenes/maps/object.tscn" id="2_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://bjrm7q5gp25pu" path="res://assets/ui/health_bar_border.png" id="4_dinhu"]
 [ext_resource type="Script" uid="uid://c1ii6nabjc5qe" path="res://scripts/ui/ammo_label.gd" id="4_lbhrr"]
 [ext_resource type="Script" uid="uid://ddmp30xmc3gcl" path="res://scripts/ui/reload_label.gd" id="5_iywne"]
@@ -172,24 +171,6 @@ script = ExtResource("1_lnu2h")
 [node name="Player" parent="." instance=ExtResource("1_yqjtg")]
 position = Vector2(499, 194)
 scale = Vector2(0.5, 0.5)
-
-[node name="StaticBody2D" parent="." instance=ExtResource("2_lnu2h")]
-position = Vector2(177, 144)
-
-[node name="StaticBody2D2" parent="." instance=ExtResource("2_lnu2h")]
-position = Vector2(490, 414)
-
-[node name="StaticBody2D3" parent="." instance=ExtResource("2_lnu2h")]
-position = Vector2(894, 68)
-
-[node name="StaticBody2D4" parent="." instance=ExtResource("2_lnu2h")]
-position = Vector2(1056, 470)
-
-[node name="StaticBody2D5" parent="." instance=ExtResource("2_lnu2h")]
-position = Vector2(673, 664)
-
-[node name="StaticBody2D6" parent="." instance=ExtResource("2_lnu2h")]
-position = Vector2(82, 577)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

@@ -2,6 +2,12 @@
 class_name GunData
 extends Resource
 
+const projectile_library = {
+	"normal": preload("res://specs/projectiles/normal_projectile.tres"),
+	"laser":  preload("res://specs/projectiles/laser_projectile.tres"),
+	"rocket": preload("res://specs/projectiles/rocket_projectile.tres")
+}
+
 # Base gun textures
 const gun_textures: Dictionary = {
 	# base guns
@@ -156,6 +162,37 @@ const gun_sprite_positions: Dictionary = {
 	"machineper": Vector2(-200, 0),
 }
 
+const basic_enemy_gun_offsets_x: Dictionary = {
+	"rocket launcher": 120,
+	"sniper": 120,
+	"machine gun": 120,
+	"pistol": -10,
+	"shotgun": 0,
+}
+
+const base_weapon_to_projectile: Dictionary = {
+	"rocket launcher": "rocket",
+	"sniper": "laser",
+	"machine gun": "normal",
+	"pistol": "normal",
+	"shotgun": "normal",
+}
+
+const boss_gun_offsets: Dictionary = {
+	"rocket sniper": Vector2(80, 0),
+	"laser shotgun": Vector2(80, 0),
+	"pachine gun": Vector2(-30, 0),
+	"machineper": Vector2(80, -30),
+}
+
+const boss_projectile_spawn_offsets: Dictionary = {
+	"rocket sniper": Vector2(-120, -80),
+	"pachine gun": Vector2(-200, -30),
+	"machineper": Vector2(-40, -50),
+	"laser shotgun": Vector2(-360, 0),
+	"shocket launcher": Vector2(-120, 0),
+}
+
 const projectile_spawn_offsets: Dictionary = {
 	"pistol": Vector2(200, 0),
 	"machine gun": Vector2(220, 20),
@@ -239,4 +276,12 @@ static var fusion_gun_classes: Dictionary = {
 	"machinegun gun": MachineGunGun,
 	"machine launcher": MachineLauncher,
 	"machineper": Machineper
+}
+
+static var guns: Dictionary = {
+	"pistol": Pistol.new(),
+	"machine gun": MachineGun.new(),
+	"sniper": Sniper.new(),
+	"shotgun": Shotgun.new(),
+	"rocket launcher": RocketLauncher.new()
 }

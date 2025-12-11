@@ -1,53 +1,53 @@
-[gd_scene load_steps=18 format=3 uid="uid://0b3yn7jny0w7"]
+[gd_scene load_steps=18 format=3 uid="uid://g57ano881sjq"]
 
-[ext_resource type="Script" uid="uid://birgv6eudsgmc" path="res://scripts/enemies/enemy.gd" id="1_wm0l1"]
-[ext_resource type="Texture2D" uid="uid://bfe7hcosfb26f" path="res://assets/enemies/basic_enemy.png" id="2_ofms4"]
-[ext_resource type="Texture2D" uid="uid://c7a3whp20hr42" path="res://assets/enemies/basic_enemy_walk_left.png" id="3_vvlk3"]
-[ext_resource type="Texture2D" uid="uid://dlrcvedlqbhoj" path="res://assets/enemies/basic_enemy_walk_right.png" id="4_ca30k"]
-[ext_resource type="PackedScene" uid="uid://doj05njfuwl4e" path="res://scenes/enemies/enemy_gun.tscn" id="5_dmum3"]
+[ext_resource type="Script" uid="uid://birgv6eudsgmc" path="res://scripts/enemies/enemy.gd" id="1_eio3r"]
+[ext_resource type="PackedScene" uid="uid://doj05njfuwl4e" path="res://scenes/enemies/enemy_gun.tscn" id="2_poqgw"]
+[ext_resource type="Texture2D" uid="uid://bfe7hcosfb26f" path="res://assets/enemies/basic_enemy.png" id="3_6566r"]
+[ext_resource type="Texture2D" uid="uid://c7a3whp20hr42" path="res://assets/enemies/basic_enemy_walk_left.png" id="4_vh7p2"]
+[ext_resource type="Texture2D" uid="uid://dlrcvedlqbhoj" path="res://assets/enemies/basic_enemy_walk_right.png" id="5_1b281"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wsh5r"]
 radius = 80.0
 height = 374.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4mpuu"]
-atlas = ExtResource("2_ofms4")
+atlas = ExtResource("3_6566r")
 region = Rect2(0, 0, 200, 380)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wsh5r"]
-atlas = ExtResource("2_ofms4")
+atlas = ExtResource("3_6566r")
 region = Rect2(200, 0, 200, 380)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yo4tp"]
-atlas = ExtResource("3_vvlk3")
+atlas = ExtResource("4_vh7p2")
 region = Rect2(0, 0, 220, 380)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pksqs"]
-atlas = ExtResource("3_vvlk3")
+atlas = ExtResource("4_vh7p2")
 region = Rect2(220, 0, 220, 380)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mgm4g"]
-atlas = ExtResource("3_vvlk3")
+atlas = ExtResource("4_vh7p2")
 region = Rect2(440, 0, 220, 380)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qoibk"]
-atlas = ExtResource("3_vvlk3")
+atlas = ExtResource("4_vh7p2")
 region = Rect2(660, 0, 220, 380)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ox54m"]
-atlas = ExtResource("4_ca30k")
+atlas = ExtResource("5_1b281")
 region = Rect2(0, 0, 220, 380)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h8g6m"]
-atlas = ExtResource("4_ca30k")
+atlas = ExtResource("5_1b281")
 region = Rect2(220, 0, 220, 380)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ojalv"]
-atlas = ExtResource("4_ca30k")
+atlas = ExtResource("5_1b281")
 region = Rect2(440, 0, 220, 380)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qh2ad"]
-atlas = ExtResource("4_ca30k")
+atlas = ExtResource("5_1b281")
 region = Rect2(660, 0, 220, 380)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y18r1"]
@@ -99,14 +99,13 @@ animations = [{
 }]
 
 [node name="BossEnemy" type="CharacterBody2D"]
-script = ExtResource("1_wm0l1")
+script = ExtResource("1_eio3r")
 
 [node name="Body" type="Sprite2D" parent="."]
 
-[node name="EnemyGunManager" parent="Body" instance=ExtResource("5_dmum3")]
+[node name="EnemyGunManager" parent="Body" instance=ExtResource("2_poqgw")]
 position = Vector2(122, 47.999992)
 scale = Vector2(1, 1)
-texture = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, -1)

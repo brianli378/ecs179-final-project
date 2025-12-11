@@ -17,15 +17,14 @@ var _controls_node:Node
 
 var visibleNames:Array[String] = []
 
-#var _all_nodes:Array[Node] = [_menu_node, _death_menu_node, _game_node]
-	
 func start_menu() -> void:
 	print("start_menu")
 	_clear_scene_and_children()
 	# instantisate the scene and add it as a child to the tree
 	_menu_node = _menu.instantiate()
 	add_child(_menu_node)
-	
+
+
 func controls_menu() -> void:
 	print("controls menu")
 	_clear_scene_and_children()
@@ -33,11 +32,13 @@ func controls_menu() -> void:
 	_controls_node = _controls.instantiate()
 	add_child(_controls_node)
 
+
 func start_game() -> void:
 	print("start_game")
 	_clear_scene_and_children()
 	_game_node = _game.instantiate()
 	add_child(_game_node)
+
 
 func death_menu() -> void:
 	print("death_menu")
@@ -45,7 +46,8 @@ func death_menu() -> void:
 	# instantisate the scene and add it as a child to the tree
 	_death_menu_node = _death_menu.instantiate()
 	add_child(_death_menu_node)
-	
+
+
 func pause_menu() -> void:
 	print("pause menu")
 	# instantisate the scene and add it as a child to the tree
@@ -68,6 +70,7 @@ func pause_menu() -> void:
 
 	add_child(canvas)
 	canvas.add_child(_pause_menu_node)
+
 
 func unpause() -> void:
 	_pause_menu_node.queue_free()

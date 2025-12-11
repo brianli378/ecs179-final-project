@@ -93,11 +93,11 @@ Created Animation for health bar changing, and designed health bar to fit with t
 
 **Crosshair and reload animation**
 <img width="2023" height="90" alt="crosshair_reload" src="https://github.com/user-attachments/assets/2d05a8ee-817f-482e-9aa4-e047c595bd84" />
-Created dynamic crosshair reload animation so that the time for the animation lines up with the guns reload time.
-
-**Create a visual for explosions**
-<img width="487" height="614" alt="image" src="https://github.com/user-attachments/assets/ba5a9bbb-74bf-47b2-8685-7b335c6a1d7a" />
-Created a visual explosion such that players could see the radius of rockets
+Created dynamic crosshair reload animation so that the time for the animation lines up with the guns reload time.  
+  
+**Create a visual for explosions**  
+<img width="487" height="614" alt="image" src="https://github.com/user-attachments/assets/ba5a9bbb-74bf-47b2-8685-7b335c6a1d7a" />  
+Created a visual explosion such that players could see the radius of rockets  
 
 
 ## Game Feel  

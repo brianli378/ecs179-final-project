@@ -336,6 +336,12 @@ I set up a Godot linter (https://github.com/Scony/godot-gdscript-toolkit) throug
 
 I refactored the file structure to separate scenes from scripts from specs completely, and added in folders to organize files more logically to improve codebase quality.
 
+**Playtesting**
+
+To ensure enemies were behaving as they should, I did a lot of playtesting, which helped me suggest balance changes such as the rocket sniper being too weak, the laser machine gun being too strong, and the base sniper being too weak. I also found bugs like the player still shooting when in the inventory menu and rockets not triggering impacts when the player walks into them from the side.
+
+I balanced some of these myself such as increasing the projectile speed on machine guns to make them feel more responsive to the player.
+
 # Team Member #5 #
 ## Main Role
 

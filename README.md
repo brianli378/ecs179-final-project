@@ -253,18 +253,22 @@ One issue we ran into with the inventory systems was getting too many guns would
 # Aditya Sharma #
 ## AI and behavior designer
 
-**Basic Functionality**
+**Functionality**
+
 I implemented movement for the enemies, their health, modified the player gun manager to work as an enemy gun manager and kept it up to date with changes to the gun system. I also built the functionality for enemies and the player to take damage and die through the _on_body_entered() signal and collision layers/masks, also ensuring that there's no friendly fire by modifying the projectile spec to track who fired the projectile. 
 
 I also was constantly tuning the enemies in terms of speed, distance to player, fire rate, and sprite and projectile spawn positioning.
 
 **Enemy Behavior**
+
 My goal with the enemy behavior was to center it around the guns themselves, since the main aspect of our game is the gun system. I knew that enemies with different guns would want to use them in different ways, for example, an enemy with a shotgun would want to get closer to the player than one with a sniper. To implement this, I gave each enemy a close leash and far leash and wrote logic for the enemy to approach the player when the distance is > the far leash, and move away from the player when distance is < the close leash. This resulted in an engaging tug of war that was fun even in an empty room with no cover. 
 
 **Enemy Line Of Sight**
+
 To deal with cover, I implemented line of sight (LOS) for the enemies through a ray cast 2d object attached to the enemy gun manager. I learned how LOS typically worked in Godot through this tutorial: https://www.makeuseof.com/godot-raycast2d-nodes-line-of-sight-detection/, and adjusted the map tileset's collision masks to ensure only walls would block LOS. Then I integrated the basic enemy behavior by ensuring the enemies only shoot at the player when they have LOS.
 
 **A\* Navigation**
+
 With LOS working, I needed a way to have the enemies navigate around obstacles to regain LOS with the player when an obstacle was blocking them, which led me to A* navigation. I learned how to implement this in Godot through this tutorial: https://www.makeuseof.com/godot-raycast2d-nodes-line-of-sight-detection/, and modified the details to work for our structure. Particularly, I found the tutorial's suggested code performed very poorly, which I will expand upon later. I once again modified the map tileset by painting a navigation layer on the tiles for the floor to inform the navigation agent on what it can use for pathing. I also implemented tutorial code to identify all obstacles in the level based on collision polygons.
 
 The A* navigation succeeded in enabling the enemies to regain LOS with the player, but I noticed they initially got stuck against the obstacles and slowed down to a halt while grinding against the walls. I identified this issue as being due to navigation tiles being so close to the wall and the shape of the collision object being a square. To mitigate this I changed the collision object to an oval, which fixed the issue for the most part but not around corners. I found I could implement a navigation server and create meses away from the wall to prevent this, but unfortunately did not have time. Instead, we modified the edges of the corners to be a bit more rounded to help with this issue. 
@@ -272,6 +276,7 @@ The A* navigation succeeded in enabling the enemies to regain LOS with the playe
 I decided to speed up the enemies while they were in A* navigation to help reduce the effect of sliding against collision objects like walls, and keep the gameplay engaging and urgent. Both the A* and LOS behavior together also resulted in enemies utilizing cover to shoot at the player, which made the combat more realistic and made the player's positioning relative to obstacles more relevant. 
 
 **Fusion Weapons For Bosses**
+
 To come up with an engaging boss design, I proposed some options to the team and discussed with Sean and Alyssa. 
 
 To differentiate the bosses from basic enemies, we decided to make them larger, have more health, and use fusion weapons to showcase some more combinations to the player. On death, the boss also gives the two weapons used to make its fusion to the player. I implemented all of this, and had to make some significant adjustments to the fusion system for the player to let it work for the bosses. I also fixed a bug where the player could not fuse these weapons received from the boss due to the way the fusion system worked.
@@ -281,17 +286,21 @@ First, we chose a smaller pool of weapons for the bosses to pull from to ensure 
 ## Performance optimization
 
 **A\* Pathing**
+
 After implementing A* pathing, I immediately noticed a significant performance drop with multiple enemies. I first utilized the profiler to confirm this was due to the pathing, and found two issues to solve. First, the tutorial's method for calculating the obstacles and marking them for the navigation agent was very slow due to it using a list for storage, I checked with an LLM to confirm how to optimize the code as Godot doesn't have a Set data structure which I wanted to use, and replaced the list with a dictionary for faster lookup. 
 
 This significantly improved performance, but the other issue was the small tile size. I realized this through online research, and believe it's due to the density of the mesh the navigation agent must traverse to find the shortest path to the target. I wasn't sure if this was the fix, but I suggested increasing tile size which Sean helped with, which solved the problem.
 
 **Gun instance caching**
+
 I noticed that the enemies and player were rebuilding gun objects which could be shared between them, so I added a variable in our GunData resource to cache the gun objects for reuse, reducing memory usage.
 
 **Enemy Death Signal Chain Optimization**
+
 When refactoring the enemy code, I noticed that the enemy death tracking done by the round manager (in map_controller.gd, and set up in the enemy factory) was receiving signals indirectly through game.gd, which received on death signals from the enemy, instead of map_controller directly receiving the on_death signal emitted by enemies. I removed game.gd from this process to improve performance through reduced code execution and fewer signal emissions/handles. 
 
 **Reduced game overhead and improved gameplay through design choices**
+
 I proposed each weapon type sharing ammo across weapons to encourage player to fuse new weapons rather than have multiple of the same weapon, which allowed us to simplify the gun system by not needing each weapon instance to track it's ammo. This also enabled the gun object caching mentioned earlier. 
 
 ## Other Contrubutions

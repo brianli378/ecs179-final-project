@@ -18,7 +18,7 @@ func _ready() -> void:
 	visible = false
 	
 	if background:
-		background.color = Color(0.2, 0.2, 0.2, 0.9)
+		background.color = Color(0.0, 0.0, 0.0, 0.7)
 	
 	if heat_fill:
 		heat_fill.color = cool_color

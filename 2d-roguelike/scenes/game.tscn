@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dfob77al3r2l3"]
+[gd_scene load_steps=35 format=3 uid="uid://dfob77al3r2l3"]
 
 [ext_resource type="Script" uid="uid://ckotjxg6pcfyy" path="res://scripts/game.gd" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://cjfuyyu8dl486" path="res://scenes/player.tscn" id="1_yqjtg"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cbp7rkfxj7ph8" path="res://scenes/maps/maps.tscn" id="9_0tnpc"]
 [ext_resource type="Script" uid="uid://ye17l3xnaqjk" path="res://scripts/ui/health_bar.gd" id="9_vtaks"]
 [ext_resource type="Script" uid="uid://bqayfm018yn32" path="res://scripts/ui/inventory_ui.gd" id="12_kvuet"]
+[ext_resource type="Script" uid="uid://cqw0f38lj6rgh" path="res://scenes/heat_bar.gd" id="13_trtic"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0tnpc"]
 atlas = ExtResource("8_gee14")
@@ -238,6 +239,35 @@ columns = 6
 [node name="Panel" type="Panel" parent="CanvasLayer/InventoryPanel/MarginContainer/GunsContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_trtic")
+
+[node name="HeatBar" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1060.0
+offset_top = 680.0
+offset_right = 1260.0
+offset_bottom = 710.0
+script = ExtResource("13_trtic")
+gun_manager_path = NodePath("../../Player/Body/Gun")
+
+[node name="Background" type="ColorRect" parent="CanvasLayer/HeatBar"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 30.0
+
+[node name="HeatFill" type="ColorRect" parent="CanvasLayer/HeatBar"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 2.0
+offset_bottom = 28.0
+
+[node name="HeatLabel" type="Label" parent="CanvasLayer/HeatBar"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 30.0
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Maps" parent="." instance=ExtResource("9_0tnpc")]
 
